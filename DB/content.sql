@@ -78,7 +78,7 @@ CREATE TABLE notas (
     FOREIGN KEY (id_periodo) REFERENCES periodos(id_periodo)
 );
 
--- ------------------------------------------------------------ indices-------------------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------- indices-------------------------------------------------------------------------------------------------------
 -- Búsquedas frecuentes de notas por alumno+materia+periodo
 CREATE INDEX idx_notas_alumno_materia_periodo 
 ON notas(id_alumno, id_materia, id_periodo);
@@ -86,7 +86,7 @@ ON notas(id_alumno, id_materia, id_periodo);
 -- Búsquedas de inscripciones por alumno+periodo
 CREATE INDEX idx_inscripciones_alumno_periodo 
 ON inscripciones(id_alumno, id_periodo);
--- ------------------------------------------------------------triggers-------------------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------triggers-------------------------------------------------------------------------------------------------------------
 DELIMITER $$
 CREATE TRIGGER trg_auditoria_cierre_nota
 AFTER UPDATE ON notas
