@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://github.com/Instituto-Politecnico-Modelo/TP3-docs-Serrano-Ortiz.git"
+    }
+  }
+}
