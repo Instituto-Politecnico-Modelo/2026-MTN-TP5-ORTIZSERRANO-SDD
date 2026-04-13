@@ -4,10 +4,12 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.JwtResponse;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.LoginRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.MessageResponse;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.SignupRequest;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.UpdateUserRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,9 @@ public class AuthController {
     
     @Autowired
     private JwtUtil jwtUtil;
+    
+    @Autowired
+    private UserService userService;
     
     /**
      * POST /api/auth/login - Autenticar usuario y devolver JWT
@@ -105,5 +110,78 @@ public class AuthController {
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         
         return ResponseEntity.ok(usuario);
+    }
+    
+    /**
+     * PUT /api/auth/update - Actualizar información del usuario autenticado
+     */
+    @PutMapping("/update")
+    public ResponseEntity<?> updateUser(
+            @Valid @RequestBody UpdateUserRequest updateRequest,
+            Authentication authentication) {
+        
+        if (authentication == null) {
+            return ResponseEntity.status(401).body(new MessageResponse("No autenticado"));
+        }
+        
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        
+        try {
+            Usuario updatedUser = userService.updateUsuario(userDetails.getId(), updateRequest);
+            return ResponseEntity.ok(new MessageResponse("Usuario actualizado exitosamente"));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
+        }
+    }
+    
+    /**
+     * DELETE /api/auth/delete - Baja lógica del usuario (marca como inactivo)
+     */
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteUserLogico(Authentication authentication) {
+        if (authentication == null) {
+            return ResponseEntity.status(401).body(new MessageResponse("No autenticado"));
+        }
+        
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        
+        try {
+            userService.deleteUsuarioLogico(userDetails.getId());
+            return ResponseEntity.ok(new MessageResponse("Usuario desactivado exitosamente"));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
+        }
+    }
+    
+    /**
+     * DELETE /api/auth/delete/physical - Baja física del usuario (elimina de BD)
+     */
+    @DeleteMapping("/delete/physical")
+    public ResponseEntity<?> deleteUserFisico(Authentication authentication) {
+        if (authentication == null) {
+            return ResponseEntity.status(401).body(new MessageResponse("No autenticado"));
+        }
+        
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        
+        try {
+            userService.deleteUsuarioFisico(userDetails.getId());
+            return ResponseEntity.ok(new MessageResponse("Usuario eliminado permanentemente"));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
+        }
+    }
+    
+    /**
+     * PUT /api/auth/reactivate/{id} - Reactivar un usuario desactivado (solo admin)
+     */
+    @PutMapping("/reactivate/{id}")
+    public ResponseEntity<?> reactivateUser(@PathVariable Long id) {
+        try {
+            userService.reactivarUsuario(id);
+            return ResponseEntity.ok(new MessageResponse("Usuario reactivado exitosamente"));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
+        }
     }
 }

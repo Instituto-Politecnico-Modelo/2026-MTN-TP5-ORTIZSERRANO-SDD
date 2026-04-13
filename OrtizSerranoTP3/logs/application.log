@@ -2347,3 +2347,622 @@ org.springframework.security.authentication.BadCredentialsException: Bad credent
 2026-04-13 09:53:37.605 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
 2026-04-13 09:53:37.605 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
 2026-04-13 09:53:37.605 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 401 UNAUTHORIZED
+2026-04-13 10:04:33.193 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 28 class path changes (0 additions, 28 deletions, 0 modifications)
+2026-04-13 10:04:33.197 [Thread-1] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-13 10:04:33.200 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-04-13 10:04:33.203 [Thread-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-13 10:04:33.212 [Thread-1] WARN  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-240]
+2026-04-13 10:04:33.212 [Thread-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-13 10:04:33.213 [Thread-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-13 10:04:35.075 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - Starting OrtizSerranoTp3Application using Java 21.0.10 with PID 81536 (/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main started by alumno26.ortiz.santiago@ipm.edu.ar in /home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3)
+2026-04-13 10:04:35.075 [restartedMain] DEBUG c.D.O.OrtizSerranoTp3Application - Running with Spring Boot v4.0.5, Spring v7.0.6
+2026-04-13 10:04:35.075 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - No active profile set, falling back to 1 default profile: "default"
+2026-04-13 10:04:35.163 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-13 10:04:35.164 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for JPA repositories in packages com.DecanatoOrtizSerrano.OrtizSerranoTP3.
+2026-04-13 10:04:35.166 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/UsuarioRepository.class]
+2026-04-13 10:04:35.168 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 1 JPA repository interface.
+2026-04-13 10:04:35.239 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-13 10:04:35.240 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-13 10:04:35.240 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-13 10:04:35.245 [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 169 ms
+2026-04-13 10:04:35.277 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-13 10:04:35.299 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-13 10:04:35.300 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2026-04-13 10:04:35.301 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection conn11: url=jdbc:h2:mem:decanato_db user=SA
+2026-04-13 10:04:35.301 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2026-04-13 10:04:35.302 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-13 10:04:35.302 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:decanato_db]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: DECANATO_DB/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-13 10:04:35.393 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-13 10:04:35.403 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-13 10:04:35.430 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Initializing JpaMetamodelMappingContext…
+2026-04-13 10:04:35.430 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Finished initializing JpaMetamodelMappingContext
+2026-04-13 10:04:35.438 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository…
+2026-04-13 10:04:35.440 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.findByEmail'
+2026-04-13 10:04:35.440 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.findByEmail
+2026-04-13 10:04:35.441 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.existsByEmail'
+2026-04-13 10:04:35.441 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.existsByEmail
+2026-04-13 10:04:35.443 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.
+2026-04-13 10:04:35.472 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-04-13 10:04:35.472 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
+2026-04-13 10:04:35.495 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-04-13 10:04:35.495 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-04-13 10:04:35.517 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-13 10:04:35.601 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-04-13 10:04:35.649 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 9 mappings in 'requestMappingHandlerMapping'
+2026-04-13 10:04:35.668 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-04-13 10:04:35.677 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-04-13 10:04:35.689 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-04-13 10:04:35.742 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-04-13 10:04:35.744 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - Started OrtizSerranoTp3Application in 0.691 seconds (process running for 1476.522)
+2026-04-13 10:04:35.745 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2026-04-13 10:05:12.841 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - Starting OrtizSerranoTp3Application using Java 21.0.10 with PID 97642 (/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main started by alumno26.ortiz.santiago@ipm.edu.ar in /home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3)
+2026-04-13 10:05:12.842 [restartedMain] DEBUG c.D.O.OrtizSerranoTp3Application - Running with Spring Boot v4.0.5, Spring v7.0.6
+2026-04-13 10:05:12.842 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - No active profile set, falling back to 1 default profile: "default"
+2026-04-13 10:05:12.869 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-13 10:05:12.870 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-04-13 10:05:13.274 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-13 10:05:13.283 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for JPA repositories in packages com.DecanatoOrtizSerrano.OrtizSerranoTP3.
+2026-04-13 10:05:13.289 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/UsuarioRepository.class]
+2026-04-13 10:05:13.308 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 1 JPA repository interface.
+2026-04-13 10:05:13.682 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-13 10:05:13.692 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-13 10:05:13.692 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-13 10:05:13.713 [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 842 ms
+2026-04-13 10:05:13.803 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-13 10:05:13.835 [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-04-13 10:05:14.140 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-13 10:05:14.160 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-13 10:05:14.269 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:decanato_db user=SA
+2026-04-13 10:05:14.270 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-13 10:05:14.287 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-13 10:05:14.303 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:decanato_db]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: DECANATO_DB/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-13 10:05:15.124 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-13 10:05:15.165 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-13 10:05:15.198 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Initializing JpaMetamodelMappingContext…
+2026-04-13 10:05:15.205 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Finished initializing JpaMetamodelMappingContext
+2026-04-13 10:05:15.221 [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-13 10:05:15.250 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository…
+2026-04-13 10:05:15.283 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.findByEmail'
+2026-04-13 10:05:15.310 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.findByEmail
+2026-04-13 10:05:15.318 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.existsByEmail'
+2026-04-13 10:05:15.318 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.existsByEmail
+2026-04-13 10:05:15.320 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.
+2026-04-13 10:05:15.379 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-04-13 10:05:15.379 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
+2026-04-13 10:05:15.423 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-04-13 10:05:15.423 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-04-13 10:05:15.460 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-13 10:05:15.610 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-04-13 10:05:15.706 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 9 mappings in 'requestMappingHandlerMapping'
+2026-04-13 10:05:15.736 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-04-13 10:05:15.756 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-04-13 10:05:15.795 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-04-13 10:05:15.872 [restartedMain] WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-04-13 10:05:15.874 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-13 10:05:15.882 [restartedMain] WARN  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-240]
+2026-04-13 10:05:15.882 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-13 10:05:15.883 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-13 10:05:15.888 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-04-13 10:05:15.897 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:423)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:409)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:613)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:379)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:306)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1013)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.DecanatoOrtizSerrano.OrtizSerranoTP3.OrtizSerranoTp3Application.main(OrtizSerranoTp3Application.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat server
+	at org.springframework.boot.tomcat.TomcatWebServer.start(TomcatWebServer.java:248)
+	at org.springframework.boot.web.server.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:44)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:420)
+	... 17 common frames omitted
+Caused by: java.lang.IllegalArgumentException: standardService.connector.startFailed
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:220)
+	at org.springframework.boot.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:307)
+	at org.springframework.boot.tomcat.TomcatWebServer.start(TomcatWebServer.java:233)
+	... 19 common frames omitted
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1119)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:217)
+	... 21 common frames omitted
+Caused by: java.net.BindException: La dirección ya se está usando
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:577)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:265)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:220)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1640)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1723)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:644)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1116)
+	... 23 common frames omitted
+2026-04-13 10:06:08.937 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - Starting OrtizSerranoTp3Application using Java 21.0.10 with PID 98682 (/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main started by alumno26.ortiz.santiago@ipm.edu.ar in /home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3)
+2026-04-13 10:06:08.938 [restartedMain] DEBUG c.D.O.OrtizSerranoTp3Application - Running with Spring Boot v4.0.5, Spring v7.0.6
+2026-04-13 10:06:08.939 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - No active profile set, falling back to 1 default profile: "default"
+2026-04-13 10:06:08.966 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-13 10:06:08.966 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-04-13 10:06:09.374 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-13 10:06:09.385 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for JPA repositories in packages com.DecanatoOrtizSerrano.OrtizSerranoTP3.
+2026-04-13 10:06:09.392 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/UsuarioRepository.class]
+2026-04-13 10:06:09.411 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24 ms. Found 1 JPA repository interface.
+2026-04-13 10:06:09.803 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-13 10:06:09.812 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-13 10:06:09.812 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-13 10:06:09.835 [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 867 ms
+2026-04-13 10:06:09.923 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-13 10:06:09.956 [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-04-13 10:06:10.261 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-13 10:06:10.281 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-13 10:06:10.397 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:decanato_db user=SA
+2026-04-13 10:06:10.398 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-13 10:06:10.415 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-13 10:06:10.430 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:decanato_db]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: DECANATO_DB/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-13 10:06:11.221 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-13 10:06:11.261 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-13 10:06:11.295 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Initializing JpaMetamodelMappingContext…
+2026-04-13 10:06:11.308 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Finished initializing JpaMetamodelMappingContext
+2026-04-13 10:06:11.323 [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-13 10:06:11.350 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository…
+2026-04-13 10:06:11.379 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.findByEmail'
+2026-04-13 10:06:11.407 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.findByEmail
+2026-04-13 10:06:11.415 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.existsByEmail'
+2026-04-13 10:06:11.415 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.existsByEmail
+2026-04-13 10:06:11.418 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.
+2026-04-13 10:06:11.477 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-04-13 10:06:11.477 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
+2026-04-13 10:06:11.527 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-04-13 10:06:11.527 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-04-13 10:06:11.562 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-13 10:06:11.711 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-04-13 10:06:11.812 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 9 mappings in 'requestMappingHandlerMapping'
+2026-04-13 10:06:11.840 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-04-13 10:06:11.859 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-04-13 10:06:11.892 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-04-13 10:06:11.976 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-04-13 10:06:11.980 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - Started OrtizSerranoTp3Application in 3.399 seconds (process running for 3.675)
+2026-04-13 10:06:56.350 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-13 10:06:56.354 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-04-13 10:06:56.357 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-13 10:06:56.370 [SpringApplicationShutdownHook] WARN  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-240]
+2026-04-13 10:06:56.371 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-13 10:06:56.372 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-13 10:07:25.179 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - Starting OrtizSerranoTp3Application using Java 21.0.10 with PID 99810 (/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main started by alumno26.ortiz.santiago@ipm.edu.ar in /home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3)
+2026-04-13 10:07:25.180 [restartedMain] DEBUG c.D.O.OrtizSerranoTp3Application - Running with Spring Boot v4.0.5, Spring v7.0.6
+2026-04-13 10:07:25.181 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - No active profile set, falling back to 1 default profile: "default"
+2026-04-13 10:07:25.209 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-13 10:07:25.209 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-04-13 10:07:25.608 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-13 10:07:25.618 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for JPA repositories in packages com.DecanatoOrtizSerrano.OrtizSerranoTP3.
+2026-04-13 10:07:25.624 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/UsuarioRepository.class]
+2026-04-13 10:07:25.643 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 1 JPA repository interface.
+2026-04-13 10:07:26.024 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-13 10:07:26.034 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-13 10:07:26.034 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-13 10:07:26.058 [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 847 ms
+2026-04-13 10:07:26.152 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-13 10:07:26.185 [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-04-13 10:07:26.485 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-13 10:07:26.515 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-13 10:07:26.618 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:decanato_db user=SA
+2026-04-13 10:07:26.620 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-13 10:07:26.635 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-13 10:07:26.650 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:decanato_db]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: DECANATO_DB/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-13 10:07:27.432 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-13 10:07:27.470 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-13 10:07:27.501 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Initializing JpaMetamodelMappingContext…
+2026-04-13 10:07:27.510 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Finished initializing JpaMetamodelMappingContext
+2026-04-13 10:07:27.525 [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-13 10:07:27.551 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository…
+2026-04-13 10:07:27.584 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.findByEmail'
+2026-04-13 10:07:27.611 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.findByEmail
+2026-04-13 10:07:27.618 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.existsByEmail'
+2026-04-13 10:07:27.618 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.existsByEmail
+2026-04-13 10:07:27.621 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.
+2026-04-13 10:07:27.678 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-04-13 10:07:27.678 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
+2026-04-13 10:07:27.720 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-04-13 10:07:27.720 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-04-13 10:07:27.754 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-13 10:07:27.901 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-04-13 10:07:27.996 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 9 mappings in 'requestMappingHandlerMapping'
+2026-04-13 10:07:28.025 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-04-13 10:07:28.044 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-04-13 10:07:28.081 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-04-13 10:07:28.162 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-04-13 10:07:28.166 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - Started OrtizSerranoTp3Application in 3.314 seconds (process running for 3.57)
+2026-04-13 10:07:47.588 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-13 10:07:47.588 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-13 10:07:47.588 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2026-04-13 10:07:47.589 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2026-04-13 10:07:47.589 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1f4541b2
+2026-04-13 10:07:47.589 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@20a49a2c
+2026-04-13 10:07:47.590 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-04-13 10:07:47.590 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-04-13 10:07:47.596 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/signup
+2026-04-13 10:07:47.600 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-13 10:07:47.600 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/signup
+2026-04-13 10:07:47.601 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/signup", parameters={}
+2026-04-13 10:07:47.606 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#registerUser(SignupRequest)
+2026-04-13 10:07:47.606 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:07:47.606 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-13 10:07:47.606 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: POST
+2026-04-13 10:07:47.607 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/auth/signup
+2026-04-13 10:07:47.607 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-13 10:07:47.607 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-13 10:07:47.607 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-13 10:07:47.607 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-13 10:07:47.607 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-13 10:07:47.607 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: curl/8.5.0
+2026-04-13 10:07:47.608 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-04-13 10:07:47.608 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Type: application/json
+2026-04-13 10:07:47.608 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Length: 101
+2026-04-13 10:07:47.608 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#registerUser(SignupRequest)
+2026-04-13 10:07:47.608 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:07:47.662 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.SignupRequest@64406f61]
+2026-04-13 10:07:47.716 [http-nio-8080-exec-1] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.lang.Boolean com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.existsByEmail(java.lang.String)]: 'SELECT u.idUsuario FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:07:48.069 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-13 10:07:48.070 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.MessageResponse@77157a75]
+2026-04-13 10:07:48.086 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:07:48.086 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-13 10:07:48.086 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-13 10:07:48.086 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-04-13 10:07:48.087 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:07:48.087 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-13 10:09:00.137 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#authenticateUser(LoginRequest)
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: POST
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/auth/login
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-13 10:09:00.138 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: curl/8.5.0
+2026-04-13 10:09:00.139 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-04-13 10:09:00.139 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Type: application/json
+2026-04-13 10:09:00.139 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Length: 60
+2026-04-13 10:09:00.139 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#authenticateUser(LoginRequest)
+2026-04-13 10:09:00.139 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:09:00.140 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.LoginRequest@7efcfe55]
+2026-04-13 10:09:00.219 [http-nio-8080-exec-2] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:09:00.308 [http-nio-8080-exec-2] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-04-13 10:09:00.366 [http-nio-8080-exec-2] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:09:00.368 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-13 10:09:00.368 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.JwtResponse@3ad9e0a9]
+2026-04-13 10:09:00.370 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:09:00.371 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-13 10:09:00.371 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-13 10:09:00.371 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-04-13 10:09:00.371 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:09:00.371 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-13 10:09:11.688 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/auth/me
+2026-04-13 10:09:11.715 [http-nio-8080-exec-4] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:09:11.716 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/auth/me
+2026-04-13 10:09:11.718 [http-nio-8080-exec-4] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:09:11.719 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/auth/me", parameters={}
+2026-04-13 10:09:11.719 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#getCurrentUser(Authentication)
+2026-04-13 10:09:11.719 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:09:11.719 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-13 10:09:11.719 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-04-13 10:09:11.719 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/auth/me
+2026-04-13 10:09:11.719 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-13 10:09:11.719 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-13 10:09:11.719 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-13 10:09:11.719 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-13 10:09:11.720 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-13 10:09:11.720 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: curl/8.5.0
+2026-04-13 10:09:11.720 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-04-13 10:09:11.720 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYS5nb256YWxlekB0ZXN0LmNvbSIsImlhdCI6MTc3NjA4NTc0MCwiZXhwIjoxNzc2MTcyMTQwfQ.qUPWZP62ZHLz1M9zzIvtpYUv5UuswXpEUbMxtGx_jKTuRENy9hze0hUP8Gm71yKn6sVCBRaisgcLE5MYguH23g
+2026-04-13 10:09:11.720 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#getCurrentUser(Authentication)
+2026-04-13 10:09:11.720 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:09:11.721 [http-nio-8080-exec-4] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:09:11.723 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-13 10:09:11.723 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario@75adec08]
+2026-04-13 10:09:11.725 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:09:11.725 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-13 10:09:11.725 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-13 10:09:11.725 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-04-13 10:09:11.725 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:09:11.725 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-13 10:09:50.673 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /api/auth/update
+2026-04-13 10:09:50.675 [http-nio-8080-exec-6] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:09:50.676 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /api/auth/update
+2026-04-13 10:09:50.677 [http-nio-8080-exec-6] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - PUT "/api/auth/update", parameters={}
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#updateUser(UpdateUserRequest, Authentication)
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: PUT
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/auth/update
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: curl/8.5.0
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Type: application/json
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYS5nb256YWxlekB0ZXN0LmNvbSIsImlhdCI6MTc3NjA4NTc0MCwiZXhwIjoxNzc2MTcyMTQwfQ.qUPWZP62ZHLz1M9zzIvtpYUv5UuswXpEUbMxtGx_jKTuRENy9hze0hUP8Gm71yKn6sVCBRaisgcLE5MYguH23g
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Length: 55
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#updateUser(UpdateUserRequest, Authentication)
+2026-04-13 10:09:50.679 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:09:50.681 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.UpdateUserRequest@3fb579fa]
+2026-04-13 10:09:50.699 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-13 10:09:50.700 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.MessageResponse@719bf8b4]
+2026-04-13 10:09:50.701 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:09:50.701 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-13 10:09:50.701 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-13 10:09:50.701 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-04-13 10:09:50.701 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:09:50.702 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-13 10:09:58.477 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/auth/me
+2026-04-13 10:09:58.479 [http-nio-8080-exec-8] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:09:58.483 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/auth/me
+2026-04-13 10:09:58.485 [http-nio-8080-exec-8] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:09:58.486 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/auth/me", parameters={}
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#getCurrentUser(Authentication)
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/auth/me
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: curl/8.5.0
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYS5nb256YWxlekB0ZXN0LmNvbSIsImlhdCI6MTc3NjA4NTc0MCwiZXhwIjoxNzc2MTcyMTQwfQ.qUPWZP62ZHLz1M9zzIvtpYUv5UuswXpEUbMxtGx_jKTuRENy9hze0hUP8Gm71yKn6sVCBRaisgcLE5MYguH23g
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#getCurrentUser(Authentication)
+2026-04-13 10:09:58.487 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:09:58.488 [http-nio-8080-exec-8] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:09:58.489 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-13 10:09:58.489 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario@28df3c18]
+2026-04-13 10:09:58.489 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:09:58.489 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-13 10:09:58.489 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-13 10:09:58.489 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-04-13 10:09:58.489 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:09:58.489 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-13 10:10:06.986 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing DELETE /api/auth/delete
+2026-04-13 10:10:06.987 [http-nio-8080-exec-10] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:10:06.988 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured DELETE /api/auth/delete
+2026-04-13 10:10:06.990 [http-nio-8080-exec-10] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:10:06.991 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - DELETE "/api/auth/delete", parameters={}
+2026-04-13 10:10:06.991 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#deleteUserLogico(Authentication)
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: DELETE
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/auth/delete
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: curl/8.5.0
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYS5nb256YWxlekB0ZXN0LmNvbSIsImlhdCI6MTc3NjA4NTc0MCwiZXhwIjoxNzc2MTcyMTQwfQ.qUPWZP62ZHLz1M9zzIvtpYUv5UuswXpEUbMxtGx_jKTuRENy9hze0hUP8Gm71yKn6sVCBRaisgcLE5MYguH23g
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#deleteUserLogico(Authentication)
+2026-04-13 10:10:06.992 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:10:06.995 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-13 10:10:06.995 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.MessageResponse@1120a2fd]
+2026-04-13 10:10:06.995 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:10:06.995 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-13 10:10:06.995 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-13 10:10:06.996 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-04-13 10:10:06.996 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:10:06.996 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-13 10:10:16.240 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-04-13 10:10:16.240 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-13 10:10:16.240 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-04-13 10:10:16.240 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#authenticateUser(LoginRequest)
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: POST
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/auth/login
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: curl/8.5.0
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Type: application/json
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Length: 60
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#authenticateUser(LoginRequest)
+2026-04-13 10:10:16.241 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-13 10:10:16.242 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.LoginRequest@6e200cf7]
+2026-04-13 10:10:16.243 [http-nio-8080-exec-2] DEBUG o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-13 10:10:16.318 [http-nio-8080-exec-2] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to find user 'maria.gonzalez@test.com'
+2026-04-13 10:10:16.319 [http-nio-8080-exec-2] DEBUG o.s.s.authentication.ProviderManager - Authentication failed with provider DaoAuthenticationProvider since Bad credentials
+2026-04-13 10:10:16.321 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:10:16.321 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-13 10:10:16.321 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-13 10:10:16.321 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: null
+2026-04-13 10:10:16.321 [http-nio-8080-exec-2] ERROR c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ❌ EXCEPCIÓN: 
+org.springframework.security.authentication.BadCredentialsException: Bad credentials
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:152)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:183)
+	at com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController.authenticateUser(AuthController.java:52)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:235)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:371)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:380)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.springframework.security.core.userdetails.UsernameNotFoundException: Usuario inactivo: maria.gonzalez@test.com
+	at com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsServiceImpl.loadUserByUsername(UserDetailsServiceImpl.java:29)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719)
+	at com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsServiceImpl$$SpringCGLIB$$0.loadUserByUsername(<generated>)
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.retrieveUser(DaoAuthenticationProvider.java:106)
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:143)
+	... 96 common frames omitted
+2026-04-13 10:10:16.323 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-13 10:10:16.323 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Failed to complete request: org.springframework.security.authentication.BadCredentialsException: Bad credentials
+2026-04-13 10:10:16.324 [http-nio-8080-exec-2] ERROR c.D.O.s.j.JwtAuthenticationEntryPoint - Error de autenticación: Bad credentials

@@ -23,8 +23,11 @@ public class Usuario {
     @Column(name = "password", nullable = false, length = 255)
     private String password;
     
-    // Constructores
+    @Column(name = "activo", nullable = false)
+    private Boolean activo = true;
+
     public Usuario() {
+        this.activo = true;
     }
     
     public Usuario(String nombre, String apellido, String email, String password) {
@@ -33,8 +36,7 @@ public class Usuario {
         this.email = email;
         this.password = password;
     }
-    
-    // Getters y Setters
+
     public Long getIdUsuario() {
         return idUsuario;
     }
@@ -73,5 +75,17 @@ public class Usuario {
     
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public Boolean getActivo() {
+        return activo;
+    }
+    
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+    
+    public boolean isActivo() {
+        return activo != null && activo;
     }
 }

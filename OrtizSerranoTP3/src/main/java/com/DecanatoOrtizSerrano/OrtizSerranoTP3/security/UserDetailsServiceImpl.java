@@ -24,6 +24,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByEmail(email)
             .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con email: " + email));
         
+        // Verificar que el usuario esté activo
+        if (!usuario.isActivo()) {
+            throw new UsernameNotFoundException("Usuario inactivo: " + email);
+        }
+        
         return UserDetailsImpl.build(usuario);
     }
 }
