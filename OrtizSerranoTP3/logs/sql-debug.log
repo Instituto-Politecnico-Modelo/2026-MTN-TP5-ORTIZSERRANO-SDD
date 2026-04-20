@@ -2199,3 +2199,23 @@ by
             on u1_0.id_usuario=u1_4.id_usuario 
     where
         u1_0.email=?
+2026-04-20 11:29:30.922 - 
+    drop table if exists administradores cascade 
+2026-04-20 11:29:30.923 - 
+    drop table if exists auditorios cascade 
+2026-04-20 11:29:30.924 - 
+    drop table if exists docentes cascade 
+2026-04-20 11:29:30.925 - 
+    drop table if exists estudiantes cascade 
+2026-04-20 11:29:30.925 - 
+    drop table if exists inscripciones cascade 
+2026-04-20 11:29:30.926 - 
+    drop table if exists materias cascade 
+2026-04-20 11:29:30.926 - 
+    drop table if exists padres cascade 
+2026-04-20 11:29:30.927 - 
+    drop table if exists periodos cascade 
+2026-04-20 11:29:30.927 - 
+    drop table if exists reservas_auditorio cascade 
+2026-04-20 11:29:30.928 - 
+    drop table if exists usuarios cascade 

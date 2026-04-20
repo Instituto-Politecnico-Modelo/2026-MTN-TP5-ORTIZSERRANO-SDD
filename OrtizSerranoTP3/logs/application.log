@@ -2286,3 +2286,10 @@ Caused by: java.net.BindException: La dirección ya se está usando
 2026-04-20 11:20:20.681 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
 2026-04-20 11:20:20.681 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
 2026-04-20 11:20:20.682 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-20 11:29:30.913 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-20 11:29:30.918 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-04-20 11:29:30.921 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-20 11:29:30.932 [SpringApplicationShutdownHook] WARN  o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-240]
+2026-04-20 11:29:30.932 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-20 11:29:30.933 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
