@@ -1,3 +1,11 @@
+// Roles disponibles en el sistema
+export enum Role {
+  ESTUDIANTE = 'ESTUDIANTE',
+  DOCENTE = 'DOCENTE',
+  ADMINISTRADOR = 'ADMINISTRADOR',
+  USUARIO = 'USUARIO'
+}
+
 // Tipos para autenticación
 export interface LoginRequest {
   email: string;
@@ -11,6 +19,7 @@ export interface LoginResponse {
   apellido: string;
   token: string;
   type: string;
+  role: Role;
 }
 
 export interface User {

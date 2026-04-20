@@ -27,7 +27,7 @@ public class Estudiante extends Usuario {
     }
     
     public Estudiante(String nombre, String apellido, String email, String password, 
-                      String legajo, String carrera, Integer anioIngreso) {
+        String legajo, String carrera, Integer anioIngreso) {
         super(nombre, apellido, email, password);
         this.legajo = legajo;
         this.carrera = carrera;

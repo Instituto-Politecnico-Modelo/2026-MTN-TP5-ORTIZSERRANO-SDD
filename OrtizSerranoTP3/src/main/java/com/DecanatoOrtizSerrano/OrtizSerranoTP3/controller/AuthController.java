@@ -6,11 +6,20 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.MessageResponse;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.SignupRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.UpdateUserRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.UserService;
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Controlador REST para autenticación (Login y Registro)
  */
+@Tag(name = "Autenticación", description = "Login, registro y gestión del usuario autenticado")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
@@ -33,6 +43,15 @@ public class AuthController {
     
     @Autowired
     private UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private EstudianteRepository estudianteRepository;
+    
+    @Autowired
+    private DocenteRepository docenteRepository;
+    
+    @Autowired
+    private AdministradorRepository administradorRepository;
     
     @Autowired
     private PasswordEncoder encoder;
@@ -46,6 +65,11 @@ public class AuthController {
     /**
      * POST /api/auth/login - Autenticar usuario y devolver JWT
      */
+    @Operation(summary = "Iniciar sesión", description = "Autentica al usuario con email y contraseña. Devuelve un JWT y el rol detectado.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Login exitoso – devuelve token JWT y rol"),
+        @ApiResponse(responseCode = "401", description = "Credenciales inválidas", content = @Content)
+    })
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         
@@ -62,18 +86,33 @@ public class AuthController {
         Usuario usuario = usuarioRepository.findByEmail(userDetails.getEmail())
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         
+        // Detectar el rol según el tipo de entidad
+        String role;
+        if (administradorRepository.existsById(userDetails.getId())) {
+            role = "ADMINISTRADOR";
+        } else if (docenteRepository.existsById(userDetails.getId())) {
+            role = "DOCENTE";
+        } else if (estudianteRepository.existsById(userDetails.getId())) {
+            role = "ESTUDIANTE";
+        } else {
+            role = "USUARIO";
+        }
+        
         return ResponseEntity.ok(new JwtResponse(
             jwt,
             userDetails.getId(),
             userDetails.getEmail(),
             usuario.getNombre(),
-            usuario.getApellido()
+            usuario.getApellido(),
+            role
         ));
     }
     
     /**
      * POST /api/auth/signup - Registrar nuevo usuario
      */
+    @Operation(summary = "Registrar usuario", description = "Crea un nuevo usuario genérico (sin rol específico).")
+    @ApiResponse(responseCode = "200", description = "Usuario registrado exitosamente")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         
@@ -99,6 +138,7 @@ public class AuthController {
     /**
      * GET /api/auth/me - Obtener información del usuario autenticado
      */
+    @Operation(summary = "Perfil actual", description = "Devuelve los datos del usuario que envía el token JWT.")
     @GetMapping("/me")
     public ResponseEntity<?> getCurrentUser(Authentication authentication) {
         if (authentication == null) {
@@ -115,6 +155,7 @@ public class AuthController {
     /**
      * PUT /api/auth/update - Actualizar información del usuario autenticado
      */
+    @Operation(summary = "Actualizar perfil", description = "Modifica nombre, apellido o contraseña del usuario autenticado.")
     @PutMapping("/update")
     public ResponseEntity<?> updateUser(
             @Valid @RequestBody UpdateUserRequest updateRequest,
@@ -137,6 +178,7 @@ public class AuthController {
     /**
      * DELETE /api/auth/delete - Baja lógica del usuario (marca como inactivo)
      */
+    @Operation(summary = "Desactivar cuenta", description = "Baja lógica: marca el usuario como inactivo sin borrarlo.")
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteUserLogico(Authentication authentication) {
         if (authentication == null) {
@@ -156,6 +198,7 @@ public class AuthController {
     /**
      * DELETE /api/auth/delete/physical - Baja física del usuario (elimina de BD)
      */
+    @Operation(summary = "Eliminar cuenta (físico)", description = "Baja física: elimina permanentemente el usuario de la base de datos.")
     @DeleteMapping("/delete/physical")
     public ResponseEntity<?> deleteUserFisico(Authentication authentication) {
         if (authentication == null) {
@@ -175,6 +218,7 @@ public class AuthController {
     /**
      * PUT /api/auth/reactivate/{id} - Reactivar un usuario desactivado (solo admin)
      */
+    @Operation(summary = "Reactivar usuario", description = "Reactiva un usuario previamente desactivado. Uso exclusivo del administrador.")
     @PutMapping("/reactivate/{id}")
     public ResponseEntity<?> reactivateUser(@PathVariable Long id) {
         try {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LoginRequest, LoginResponse, User } from '../types/auth.types';
+import { LoginResponse, Role, User } from '../types/auth.types';
 
 const API_URL = 'http://localhost:8080/api/auth';
 
@@ -48,6 +48,44 @@ class AuthService {
   isAuthenticated(): boolean {
     const user = this.getCurrentUserData();
     return user !== null && user.token !== undefined;
+  }
+
+  // ── Helpers de Rol ──────────────────────────────────────
+  getRole(): Role | null {
+    const user = this.getCurrentUserData();
+    return user ? user.role : null;
+  }
+
+  hasRole(role: Role): boolean {
+    return this.getRole() === role;
+  }
+
+  hasAnyRole(roles: Role[]): boolean {
+    const userRole = this.getRole();
+    return userRole !== null && roles.includes(userRole);
+  }
+
+  isEstudiante(): boolean {
+    return this.hasRole(Role.ESTUDIANTE);
+  }
+
+  isDocente(): boolean {
+    return this.hasRole(Role.DOCENTE);
+  }
+
+  isAdministrador(): boolean {
+    return this.hasRole(Role.ADMINISTRADOR);
+  }
+
+  // Ruta por defecto según el rol
+  getDefaultRoute(): string {
+    const role = this.getRole();
+    switch (role) {
+      case Role.ADMINISTRADOR: return '/admin/dashboard';
+      case Role.DOCENTE:       return '/docente/dashboard';
+      case Role.ESTUDIANTE:    return '/estudiante/dashboard';
+      default:                 return '/dashboard';
+    }
   }
 }
 

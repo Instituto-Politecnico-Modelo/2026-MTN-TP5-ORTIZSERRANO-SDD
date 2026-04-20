@@ -23,9 +23,8 @@ const Login: React.FC = () => {
 
     try {
       const response = await authService.login(email, password);
-      console.log('Login exitoso:', response);
-      // Redirigir al dashboard después del login exitoso
-      navigate('/dashboard');
+      // Redirigir según el rol del usuario
+      navigate(authService.getDefaultRoute());
     } catch (err: any) {
       console.error('Error en login:', err);
       if (err.response) {

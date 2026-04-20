@@ -42,6 +42,9 @@ dependencies {
 	// PostgreSQL (descomenta para usar PostgreSQL)
 	// runtimeOnly 'org.postgresql:postgresql'
 	
+	// Swagger / OpenAPI
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8'
+
 	// Herramientas de desarrollo
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	

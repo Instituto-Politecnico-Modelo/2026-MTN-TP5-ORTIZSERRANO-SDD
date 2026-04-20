@@ -1,5 +1,9 @@
 package com.DecanatoOrtizSerrano.OrtizSerranoTP3.security;
 
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Administrador;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Docente;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Estudiante;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Padre;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,10 +39,22 @@ public class UserDetailsImpl implements UserDetails {
     }
     
     public static UserDetailsImpl build(Usuario usuario) {
-        // Por ahora todos los usuarios tienen rol USER
-        // Puedes modificar esto para asignar roles según el tipo de usuario
+        // Detectar el rol según el subtipo real del usuario
+        String role;
+        if (usuario instanceof Administrador) {
+            role = "ADMINISTRADOR";
+        } else if (usuario instanceof Docente) {
+            role = "DOCENTE";
+        } else if (usuario instanceof Estudiante) {
+            role = "ESTUDIANTE";
+        } else if (usuario instanceof Padre) {
+            role = "PADRE";
+        } else {
+            role = "USUARIO";
+        }
+
         Collection<GrantedAuthority> authorities = Collections.singletonList(
-            new SimpleGrantedAuthority("ROLE_USER")
+            new SimpleGrantedAuthority(role)
         );
         
         return new UserDetailsImpl(

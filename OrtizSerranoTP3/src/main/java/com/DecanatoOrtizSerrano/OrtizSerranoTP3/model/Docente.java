@@ -27,7 +27,7 @@ public class Docente extends Usuario {
     }
     
     public Docente(String nombre, String apellido, String email, String password,
-                   String titulo, String especialidad, String departamento) {
+        String titulo, String especialidad, String departamento) {
         super(nombre, apellido, email, password);
         this.titulo = titulo;
         this.especialidad = especialidad;

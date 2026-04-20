@@ -37,7 +37,14 @@ public class Inscripcion {
     
     @Column(name = "asistencias")
     private Integer asistencias;
-    
+
+    /**
+     * Indica si la nota fue cerrada definitivamente por el docente.
+     * Una vez true, no se pueden modificar ni nota parcial, ni final, ni asistencias.
+     */
+    @Column(name = "nota_cerrada", nullable = false)
+    private boolean notaCerrada = false;
+
     // Constructores
     public Inscripcion() {
     }
@@ -121,7 +128,15 @@ public class Inscripcion {
     public void setAsistencias(Integer asistencias) {
         this.asistencias = asistencias;
     }
-    
+
+    public boolean isNotaCerrada() {
+        return notaCerrada;
+    }
+
+    public void setNotaCerrada(boolean notaCerrada) {
+        this.notaCerrada = notaCerrada;
+    }
+
     // Métodos auxiliares
     public Double calcularPromedio() {
         if (notaParcial1 != null && notaParcial2 != null) {
