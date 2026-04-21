@@ -118,18 +118,16 @@ public class DocenteController {
 
     /**
      * GET /api/docente/estudiantes/{idEstudiante}/asistencias
-     * Historial de asistencias de un alumno: devuelve todas sus inscripciones
-     * (no canceladas) con los campos de asistencias y notas.
-     * Accesible por DOCENTE, ADMINISTRADOR y PADRE.
+     * Historial de asistencias de un alumno.
+     * Accesible por DOCENTE y ADMINISTRADOR.
      */
     @Operation(
         summary = "Historial de asistencias de un alumno",
         description = "Devuelve todas las inscripciones activas/con nota del estudiante indicado, "
-                    + "incluyendo asistencias, parciales y nota final. "
-                    + "Accesible por DOCENTE, ADMINISTRADOR y PADRE."
+                    + "incluyendo asistencias, parciales y nota final."
     )
     @GetMapping("/estudiantes/{idEstudiante}/asistencias")
-    @PreAuthorize("hasAnyAuthority('DOCENTE','ADMINISTRADOR','PADRE')")
+    @PreAuthorize("hasAnyAuthority('DOCENTE','ADMINISTRADOR')")
     public ResponseEntity<?> historialAsistencias(@PathVariable Long idEstudiante) {
         try {
             List<Inscripcion> porEstudiante = inscripcionService.misInscripciones(idEstudiante)
