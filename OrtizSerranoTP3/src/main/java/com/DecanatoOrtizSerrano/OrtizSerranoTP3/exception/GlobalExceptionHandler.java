@@ -2,6 +2,8 @@ package com.DecanatoOrtizSerrano.OrtizSerranoTP3.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -53,6 +55,20 @@ public class GlobalExceptionHandler {
                 )));
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    /**
+     * Captura errores de autenticación (credenciales inválidas) → 401.
+     * Sin este handler, Spring Boot 4 los propaga como 500.
+     */
+    @ExceptionHandler({
+        org.springframework.security.authentication.BadCredentialsException.class,
+        org.springframework.security.core.AuthenticationException.class
+    })
+    public ResponseEntity<Map<String, String>> handleAuthenticationException(Exception ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", "Credenciales inválidas");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);
     }
 
     /**
