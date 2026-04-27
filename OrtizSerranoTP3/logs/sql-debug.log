@@ -74069,3 +74069,23 @@ by
     drop table if exists reservas_auditorio cascade 
 2026-04-27 11:55:47.354 - 
     drop table if exists usuarios cascade 
+2026-04-27 12:01:05.696 - 
+    drop table if exists administradores cascade 
+2026-04-27 12:01:05.696 - 
+    drop table if exists auditoria cascade 
+2026-04-27 12:01:05.697 - 
+    drop table if exists auditorios cascade 
+2026-04-27 12:01:05.697 - 
+    drop table if exists docentes cascade 
+2026-04-27 12:01:05.697 - 
+    drop table if exists estudiantes cascade 
+2026-04-27 12:01:05.698 - 
+    drop table if exists inscripciones cascade 
+2026-04-27 12:01:05.698 - 
+    drop table if exists materias cascade 
+2026-04-27 12:01:05.698 - 
+    drop table if exists periodos cascade 
+2026-04-27 12:01:05.698 - 
+    drop table if exists reservas_auditorio cascade 
+2026-04-27 12:01:05.699 - 
+    drop table if exists usuarios cascade 
