@@ -64,6 +64,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/auth/login").permitAll()
                     .requestMatchers("/api/auth/jwt/inspect").permitAll()
                     .requestMatchers("/api/auth/olvide-password").permitAll()
+                    .requestMatchers("/api/health").permitAll()
                     .requestMatchers("/h2-console/**").permitAll()
                     .requestMatchers(
                         "/swagger-ui.html",

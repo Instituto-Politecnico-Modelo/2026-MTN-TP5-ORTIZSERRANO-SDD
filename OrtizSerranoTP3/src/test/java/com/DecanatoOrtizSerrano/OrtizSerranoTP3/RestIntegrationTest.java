@@ -231,11 +231,11 @@ class RestIntegrationTest {
             .andExpect(jsonPath("$.message").value(containsString("Ya estás inscripto")));
     }
 
-    // ─── 11. Cupos agotados → 400 ────────────────────────────────────────────
+    // ─── 11. Cupos agotados → 202 + encolado automático ─────────────────────
 
     @Test @Order(11)
-    @DisplayName("POST /api/inscripciones → 400 si la materia no tiene cupos")
-    void inscribirse_sinCupos_retorna400() throws Exception {
+    @DisplayName("POST /api/inscripciones → 202 y encolado automático cuando no hay cupos")
+    void inscribirse_sinCupos_retorna202_yEncola() throws Exception {
         // Crear materia con 0 cupos
         MvcResult matResult = mockMvc.perform(post("/api/admin/materias")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -268,13 +268,14 @@ class RestIntegrationTest {
                 .content("{\"idMateria\":" + materiaConCuposId + "}"))
             .andExpect(status().isCreated());
 
-        // Nuestro estudiante intenta inscribirse → sin cupos
+        // Nuestro estudiante intenta inscribirse → sin cupos → 202 + encolado automático
         mockMvc.perform(post("/api/inscripciones")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", authHeader(estudianteToken))
                 .content("{\"idMateria\":" + materiaConCuposId + "}"))
-            .andExpect(status().isBadRequest())
-            .andExpect(jsonPath("$.message").value(containsString("No hay cupos disponibles")));
+            .andExpect(status().isAccepted())                    // HTTP 202
+            .andExpect(jsonPath("$.estado").value("PENDIENTE"))  // turno en cola
+            .andExpect(jsonPath("$.idMateria").value(materiaConCuposId));
     }
 
     // ─── 12. Mis inscripciones → 200 ─────────────────────────────────────────

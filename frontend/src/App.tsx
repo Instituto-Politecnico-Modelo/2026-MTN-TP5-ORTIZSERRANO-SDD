@@ -13,6 +13,7 @@ import Boletin             from './components/Boletin';
 import GrillaNotas         from './components/GrillaNotas';
 import VistaAuditoria      from './components/VistaAuditoria';
 import PerfilUsuario       from './components/PerfilUsuario';
+import SalaDeEspera        from './components/SalaDeEspera';
 import authService from './services/auth.service';
 import { Role }    from './types/auth.types';
 import './App.css';
@@ -52,8 +53,9 @@ function App() {
         {/* ══════════════════════════════════════════
             RUTAS PÚBLICAS
         ══════════════════════════════════════════ */}
-        <Route path="/login"        element={<Login />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route path="/login"           element={<Login />} />
+        <Route path="/unauthorized"    element={<Unauthorized />} />
+        <Route path="/sala-de-espera"  element={<SalaDeEspera />} />
 
         {/* ══════════════════════════════════════════
             RUTAS DE ESTUDIANTE

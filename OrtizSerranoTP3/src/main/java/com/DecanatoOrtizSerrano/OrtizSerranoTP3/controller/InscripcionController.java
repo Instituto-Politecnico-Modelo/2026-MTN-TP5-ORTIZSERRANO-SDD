@@ -1,10 +1,13 @@
 package com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller;
 
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.ColaInscripcionResponse;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.InscripcionRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.MessageResponse;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Inscripcion;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.ColaInscripcionService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.InscripcionService;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.RateLimiterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -27,6 +30,12 @@ public class InscripcionController {
 
     @Autowired
     private InscripcionService inscripcionService;
+
+    @Autowired
+    private RateLimiterService rateLimiterService;
+
+    @Autowired
+    private ColaInscripcionService colaInscripcionService;
 
     /**
      * GET /api/inscripciones/mis-inscripciones
@@ -60,12 +69,41 @@ public class InscripcionController {
         if (authentication == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("No autenticado"));
         }
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        Long userId = userDetails.getId();
+
+        // ── Capa 1: Rate Limiter ──────────────────────────────────────────────
+        if (!rateLimiterService.tryConsume(userId)) {
+            long espera = rateLimiterService.segundosHastaRecarga(userId);
+            return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+                .header("Retry-After", String.valueOf(espera))
+                .body(new MessageResponse(
+                    "Demasiadas solicitudes. Por favor, esperá " + espera
+                    + " segundos antes de reintentar.",
+                    espera));
+        }
+
         try {
-            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-            Inscripcion inscripcion = inscripcionService.inscribir(request, userDetails.getId());
+            Inscripcion inscripcion = inscripcionService.inscribir(request, userId);
             return ResponseEntity.status(HttpStatus.CREATED).body(inscripcion);
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
+            String msg = e.getMessage();
+
+            // ── Sin cupos disponibles → encolar automáticamente ──────────────
+            if (msg != null && msg.contains("No hay cupos")) {
+                try {
+                    ColaInscripcionResponse turno =
+                        colaInscripcionService.unirseACola(request.getIdMateria(), userId);
+                    // HTTP 202 Accepted: solicitud recibida pero no completada aún
+                    return ResponseEntity.status(HttpStatus.ACCEPTED).body(turno);
+                } catch (RuntimeException colaEx) {
+                    return ResponseEntity.badRequest()
+                        .body(new MessageResponse(colaEx.getMessage()));
+                }
+            }
+
+            return ResponseEntity.badRequest().body(new MessageResponse(msg));
         }
     }
 
