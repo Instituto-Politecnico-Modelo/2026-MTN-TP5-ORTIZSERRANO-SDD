@@ -1,91 +1,108 @@
 import axios from 'axios';
-import { LoginResponse, Role, User } from '../types/auth.types';
+import { Role, User, LoginResponse } from '../types/auth.types';
 
-const API_URL = 'http://localhost:8080/api/auth';
+const BASE_URL = 'http://localhost:8080/api';
+const USER_KEY = 'authUser';
+
+export interface JwtInspectResponse {
+  token_recibido: string;
+  valido: boolean;
+  motivo_invalidez?: string;
+  subject_email?: string;
+  emitido_en?: string;
+  expira_en?: string;
+  segundos_hasta_expiracion?: number;
+  ya_expirado?: boolean;
+  perfil_usuario?: {
+    idUsuario: number;
+    nombre: string;
+    apellido: string;
+    email: string;
+    activo: boolean;
+    rol: string;
+  };
+}
 
 class AuthService {
+
   async login(email: string, password: string): Promise<LoginResponse> {
-    const response = await axios.post<LoginResponse>(`${API_URL}/login`, {
-      email,
-      password
-    });
-    
-    if (response.data.token) {
-      localStorage.setItem('user', JSON.stringify(response.data));
+    const res = await axios.post<LoginResponse>(`${BASE_URL}/auth/login`, { email, password });
+    if (res.data.token) {
+      localStorage.setItem(USER_KEY, JSON.stringify(res.data));
     }
-    
-    return response.data;
+    return res.data;
   }
 
   logout(): void {
-    localStorage.removeItem('user');
+    localStorage.removeItem(USER_KEY);
   }
 
+  /** Llama a GET /api/auth/me y retorna el perfil completo del usuario */
   async getCurrentUser(): Promise<User> {
-    const response = await axios.get<User>(`${API_URL}/me`, {
-      headers: this.getAuthHeader()
+    const res = await axios.get<User>(`${BASE_URL}/auth/me`, {
+      headers: this.getAuthHeader(),
     });
-    return response.data;
+    return res.data;
   }
 
-  getAuthHeader() {
-    const userStr = localStorage.getItem('user');
-    if (userStr) {
-      const user = JSON.parse(userStr);
-      return { Authorization: `Bearer ${user.token}` };
-    }
-    return {};
+  getAuthHeader(): Record<string, string> {
+    const user = this.getCurrentUserData();
+    return user?.token ? { Authorization: `Bearer ${user.token}` } : {};
   }
 
+  /** Lee el LoginResponse guardado en localStorage (sync, sin llamada a red) */
   getCurrentUserData(): LoginResponse | null {
-    const userStr = localStorage.getItem('user');
-    if (userStr) {
-      return JSON.parse(userStr);
-    }
-    return null;
+    const userStr = localStorage.getItem(USER_KEY);
+    return userStr ? JSON.parse(userStr) : null;
   }
 
   isAuthenticated(): boolean {
-    const user = this.getCurrentUserData();
-    return user !== null && user.token !== undefined;
+    return !!this.getCurrentUserData()?.token;
   }
 
-  // ── Helpers de Rol ──────────────────────────────────────
   getRole(): Role | null {
-    const user = this.getCurrentUserData();
-    return user ? user.role : null;
+    return (this.getCurrentUserData()?.role as Role) ?? null;
   }
 
   hasRole(role: Role): boolean {
     return this.getRole() === role;
   }
 
+  /** Acepta array de roles (compatible con ProtectedRoute) */
   hasAnyRole(roles: Role[]): boolean {
-    const userRole = this.getRole();
-    return userRole !== null && roles.includes(userRole);
-  }
-
-  isEstudiante(): boolean {
-    return this.hasRole(Role.ESTUDIANTE);
-  }
-
-  isDocente(): boolean {
-    return this.hasRole(Role.DOCENTE);
-  }
-
-  isAdministrador(): boolean {
-    return this.hasRole(Role.ADMINISTRADOR);
-  }
-
-  // Ruta por defecto según el rol
-  getDefaultRoute(): string {
     const role = this.getRole();
-    switch (role) {
+    return role ? roles.includes(role) : false;
+  }
+
+  isEstudiante(): boolean    { return this.hasRole(Role.ESTUDIANTE); }
+  isDocente(): boolean       { return this.hasRole(Role.DOCENTE); }
+  isAdministrador(): boolean { return this.hasRole(Role.ADMINISTRADOR); }
+
+  getDefaultRoute(): string {
+    switch (this.getRole()) {
       case Role.ADMINISTRADOR: return '/admin/dashboard';
       case Role.DOCENTE:       return '/docente/dashboard';
       case Role.ESTUDIANTE:    return '/estudiante/dashboard';
       default:                 return '/dashboard';
     }
+  }
+
+  // ─── JWT Inspect ──────────────────────────────────────────────────────────
+
+  /** GET /api/auth/jwt/inspect?token=xxx — endpoint público, no requiere auth */
+  async inspectJwt(token: string): Promise<JwtInspectResponse> {
+    const res = await axios.get<JwtInspectResponse>(`${BASE_URL}/auth/jwt/inspect`, {
+      params: { token },
+    });
+    return res.data;
+  }
+
+  // ─── Olvidé mi contraseña ─────────────────────────────────────────────────
+
+  /** POST /api/auth/olvide-password — endpoint público, no requiere auth */
+  async olvidePassword(email: string): Promise<{ message: string }> {
+    const res = await axios.post<{ message: string }>(`${BASE_URL}/auth/olvide-password`, { email });
+    return res.data;
   }
 }
 

@@ -3,11 +3,14 @@ package com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.JwtResponse;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.LoginRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.MessageResponse;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.OlvidePasswordRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.UpdateUserRequest;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.SolicitudResetPassword;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswordRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
@@ -27,6 +30,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Controlador REST para autenticación (Login y Registro)
@@ -51,6 +58,9 @@ public class AuthController {
     
     @Autowired
     private AdministradorRepository administradorRepository;
+    
+    @Autowired
+    private SolicitudResetPasswordRepository solicitudResetRepository;
     
     @Autowired
     private PasswordEncoder encoder;
@@ -199,5 +209,123 @@ public class AuthController {
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
         }
+    }
+
+    // ─── JWT INSPECT ──────────────────────────────────────────────────────────
+
+    /**
+     * GET /api/auth/jwt/inspect?token=xxx
+     * Verifica un JWT y devuelve sus claims + perfil del usuario si es válido.
+     * Endpoint PÚBLICO (no requiere autenticación) – útil para depuración y testing.
+     */
+    @Operation(
+        summary = "Inspeccionar JWT",
+        description = "Verifica un token JWT y devuelve sus claims (subject, emisión, expiración) " +
+                      "junto con el perfil del usuario. No requiere autenticación previa."
+    )
+    @GetMapping("/jwt/inspect")
+    public ResponseEntity<?> inspectJwt(@RequestParam("token") String token) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("token_recibido", token.length() > 20
+                ? token.substring(0, 20) + "..." : token);
+
+        boolean valid = jwtUtil.validateJwtToken(token);
+        result.put("valido", valid);
+
+        String invalidReason = jwtUtil.getInvalidReason(token);
+        if (invalidReason != null) {
+            result.put("motivo_invalidez", invalidReason);
+        }
+
+        // Extraemos subject aunque esté expirado (para mostrar a quién pertenecía)
+        String subject = jwtUtil.getUsernameFromTokenIgnoreExpiry(token);
+        result.put("subject_email", subject);
+
+        // Fechas
+        try {
+            java.util.Date issuedAt = jwtUtil.getIssuedAtFromToken(token);
+            java.util.Date expiration = jwtUtil.getExpirationFromToken(token);
+            if (issuedAt != null) {
+                result.put("emitido_en", issuedAt.toInstant().toString());
+            }
+            if (expiration != null) {
+                result.put("expira_en", expiration.toInstant().toString());
+                long segsRestantes = expiration.toInstant().getEpochSecond()
+                        - Instant.now().getEpochSecond();
+                result.put("segundos_hasta_expiracion", segsRestantes);
+                result.put("ya_expirado", segsRestantes <= 0);
+            }
+        } catch (Exception ignored) {
+            // si el token es basura no podemos leer fechas
+        }
+
+        // Perfil del usuario si el token es válido y el usuario existe
+        if (valid && subject != null) {
+            usuarioRepository.findByEmail(subject).ifPresent(usuario -> {
+                Map<String, Object> perfil = new LinkedHashMap<>();
+                perfil.put("idUsuario", usuario.getIdUsuario());
+                perfil.put("nombre", usuario.getNombre());
+                perfil.put("apellido", usuario.getApellido());
+                perfil.put("email", usuario.getEmail());
+                perfil.put("activo", usuario.getActivo());
+
+                // Detectar rol
+                String role;
+                if (administradorRepository.existsById(usuario.getIdUsuario())) {
+                    role = "ADMINISTRADOR";
+                } else if (docenteRepository.existsById(usuario.getIdUsuario())) {
+                    role = "DOCENTE";
+                } else if (estudianteRepository.existsById(usuario.getIdUsuario())) {
+                    role = "ESTUDIANTE";
+                } else {
+                    role = "USUARIO";
+                }
+                perfil.put("rol", role);
+                result.put("perfil_usuario", perfil);
+            });
+        }
+
+        return ResponseEntity.ok(result);
+    }
+
+    // ─── OLVIDÉ MI CONTRASEÑA ─────────────────────────────────────────────────
+
+    /**
+     * POST /api/auth/olvide-password
+     * El usuario envía su email y se crea una solicitud visible para el admin.
+     * El admin luego la atiende asignando una nueva contraseña temporal.
+     * Endpoint PÚBLICO (no requiere autenticación).
+     */
+    @Operation(
+        summary = "Olvidé mi contraseña",
+        description = "Genera una solicitud de reset de contraseña. " +
+                      "El administrador recibirá la solicitud y asignará una nueva contraseña temporal."
+    )
+    @PostMapping("/olvide-password")
+    public ResponseEntity<?> olvidePassword(@Valid @RequestBody OlvidePasswordRequest request) {
+        String email = request.getEmail();
+
+        // Verificar que el usuario existe (no revelar si no existe – misma respuesta)
+        boolean usuarioExiste = usuarioRepository.findByEmail(email).isPresent();
+
+        if (usuarioExiste) {
+            // Evitar solicitudes duplicadas pendientes
+            boolean yaTieneSolicitud = solicitudResetRepository.existsByEmailAndEstado(
+                    email, SolicitudResetPassword.Estado.PENDIENTE);
+
+            if (!yaTieneSolicitud) {
+                usuarioRepository.findByEmail(email).ifPresent(usuario -> {
+                    String nombreCompleto = usuario.getNombre() + " " + usuario.getApellido();
+                    SolicitudResetPassword solicitud = new SolicitudResetPassword(email, nombreCompleto);
+                    solicitudResetRepository.save(solicitud);
+                });
+            }
+            // Si ya tiene una pendiente, no creamos duplicado pero respondemos igual
+        }
+
+        // Respuesta genérica (no revelar si el email existe o no – seguridad)
+        return ResponseEntity.ok(new MessageResponse(
+            "Si el email está registrado, el administrador recibirá una notificación " +
+            "y se le asignará una nueva contraseña temporal a la brevedad."));
     }
 }

@@ -98,6 +98,15 @@ export interface MessageResponse {
   message: string;
 }
 
+export interface SolicitudReset {
+  idSolicitud: number;
+  email: string;
+  nombreCompleto?: string;
+  fechaSolicitud: string;
+  estado: 'PENDIENTE' | 'ATENDIDA';
+  fechaAtencion?: string;
+}
+
 // ─── Servicio ─────────────────────────────────────────────────────────────────
 
 class AdminService {
@@ -218,6 +227,24 @@ class AdminService {
   /** PATCH /api/admin/periodos/{id}/toggle → activar/desactivar período */
   async togglePeriodo(id: number): Promise<Periodo> {
     const res = await axios.patch<Periodo>(`${BASE}/periodos/${id}/toggle`, {}, this.h());
+    return res.data;
+  }
+
+  // ─── Solicitudes de Reset de Contraseña ───────────────────────────────────
+
+  /** GET /api/admin/usuarios/solicitudes-reset → listar todas (pendientes primero) */
+  async listarSolicitudesReset(): Promise<SolicitudReset[]> {
+    const res = await axios.get<SolicitudReset[]>(`${BASE}/usuarios/solicitudes-reset`, this.h());
+    return res.data;
+  }
+
+  /** POST /api/admin/usuarios/solicitudes-reset/{id}/atender → asignar nueva contraseña */
+  async atenderSolicitudReset(id: number, nuevaPassword: string): Promise<MessageResponse> {
+    const res = await axios.post<MessageResponse>(
+      `${BASE}/usuarios/solicitudes-reset/${id}/atender`,
+      { nuevaPassword },
+      this.h()
+    );
     return res.data;
   }
 }

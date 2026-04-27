@@ -1,14 +1,17 @@
 package com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller;
 
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.CreateUserRequest;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.AtenderResetRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.MessageResponse;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Administrador;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Docente;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Estudiante;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.SolicitudResetPassword;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswordRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,6 +23,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -49,6 +53,9 @@ public class AdminUsuariosController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private SolicitudResetPasswordRepository solicitudResetRepository;
 
     // ─── LISTAR TODOS LOS USUARIOS ────────────────────────────────────────
 
@@ -184,5 +191,71 @@ public class AdminUsuariosController {
             return ResponseEntity.ok(new MessageResponse("Usuario eliminado permanentemente"));
         }).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new MessageResponse("Usuario no encontrado")));
+    }
+
+    // ─── SOLICITUDES DE RESET DE CONTRASEÑA ──────────────────────────────
+
+    /**
+     * GET /api/admin/usuarios/solicitudes-reset
+     * Lista todas las solicitudes de "Olvidé mi contraseña" (pendientes primero).
+     */
+    @Operation(
+        summary = "Listar solicitudes de reset",
+        description = "Devuelve todas las solicitudes de recuperación de contraseña. " +
+                      "Las pendientes aparecen listadas primero."
+    )
+    @GetMapping("/solicitudes-reset")
+    public ResponseEntity<List<SolicitudResetPassword>> listarSolicitudesReset() {
+        List<SolicitudResetPassword> pendientes = solicitudResetRepository
+                .findByEstadoOrderByFechaSolicitudDesc(SolicitudResetPassword.Estado.PENDIENTE);
+        List<SolicitudResetPassword> atendidas = solicitudResetRepository
+                .findByEstadoOrderByFechaSolicitudDesc(SolicitudResetPassword.Estado.ATENDIDA);
+        pendientes.addAll(atendidas);
+        return ResponseEntity.ok(pendientes);
+    }
+
+    /**
+     * POST /api/admin/usuarios/solicitudes-reset/{id}/atender
+     * El admin asigna una nueva contraseña al usuario y marca la solicitud como atendida.
+     */
+    @Operation(
+        summary = "Atender solicitud de reset",
+        description = "El administrador establece una nueva contraseña para el usuario solicitante " +
+                      "y marca la solicitud como ATENDIDA."
+    )
+    @PostMapping("/solicitudes-reset/{id}/atender")
+    public ResponseEntity<?> atenderSolicitudReset(
+            @PathVariable Long id,
+            @Valid @RequestBody AtenderResetRequest req) {
+
+        SolicitudResetPassword solicitud = solicitudResetRepository.findById(id)
+                .orElse(null);
+        if (solicitud == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new MessageResponse("Solicitud no encontrada"));
+        }
+        if (solicitud.getEstado() == SolicitudResetPassword.Estado.ATENDIDA) {
+            return ResponseEntity.badRequest()
+                    .body(new MessageResponse("La solicitud ya fue atendida"));
+        }
+
+        // Actualizar contraseña del usuario
+        Usuario usuario = usuarioRepository.findByEmail(solicitud.getEmail()).orElse(null);
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new MessageResponse("Usuario con email " + solicitud.getEmail() + " no encontrado"));
+        }
+
+        usuario.setPassword(passwordEncoder.encode(req.getNuevaPassword()));
+        usuarioRepository.save(usuario);
+
+        // Marcar solicitud como atendida
+        solicitud.setEstado(SolicitudResetPassword.Estado.ATENDIDA);
+        solicitud.setFechaAtencion(LocalDateTime.now());
+        solicitudResetRepository.save(solicitud);
+
+        return ResponseEntity.ok(new MessageResponse(
+            "Contraseña actualizada para " + usuario.getNombre() + " " + usuario.getApellido() +
+            " (" + usuario.getEmail() + "). La solicitud fue marcada como ATENDIDA."));
     }
 }
