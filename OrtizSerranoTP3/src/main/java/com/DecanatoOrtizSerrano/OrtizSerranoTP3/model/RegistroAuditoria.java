@@ -15,7 +15,19 @@ import java.time.LocalDateTime;
  * con el hashAnterior del siguiente → la cadena queda rota → detectable.
  */
 @Entity
-@Table(name = "auditoria")
+@Table(
+    name = "auditoria",
+    indexes = {
+        // Consultas por entidad específica (ej: historial de una inscripción)
+        @Index(name = "idx_auditoria_entidad_id",   columnList = "entidad, id_entidad"),
+        // Consultas por usuario (quién hizo qué)
+        @Index(name = "idx_auditoria_usuario",      columnList = "id_usuario"),
+        // Consultas por rango de tiempo (reportes, monitoring)
+        @Index(name = "idx_auditoria_timestamp",    columnList = "timestamp_evento"),
+        // Consultas por acción (ej: todos los LOGIN fallidos)
+        @Index(name = "idx_auditoria_accion",       columnList = "accion")
+    }
+)
 public class RegistroAuditoria {
 
     @Id

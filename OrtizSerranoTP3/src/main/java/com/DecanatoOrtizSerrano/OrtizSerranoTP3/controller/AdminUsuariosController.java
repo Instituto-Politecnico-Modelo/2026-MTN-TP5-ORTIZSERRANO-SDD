@@ -58,6 +58,14 @@ public class AdminUsuariosController {
         return ResponseEntity.ok(usuarioRepository.findAll());
     }
 
+    // ─── LISTAR DOCENTES ──────────────────────────────────────────────────
+
+    @Operation(summary = "Listar docentes", description = "Devuelve todos los docentes del sistema.")
+    @GetMapping("/docentes")
+    public ResponseEntity<List<Docente>> listarDocentes() {
+        return ResponseEntity.ok(docenteRepository.findAll());
+    }
+
     // ─── OBTENER USUARIO POR ID ───────────────────────────────────────────
 
     @Operation(summary = "Obtener usuario", description = "Devuelve un usuario por su ID.")
@@ -96,14 +104,19 @@ public class AdminUsuariosController {
 
         switch (rol) {
             case "ESTUDIANTE" -> {
-                if (req.getLegajo() != null && estudianteRepository.existsByLegajo(req.getLegajo())) {
+                String legajo = (req.getLegajo() != null && !req.getLegajo().isBlank())
+                        ? req.getLegajo().trim() : null;
+                String carrera = (req.getCarrera() != null && !req.getCarrera().isBlank())
+                        ? req.getCarrera().trim() : null;
+
+                if (legajo != null && estudianteRepository.existsByLegajo(legajo)) {
                     return ResponseEntity.badRequest()
                             .body(new MessageResponse("Error: El legajo ya está en uso"));
                 }
                 Estudiante e = new Estudiante(
                         req.getNombre(), req.getApellido(), req.getEmail(), encodedPassword,
-                        req.getLegajo() != null ? req.getLegajo() : "",
-                        req.getCarrera() != null ? req.getCarrera() : "",
+                        legajo,
+                        carrera,
                         req.getAnioIngreso()
                 );
                 estudianteRepository.save(e);

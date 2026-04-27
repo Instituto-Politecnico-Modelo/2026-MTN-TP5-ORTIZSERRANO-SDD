@@ -1,21 +1,40 @@
 package com.DecanatoOrtizSerrano.OrtizSerranoTP3.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "inscripciones")
+@Table(
+    name = "inscripciones",
+    indexes = {
+        // Búsqueda por estudiante (mis-inscripciones) → O(log n)
+        @Index(name = "idx_inscripciones_estudiante",   columnList = "id_estudiante"),
+        // Búsqueda por materia → O(log n)
+        @Index(name = "idx_inscripciones_materia",      columnList = "id_materia"),
+        // Consulta compuesta para verificar duplicado (estudiante + materia)
+        @Index(name = "idx_inscripciones_est_mat",      columnList = "id_estudiante, id_materia"),
+        // Consulta compuesta para COUNT de cupos: WHERE id_materia=? AND estado != 'CANCELADA'
+        @Index(name = "idx_inscripciones_mat_estado",   columnList = "id_materia, estado"),
+        // Filtrado por estado (reportes, auditoría)
+        @Index(name = "idx_inscripciones_estado",       columnList = "estado")
+    }
+)
 public class Inscripcion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_inscripcion")
     private Long idInscripcion;
-    
+
+    // ignora la lista de inscripciones del estudiante para evitar ciclo JSON infinito
+    @JsonIgnoreProperties({"inscripciones", "password"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_estudiante", nullable = false)
     private Estudiante estudiante;
-    
+
+    // ignora la lista de inscripciones de la materia para evitar ciclo JSON infinito
+    @JsonIgnoreProperties({"inscripciones"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_materia", nullable = false)
     private Materia materia;

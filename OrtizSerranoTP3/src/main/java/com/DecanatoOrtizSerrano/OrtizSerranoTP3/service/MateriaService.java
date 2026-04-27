@@ -67,6 +67,7 @@ public class MateriaService {
         materia.setCreditos(request.getCreditos());
         materia.setAnio(request.getAnio());
         materia.setCuatrimestre(request.getCuatrimestre());
+        materia.setCuposMaximos(request.getCuposMaximos()); // ← optimistic locking
 
         if (request.getIdDocente() != null) {
             Docente docente = docenteRepository.findById(request.getIdDocente())

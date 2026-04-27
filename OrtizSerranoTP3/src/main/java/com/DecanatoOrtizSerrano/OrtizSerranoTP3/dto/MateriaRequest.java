@@ -17,6 +17,8 @@ public class MateriaRequest {
     private Integer anio;
     private Integer cuatrimestre;
     private Long idDocente;
+    /** Límite de inscripciones simultáneas. null = sin límite. */
+    private Integer cuposMaximos;
 
     public String getCodigo() { return codigo; }
     public void setCodigo(String codigo) { this.codigo = codigo; }
@@ -38,4 +40,7 @@ public class MateriaRequest {
 
     public Long getIdDocente() { return idDocente; }
     public void setIdDocente(Long idDocente) { this.idDocente = idDocente; }
+
+    public Integer getCuposMaximos() { return cuposMaximos; }
+    public void setCuposMaximos(Integer cuposMaximos) { this.cuposMaximos = cuposMaximos; }
 }

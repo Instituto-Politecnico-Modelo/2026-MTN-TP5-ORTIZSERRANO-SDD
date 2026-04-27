@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
-import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import DashboardEstudiante from './components/DashboardEstudiante';
 import DashboardDocente from './components/DashboardDocente';
@@ -20,7 +19,6 @@ function App() {
       <Routes>
         {/* ── Rutas públicas ─────────────────────────── */}
         <Route path="/login"    element={<Login />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
         {/* ── Rutas protegidas por ROL ────────────────── */}

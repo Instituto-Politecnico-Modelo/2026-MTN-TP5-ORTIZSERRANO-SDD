@@ -1,9 +1,18 @@
 package com.DecanatoOrtizSerrano.OrtizSerranoTP3.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "usuarios")
+@Table(
+    name = "usuarios",
+    indexes = {
+        // Login: findByEmail → la columna ya es UNIQUE, el índice único acelera el lookup
+        @Index(name = "idx_usuarios_email",  columnList = "email",  unique = true),
+        // Filtrado por activo (listar usuarios activos/inactivos)
+        @Index(name = "idx_usuarios_activo", columnList = "activo")
+    }
+)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
     @Id
@@ -20,6 +29,7 @@ public class Usuario {
     @Column(name = "email", nullable = false, unique = true, length = 255)
     private String email;
     
+    @JsonIgnore
     @Column(name = "password", nullable = false, length = 255)
     private String password;
     

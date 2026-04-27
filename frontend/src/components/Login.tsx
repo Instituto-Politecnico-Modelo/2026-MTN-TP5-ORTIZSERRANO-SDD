@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import authService from '../services/auth.service';
 import './Login.css';
 
@@ -126,7 +126,6 @@ const Login: React.FC = () => {
         </form>
 
         <div className="login-footer">
-          <p>¿No tiene una cuenta? <Link to="/register">Registrarse</Link></p>
           <p className="version">v1.0.0 - 2026</p>
         </div>
       </div>

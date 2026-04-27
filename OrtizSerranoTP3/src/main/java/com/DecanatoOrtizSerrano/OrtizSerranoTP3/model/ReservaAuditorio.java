@@ -8,7 +8,19 @@ import java.time.LocalTime;
  * Reserva de un auditorio para un evento o actividad del Decanato.
  */
 @Entity
-@Table(name = "reservas_auditorio")
+@Table(
+    name = "reservas_auditorio",
+    indexes = {
+        // Verificar conflictos de reserva: mismo auditorio, misma fecha → O(log n)
+        @Index(name = "idx_reserva_auditorio_fecha",    columnList = "id_auditorio, fecha"),
+        // Listar reservas por solicitante
+        @Index(name = "idx_reserva_solicitante",        columnList = "id_usuario"),
+        // Listar reservas por fecha (agenda del decanato)
+        @Index(name = "idx_reserva_fecha",              columnList = "fecha"),
+        // Filtrar por estado (PENDIENTE, CONFIRMADA, CANCELADA)
+        @Index(name = "idx_reserva_estado",             columnList = "estado")
+    }
+)
 public class ReservaAuditorio {
 
     @Id

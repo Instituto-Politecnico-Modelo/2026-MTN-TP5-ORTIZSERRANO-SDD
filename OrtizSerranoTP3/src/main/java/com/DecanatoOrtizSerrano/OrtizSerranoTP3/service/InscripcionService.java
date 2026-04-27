@@ -10,6 +10,7 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.InscripcionRepository
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.MateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -38,12 +39,16 @@ public class InscripcionService {
 
     /**
      * POST /inscripciones – Inscribir al estudiante autenticado en una materia.
-     * Valida que no exista inscripción activa previa.
+     * Usa @Transactional para que Hibernate dispare el optimistic locking al hacer
+     * flush: si dos hilos leen la misma versión de Materia y ambos intentan guardar,
+     * el segundo recibe OptimisticLockException → evita sobrecupos.
      */
+    @Transactional
     public Inscripcion inscribir(InscripcionRequest request, Long idEstudiante) {
         Estudiante estudiante = estudianteRepository.findById(idEstudiante)
             .orElseThrow(() -> new RuntimeException("Estudiante no encontrado"));
 
+        // Se carga la Materia dentro de la transacción → Hibernate trackea su versión
         Materia materia = materiaRepository.findById(request.getIdMateria())
             .orElseThrow(() -> new RuntimeException("Materia no encontrada con ID: " + request.getIdMateria()));
 
@@ -56,7 +61,21 @@ public class InscripcionService {
             throw new RuntimeException("Ya estás inscripto en la materia: " + materia.getNombre());
         }
 
+        // Verificar cupos disponibles mediante COUNT directo (índice idx_inscripciones_mat_estado)
+        // → evita cargar la colección completa de inscripciones en memoria
+        Integer maxCupos = materia.getCuposMaximos();
+        if (maxCupos != null && maxCupos > 0) {
+            long ocupados = inscripcionRepository.countCuposOcupados(materia.getIdMateria());
+            if (ocupados >= maxCupos) {
+                throw new RuntimeException(
+                    "No hay cupos disponibles en la materia: " + materia.getNombre()
+                    + " (máximo: " + maxCupos + ")");
+            }
+        }
+
         Inscripcion inscripcion = new Inscripcion(estudiante, materia, LocalDate.now());
+        // Al hacer save(), Hibernate también actualiza la versión de Materia si fue tocada.
+        // Si otro hilo ya actualizó la Materia en la misma transacción, se lanza OptimisticLockException.
         return inscripcionRepository.save(inscripcion);
     }
 

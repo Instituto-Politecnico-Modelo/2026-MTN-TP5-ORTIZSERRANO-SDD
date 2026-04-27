@@ -9,10 +9,10 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "id_usuario")
 public class Estudiante extends Usuario {
     
-    @Column(name = "legajo", nullable = false, unique = true, length = 20)
+    @Column(name = "legajo", nullable = true, unique = true, length = 20)
     private String legajo;
     
-    @Column(name = "carrera", nullable = false, length = 100)
+    @Column(name = "carrera", nullable = true, length = 100)
     private String carrera;
     
     @Column(name = "anio_ingreso")

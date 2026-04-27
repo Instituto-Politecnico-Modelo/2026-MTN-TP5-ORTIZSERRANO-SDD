@@ -5,13 +5,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "materias")
+@Table(
+    name = "materias",
+    indexes = {
+        // Búsqueda por código (ya UNIQUE, el índice único lo cubre)
+        @Index(name = "idx_materias_codigo",  columnList = "codigo",     unique = true),
+        // Listar materias por docente
+        @Index(name = "idx_materias_docente", columnList = "id_docente"),
+        // Filtrar por año/cuatrimestre (oferta académica)
+        @Index(name = "idx_materias_anio_cuatrimestre", columnList = "anio, cuatrimestre")
+    }
+)
 public class Materia {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_materia")
     private Long idMateria;
+
+    /**
+     * Control de concurrencia optimista.
+     * Hibernate incrementa este valor en cada UPDATE.
+     * Si dos transacciones leen el mismo valor y la segunda intenta actualizar,
+     * falla con OptimisticLockException → evita sobrecupos.
+     */
+    @Version
+    @Column(name = "version", nullable = false)
+    private Long version = 0L;
+
+    @Column(name = "cupos_maximos")
+    private Integer cuposMaximos;
     
     @Column(name = "codigo", nullable = false, unique = true, length = 20)
     private String codigo;
@@ -120,6 +143,32 @@ public class Materia {
     
     public void setInscripciones(List<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public Integer getCuposMaximos() {
+        return cuposMaximos;
+    }
+
+    public void setCuposMaximos(Integer cuposMaximos) {
+        this.cuposMaximos = cuposMaximos;
+    }
+
+    /** Cupos ocupados = inscripciones activas (no canceladas) */
+    public int getCuposOcupados() {
+        if (inscripciones == null) return 0;
+        return (int) inscripciones.stream()
+                .filter(i -> !"CANCELADA".equals(i.getEstado()))
+                .count();
+    }
+
+    /** true si la materia tiene cupos disponibles (o no tiene límite definido) */
+    public boolean tieneCuposDisponibles() {
+        if (cuposMaximos == null || cuposMaximos <= 0) return true;
+        return getCuposOcupados() < cuposMaximos;
     }
     
     // Métodos auxiliares
