@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/auth.service';
 import './Login.css';
-
 const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail]       = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError]       = useState<string>('');
+  const [loading, setLoading]   = useState<boolean>(false);
+
+  // Estado para "Olvidé mi contraseña"
+  const [showOlvide, setShowOlvide]   = useState(false);
+  const [olvideEmail, setOlvideEmail] = useState('');
+  const [olvideMsg,   setOlvideMsg]   = useState('');
+  const [olvideErr,   setOlvideErr]   = useState('');
+  const [olvideLoad,  setOlvideLoad]  = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,6 +51,22 @@ const Login: React.FC = () => {
       }
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleOlvidePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setOlvideErr(''); setOlvideMsg('');
+    if (!olvideEmail) { setOlvideErr('Ingresá tu email.'); return; }
+    setOlvideLoad(true);
+    try {
+      const res = await authService.olvidePassword(olvideEmail);
+      setOlvideMsg(res.message);
+      setOlvideEmail('');
+    } catch {
+      setOlvideErr('No se pudo enviar la solicitud. Intentá de nuevo más tarde.');
+    } finally {
+      setOlvideLoad(false);
     }
   };
 
@@ -123,6 +146,61 @@ const Login: React.FC = () => {
               </>
             )}
           </button>
+
+          {/* ── Olvidé mi contraseña ── */}
+          <div style={{ textAlign: 'center', marginTop: '16px' }}>
+            <button
+              type="button"
+              onClick={() => { setShowOlvide(!showOlvide); setOlvideMsg(''); setOlvideErr(''); }}
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                color: '#0369a1', fontSize: '13px', textDecoration: 'underline',
+              }}
+            >
+              ¿Olvidaste tu contraseña?
+            </button>
+          </div>
+
+          {showOlvide && (
+            <div style={{
+              marginTop: '14px', padding: '16px', background: '#f0f9ff',
+              borderRadius: '10px', border: '1px solid #bae6fd',
+            }}>
+              <p style={{ margin: '0 0 10px', fontSize: '13px', color: '#0369a1', fontWeight: 600 }}>
+                🔑 Recuperar contraseña
+              </p>
+              <p style={{ margin: '0 0 12px', fontSize: '12px', color: '#64748b' }}>
+                Ingresá tu email y el administrador recibirá una notificación para asignarte una nueva contraseña.
+              </p>
+              <form onSubmit={handleOlvidePassword}>
+                <input
+                  type="email"
+                  value={olvideEmail}
+                  onChange={e => setOlvideEmail(e.target.value)}
+                  placeholder="tu@email.com"
+                  required
+                  style={{
+                    width: '100%', padding: '9px 12px', marginBottom: '10px',
+                    border: '1px solid #bae6fd', borderRadius: '8px',
+                    fontSize: '14px', boxSizing: 'border-box', outline: 'none',
+                  }}
+                />
+                {olvideErr && <p style={{ color: '#dc2626', fontSize: '12px', margin: '0 0 8px' }}>{olvideErr}</p>}
+                {olvideMsg && <p style={{ color: '#16a34a', fontSize: '12px', margin: '0 0 8px' }}>{olvideMsg}</p>}
+                <button
+                  type="submit"
+                  disabled={olvideLoad}
+                  style={{
+                    width: '100%', padding: '9px', background: '#0369a1',
+                    color: 'white', border: 'none', borderRadius: '8px',
+                    cursor: 'pointer', fontSize: '14px', fontWeight: 600,
+                  }}
+                >
+                  {olvideLoad ? 'Enviando...' : 'Solicitar nueva contraseña'}
+                </button>
+              </form>
+            </div>
+          )}
         </form>
 
         <div className="login-footer">

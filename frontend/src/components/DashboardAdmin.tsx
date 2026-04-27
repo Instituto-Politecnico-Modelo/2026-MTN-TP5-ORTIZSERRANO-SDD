@@ -165,9 +165,14 @@ const DashboardAdmin: React.FC = () => {
             <h1 style={{ margin: 0, fontSize: '20px' }}>Panel de Administración - Decanato</h1>
             <p style={{ margin: '2px 0 0', opacity: 0.85, fontSize: '13px' }}>{user?.nombre} {user?.apellido} — {user?.email}</p>
           </div>
-          <button onClick={() => { authService.logout(); navigate('/login'); }} style={btnStyle('rgba(255,255,255,0.15)')}>
-            Cerrar Sesión
-          </button>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button onClick={() => navigate('/perfil')} style={btnStyle('rgba(255,255,255,0.15)')}>
+              👤 Mi Perfil
+            </button>
+            <button onClick={() => { authService.logout(); navigate('/login'); }} style={btnStyle('rgba(255,255,255,0.15)')}>
+              Cerrar Sesión
+            </button>
+          </div>
         </div>
         <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
           <Tab icon="🏠" label="Inicio"       active={vista==='inicio'}      onClick={() => setVista('inicio')} />

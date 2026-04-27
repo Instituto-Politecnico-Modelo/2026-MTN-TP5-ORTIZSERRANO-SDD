@@ -52,13 +52,22 @@ const DashboardDocente: React.FC = () => {
               {user?.nombre} {user?.apellido} - {user?.email}
             </p>
           </div>
-          <button onClick={handleLogout} style={{
-            padding: '8px 18px', background: 'rgba(255,255,255,0.15)',
-            color: 'white', border: '1px solid rgba(255,255,255,0.35)',
-            borderRadius: '8px', cursor: 'pointer', fontSize: '14px',
-          }}>
-            Cerrar Sesion
-          </button>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button onClick={() => navigate('/perfil')} style={{
+              padding: '8px 18px', background: 'rgba(255,255,255,0.15)',
+              color: 'white', border: '1px solid rgba(255,255,255,0.35)',
+              borderRadius: '8px', cursor: 'pointer', fontSize: '14px',
+            }}>
+              👤 Mi Perfil
+            </button>
+            <button onClick={handleLogout} style={{
+              padding: '8px 18px', background: 'rgba(255,255,255,0.15)',
+              color: 'white', border: '1px solid rgba(255,255,255,0.35)',
+              borderRadius: '8px', cursor: 'pointer', fontSize: '14px',
+            }}>
+              Cerrar Sesión
+            </button>
+          </div>
         </div>
         <div style={{ display: 'flex', gap: '6px' }}>
           <Tab icon="🏠" label="Inicio"         active={vista === 'inicio'} onClick={() => setVista('inicio')} />

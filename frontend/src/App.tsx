@@ -12,6 +12,7 @@ import MisInscripciones    from './components/MisInscripciones';
 import Boletin             from './components/Boletin';
 import GrillaNotas         from './components/GrillaNotas';
 import VistaAuditoria      from './components/VistaAuditoria';
+import PerfilUsuario       from './components/PerfilUsuario';
 import authService from './services/auth.service';
 import { Role }    from './types/auth.types';
 import './App.css';
@@ -152,6 +153,15 @@ function App() {
 
         {/* Catch-all: cualquier ruta desconocida → login */}
         <Route path="*" element={<Navigate to="/login" replace />} />
+
+        {/* ══════════════════════════════════════════
+            PERFIL DE USUARIO (todos los roles)
+        ══════════════════════════════════════════ */}
+        <Route path="/perfil" element={
+          <ProtectedRoute>
+            <PerfilUsuario />
+          </ProtectedRoute>
+        } />
 
       </Routes>
     </Router>
