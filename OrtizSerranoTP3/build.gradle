@@ -36,7 +36,7 @@ dependencies {
 	// Base de datos H2 (en memoria - para desarrollo)
 	runtimeOnly 'com.h2database:h2'
 	
-	// MySQL (descomenta para usar MySQL)
+	// MySQL (descomentar cuando esté disponible)
 	// runtimeOnly 'com.mysql:mysql-connector-j'
 	
 	// PostgreSQL (descomenta para usar PostgreSQL)

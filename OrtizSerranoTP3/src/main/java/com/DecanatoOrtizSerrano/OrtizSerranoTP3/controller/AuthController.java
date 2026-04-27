@@ -3,7 +3,6 @@ package com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.JwtResponse;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.LoginRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.MessageResponse;
-import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.SignupRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.UpdateUserRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository;
@@ -32,7 +31,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Controlador REST para autenticación (Login y Registro)
  */
-@Tag(name = "Autenticación", description = "Login, registro y gestión del usuario autenticado")
+@Tag(name = "Autenticación", description = "Login y gestión del usuario autenticado. El registro es exclusivo del administrador.")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
@@ -106,33 +105,6 @@ public class AuthController {
             usuario.getApellido(),
             role
         ));
-    }
-    
-    /**
-     * POST /api/auth/signup - Registrar nuevo usuario
-     */
-    @Operation(summary = "Registrar usuario", description = "Crea un nuevo usuario genérico (sin rol específico).")
-    @ApiResponse(responseCode = "200", description = "Usuario registrado exitosamente")
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        
-        if (usuarioRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity
-                .badRequest()
-                .body(new MessageResponse("Error: El email ya está en uso"));
-        }
-        
-        // Crear nuevo usuario
-        Usuario usuario = new Usuario(
-            signUpRequest.getNombre(),
-            signUpRequest.getApellido(),
-            signUpRequest.getEmail(),
-            encoder.encode(signUpRequest.getPassword())
-        );
-        
-        usuarioRepository.save(usuario);
-        
-        return ResponseEntity.ok(new MessageResponse("Usuario registrado exitosamente"));
     }
     
     /**
