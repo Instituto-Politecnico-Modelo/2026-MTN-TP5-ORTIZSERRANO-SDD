@@ -181,6 +181,25 @@ public class AdminUsuariosController {
                 .body(new MessageResponse("Usuario no encontrado")));
     }
 
+    // ─── CAMBIAR CONTRASEÑA DE CUALQUIER USUARIO (admin) ─────────────────
+
+    @Operation(
+        summary = "Cambiar contraseña de usuario",
+        description = "El administrador asigna una nueva contraseña a cualquier usuario por su ID."
+    )
+    @PutMapping("/{id}/cambiar-password")
+    public ResponseEntity<?> cambiarPassword(
+            @PathVariable Long id,
+            @Valid @RequestBody AtenderResetRequest req) {
+        return usuarioRepository.findById(id).map(u -> {
+            u.setPassword(passwordEncoder.encode(req.getNuevaPassword()));
+            usuarioRepository.save(u);
+            return ResponseEntity.ok(new MessageResponse(
+                "Contraseña actualizada para " + u.getNombre() + " " + u.getApellido()));
+        }).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new MessageResponse("Usuario no encontrado")));
+    }
+
     // ─── ELIMINAR USUARIO (FÍSICO) ────────────────────────────────────────
 
     @Operation(summary = "Eliminar usuario", description = "Baja física: elimina permanentemente el usuario.")

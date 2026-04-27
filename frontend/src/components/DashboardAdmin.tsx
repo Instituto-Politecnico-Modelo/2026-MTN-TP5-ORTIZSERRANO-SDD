@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/auth.service';
 import VistaAuditoria from './VistaAuditoria';
+import GestionUsuarios from './GestionUsuarios';
 import axios from 'axios';
 
 const API = 'http://localhost:8080/api';
 
-type Vista = 'inicio' | 'estudiantes' | 'docentes' | 'materias' | 'auditoria';
+type Vista = 'inicio' | 'usuarios' | 'estudiantes' | 'docentes' | 'materias' | 'auditoria';
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 const headers = () => authService.getAuthHeader();
@@ -176,6 +177,7 @@ const DashboardAdmin: React.FC = () => {
         </div>
         <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
           <Tab icon="🏠" label="Inicio"       active={vista==='inicio'}      onClick={() => setVista('inicio')} />
+          <Tab icon="👥" label="Usuarios"     active={vista==='usuarios'}    onClick={() => setVista('usuarios')} />
           <Tab icon="🎓" label="Estudiantes"  active={vista==='estudiantes'} onClick={() => setVista('estudiantes')} />
           <Tab icon="👨‍🏫" label="Docentes"     active={vista==='docentes'}    onClick={() => setVista('docentes')} />
           <Tab icon="📚" label="Materias"     active={vista==='materias'}    onClick={() => setVista('materias')} />
@@ -206,10 +208,11 @@ const DashboardAdmin: React.FC = () => {
             </div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))', gap:'16px' }}>
               {[
-                { icon:'🎓', title:'Estudiantes', color:'#dbeafe', desc:'Crear y gestionar alumnos',     action: () => setVista('estudiantes'), btnColor:'#1d4ed8' },
+                { icon:'👥', title:'Usuarios',     color:'#ede9fe', desc:'Gestionar roles y accesos',      action: () => setVista('usuarios'),    btnColor:'#7c3aed' },
+                { icon:'🎓', title:'Estudiantes',  color:'#dbeafe', desc:'Crear y gestionar alumnos',     action: () => setVista('estudiantes'), btnColor:'#1d4ed8' },
                 { icon:'👨‍🏫', title:'Docentes',    color:'#fce7f3', desc:'Crear y gestionar docentes',    action: () => setVista('docentes'),    btnColor:'#be185d' },
-                { icon:'📚', title:'Materias',    color:'#fef9c3', desc:'Gestionar catálogo de materias', action: () => setVista('materias'),    btnColor:'#854d0e' },
-                { icon:'🔗', title:'Auditoría',   color:'#f3e8ff', desc:'Log encadenado SHA-256',         action: () => setVista('auditoria'),   btnColor:'#7c3aed' },
+                { icon:'📚', title:'Materias',     color:'#fef9c3', desc:'Gestionar catálogo de materias', action: () => setVista('materias'),    btnColor:'#854d0e' },
+                { icon:'🔗', title:'Auditoría',    color:'#f3e8ff', desc:'Log encadenado SHA-256',         action: () => setVista('auditoria'),   btnColor:'#7c3aed' },
               ].map(card => (
                 <div key={card.title} style={{ background:'white', borderRadius:'14px', padding:'24px', boxShadow:'0 2px 8px rgba(0,0,0,0.05)', border:'1px solid #f1f5f9', display:'flex', flexDirection:'column' }}>
                   <div style={{ width:'52px', height:'52px', borderRadius:'12px', background:card.color, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'26px', marginBottom:'14px' }}>{card.icon}</div>
@@ -221,6 +224,9 @@ const DashboardAdmin: React.FC = () => {
             </div>
           </>
         )}
+
+        {/* ── USUARIOS ── */}
+        {vista === 'usuarios' && <GestionUsuarios />}
 
         {/* ── ESTUDIANTES ── */}
         {vista === 'estudiantes' && (
