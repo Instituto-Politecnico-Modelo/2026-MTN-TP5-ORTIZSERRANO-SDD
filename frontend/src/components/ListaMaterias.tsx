@@ -373,8 +373,8 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
                       <Chip icon="📅" text={`${materia.anio}° Año`} />
                       <Chip icon="📆" text={`${materia.cuatrimestre}° Cuatri`} />
                       {materia.creditos ? <Chip icon="⭐" text={`${materia.creditos} créditos`} /> : null}
-                      {materia.docente && (
-                        <Chip icon="👨‍🏫" text={`${materia.docente.nombre} ${materia.docente.apellido}`} />
+                      {materia.docenteNombre && (
+                        <Chip icon="👨‍🏫" text={`${materia.docenteNombre} ${materia.docenteApellido}`} />
                       )}
                     </div>
 
