@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.TokenBlacklistService;
 
 import java.io.IOException;
 
@@ -31,6 +32,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private TokenBlacklistService tokenBlacklistService;
     
     @Override
     protected void doFilterInternal(HttpServletRequest request, 
@@ -39,7 +43,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             String jwt = parseJwt(request);
             
-            if (jwt != null && jwtUtil.validateJwtToken(jwt)) {
+            if (jwt != null && jwtUtil.validateJwtToken(jwt) && !tokenBlacklistService.isBlacklisted(jwt)) {
                 String username = jwtUtil.getUsernameFromJwtToken(jwt);
                 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);

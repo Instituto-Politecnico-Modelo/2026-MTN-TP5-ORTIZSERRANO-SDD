@@ -62,6 +62,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> 
                 auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers("/api/auth/login").permitAll()
+                    .requestMatchers("/api/auth/logout").authenticated()
                     .requestMatchers("/api/auth/jwt/inspect").permitAll()
                     .requestMatchers("/api/auth/olvide-password").permitAll()
                     .requestMatchers("/api/health").permitAll()

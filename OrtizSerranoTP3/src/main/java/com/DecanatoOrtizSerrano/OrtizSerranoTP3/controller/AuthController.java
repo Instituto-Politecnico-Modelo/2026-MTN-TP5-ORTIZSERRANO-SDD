@@ -14,7 +14,9 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswor
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.TokenBlacklistService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -70,6 +72,9 @@ public class AuthController {
     
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TokenBlacklistService tokenBlacklistService;
     
     /**
      * POST /api/auth/login - Autenticar usuario y devolver JWT
@@ -209,6 +214,30 @@ public class AuthController {
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
         }
+    }
+
+    // ─── LOGOUT ───────────────────────────────────────────────────────────────
+
+    /**
+     * POST /api/auth/logout
+     * Invalida el JWT del usuario autenticado añadiéndolo a la blacklist.
+     * A partir de ese momento el token es rechazado por el filtro JWT aunque
+     * no haya expirado todavía.
+     */
+    @Operation(summary = "Cerrar sesión", description = "Invalida el token JWT actual. El token queda en blacklist hasta su expiración natural.")
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        String headerAuth = request.getHeader("Authorization");
+        if (headerAuth != null && headerAuth.startsWith("Bearer ")) {
+            String token = headerAuth.substring(7);
+            try {
+                java.util.Date exp = jwtUtil.getExpirationFromToken(token);
+                tokenBlacklistService.invalidate(token, exp.toInstant());
+            } catch (Exception e) {
+                // token ya expirado u otro problema → no hace falta agregar a blacklist
+            }
+        }
+        return ResponseEntity.ok(new MessageResponse("Sesión cerrada correctamente"));
     }
 
     // ─── JWT INSPECT ──────────────────────────────────────────────────────────
