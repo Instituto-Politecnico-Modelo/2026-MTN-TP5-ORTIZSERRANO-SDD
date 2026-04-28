@@ -7,6 +7,7 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Inscripcion;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.ColaInscripcionService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.InscripcionService;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.MateriaSemaphoreService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.RateLimiterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,6 +37,9 @@ public class InscripcionController {
 
     @Autowired
     private ColaInscripcionService colaInscripcionService;
+
+    @Autowired
+    private MateriaSemaphoreService materiaSemaphoreService;
 
     /**
      * GET /api/inscripciones/mis-inscripciones
@@ -84,6 +88,19 @@ public class InscripcionController {
                     espera));
         }
 
+        Long idMateria = request.getIdMateria();
+
+        // ── Capa 2: Semáforo por materia ──────────────────────────────────────
+        // Garantiza que solo N hilos (configurable) puedan realizar la
+        // verificación de cupos + inserción simultáneamente para la misma materia.
+        // Con permits=1 se serializa completamente, evitando race conditions.
+        if (!materiaSemaphoreService.tryAcquire(idMateria)) {
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                .header("Retry-After", "3")
+                .body(new MessageResponse(
+                    "El servidor está procesando muchas inscripciones. Reintentá en unos segundos.", 3L));
+        }
+
         try {
             Inscripcion inscripcion = inscripcionService.inscribir(request, userId);
             return ResponseEntity.status(HttpStatus.CREATED).body(inscripcion);
@@ -94,7 +111,7 @@ public class InscripcionController {
             if (msg != null && msg.contains("No hay cupos")) {
                 try {
                     ColaInscripcionResponse turno =
-                        colaInscripcionService.unirseACola(request.getIdMateria(), userId);
+                        colaInscripcionService.unirseACola(idMateria, userId);
                     // HTTP 202 Accepted: solicitud recibida pero no completada aún
                     return ResponseEntity.status(HttpStatus.ACCEPTED).body(turno);
                 } catch (RuntimeException colaEx) {
@@ -104,12 +121,17 @@ public class InscripcionController {
             }
 
             return ResponseEntity.badRequest().body(new MessageResponse(msg));
+        } finally {
+            // Siempre liberar el semáforo, incluso si hubo excepción
+            materiaSemaphoreService.release(idMateria);
         }
     }
 
     /**
      * PATCH /api/inscripciones/{id}/cancelar
      * El estudiante cancela su propia inscripción.
+     * Después del commit de la cancelación, promueve al primero de la cola
+     * (en su propia TX independiente, para que countCuposOcupados sea correcto).
      */
     @Operation(summary = "Cancelar inscripción", description = "Cancela la inscripción indicada. Solo puede cancelar el propio estudiante.")
     @PatchMapping("/{id}/cancelar")
@@ -120,6 +142,12 @@ public class InscripcionController {
         try {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             Inscripcion inscripcion = inscripcionService.cancelar(id, userDetails.getId());
+
+            // promoverSiguiente corre AQUÍ (fuera de la TX de cancelar, ya commiteada)
+            // para que el COUNT de cupos ocupados refleje la cancelación persistida.
+            colaInscripcionService.promoverSiguiente(
+                inscripcion.getMateria().getIdMateria());
+
             return ResponseEntity.ok(inscripcion);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));

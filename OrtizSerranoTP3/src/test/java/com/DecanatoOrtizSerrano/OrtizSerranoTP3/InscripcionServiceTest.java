@@ -86,7 +86,7 @@ class InscripcionServiceTest {
         req.setIdMateria(20L);
 
         when(estudianteRepository.findById(10L)).thenReturn(Optional.of(estudiante));
-        when(materiaRepository.findById(20L)).thenReturn(Optional.of(materia));
+        when(materiaRepository.findByIdForUpdate(20L)).thenReturn(Optional.of(materia));
         when(inscripcionRepository.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot(
                 10L, 20L, "CANCELADA")).thenReturn(false);
         when(inscripcionRepository.save(any(Inscripcion.class))).thenAnswer(i -> i.getArgument(0));
@@ -109,7 +109,7 @@ class InscripcionServiceTest {
         req.setIdMateria(20L);
 
         when(estudianteRepository.findById(10L)).thenReturn(Optional.of(estudiante));
-        when(materiaRepository.findById(20L)).thenReturn(Optional.of(materia));
+        when(materiaRepository.findByIdForUpdate(20L)).thenReturn(Optional.of(materia));
         when(inscripcionRepository.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot(
                 10L, 20L, "CANCELADA")).thenReturn(false);
         when(inscripcionRepository.countCuposOcupados(20L)).thenReturn(3L);
@@ -145,7 +145,7 @@ class InscripcionServiceTest {
         req.setIdMateria(99L);
 
         when(estudianteRepository.findById(10L)).thenReturn(Optional.of(estudiante));
-        when(materiaRepository.findById(99L)).thenReturn(Optional.empty());
+        when(materiaRepository.findByIdForUpdate(99L)).thenReturn(Optional.empty());
 
         RuntimeException ex = assertThrows(RuntimeException.class,
             () -> inscripcionService.inscribir(req, 10L));
@@ -161,7 +161,7 @@ class InscripcionServiceTest {
         req.setIdMateria(20L);
 
         when(estudianteRepository.findById(10L)).thenReturn(Optional.of(estudiante));
-        when(materiaRepository.findById(20L)).thenReturn(Optional.of(materia));
+        when(materiaRepository.findByIdForUpdate(20L)).thenReturn(Optional.of(materia));
         when(inscripcionRepository.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot(
                 10L, 20L, "CANCELADA")).thenReturn(true);
 
@@ -181,7 +181,7 @@ class InscripcionServiceTest {
         req.setIdMateria(20L);
 
         when(estudianteRepository.findById(10L)).thenReturn(Optional.of(estudiante));
-        when(materiaRepository.findById(20L)).thenReturn(Optional.of(materia));
+        when(materiaRepository.findByIdForUpdate(20L)).thenReturn(Optional.of(materia));
         when(inscripcionRepository.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot(
                 10L, 20L, "CANCELADA")).thenReturn(false);
         when(inscripcionRepository.countCuposOcupados(20L)).thenReturn(2L);

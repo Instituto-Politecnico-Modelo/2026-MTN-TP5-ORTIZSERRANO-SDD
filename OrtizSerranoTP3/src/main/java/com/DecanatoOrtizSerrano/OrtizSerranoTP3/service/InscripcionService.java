@@ -9,6 +9,7 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.InscripcionRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.MateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +28,15 @@ public class InscripcionService {
     @Autowired
     private MateriaRepository materiaRepository;
 
+    /**
+     * Inyección lazy para evitar dependencia circular:
+     * InscripcionService → ColaInscripcionService → InscripcionRepository (ok)
+     * ColaInscripcionService → InscripcionService (lazy rompe el ciclo)
+     */
+    @Autowired(required = false)
+    @Lazy
+    private ColaInscripcionService colaInscripcionService;
+
     /** Listar todas las inscripciones del estudiante autenticado */
     public List<Inscripcion> misInscripciones(Long idEstudiante) {
         return inscripcionRepository.findByEstudianteIdUsuario(idEstudiante);
@@ -39,17 +49,22 @@ public class InscripcionService {
 
     /**
      * POST /inscripciones – Inscribir al estudiante autenticado en una materia.
-     * Usa @Transactional para que Hibernate dispare el optimistic locking al hacer
-     * flush: si dos hilos leen la misma versión de Materia y ambos intentan guardar,
-     * el segundo recibe OptimisticLockException → evita sobrecupos.
+     *
+     * Usa SELECT FOR UPDATE (bloqueo pesimista) para garantizar que la verificación
+     * de cupos y la inserción sean atómicas: ningún otro hilo puede leer o modificar
+     * la misma Materia hasta que esta transacción termine.
+     *
+     * Esto previene sobrecupos bajo condiciones de carrera (race conditions) a diferencia
+     * del OptimisticLocking solo, que solo protege actualizaciones sobre la Materia.
      */
     @Transactional
     public Inscripcion inscribir(InscripcionRequest request, Long idEstudiante) {
         Estudiante estudiante = estudianteRepository.findById(idEstudiante)
             .orElseThrow(() -> new RuntimeException("Estudiante no encontrado"));
 
-        // Se carga la Materia dentro de la transacción → Hibernate trackea su versión
-        Materia materia = materiaRepository.findById(request.getIdMateria())
+        // SELECT FOR UPDATE: bloqueo pesimista — serializa el acceso por materia.
+        // Garantiza que la verificación de cupos y la inserción sean atómicas.
+        Materia materia = materiaRepository.findByIdForUpdate(request.getIdMateria())
             .orElseThrow(() -> new RuntimeException("Materia no encontrada con ID: " + request.getIdMateria()));
 
         // Verificar inscripción activa previa
@@ -80,6 +95,7 @@ public class InscripcionService {
     }
 
     /** Cancelar inscripción propia */
+    @Transactional
     public Inscripcion cancelar(Long idInscripcion, Long idEstudiante) {
         Inscripcion inscripcion = inscripcionRepository.findById(idInscripcion)
             .orElseThrow(() -> new RuntimeException("Inscripción no encontrada"));
@@ -93,6 +109,9 @@ public class InscripcionService {
 
         inscripcion.setEstado("CANCELADA");
         return inscripcionRepository.save(inscripcion);
+        // NOTA: promoverSiguiente() es llamado desde InscripcionController,
+        // DESPUÉS de que esta transacción commitea, para que el count refleje
+        // la cancelación ya persistida.
     }
 
     /** Listar todas las inscripciones (admin) */
