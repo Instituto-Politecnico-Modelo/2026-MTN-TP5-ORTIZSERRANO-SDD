@@ -16,6 +16,7 @@ import PerfilUsuario       from './components/PerfilUsuario';
 import SalaDeEspera        from './components/SalaDeEspera';
 import authService from './services/auth.service';
 import { Role }    from './types/auth.types';
+import { AuthProvider } from './context/AuthContext';
 import './App.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -48,6 +49,7 @@ import './App.css';
 function App() {
   return (
     <Router>
+      <AuthProvider>
       <Routes>
 
         {/* ══════════════════════════════════════════
@@ -166,6 +168,7 @@ function App() {
         } />
 
       </Routes>
+      </AuthProvider>
     </Router>
   );
 }

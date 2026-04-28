@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import authService from '../services/auth.service';
 import './Login.css';
+
+/** Mensajes mostrados según el motivo de redirección al login */
+const MOTIVO_MENSAJE: Record<string, { text: string; tipo: 'warn' | 'info' }> = {
+  expired:       { text: 'Tu sesión expiró. Por favor, volvé a iniciar sesión.', tipo: 'warn' },
+  idle:          { text: `Cerramos tu sesión por inactividad. Podés volver a ingresar cuando quieras.`, tipo: 'info' },
+  'otra-pestana':{ text: 'La sesión fue cerrada en otra pestaña.', tipo: 'info' },
+};
+
 const Login: React.FC = () => {
   const [email, setEmail]       = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -16,6 +24,9 @@ const Login: React.FC = () => {
   const [olvideLoad,  setOlvideLoad]  = useState(false);
 
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const motivo = searchParams.get('motivo') ?? '';
+  const avisoSesion = MOTIVO_MENSAJE[motivo] ?? null;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -78,6 +89,19 @@ const Login: React.FC = () => {
           <h2>Decanato</h2>
           <p>Inicie sesión para continuar</p>
         </div>
+
+        {/* Banner de motivo de cierre de sesión */}
+        {avisoSesion && (
+          <div className={`session-notice session-notice--${avisoSesion.tipo}`}>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18" style={{flexShrink:0}}>
+              {avisoSesion.tipo === 'warn'
+                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20A10 10 0 0012 2z" />
+              }
+            </svg>
+            <span>{avisoSesion.text}</span>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="login-form">
           {error && (

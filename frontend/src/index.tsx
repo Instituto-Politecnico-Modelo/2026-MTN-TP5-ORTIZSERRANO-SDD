@@ -3,19 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import axios from 'axios';
-
-// Interceptor global: si recibimos 401, limpiar sesión y redirigir al login
-axios.interceptors.response.use(
-  response => response,
-  error => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('user');
-      window.location.href = '/login';
-    }
-    return Promise.reject(error);
-  }
-);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

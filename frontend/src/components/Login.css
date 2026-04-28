@@ -169,6 +169,29 @@
 }
 
 /* Error Message */
+.session-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.session-notice--warn {
+  background-color: #fff8e1;
+  border: 1px solid #ffe082;
+  color: #7c5a00;
+}
+
+.session-notice--info {
+  background-color: #e3f2fd;
+  border: 1px solid #90caf9;
+  color: #1a4f7a;
+}
+
 .error-message {
   background-color: #fee;
   border: 1px solid #fcc;
