@@ -231,7 +231,7 @@ class RestIntegrationTest {
             .andExpect(jsonPath("$.message").value(containsString("Ya estás inscripto")));
     }
 
-    // ── 11. Cupos agotados → 202 + encolado automático ─────────────────────
+    // ─ 11. Cupos agotados → 202 + encolado automático ─────────────────────
 
     @Test @Order(11)
     @DisplayName("POST /api/inscripciones → 202 y encolado automático cuando no hay cupos")
