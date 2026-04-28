@@ -13,6 +13,7 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswordRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.EmailService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -23,6 +24,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -56,6 +58,21 @@ public class AdminUsuariosController {
 
     @Autowired
     private SolicitudResetPasswordRepository solicitudResetRepository;
+
+    @Autowired
+    private EmailService emailService;
+
+    /** Generador seguro de contraseñas temporales. */
+    private static final SecureRandom RANDOM = new SecureRandom();
+    private static final String CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$";
+
+    private String generarPasswordTemporal() {
+        StringBuilder sb = new StringBuilder(12);
+        for (int i = 0; i < 12; i++) {
+            sb.append(CHARS.charAt(RANDOM.nextInt(CHARS.length())));
+        }
+        return sb.toString();
+    }
 
     // ─── LISTAR TODOS LOS USUARIOS ────────────────────────────────────────
 
@@ -106,7 +123,12 @@ public class AdminUsuariosController {
                     .body(new MessageResponse("Error: El email ya está en uso"));
         }
 
-        String encodedPassword = passwordEncoder.encode(req.getPassword());
+        // Si el admin no proveyó contraseña → se genera una temporal segura
+        String passwordPlana = (req.getPassword() != null && !req.getPassword().isBlank())
+                ? req.getPassword()
+                : generarPasswordTemporal();
+
+        String encodedPassword = passwordEncoder.encode(passwordPlana);
         String rol = req.getRol() != null ? req.getRol().toUpperCase() : "";
 
         switch (rol) {
@@ -122,13 +144,12 @@ public class AdminUsuariosController {
                 }
                 Estudiante e = new Estudiante(
                         req.getNombre(), req.getApellido(), req.getEmail(), encodedPassword,
-                        legajo,
-                        carrera,
-                        req.getAnioIngreso()
+                        legajo, carrera, req.getAnioIngreso()
                 );
                 estudianteRepository.save(e);
+                emailService.enviarBienvenida(req.getEmail(), req.getNombre(), req.getApellido(), rol, passwordPlana);
                 return ResponseEntity.status(HttpStatus.CREATED)
-                        .body(new MessageResponse("Estudiante creado exitosamente"));
+                        .body(new MessageResponse("Estudiante creado exitosamente. Credenciales enviadas a " + req.getEmail()));
             }
             case "DOCENTE" -> {
                 Docente d = new Docente(
@@ -136,8 +157,9 @@ public class AdminUsuariosController {
                         req.getTitulo(), req.getEspecialidad(), req.getDepartamento()
                 );
                 docenteRepository.save(d);
+                emailService.enviarBienvenida(req.getEmail(), req.getNombre(), req.getApellido(), rol, passwordPlana);
                 return ResponseEntity.status(HttpStatus.CREATED)
-                        .body(new MessageResponse("Docente creado exitosamente"));
+                        .body(new MessageResponse("Docente creado exitosamente. Credenciales enviadas a " + req.getEmail()));
             }
             case "ADMINISTRADOR" -> {
                 Administrador a = new Administrador(
@@ -147,8 +169,9 @@ public class AdminUsuariosController {
                         req.getNivelAcceso() != null ? req.getNivelAcceso() : 1
                 );
                 administradorRepository.save(a);
+                emailService.enviarBienvenida(req.getEmail(), req.getNombre(), req.getApellido(), rol, passwordPlana);
                 return ResponseEntity.status(HttpStatus.CREATED)
-                        .body(new MessageResponse("Administrador creado exitosamente"));
+                        .body(new MessageResponse("Administrador creado exitosamente. Credenciales enviadas a " + req.getEmail()));
             }
             default -> {
                 return ResponseEntity.badRequest()

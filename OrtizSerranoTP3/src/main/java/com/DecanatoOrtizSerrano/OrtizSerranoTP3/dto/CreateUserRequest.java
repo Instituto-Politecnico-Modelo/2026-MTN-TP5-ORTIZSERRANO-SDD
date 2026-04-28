@@ -24,8 +24,12 @@ public class CreateUserRequest {
     @Email(message = "Email inválido")
     private String email;
 
-    @NotBlank(message = "La contraseña es obligatoria")
-    @Size(min = 6, max = 40)
+    /**
+     * Contraseña inicial del usuario.
+     * Si no se envía (null o vacío), el sistema genera una contraseña aleatoria
+     * segura y la envía por correo al nuevo usuario.
+     */
+    @Size(min = 6, max = 40, message = "La contraseña debe tener entre 6 y 40 caracteres")
     private String password;
 
     /**
