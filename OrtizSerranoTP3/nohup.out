@@ -1,0 +1,1602 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :resolveMainClassName
+
+> Task :bootRun
+09:53:05,974 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@3fd5e7e7 - SizeAndTimeBasedFNATP class was renamed as SizeAndTimeBasedFileNamingAndTriggeringPolicy.
+09:53:05,990 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@3fd5e7e7 - Direct use of either SizeAndTimeBasedFNATP or SizeAndTimeBasedFileNamingAndTriggeringPolicy 
+09:53:05,990 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@3fd5e7e7 - is deprecated. Please use SizeAndTimeBasedRollingPolicy instead.
+09:53:05,990 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@3fd5e7e7 - For more information see https://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.5)
+
+2026-04-28 09:53:06.050 INFO  [restartedMain] c.D.O.OrtizSerranoTp3Application - Starting OrtizSerranoTp3Application using Java 21.0.10 with PID 94304 (/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main started by alumno26.ortiz.santiago@ipm.edu.ar in /home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3)
+2026-04-28 09:53:06.051 DEBUG [restartedMain] c.D.O.OrtizSerranoTp3Application - Running with Spring Boot v4.0.5, Spring v7.0.6
+2026-04-28 09:53:06.052 INFO  [restartedMain] c.D.O.OrtizSerranoTp3Application - No active profile set, falling back to 1 default profile: "default"
+2026-04-28 09:53:06.086 INFO  [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-28 09:53:06.086 INFO  [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-04-28 09:53:06.655 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-28 09:53:06.665 DEBUG [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for JPA repositories in packages com.DecanatoOrtizSerrano.OrtizSerranoTP3.
+2026-04-28 09:53:06.673 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/AdministradorRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/AuditoriaRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/AuditorioRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/ColaInscripcionRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/DocenteRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/EstudianteRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/InscripcionRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/MateriaRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/PeriodoRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/ReservaAuditorioRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/SolicitudResetPasswordRepository.class]
+2026-04-28 09:53:06.674 DEBUG [restartedMain] o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/UsuarioRepository.class]
+2026-04-28 09:53:06.707 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41 ms. Found 12 JPA repository interfaces.
+2026-04-28 09:53:07.236 INFO  [restartedMain] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-28 09:53:07.246 INFO  [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-28 09:53:07.247 INFO  [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-28 09:53:07.279 INFO  [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1192 ms
+2026-04-28 09:53:07.398 INFO  [restartedMain] org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-28 09:53:07.437 INFO  [restartedMain] org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-04-28 09:53:07.798 INFO  [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-28 09:53:07.822 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-28 09:53:07.929 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:decanato_db user=SA
+2026-04-28 09:53:07.931 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-28 09:53:07.947 WARN  [restartedMain] org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-28 09:53:07.963 INFO  [restartedMain] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:decanato_db]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: DECANATO_DB/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-28 09:53:08.686 DEBUG [restartedMain] org.hibernate.SQL - 
+    create global temporary table HT_usuarios(id_usuario bigint not null, primary key (id_usuario)) transactional
+Hibernate: 
+    create global temporary table HT_usuarios(id_usuario bigint not null, primary key (id_usuario)) transactional
+2026-04-28 09:53:08.693 DEBUG [restartedMain] org.hibernate.SQL - 
+    create global temporary table HTE_usuarios(activo boolean, HTE_IDENTITY bigint generated 
+by
+    default as identity, idUsuario bigint, apellido varchar(100), nombre varchar(100), email varchar(255), password varchar(255), primary key (HTE_IDENTITY)) transactional
+Hibernate: 
+    create global temporary table HTE_usuarios(activo boolean, HTE_IDENTITY bigint generated 
+by
+    default as identity, idUsuario bigint, apellido varchar(100), nombre varchar(100), email varchar(255), password varchar(255), primary key (HTE_IDENTITY)) transactional
+2026-04-28 09:53:08.695 DEBUG [restartedMain] org.hibernate.SQL - 
+    create global temporary table HTE_administradores(activo boolean, nivelAcceso integer, HTE_IDENTITY bigint generated 
+by
+    default as identity, idUsuario bigint, rol varchar(50), apellido varchar(100), area varchar(100), nombre varchar(100), email varchar(255), password varchar(255), primary key (HTE_IDENTITY)) transactional
+Hibernate: 
+    create global temporary table HTE_administradores(activo boolean, nivelAcceso integer, HTE_IDENTITY bigint generated 
+by
+    default as identity, idUsuario bigint, rol varchar(50), apellido varchar(100), area varchar(100), nombre varchar(100), email varchar(255), password varchar(255), primary key (HTE_IDENTITY)) transactional
+2026-04-28 09:53:08.698 DEBUG [restartedMain] org.hibernate.SQL - 
+    create global temporary table HTE_estudiantes(activo boolean, anioIngreso integer, HTE_IDENTITY bigint generated 
+by
+    default as identity, idUsuario bigint, legajo varchar(20), apellido varchar(100), carrera varchar(100), nombre varchar(100), email varchar(255), password varchar(255), primary key (HTE_IDENTITY)) transactional
+Hibernate: 
+    create global temporary table HTE_estudiantes(activo boolean, anioIngreso integer, HTE_IDENTITY bigint generated 
+by
+    default as identity, idUsuario bigint, legajo varchar(20), apellido varchar(100), carrera varchar(100), nombre varchar(100), email varchar(255), password varchar(255), primary key (HTE_IDENTITY)) transactional
+2026-04-28 09:53:08.699 DEBUG [restartedMain] org.hibernate.SQL - 
+    create global temporary table HTE_docentes(activo boolean, HTE_IDENTITY bigint generated 
+by
+    default as identity, idUsuario bigint, apellido varchar(100), departamento varchar(100), especialidad varchar(100), nombre varchar(100), titulo varchar(200), email varchar(255), password varchar(255), primary key (HTE_IDENTITY)) transactional
+Hibernate: 
+    create global temporary table HTE_docentes(activo boolean, HTE_IDENTITY bigint generated 
+by
+    default as identity, idUsuario bigint, apellido varchar(100), departamento varchar(100), especialidad varchar(100), nombre varchar(100), titulo varchar(200), email varchar(255), password varchar(255), primary key (HTE_IDENTITY)) transactional
+2026-04-28 09:53:08.830 INFO  [restartedMain] org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-28 09:53:08.844 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists administradores cascade 
+Hibernate: 
+    drop table if exists administradores cascade 
+2026-04-28 09:53:08.844 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists auditoria cascade 
+Hibernate: 
+    drop table if exists auditoria cascade 
+2026-04-28 09:53:08.844 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists auditorios cascade 
+Hibernate: 
+    drop table if exists auditorios cascade 
+2026-04-28 09:53:08.845 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists cola_inscripciones cascade 
+Hibernate: 
+    drop table if exists cola_inscripciones cascade 
+2026-04-28 09:53:08.845 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists docentes cascade 
+Hibernate: 
+    drop table if exists docentes cascade 
+2026-04-28 09:53:08.845 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists estudiantes cascade 
+Hibernate: 
+    drop table if exists estudiantes cascade 
+2026-04-28 09:53:08.845 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists inscripciones cascade 
+Hibernate: 
+    drop table if exists inscripciones cascade 
+2026-04-28 09:53:08.845 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists materias cascade 
+Hibernate: 
+    drop table if exists materias cascade 
+2026-04-28 09:53:08.845 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists periodos cascade 
+Hibernate: 
+    drop table if exists periodos cascade 
+2026-04-28 09:53:08.845 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists reservas_auditorio cascade 
+Hibernate: 
+    drop table if exists reservas_auditorio cascade 
+2026-04-28 09:53:08.846 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists solicitudes_reset_password cascade 
+Hibernate: 
+    drop table if exists solicitudes_reset_password cascade 
+2026-04-28 09:53:08.846 DEBUG [restartedMain] org.hibernate.SQL - 
+    drop table if exists usuarios cascade 
+Hibernate: 
+    drop table if exists usuarios cascade 
+2026-04-28 09:53:08.849 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table administradores (
+        nivel_acceso integer,
+        id_usuario bigint not null,
+        rol varchar(50) not null,
+        area varchar(100),
+        primary key (id_usuario)
+    )
+Hibernate: 
+    create table administradores (
+        nivel_acceso integer,
+        id_usuario bigint not null,
+        rol varchar(50) not null,
+        area varchar(100),
+        primary key (id_usuario)
+    )
+2026-04-28 09:53:08.850 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table auditoria (
+        id_entidad bigint,
+        id_registro bigint generated by default as identity,
+        id_usuario bigint,
+        timestamp_evento timestamp(6) not null,
+        ip_origen varchar(45),
+        accion varchar(50) not null,
+        hash_actual varchar(64) not null unique,
+        hash_anterior varchar(64) not null,
+        entidad varchar(100) not null,
+        descripcion TEXT,
+        email_usuario varchar(255),
+        primary key (id_registro)
+    )
+Hibernate: 
+    create table auditoria (
+        id_entidad bigint,
+        id_registro bigint generated by default as identity,
+        id_usuario bigint,
+        timestamp_evento timestamp(6) not null,
+        ip_origen varchar(45),
+        accion varchar(50) not null,
+        hash_actual varchar(64) not null unique,
+        hash_anterior varchar(64) not null,
+        entidad varchar(100) not null,
+        descripcion TEXT,
+        email_usuario varchar(255),
+        primary key (id_registro)
+    )
+2026-04-28 09:53:08.852 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table auditorios (
+        activo boolean not null,
+        capacidad integer not null,
+        id_auditorio bigint generated by default as identity,
+        nombre varchar(150) not null unique,
+        ubicacion varchar(200),
+        descripcion TEXT,
+        equipamiento TEXT,
+        primary key (id_auditorio)
+    )
+Hibernate: 
+    create table auditorios (
+        activo boolean not null,
+        capacidad integer not null,
+        id_auditorio bigint generated by default as identity,
+        nombre varchar(150) not null unique,
+        ubicacion varchar(200),
+        descripcion TEXT,
+        equipamiento TEXT,
+        primary key (id_auditorio)
+    )
+2026-04-28 09:53:08.854 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table cola_inscripciones (
+        posicion integer not null,
+        fecha_expiracion timestamp(6) not null,
+        fecha_resolucion timestamp(6),
+        fecha_solicitud timestamp(6) not null,
+        id_cola bigint generated by default as identity,
+        id_estudiante bigint not null,
+        id_materia bigint not null,
+        estado enum ('CANCELADO','EXPIRADO','PENDIENTE','PROMOVIDO') not null,
+        primary key (id_cola)
+    )
+Hibernate: 
+    create table cola_inscripciones (
+        posicion integer not null,
+        fecha_expiracion timestamp(6) not null,
+        fecha_resolucion timestamp(6),
+        fecha_solicitud timestamp(6) not null,
+        id_cola bigint generated by default as identity,
+        id_estudiante bigint not null,
+        id_materia bigint not null,
+        estado enum ('CANCELADO','EXPIRADO','PENDIENTE','PROMOVIDO') not null,
+        primary key (id_cola)
+    )
+2026-04-28 09:53:08.855 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table docentes (
+        id_usuario bigint not null,
+        departamento varchar(100),
+        especialidad varchar(100),
+        titulo varchar(200),
+        primary key (id_usuario)
+    )
+Hibernate: 
+    create table docentes (
+        id_usuario bigint not null,
+        departamento varchar(100),
+        especialidad varchar(100),
+        titulo varchar(200),
+        primary key (id_usuario)
+    )
+2026-04-28 09:53:08.856 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table estudiantes (
+        anio_ingreso integer,
+        id_usuario bigint not null,
+        legajo varchar(20) unique,
+        carrera varchar(100),
+        primary key (id_usuario)
+    )
+Hibernate: 
+    create table estudiantes (
+        anio_ingreso integer,
+        id_usuario bigint not null,
+        legajo varchar(20) unique,
+        carrera varchar(100),
+        primary key (id_usuario)
+    )
+2026-04-28 09:53:08.857 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table inscripciones (
+        asistencias integer,
+        fecha_inscripcion date not null,
+        nota_cerrada boolean not null,
+        nota_final float(53),
+        nota_parcial1 float(53),
+        nota_parcial2 float(53),
+        id_estudiante bigint not null,
+        id_inscripcion bigint generated by default as identity,
+        id_materia bigint not null,
+        estado varchar(20) not null,
+        primary key (id_inscripcion)
+    )
+Hibernate: 
+    create table inscripciones (
+        asistencias integer,
+        fecha_inscripcion date not null,
+        nota_cerrada boolean not null,
+        nota_final float(53),
+        nota_parcial1 float(53),
+        nota_parcial2 float(53),
+        id_estudiante bigint not null,
+        id_inscripcion bigint generated by default as identity,
+        id_materia bigint not null,
+        estado varchar(20) not null,
+        primary key (id_inscripcion)
+    )
+2026-04-28 09:53:08.858 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table materias (
+        anio integer,
+        creditos integer,
+        cuatrimestre integer,
+        cupos_maximos integer,
+        id_docente bigint,
+        id_materia bigint generated by default as identity,
+        version bigint not null,
+        codigo varchar(20) not null unique,
+        nombre varchar(200) not null,
+        descripcion TEXT,
+        primary key (id_materia)
+    )
+Hibernate: 
+    create table materias (
+        anio integer,
+        creditos integer,
+        cuatrimestre integer,
+        cupos_maximos integer,
+        id_docente bigint,
+        id_materia bigint generated by default as identity,
+        version bigint not null,
+        codigo varchar(20) not null unique,
+        nombre varchar(200) not null,
+        descripcion TEXT,
+        primary key (id_materia)
+    )
+2026-04-28 09:53:08.860 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table periodos (
+        activo boolean not null,
+        anio integer not null,
+        cuatrimestre integer not null,
+        fecha_fin date not null,
+        fecha_inicio date not null,
+        id_periodo bigint generated by default as identity,
+        nombre varchar(100) not null,
+        primary key (id_periodo)
+    )
+Hibernate: 
+    create table periodos (
+        activo boolean not null,
+        anio integer not null,
+        cuatrimestre integer not null,
+        fecha_fin date not null,
+        fecha_inicio date not null,
+        id_periodo bigint generated by default as identity,
+        nombre varchar(100) not null,
+        primary key (id_periodo)
+    )
+2026-04-28 09:53:08.861 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table reservas_auditorio (
+        fecha date not null,
+        hora_fin time(0) not null,
+        hora_inicio time(0) not null,
+        id_auditorio bigint not null,
+        id_reserva bigint generated by default as identity,
+        id_usuario bigint not null,
+        estado varchar(20) not null,
+        motivo varchar(300) not null,
+        descripcion TEXT,
+        observaciones TEXT,
+        primary key (id_reserva)
+    )
+Hibernate: 
+    create table reservas_auditorio (
+        fecha date not null,
+        hora_fin time(0) not null,
+        hora_inicio time(0) not null,
+        id_auditorio bigint not null,
+        id_reserva bigint generated by default as identity,
+        id_usuario bigint not null,
+        estado varchar(20) not null,
+        motivo varchar(300) not null,
+        descripcion TEXT,
+        observaciones TEXT,
+        primary key (id_reserva)
+    )
+2026-04-28 09:53:08.861 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table solicitudes_reset_password (
+        fecha_atencion timestamp(6),
+        fecha_solicitud timestamp(6) not null,
+        id_solicitud bigint generated by default as identity,
+        nombre_completo varchar(200),
+        email varchar(255) not null,
+        estado enum ('ATENDIDA','PENDIENTE') not null,
+        primary key (id_solicitud)
+    )
+Hibernate: 
+    create table solicitudes_reset_password (
+        fecha_atencion timestamp(6),
+        fecha_solicitud timestamp(6) not null,
+        id_solicitud bigint generated by default as identity,
+        nombre_completo varchar(200),
+        email varchar(255) not null,
+        estado enum ('ATENDIDA','PENDIENTE') not null,
+        primary key (id_solicitud)
+    )
+2026-04-28 09:53:08.862 DEBUG [restartedMain] org.hibernate.SQL - 
+    create table usuarios (
+        activo boolean not null,
+        id_usuario bigint generated by default as identity,
+        apellido varchar(100) not null,
+        nombre varchar(100) not null,
+        email varchar(255) not null unique,
+        password varchar(255) not null,
+        primary key (id_usuario)
+    )
+Hibernate: 
+    create table usuarios (
+        activo boolean not null,
+        id_usuario bigint generated by default as identity,
+        apellido varchar(100) not null,
+        nombre varchar(100) not null,
+        email varchar(255) not null unique,
+        password varchar(255) not null,
+        primary key (id_usuario)
+    )
+2026-04-28 09:53:08.863 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_auditoria_entidad_id 
+       on auditoria (entidad, id_entidad)
+Hibernate: 
+    create index idx_auditoria_entidad_id 
+       on auditoria (entidad, id_entidad)
+2026-04-28 09:53:08.864 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_auditoria_usuario 
+       on auditoria (id_usuario)
+Hibernate: 
+    create index idx_auditoria_usuario 
+       on auditoria (id_usuario)
+2026-04-28 09:53:08.865 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_auditoria_timestamp 
+       on auditoria (timestamp_evento)
+Hibernate: 
+    create index idx_auditoria_timestamp 
+       on auditoria (timestamp_evento)
+2026-04-28 09:53:08.865 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_auditoria_accion 
+       on auditoria (accion)
+Hibernate: 
+    create index idx_auditoria_accion 
+       on auditoria (accion)
+2026-04-28 09:53:08.865 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_cola_materia_estado_pos 
+       on cola_inscripciones (id_materia, estado, posicion)
+Hibernate: 
+    create index idx_cola_materia_estado_pos 
+       on cola_inscripciones (id_materia, estado, posicion)
+2026-04-28 09:53:08.866 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_cola_est_mat 
+       on cola_inscripciones (id_estudiante, id_materia)
+Hibernate: 
+    create index idx_cola_est_mat 
+       on cola_inscripciones (id_estudiante, id_materia)
+2026-04-28 09:53:08.866 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_cola_expiracion 
+       on cola_inscripciones (fecha_expiracion, estado)
+Hibernate: 
+    create index idx_cola_expiracion 
+       on cola_inscripciones (fecha_expiracion, estado)
+2026-04-28 09:53:08.867 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_inscripciones_estudiante 
+       on inscripciones (id_estudiante)
+Hibernate: 
+    create index idx_inscripciones_estudiante 
+       on inscripciones (id_estudiante)
+2026-04-28 09:53:08.867 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_inscripciones_materia 
+       on inscripciones (id_materia)
+Hibernate: 
+    create index idx_inscripciones_materia 
+       on inscripciones (id_materia)
+2026-04-28 09:53:08.868 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_inscripciones_est_mat 
+       on inscripciones (id_estudiante, id_materia)
+Hibernate: 
+    create index idx_inscripciones_est_mat 
+       on inscripciones (id_estudiante, id_materia)
+2026-04-28 09:53:08.868 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_inscripciones_mat_estado 
+       on inscripciones (id_materia, estado)
+Hibernate: 
+    create index idx_inscripciones_mat_estado 
+       on inscripciones (id_materia, estado)
+2026-04-28 09:53:08.869 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_inscripciones_estado 
+       on inscripciones (estado)
+Hibernate: 
+    create index idx_inscripciones_estado 
+       on inscripciones (estado)
+2026-04-28 09:53:08.869 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_materias_docente 
+       on materias (id_docente)
+Hibernate: 
+    create index idx_materias_docente 
+       on materias (id_docente)
+2026-04-28 09:53:08.870 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_materias_anio_cuatrimestre 
+       on materias (anio, cuatrimestre)
+Hibernate: 
+    create index idx_materias_anio_cuatrimestre 
+       on materias (anio, cuatrimestre)
+2026-04-28 09:53:08.870 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_reserva_auditorio_fecha 
+       on reservas_auditorio (id_auditorio, fecha)
+Hibernate: 
+    create index idx_reserva_auditorio_fecha 
+       on reservas_auditorio (id_auditorio, fecha)
+2026-04-28 09:53:08.870 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_reserva_solicitante 
+       on reservas_auditorio (id_usuario)
+Hibernate: 
+    create index idx_reserva_solicitante 
+       on reservas_auditorio (id_usuario)
+2026-04-28 09:53:08.871 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_reserva_fecha 
+       on reservas_auditorio (fecha)
+Hibernate: 
+    create index idx_reserva_fecha 
+       on reservas_auditorio (fecha)
+2026-04-28 09:53:08.871 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_reserva_estado 
+       on reservas_auditorio (estado)
+Hibernate: 
+    create index idx_reserva_estado 
+       on reservas_auditorio (estado)
+2026-04-28 09:53:08.871 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_srp_email 
+       on solicitudes_reset_password (email)
+Hibernate: 
+    create index idx_srp_email 
+       on solicitudes_reset_password (email)
+2026-04-28 09:53:08.872 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_srp_estado 
+       on solicitudes_reset_password (estado)
+Hibernate: 
+    create index idx_srp_estado 
+       on solicitudes_reset_password (estado)
+2026-04-28 09:53:08.872 DEBUG [restartedMain] org.hibernate.SQL - 
+    create index idx_usuarios_activo 
+       on usuarios (activo)
+Hibernate: 
+    create index idx_usuarios_activo 
+       on usuarios (activo)
+2026-04-28 09:53:08.872 DEBUG [restartedMain] org.hibernate.SQL - 
+    alter table if exists administradores 
+       add constraint FK28dj1ai3f8gnqhjuns8dnamrp 
+       foreign key (id_usuario) 
+       references usuarios
+Hibernate: 
+    alter table if exists administradores 
+       add constraint FK28dj1ai3f8gnqhjuns8dnamrp 
+       foreign key (id_usuario) 
+       references usuarios
+2026-04-28 09:53:08.880 DEBUG [restartedMain] org.hibernate.SQL - 
+    alter table if exists cola_inscripciones 
+       add constraint FK86d53w0o6jdnwl3axj0x5wcrl 
+       foreign key (id_estudiante) 
+       references estudiantes
+Hibernate: 
+    alter table if exists cola_inscripciones 
+       add constraint FK86d53w0o6jdnwl3axj0x5wcrl 
+       foreign key (id_estudiante) 
+       references estudiantes
+2026-04-28 09:53:08.881 DEBUG [restartedMain] org.hibernate.SQL - 
+    alter table if exists cola_inscripciones 
+       add constraint FKq3ab4tv5mp74gfpe6oya78vty 
+       foreign key (id_materia) 
+       references materias
+Hibernate: 
+    alter table if exists cola_inscripciones 
+       add constraint FKq3ab4tv5mp74gfpe6oya78vty 
+       foreign key (id_materia) 
+       references materias
+2026-04-28 09:53:08.882 DEBUG [restartedMain] org.hibernate.SQL - 
+    alter table if exists docentes 
+       add constraint FK489bautdwr1vo00f1nm0ipysi 
+       foreign key (id_usuario) 
+       references usuarios
+Hibernate: 
+    alter table if exists docentes 
+       add constraint FK489bautdwr1vo00f1nm0ipysi 
+       foreign key (id_usuario) 
+       references usuarios
+2026-04-28 09:53:08.883 DEBUG [restartedMain] org.hibernate.SQL - 
+    alter table if exists estudiantes 
+       add constraint FKaiehyv3poghvcl0erh0vrw76q 
+       foreign key (id_usuario) 
+       references usuarios
+Hibernate: 
+    alter table if exists estudiantes 
+       add constraint FKaiehyv3poghvcl0erh0vrw76q 
+       foreign key (id_usuario) 
+       references usuarios
+2026-04-28 09:53:08.884 DEBUG [restartedMain] org.hibernate.SQL - 
+    alter table if exists inscripciones 
+       add constraint FKek59i6fh86qxytodhvtvsfkv9 
+       foreign key (id_estudiante) 
+       references estudiantes
+Hibernate: 
+    alter table if exists inscripciones 
+       add constraint FKek59i6fh86qxytodhvtvsfkv9 
+       foreign key (id_estudiante) 
+       references estudiantes
+2026-04-28 09:53:08.884 DEBUG [restartedMain] org.hibernate.SQL - 
+    alter table if exists inscripciones 
+       add constraint FKmkchqo2wdwfkno7pdtrmuw5xp 
+       foreign key (id_materia) 
+       references materias
+Hibernate: 
+    alter table if exists inscripciones 
+       add constraint FKmkchqo2wdwfkno7pdtrmuw5xp 
+       foreign key (id_materia) 
+       references materias
+2026-04-28 09:53:08.885 DEBUG [restartedMain] org.hibernate.SQL - 
+    alter table if exists materias 
+       add constraint FK89tuqig6ixo7nsy0cukn3yvyd 
+       foreign key (id_docente) 
+       references docentes
+Hibernate: 
+    alter table if exists materias 
+       add constraint FK89tuqig6ixo7nsy0cukn3yvyd 
+       foreign key (id_docente) 
+       references docentes
+2026-04-28 09:53:08.886 DEBUG [restartedMain] org.hibernate.SQL - 
+    alter table if exists reservas_auditorio 
+       add constraint FK7bc1mnj9vg9s3l086pd8i7mr4 
+       foreign key (id_auditorio) 
+       references auditorios
+Hibernate: 
+    alter table if exists reservas_auditorio 
+       add constraint FK7bc1mnj9vg9s3l086pd8i7mr4 
+       foreign key (id_auditorio) 
+       references auditorios
+2026-04-28 09:53:08.887 DEBUG [restartedMain] org.hibernate.SQL - 
+    alter table if exists reservas_auditorio 
+       add constraint FKp85j3nx4hvwgro5cawqit33iu 
+       foreign key (id_usuario) 
+       references usuarios
+Hibernate: 
+    alter table if exists reservas_auditorio 
+       add constraint FKp85j3nx4hvwgro5cawqit33iu 
+       foreign key (id_usuario) 
+       references usuarios
+2026-04-28 09:53:08.890 INFO  [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-28 09:53:08.925 DEBUG [restartedMain] o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Initializing JpaMetamodelMappingContext…
+2026-04-28 09:53:08.936 DEBUG [restartedMain] o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Finished initializing JpaMetamodelMappingContext
+2026-04-28 09:53:08.960 INFO  [restartedMain] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-28 09:53:08.990 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository…
+2026-04-28 09:53:09.019 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.existsByEmail'
+2026-04-28 09:53:09.048 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.existsByEmail
+2026-04-28 09:53:09.056 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.findByEmail'
+2026-04-28 09:53:09.057 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.findByEmail
+2026-04-28 09:53:09.059 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.
+2026-04-28 09:53:09.160 DEBUG [restartedMain] c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-04-28 09:53:09.160 DEBUG [restartedMain] c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
+2026-04-28 09:53:09.194 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditoriaRepository…
+2026-04-28 09:53:09.196 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findUltimoRegistro.count
+2026-04-28 09:53:09.537 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findAllByOrderByIdRegistroAsc'
+2026-04-28 09:53:09.537 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findAllByOrderByIdRegistroAsc
+2026-04-28 09:53:09.539 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByEntidadOrderByIdRegistroAsc'
+2026-04-28 09:53:09.539 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByEntidadOrderByIdRegistroAsc
+2026-04-28 09:53:09.540 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByEntidadAndIdEntidadOrderByIdRegistroAsc'
+2026-04-28 09:53:09.541 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByEntidadAndIdEntidadOrderByIdRegistroAsc
+2026-04-28 09:53:09.541 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByIdUsuarioOrderByIdRegistroAsc'
+2026-04-28 09:53:09.542 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByIdUsuarioOrderByIdRegistroAsc
+2026-04-28 09:53:09.542 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByAccionOrderByIdRegistroAsc'
+2026-04-28 09:53:09.542 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByAccionOrderByIdRegistroAsc
+2026-04-28 09:53:09.543 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByTimestampEventoBetweenOrderByIdRegistroAsc'
+2026-04-28 09:53:09.543 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByTimestampEventoBetweenOrderByIdRegistroAsc
+2026-04-28 09:53:09.546 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditoriaRepository.
+2026-04-28 09:53:09.571 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository…
+2026-04-28 09:53:09.574 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository.
+2026-04-28 09:53:09.608 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditorioRepository…
+2026-04-28 09:53:09.610 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.findByCapacidadGreaterThanEqual'
+2026-04-28 09:53:09.611 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.findByCapacidadGreaterThanEqual
+2026-04-28 09:53:09.611 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.findByActivoTrue'
+2026-04-28 09:53:09.612 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.findByActivoTrue
+2026-04-28 09:53:09.612 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.existsByNombre'
+2026-04-28 09:53:09.613 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.existsByNombre
+2026-04-28 09:53:09.613 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.findByNombre'
+2026-04-28 09:53:09.613 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.findByNombre
+2026-04-28 09:53:09.617 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditorioRepository.
+2026-04-28 09:53:09.656 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ReservaAuditorioRepository…
+2026-04-28 09:53:09.657 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByAuditorioIdAuditorio'
+2026-04-28 09:53:09.658 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByAuditorioIdAuditorio
+2026-04-28 09:53:09.660 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findBySolicitanteIdUsuario'
+2026-04-28 09:53:09.660 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findBySolicitanteIdUsuario
+2026-04-28 09:53:09.661 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByEstado'
+2026-04-28 09:53:09.661 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByEstado
+2026-04-28 09:53:09.661 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByFecha'
+2026-04-28 09:53:09.662 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByFecha
+2026-04-28 09:53:09.662 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByFechaBetween'
+2026-04-28 09:53:09.663 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByFechaBetween
+2026-04-28 09:53:09.664 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.existeSolapamiento.count
+2026-04-28 09:53:09.844 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ReservaAuditorioRepository.
+2026-04-28 09:53:09.880 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository…
+2026-04-28 09:53:09.881 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Estudiante.existsByLegajo'
+2026-04-28 09:53:09.881 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Estudiante.existsByLegajo
+2026-04-28 09:53:09.883 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository.
+2026-04-28 09:53:09.895 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository…
+2026-04-28 09:53:09.898 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository.
+2026-04-28 09:53:09.912 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswordRepository…
+2026-04-28 09:53:09.913 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'SolicitudResetPassword.findByEstadoOrderByFechaSolicitudDesc'
+2026-04-28 09:53:09.913 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query SolicitudResetPassword.findByEstadoOrderByFechaSolicitudDesc
+2026-04-28 09:53:09.913 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'SolicitudResetPassword.existsByEmailAndEstado'
+2026-04-28 09:53:09.913 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query SolicitudResetPassword.existsByEmailAndEstado
+2026-04-28 09:53:09.914 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'SolicitudResetPassword.findAllByOrderByFechaSolicitudDesc'
+2026-04-28 09:53:09.914 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query SolicitudResetPassword.findAllByOrderByFechaSolicitudDesc
+2026-04-28 09:53:09.916 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswordRepository.
+2026-04-28 09:53:09.970 INFO  [restartedMain] o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-04-28 09:53:09.970 WARN  [restartedMain] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-04-28 09:53:09.993 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ColaInscripcionRepository…
+2026-04-28 09:53:09.995 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'ColaInscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstado'
+2026-04-28 09:53:09.996 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstado
+2026-04-28 09:53:09.997 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findMaxPosicion.count
+2026-04-28 09:53:10.171 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.countDelante.count
+2026-04-28 09:53:10.174 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findByEstudianteId.count
+2026-04-28 09:53:10.176 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findPendientesPorMateriaOrdenados.count
+2026-04-28 09:53:10.179 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findPrimeroPendiente.count
+2026-04-28 09:53:10.180 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.expirarVencidos.count
+2026-04-28 09:53:10.260 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'ColaInscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria'
+2026-04-28 09:53:10.261 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria
+2026-04-28 09:53:10.261 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findExpirados.count
+2026-04-28 09:53:10.264 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ColaInscripcionRepository.
+2026-04-28 09:53:10.277 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.MateriaRepository…
+2026-04-28 09:53:10.279 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Materia.findByCodigo'
+2026-04-28 09:53:10.279 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.findByCodigo
+2026-04-28 09:53:10.280 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.findByIdForUpdate.count
+2026-04-28 09:53:10.281 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Materia.existsByCodigo'
+2026-04-28 09:53:10.281 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.existsByCodigo
+2026-04-28 09:53:10.283 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.MateriaRepository.
+2026-04-28 09:53:10.294 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.InscripcionRepository…
+2026-04-28 09:53:10.295 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.countCuposOcupados.count
+2026-04-28 09:53:10.297 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot'
+2026-04-28 09:53:10.297 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot
+2026-04-28 09:53:10.298 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.findByEstudianteIdUsuario'
+2026-04-28 09:53:10.298 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.findByEstudianteIdUsuario
+2026-04-28 09:53:10.299 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.findByMateriaIdMateria'
+2026-04-28 09:53:10.299 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.findByMateriaIdMateria
+2026-04-28 09:53:10.299 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria'
+2026-04-28 09:53:10.299 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria
+2026-04-28 09:53:10.301 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.InscripcionRepository.
+2026-04-28 09:53:10.351 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.PeriodoRepository…
+2026-04-28 09:53:10.352 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Periodo.findByActivoTrue'
+2026-04-28 09:53:10.352 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Periodo.findByActivoTrue
+2026-04-28 09:53:10.353 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Looking up named query 'Periodo.findByAnio'
+2026-04-28 09:53:10.353 DEBUG [restartedMain] o.s.d.j.repository.query.NamedQuery - Did not find named query Periodo.findByAnio
+2026-04-28 09:53:10.355 DEBUG [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.PeriodoRepository.
+2026-04-28 09:53:10.452 WARN  [restartedMain] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-28 09:53:10.666 DEBUG [restartedMain] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-04-28 09:53:10.810 DEBUG [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerMapping - 89 mappings in 'requestMappingHandlerMapping'
+2026-04-28 09:53:10.846 DEBUG [restartedMain] o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-04-28 09:53:10.879 DEBUG [restartedMain] o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-04-28 09:53:10.919 DEBUG [restartedMain] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-04-28 09:53:11.111 INFO  [restartedMain] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-04-28 09:53:11.118 INFO  [restartedMain] c.D.O.OrtizSerranoTp3Application - Started OrtizSerranoTp3Application in 5.395 seconds (process running for 5.697)
+2026-04-28 09:53:11.151 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 09:53:11.153 DEBUG [restartedMain] org.hibernate.SQL - 
+    select
+        count(*) 
+    from
+        administradores a1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        administradores a1_0
+2026-04-28 09:53:11.257 DEBUG [restartedMain] org.hibernate.SQL - 
+    insert 
+    into
+        usuarios
+        (activo, apellido, email, nombre, password, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        usuarios
+        (activo, apellido, email, nombre, password, id_usuario) 
+    values
+        (?, ?, ?, ?, ?, default)
+2026-04-28 09:53:11.264 DEBUG [restartedMain] org.hibernate.SQL - 
+    insert 
+    into
+        administradores
+        (area, nivel_acceso, rol, id_usuario) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        administradores
+        (area, nivel_acceso, rol, id_usuario) 
+    values
+        (?, ?, ?, ?)
+2026-04-28 09:53:11.269 INFO  [restartedMain] c.D.O.config.DataInitializer - ==========================================================
+2026-04-28 09:53:11.269 INFO  [restartedMain] c.D.O.config.DataInitializer -   ✅ Usuario administrador inicial creado:
+2026-04-28 09:53:11.269 INFO  [restartedMain] c.D.O.config.DataInitializer -      Email:    admin@decanato.edu
+2026-04-28 09:53:11.269 INFO  [restartedMain] c.D.O.config.DataInitializer -      Password: Admin1234
+2026-04-28 09:53:11.269 INFO  [restartedMain] c.D.O.config.DataInitializer -   ⚠️  Cambiá la contraseña después del primer login.
+2026-04-28 09:53:11.269 INFO  [restartedMain] c.D.O.config.DataInitializer - ==========================================================
+2026-04-28 09:53:33.251 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-28 09:53:33.251 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-28 09:53:33.251 DEBUG [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2026-04-28 09:53:33.251 DEBUG [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2026-04-28 09:53:33.252 DEBUG [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@17a63324
+2026-04-28 09:53:33.253 DEBUG [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@7046b9e
+2026-04-28 09:53:33.253 DEBUG [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-04-28 09:53:33.253 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-04-28 09:53:33.260 DEBUG [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy - Securing GET /api/health
+2026-04-28 09:53:33.264 DEBUG [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-28 09:53:33.265 DEBUG [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy - Secured GET /api/health
+2026-04-28 09:53:33.266 DEBUG [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - GET "/api/health", parameters={}
+2026-04-28 09:53:33.270 DEBUG [http-nio-8080-exec-1] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.HealthController#health()
+2026-04-28 09:53:33.270 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:53:33.270 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-28 09:53:33.270 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-04-28 09:53:33.270 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/health
+2026-04-28 09:53:33.271 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-28 09:53:33.271 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-28 09:53:33.271 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-28 09:53:33.271 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-28 09:53:33.271 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-28 09:53:33.271 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: curl/8.5.0
+2026-04-28 09:53:33.272 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-04-28 09:53:33.272 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.HealthController#health()
+2026-04-28 09:53:33.272 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:53:33.300 DEBUG [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-04-28 09:53:33.300 DEBUG [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{timestamp=2026-04-28T12:53:33.279389976Z, status=UP}]
+2026-04-28 09:53:33.320 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:53:33.320 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-28 09:53:33.320 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-28 09:53:33.320 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-04-28 09:53:33.320 DEBUG [http-nio-8080-exec-1] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:53:33.320 DEBUG [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-28 09:54:06.484 DEBUG [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/login
+2026-04-28 09:54:06.484 DEBUG [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-28 09:54:06.484 DEBUG [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy - Secured OPTIONS /api/auth/login
+2026-04-28 09:54:06.484 DEBUG [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - OPTIONS "/api/auth/login", parameters={}
+2026-04-28 09:54:06.485 DEBUG [http-nio-8080-exec-2] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#authenticateUser(LoginRequest)
+2026-04-28 09:54:06.492 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:54:06.492 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-28 09:54:06.492 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: OPTIONS
+2026-04-28 09:54:06.492 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/auth/login
+2026-04-28 09:54:06.492 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Access-Control-Request-Method: POST
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Access-Control-Request-Headers: content-type
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Origin: http://localhost:3000
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: cors
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-site
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: empty
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:3000/
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: org.springframework.web.servlet.handler.AbstractHandlerMapping$PreFlightHttpRequestHandler@3e8cdad1
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: null
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:54:06.493 DEBUG [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-28 09:54:06.497 DEBUG [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-04-28 09:54:06.497 DEBUG [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-28 09:54:06.497 DEBUG [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-04-28 09:54:06.497 DEBUG [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2026-04-28 09:54:06.497 DEBUG [http-nio-8080-exec-3] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#authenticateUser(LoginRequest)
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: POST
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/auth/login
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Length: 59
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: application/json, text/plain, */*
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Chromium";v="147", "Not.A/Brand";v="8"
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Type: application/json
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Origin: http://localhost:3000
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-site
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: cors
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: empty
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:3000/
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#authenticateUser(LoginRequest)
+2026-04-28 09:54:06.499 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:54:06.537 DEBUG [http-nio-8080-exec-3] o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.LoginRequest@723fcecc]
+2026-04-28 09:54:06.651 DEBUG [http-nio-8080-exec-3] o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-28 09:54:06.655 DEBUG [http-nio-8080-exec-3] org.hibernate.SQL - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-04-28 09:54:06.739 DEBUG [http-nio-8080-exec-3] o.s.s.a.d.DaoAuthenticationProvider - Failed to find user 'santiagogortiz@gmail.com'
+2026-04-28 09:54:06.740 DEBUG [http-nio-8080-exec-3] o.s.s.authentication.ProviderManager - Authentication failed with provider DaoAuthenticationProvider since Bad credentials
+2026-04-28 09:54:06.742 DEBUG [http-nio-8080-exec-3] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.DecanatoOrtizSerrano.OrtizSerranoTP3.exception.GlobalExceptionHandler#handleAuthenticationException(Exception)
+2026-04-28 09:54:06.742 DEBUG [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/yaml]
+2026-04-28 09:54:06.743 DEBUG [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{message=Credenciales inválidas}]
+2026-04-28 09:54:06.743 WARN  [http-nio-8080-exec-3] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.security.authentication.BadCredentialsException: Bad credentials]
+2026-04-28 09:54:06.744 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:54:06.744 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-28 09:54:06.744 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 401
+2026-04-28 09:54:06.744 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-04-28 09:54:06.744 DEBUG [http-nio-8080-exec-3] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:54:06.744 DEBUG [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet - Completed 401 UNAUTHORIZED
+2026-04-28 09:54:11.164 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 09:54:45.269 DEBUG [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2026-04-28 09:54:45.269 DEBUG [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-28 09:54:45.269 DEBUG [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2026-04-28 09:54:45.269 DEBUG [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#authenticateUser(LoginRequest)
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: POST
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/auth/login
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Length: 53
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: application/json, text/plain, */*
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Chromium";v="147", "Not.A/Brand";v="8"
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content-Type: application/json
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Origin: http://localhost:3000
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-site
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: cors
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: empty
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:3000/
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController#authenticateUser(LoginRequest)
+2026-04-28 09:54:45.270 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:54:45.271 DEBUG [http-nio-8080-exec-4] o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.LoginRequest@4953940c]
+2026-04-28 09:54:45.272 DEBUG [http-nio-8080-exec-4] o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-28 09:54:45.272 DEBUG [http-nio-8080-exec-4] org.hibernate.SQL - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-04-28 09:54:45.350 DEBUG [http-nio-8080-exec-4] o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2026-04-28 09:54:45.394 DEBUG [http-nio-8080-exec-4] o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-28 09:54:45.395 DEBUG [http-nio-8080-exec-4] org.hibernate.SQL - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-04-28 09:54:45.397 DEBUG [http-nio-8080-exec-4] org.hibernate.SQL - 
+    select
+        count(*) 
+    from
+        administradores a1_0 
+    where
+        a1_0.id_usuario=?
+Hibernate: 
+    select
+        count(*) 
+    from
+        administradores a1_0 
+    where
+        a1_0.id_usuario=?
+2026-04-28 09:54:45.406 DEBUG [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/yaml]
+2026-04-28 09:54:45.406 DEBUG [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.JwtResponse@5abd004b]
+2026-04-28 09:54:45.413 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:54:45.413 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-28 09:54:45.413 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-28 09:54:45.413 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-04-28 09:54:45.413 DEBUG [http-nio-8080-exec-4] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:54:45.413 DEBUG [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-28 09:54:54.673 DEBUG [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy - Securing OPTIONS /api/admin/estudiantes
+2026-04-28 09:54:54.673 DEBUG [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-28 09:54:54.673 DEBUG [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy - Secured OPTIONS /api/admin/estudiantes
+2026-04-28 09:54:54.673 DEBUG [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - OPTIONS "/api/admin/estudiantes", parameters={}
+2026-04-28 09:54:54.673 DEBUG [http-nio-8080-exec-5] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.EstudianteController#listar()
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: OPTIONS
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/admin/estudiantes
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Access-Control-Request-Method: GET
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Access-Control-Request-Headers: authorization
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Origin: http://localhost:3000
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: cors
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-site
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: empty
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:3000/
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: org.springframework.web.servlet.handler.AbstractHandlerMapping$PreFlightHttpRequestHandler@3f7529c8
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-28 09:54:54.674 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-28 09:54:54.675 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: null
+2026-04-28 09:54:54.675 DEBUG [http-nio-8080-exec-5] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:54:54.675 DEBUG [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-28 09:54:54.677 DEBUG [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy - Securing GET /api/admin/estudiantes
+2026-04-28 09:54:54.704 DEBUG [http-nio-8080-exec-6] o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-28 09:54:54.704 DEBUG [http-nio-8080-exec-6] org.hibernate.SQL - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-04-28 09:54:54.706 DEBUG [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy - Secured GET /api/admin/estudiantes
+2026-04-28 09:54:54.707 DEBUG [http-nio-8080-exec-6] o.s.d.j.r.query.PartTreeJpaQuery - QueryPreparer: Derived query for query method [public abstract java.util.Optional com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.findByEmail(java.lang.String)]: 'SELECT u FROM Usuario u WHERE u.email = :email'
+2026-04-28 09:54:54.708 DEBUG [http-nio-8080-exec-6] org.hibernate.SQL - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet - GET "/api/admin/estudiantes", parameters={}
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.EstudianteController#listar()
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /api/admin/estudiantes
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBkZWNhbmF0by5lZHUiLCJpYXQiOjE3NzczODA4ODUsImV4cCI6MTc3NzQ2NzI4NX0.TNFMQGM3aVh8s8ccf95E75g1k6x5MAkKX6S01gXGLI1coOvkcAlfOzqVGSuzLBK71QFleemNkV_ZMZzNlZGXHA
+2026-04-28 09:54:54.709 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: application/json, text/plain, */*
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Chromium";v="147", "Not.A/Brand";v="8"
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Origin: http://localhost:3000
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-site
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: cors
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: empty
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:3000/
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.EstudianteController#listar()
+2026-04-28 09:54:54.710 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-04-28 09:54:54.717 DEBUG [http-nio-8080-exec-6] org.hibernate.SQL - 
+    select
+        e1_0.id_usuario,
+        e1_1.activo,
+        e1_1.apellido,
+        e1_1.email,
+        e1_1.nombre,
+        e1_1.password,
+        e1_0.anio_ingreso,
+        e1_0.carrera,
+        e1_0.legajo 
+    from
+        estudiantes e1_0 
+    join
+        usuarios e1_1 
+            on e1_0.id_usuario=e1_1.id_usuario
+Hibernate: 
+    select
+        e1_0.id_usuario,
+        e1_1.activo,
+        e1_1.apellido,
+        e1_1.email,
+        e1_1.nombre,
+        e1_1.password,
+        e1_0.anio_ingreso,
+        e1_0.carrera,
+        e1_0.legajo 
+    from
+        estudiantes e1_0 
+    join
+        usuarios e1_1 
+            on e1_0.id_usuario=e1_1.id_usuario
+2026-04-28 09:54:54.719 DEBUG [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/yaml]
+2026-04-28 09:54:54.719 DEBUG [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[]]
+2026-04-28 09:54:54.720 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:54:54.720 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-04-28 09:54:54.720 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-04-28 09:54:54.720 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-04-28 09:54:54.720 DEBUG [http-nio-8080-exec-6] c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-04-28 09:54:54.720 DEBUG [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-04-28 09:55:11.165 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 09:56:11.167 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 09:57:11.169 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 09:58:11.170 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 09:59:11.172 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?

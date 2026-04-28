@@ -115,4 +115,8 @@ tasks.register('gatlingInscripciones', GatlingTask) {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	testLogging {
+		events "passed", "failed", "skipped"
+		showStandardStreams = false
+	}
 }
