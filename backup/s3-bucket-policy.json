@@ -1,0 +1,97 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyDeleteObject",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": [
+        "s3:DeleteObject",
+        "s3:DeleteObjectVersion"
+      ],
+      "Resource": "arn:aws:s3:::NOMBRE_BUCKET/backups/*"
+    },
+    {
+      "Sid": "DenyOverwriteLockedObject",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:PutObjectRetention",
+      "Resource": "arn:aws:s3:::NOMBRE_BUCKET/backups/*",
+      "Condition": {
+        "StringEquals": {
+          "s3:object-lock-remaining-retention-days": "0"
+        }
+      }
+    },
+    {
+      "Sid": "DenyDisableObjectLock",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:PutBucketObjectLockConfiguration",
+      "Resource": "arn:aws:s3:::NOMBRE_BUCKET"
+    },
+    {
+      "Sid": "DenyPublicAccess",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::NOMBRE_BUCKET",
+        "arn:aws:s3:::NOMBRE_BUCKET/*"
+      ],
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    },
+    {
+      "Sid": "AllowBackupAgentPutOnly",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::CUENTA_ID:role/DecanatoCopiaDeSeguridad"
+      },
+      "Action": [
+        "s3:PutObject",
+        "s3:PutObjectRetention",
+        "s3:GetObject",
+        "s3:HeadObject",
+        "s3:ListBucket",
+        "s3:GetBucketObjectLockConfiguration"
+      ],
+      "Resource": [
+        "arn:aws:s3:::NOMBRE_BUCKET",
+        "arn:aws:s3:::NOMBRE_BUCKET/backups/*"
+      ]
+    },
+    {
+      "Sid": "AllowAuditorReadOnly",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::CUENTA_ID:role/DecanatoAuditor"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:GetObjectRetention",
+        "s3:HeadObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::NOMBRE_BUCKET",
+        "arn:aws:s3:::NOMBRE_BUCKET/backups/*"
+      ]
+    },
+    {
+      "Sid": "DenyNonBackupAgentWrite",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::NOMBRE_BUCKET/backups/*",
+      "Condition": {
+        "StringNotLike": {
+          "aws:PrincipalArn": "arn:aws:iam::CUENTA_ID:role/DecanatoCopiaDeSeguridad"
+        }
+      }
+    }
+  ]
+}
