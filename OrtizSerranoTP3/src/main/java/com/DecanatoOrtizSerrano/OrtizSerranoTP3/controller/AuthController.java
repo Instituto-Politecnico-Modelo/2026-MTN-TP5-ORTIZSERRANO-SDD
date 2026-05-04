@@ -14,16 +14,13 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswor
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
-import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.TokenBlacklistService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -73,9 +70,6 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private TokenBlacklistService tokenBlacklistService;
-    
     /**
      * POST /api/auth/login - Autenticar usuario y devolver JWT
      */
@@ -222,23 +216,12 @@ public class AuthController {
 
     /**
      * POST /api/auth/logout
-     * Invalida el JWT del usuario autenticado añadiéndolo a la blacklist.
-     * A partir de ese momento el token es rechazado por el filtro JWT aunque
-     * no haya expirado todavía.
+     * El logout es responsabilidad del cliente: debe eliminar el token almacenado.
+     * Este endpoint existe por convención REST y devuelve 200 como confirmación.
      */
-    @Operation(summary = "Cerrar sesión", description = "Invalida el token JWT actual. El token queda en blacklist hasta su expiración natural.")
+    @Operation(summary = "Cerrar sesión", description = "El cliente debe eliminar el token JWT. Este endpoint confirma la acción con 200.")
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletRequest request) {
-        String headerAuth = request.getHeader("Authorization");
-        if (headerAuth != null && headerAuth.startsWith("Bearer ")) {
-            String token = headerAuth.substring(7);
-            try {
-                java.util.Date exp = jwtUtil.getExpirationFromToken(token);
-                tokenBlacklistService.invalidate(token, exp.toInstant());
-            } catch (Exception e) {
-                // token ya expirado u otro problema → no hace falta agregar a blacklist
-            }
-        }
+    public ResponseEntity<?> logout() {
         return ResponseEntity.ok(new MessageResponse("Sesión cerrada correctamente"));
     }
 

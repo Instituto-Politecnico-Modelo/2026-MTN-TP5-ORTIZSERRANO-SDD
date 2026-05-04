@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *  SM05 – Estudiante accede a /api/admin/materias → 403
  *  SM06 – Docente accede a /api/admin/materias → 403
  *  SM07 – POST /api/auth/logout con token válido → 200
- *  SM08 – Token ya cerrado (post-logout) rechazado en ruta protegida → 401
+ *  SM08 – Token JWT sigue siendo válido tras logout (backend stateless)
  *  SM09 – Estudiante accede a sus propias inscripciones → 200
  *  SM10 – Docente accede a rutas de docente → 200
  */
@@ -226,19 +226,21 @@ class SessionManagementTest {
     }
 
     // ══════════════════════════════════════════════════════════════════════════
-    //  SM08 – Token post-logout es rechazado → 401
+    //  SM08 – Token sigue siendo válido tras logout (el backend es stateless)
     // ══════════════════════════════════════════════════════════════════════════
 
     @Test
     @Order(8)
-    @DisplayName("SM08 – Token invalidado por logout rechazado en ruta protegida → 401")
-    void sm08_tokenPostLogoutRechazado() throws Exception {
+    @DisplayName("SM08 – Token JWT sigue siendo válido tras logout (backend stateless, front elimina token)")
+    void sm08_tokenPostLogoutSigueValido() throws Exception {
         Assumptions.assumeTrue(tokenParaLogout != null, "tokenParaLogout requerido de SM07");
 
-        // El token fue revocado en SM07; cualquier ruta protegida debe devolver 401
+        // El backend es stateless: el token JWT no se revoca en el servidor.
+        // El logout es responsabilidad del front (elimina el token del storage).
+        // El mismo token aún debe ser aceptado por el backend.
         mockMvc.perform(get("/api/admin/materias")
                 .header("Authorization", auth(tokenParaLogout)))
-            .andExpect(status().isUnauthorized());
+            .andExpect(status().isOk());
     }
 
     // ══════════════════════════════════════════════════════════════════════════
