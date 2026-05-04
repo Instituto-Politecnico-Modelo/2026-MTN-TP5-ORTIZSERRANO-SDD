@@ -50,9 +50,6 @@ public class InscripcionController {
     @Operation(summary = "Mis inscripciones", description = "Lista todas las inscripciones del estudiante autenticado.")
     @GetMapping("/mis-inscripciones")
     public ResponseEntity<?> misInscripciones(Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("No autenticado"));
-        }
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<Inscripcion> inscripciones = inscripcionService.misInscripciones(userDetails.getId());
         return ResponseEntity.ok(inscripciones);
@@ -71,10 +68,6 @@ public class InscripcionController {
     public ResponseEntity<?> inscribirse(
             @Valid @RequestBody InscripcionRequest request,
             Authentication authentication) {
-
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("No autenticado"));
-        }
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         Long userId = userDetails.getId();
@@ -138,15 +131,10 @@ public class InscripcionController {
     @Operation(summary = "Cancelar inscripción", description = "Cancela la inscripción indicada. Solo puede cancelar el propio estudiante.")
     @PatchMapping("/{id}/cancelar")
     public ResponseEntity<?> cancelar(@PathVariable Long id, Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("No autenticado"));
-        }
         try {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             Inscripcion inscripcion = inscripcionService.cancelar(id, userDetails.getId());
 
-            // promoverSiguiente corre AQUÍ (fuera de la TX de cancelar, ya commiteada)
-            // para que el COUNT de cupos ocupados refleje la cancelación persistida.
             colaInscripcionService.promoverSiguiente(
                 inscripcion.getMateria().getIdMateria());
 
@@ -167,8 +155,6 @@ public class InscripcionController {
 
     /**
      * GET /api/inscripciones/mis-notas
-     * Devuelve las inscripciones del estudiante autenticado que tienen nota cargada.
-     * Incluye nota parcial 1, parcial 2, nota final, asistencias y estado de cierre.
      */
     @Operation(
         summary = "Mis notas (boletín)",
@@ -177,12 +163,8 @@ public class InscripcionController {
     )
     @GetMapping("/mis-notas")
     public ResponseEntity<?> misNotas(Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("No autenticado"));
-        }
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<Inscripcion> inscripciones = inscripcionService.misInscripciones(userDetails.getId());
-        // Filtramos solo las que tienen alguna nota o estado cerrado
         List<Inscripcion> conNota = inscripciones.stream()
             .filter(i -> i.getNotaFinal() != null
                       || i.getNotaParcial1() != null

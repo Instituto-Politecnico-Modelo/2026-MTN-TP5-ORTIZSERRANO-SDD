@@ -7,9 +7,6 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.OlvidePasswordRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.UpdateUserRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.SolicitudResetPassword;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario;
-import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository;
-import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository;
-import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswordRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
@@ -23,6 +20,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.media.Content;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -48,15 +46,6 @@ public class AuthController {
     
     @Autowired
     private UsuarioRepository usuarioRepository;
-    
-    @Autowired
-    private EstudianteRepository estudianteRepository;
-    
-    @Autowired
-    private DocenteRepository docenteRepository;
-    
-    @Autowired
-    private AdministradorRepository administradorRepository;
     
     @Autowired
     private SolicitudResetPasswordRepository solicitudResetRepository;
@@ -93,17 +82,8 @@ public class AuthController {
         Usuario usuario = usuarioRepository.findByEmail(userDetails.getEmail())
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         
-        // Detectar el rol según el tipo de entidad
-        String role;
-        if (administradorRepository.existsById(userDetails.getId())) {
-            role = "ADMINISTRADOR";
-        } else if (docenteRepository.existsById(userDetails.getId())) {
-            role = "DOCENTE";
-        } else if (estudianteRepository.existsById(userDetails.getId())) {
-            role = "ESTUDIANTE";
-        } else {
-            role = "USUARIO";
-        }
+        // El rol ya viene en las authorities cargadas por UserDetailsServiceImpl
+        String role = userDetails.getAuthorities().iterator().next().getAuthority();
 
         // Generar JWT con el rol incluido en el payload
         String jwt = jwtUtil.generateJwtTokenWithRole(authentication, role);
@@ -122,12 +102,9 @@ public class AuthController {
      * GET /api/auth/me - Obtener información del usuario autenticado
      */
     @Operation(summary = "Perfil actual", description = "Devuelve los datos del usuario que envía el token JWT.")
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/me")
     public ResponseEntity<?> getCurrentUser(Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(401).body(new MessageResponse("No autenticado"));
-        }
-        
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         Usuario usuario = usuarioRepository.findByEmail(userDetails.getEmail())
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
@@ -139,19 +116,16 @@ public class AuthController {
      * PUT /api/auth/update - Actualizar información del usuario autenticado
      */
     @Operation(summary = "Actualizar perfil", description = "Modifica nombre, apellido o contraseña del usuario autenticado.")
+    @PreAuthorize("isAuthenticated()")
     @PutMapping("/update")
     public ResponseEntity<?> updateUser(
             @Valid @RequestBody UpdateUserRequest updateRequest,
             Authentication authentication) {
         
-        if (authentication == null) {
-            return ResponseEntity.status(401).body(new MessageResponse("No autenticado"));
-        }
-        
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         
         try {
-            Usuario updatedUser = userService.updateUsuario(userDetails.getId(), updateRequest);
+            userService.updateUsuario(userDetails.getId(), updateRequest);
             return ResponseEntity.ok(new MessageResponse("Usuario actualizado exitosamente"));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
@@ -162,12 +136,9 @@ public class AuthController {
      * DELETE /api/auth/delete - Baja lógica del usuario (marca como inactivo)
      */
     @Operation(summary = "Desactivar cuenta", description = "Baja lógica: marca el usuario como inactivo sin borrarlo.")
+    @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteUserLogico(Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(401).body(new MessageResponse("No autenticado"));
-        }
-        
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         
         try {
@@ -182,12 +153,9 @@ public class AuthController {
      * DELETE /api/auth/delete/physical - Baja física del usuario (elimina de BD)
      */
     @Operation(summary = "Eliminar cuenta (físico)", description = "Baja física: elimina permanentemente el usuario de la base de datos.")
+    @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/delete/physical")
     public ResponseEntity<?> deleteUserFisico(Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(401).body(new MessageResponse("No autenticado"));
-        }
-        
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         
         try {
@@ -202,6 +170,7 @@ public class AuthController {
      * PUT /api/auth/reactivate/{id} - Reactivar un usuario desactivado (solo admin)
      */
     @Operation(summary = "Reactivar usuario", description = "Reactiva un usuario previamente desactivado. Uso exclusivo del administrador.")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @PutMapping("/reactivate/{id}")
     public ResponseEntity<?> reactivateUser(@PathVariable Long id) {
         try {
@@ -283,18 +252,9 @@ public class AuthController {
                 perfil.put("email", usuario.getEmail());
                 perfil.put("activo", usuario.getActivo());
 
-                // Detectar rol
-                String role;
-                if (administradorRepository.existsById(usuario.getIdUsuario())) {
-                    role = "ADMINISTRADOR";
-                } else if (docenteRepository.existsById(usuario.getIdUsuario())) {
-                    role = "DOCENTE";
-                } else if (estudianteRepository.existsById(usuario.getIdUsuario())) {
-                    role = "ESTUDIANTE";
-                } else {
-                    role = "USUARIO";
-                }
-                perfil.put("rol", role);
+                // Rol extraído del claim "rol" del propio JWT (sin consultas extra a BD)
+                String role = jwtUtil.getRolFromToken(token);
+                perfil.put("rol", role != null ? role : "USUARIO");
                 result.put("perfil_usuario", perfil);
             });
         }

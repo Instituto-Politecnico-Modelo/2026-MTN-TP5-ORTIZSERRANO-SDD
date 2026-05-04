@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -103,11 +104,9 @@ public class AuditorioController {
      * GET /api/auditorio/mis-reservas → Reservas del usuario autenticado
      */
     @Operation(summary = "Mis reservas", description = "Lista todas las reservas del usuario que hace la consulta.")
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/mis-reservas")
     public ResponseEntity<?> misReservas(Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("No autenticado"));
-        }
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         return ResponseEntity.ok(reservaService.listarPorUsuario(userDetails.getId()));
     }
@@ -117,12 +116,10 @@ public class AuditorioController {
      */
     @Operation(summary = "Reservar auditorio",
                description = "Crea una solicitud de reserva. Queda en estado PENDIENTE hasta que el admin la apruebe.")
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/reservar")
     public ResponseEntity<?> reservar(@Valid @RequestBody ReservaAuditorioRequest request,
-                                      Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("No autenticado"));
-        }
+                                        Authentication authentication) {
         try {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             ReservaAuditorio reserva = reservaService.crear(request, userDetails.getId());
@@ -136,11 +133,9 @@ public class AuditorioController {
      * PATCH /api/auditorio/reservas/{id}/cancelar → Cancelar reserva propia
      */
     @Operation(summary = "Cancelar mi reserva", description = "El usuario puede cancelar únicamente sus propias reservas.")
+    @PreAuthorize("isAuthenticated()")
     @PatchMapping("/reservas/{id}/cancelar")
     public ResponseEntity<?> cancelar(@PathVariable Long id, Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("No autenticado"));
-        }
         try {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             return ResponseEntity.ok(reservaService.cancelar(id, userDetails.getId()));

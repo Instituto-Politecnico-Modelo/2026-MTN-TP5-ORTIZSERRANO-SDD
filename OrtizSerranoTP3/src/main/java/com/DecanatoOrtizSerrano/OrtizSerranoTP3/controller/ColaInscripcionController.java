@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,15 +44,11 @@ public class ColaInscripcionController {
         description = "El estudiante se agrega a la lista de espera FIFO de una materia. "
                     + "Se invoca cuando POST /api/inscripciones devuelve HTTP 202."
     )
+    @PreAuthorize("hasAnyAuthority('ESTUDIANTE', 'ADMINISTRADOR')")
     @PostMapping
     public ResponseEntity<?> unirse(
             @RequestParam Long idMateria,
             Authentication authentication) {
-
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(new MessageResponse("No autenticado"));
-        }
         try {
             UserDetailsImpl user = (UserDetailsImpl) authentication.getPrincipal();
             ColaInscripcionResponse resp = colaService.unirseACola(idMateria, user.getId());
@@ -71,15 +68,11 @@ public class ColaInscripcionController {
         summary     = "Abandonar turno en cola",
         description = "Cancela el turno PENDIENTE del estudiante en la lista de espera."
     )
+    @PreAuthorize("hasAnyAuthority('ESTUDIANTE', 'ADMINISTRADOR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> abandonar(
             @PathVariable Long id,
             Authentication authentication) {
-
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(new MessageResponse("No autenticado"));
-        }
         try {
             UserDetailsImpl user = (UserDetailsImpl) authentication.getPrincipal();
             colaService.abandonarCola(id, user.getId());
@@ -99,12 +92,9 @@ public class ColaInscripcionController {
         summary     = "Mis turnos en cola",
         description = "Lista los turnos activos (PENDIENTE) del estudiante en todas las materias."
     )
+    @PreAuthorize("hasAnyAuthority('ESTUDIANTE', 'ADMINISTRADOR')")
     @GetMapping("/mis-turnos")
     public ResponseEntity<?> misTurnos(Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(new MessageResponse("No autenticado"));
-        }
         UserDetailsImpl user = (UserDetailsImpl) authentication.getPrincipal();
         List<ColaInscripcionResponse> turnos = colaService.misColas(user.getId());
         return ResponseEntity.ok(turnos);
@@ -120,6 +110,7 @@ public class ColaInscripcionController {
         summary     = "Cola de una materia (admin)",
         description = "Lista todos los turnos PENDIENTES de la materia indicada, en orden FIFO."
     )
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @GetMapping("/materia/{idMateria}")
     public ResponseEntity<List<ColaInscripcionResponse>> colaDeMat(
             @PathVariable Long idMateria) {
