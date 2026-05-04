@@ -89,10 +89,11 @@ class AuthService {
 
   // ─── JWT Inspect ──────────────────────────────────────────────────────────
 
-  /** GET /api/auth/jwt/inspect?token=xxx — endpoint público, no requiere auth */
+  /** GET /api/auth/jwt/inspect?token=xxx — requiere autenticación */
   async inspectJwt(token: string): Promise<JwtInspectResponse> {
     const res = await axios.get<JwtInspectResponse>(`${BASE_URL}/auth/jwt/inspect`, {
       params: { token },
+      headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;
   }

@@ -37,9 +37,7 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	
 	// MySQL (descomentar cuando esté disponible)
-	// runtimeOnly 'com.mysql:mysql-connector-j'
-	
-	// PostgreSQL (descomenta para usar PostgreSQL)
+     runtimeOnly 'com.mysql:mysql-connector-j'	// PostgreSQL (descomenta para usar PostgreSQL)
 	// runtimeOnly 'org.postgresql:postgresql'
 	
 	// Swagger / OpenAPI
