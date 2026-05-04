@@ -29,7 +29,7 @@ public class Administrador extends Usuario {
         this.nivelAcceso = nivelAcceso;
     }
     
-    // Getters y Setters
+    // Getters y Setter
     public String getRol() {
         return rol;
     }
@@ -41,7 +41,6 @@ public class Administrador extends Usuario {
     public String getArea() {
         return area;
     }
-    
     public void setArea(String area) {
         this.area = area;
     }
