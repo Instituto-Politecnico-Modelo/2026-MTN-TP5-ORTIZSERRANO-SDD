@@ -14045,3 +14045,6393 @@ Hibernate:
     where
         ci1_0.estado='PENDIENTE' 
         and ci1_0.fecha_expiracion<?
+2026-04-28 11:54:11.358 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 11:55:11.359 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 11:56:11.361 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 11:57:11.362 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 11:58:11.364 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 11:59:11.365 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:00:11.366 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:01:11.368 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:02:11.369 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:03:11.371 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:04:11.372 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:05:11.374 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:06:11.375 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:07:11.377 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:08:11.378 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:09:11.379 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:10:11.381 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:11:11.382 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:12:11.384 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:13:11.385 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:14:11.387 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:15:11.388 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:16:11.390 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:17:11.391 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:18:11.393 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:19:11.394 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:20:11.395 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:21:11.397 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:22:11.398 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:23:11.400 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:24:11.402 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:25:11.404 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:26:11.405 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:27:11.406 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:28:11.407 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:29:11.409 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:30:11.410 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:31:11.411 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:32:11.413 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:33:11.414 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:34:11.415 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:35:11.416 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:36:11.417 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:37:11.419 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:38:11.420 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:39:11.421 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:40:11.422 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:41:11.424 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:42:11.425 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:43:11.426 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:44:11.427 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:45:11.428 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:46:11.429 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:47:11.431 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:48:11.432 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:49:11.433 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:50:11.434 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:51:11.435 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:52:11.437 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:53:11.438 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:54:11.440 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:55:11.441 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:56:11.442 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:57:11.443 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:58:11.445 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 12:59:11.446 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:00:11.448 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:01:11.449 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:02:11.450 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:03:11.451 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:04:11.453 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:05:11.455 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:06:11.456 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:07:11.457 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:08:11.458 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:09:11.460 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:10:11.461 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:11:11.462 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:12:11.463 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:13:11.464 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:14:11.465 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:15:11.466 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:16:11.467 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:17:11.468 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:18:11.469 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:19:11.471 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:20:11.472 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:21:11.473 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:22:11.474 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:23:11.475 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:24:11.477 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:25:11.478 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:26:11.480 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:27:11.481 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:28:11.482 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:29:11.483 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:30:11.484 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:31:11.485 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:32:11.487 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:33:11.488 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:34:11.489 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:35:11.490 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:36:11.491 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:37:11.493 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:38:11.494 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:39:11.495 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:40:11.496 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:41:11.497 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:42:11.498 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:43:11.499 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:44:11.500 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:45:11.501 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:46:11.502 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:47:11.503 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:48:11.506 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:49:11.507 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:50:11.508 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:51:11.509 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:52:11.510 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:53:11.512 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:54:11.513 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:55:11.514 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:56:11.515 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:57:11.516 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:58:11.517 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 13:59:11.518 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:00:11.520 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:01:11.521 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:02:11.522 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:03:11.523 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:04:11.525 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:05:11.526 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:06:11.527 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:07:11.528 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:08:11.529 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:09:11.531 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:10:11.532 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:11:11.533 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:12:11.534 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:13:11.535 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:14:11.537 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:15:11.537 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:16:11.538 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:17:11.541 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:18:11.542 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:19:11.543 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:20:11.544 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:21:11.545 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:22:11.546 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:23:11.547 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:24:11.548 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:25:11.549 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:26:11.550 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:27:11.551 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:28:11.552 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:29:11.554 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:30:11.557 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:31:11.558 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:32:11.560 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:33:11.562 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:34:11.563 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:35:11.564 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:36:11.565 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:37:11.566 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:38:11.567 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:39:11.568 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:40:11.569 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:41:11.571 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:42:11.573 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:43:11.575 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:44:11.577 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:45:11.583 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:46:11.585 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:47:11.586 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:48:11.587 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:49:11.588 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:50:11.589 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:51:11.590 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:52:11.592 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:53:11.594 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:54:11.595 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:55:11.596 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:56:11.597 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:57:11.598 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:58:11.601 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 14:59:11.602 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:00:11.603 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:01:11.604 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:02:11.605 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:03:11.606 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:04:11.607 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:05:11.608 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:06:11.610 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:07:11.610 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:08:11.612 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:09:11.613 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:10:11.614 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:11:11.615 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:12:11.616 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:13:11.617 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:14:11.618 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:15:11.619 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:16:11.621 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:17:11.623 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:18:11.623 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:19:11.624 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:20:11.626 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:21:11.626 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:22:11.628 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:23:11.628 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:24:11.629 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:25:11.630 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:26:11.631 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:27:11.632 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:28:11.633 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:29:11.634 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:30:11.635 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:31:11.636 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:32:11.637 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:33:11.638 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:34:11.639 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:35:11.640 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:36:11.641 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:37:11.642 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:38:11.642 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:39:11.643 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:40:11.644 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:41:11.645 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:42:11.646 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:43:11.647 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:44:11.647 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:45:11.648 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:46:11.649 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:47:11.650 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:48:11.651 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:49:11.652 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:50:11.653 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:51:11.654 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:52:11.655 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:53:11.656 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:54:11.657 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:55:11.657 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:56:11.658 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:57:11.659 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:58:11.660 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 15:59:11.661 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:00:11.663 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:01:11.664 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:02:11.665 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:03:11.667 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:04:11.667 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:05:11.668 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:06:11.669 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:07:11.670 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:08:11.671 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:09:11.672 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:10:11.673 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:11:11.674 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:12:11.675 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:13:11.676 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:14:11.677 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:15:11.678 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:16:11.679 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:17:11.680 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:18:11.681 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:19:11.682 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:20:11.682 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:21:11.684 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:22:11.684 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:23:11.685 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:24:11.686 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:25:11.687 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:26:11.688 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:27:11.689 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:28:11.689 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:29:11.690 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:30:11.691 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:31:11.691 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:32:11.693 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:33:11.693 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:34:11.694 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:35:11.695 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:36:11.696 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:37:11.696 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:38:11.697 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:39:11.698 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:40:11.699 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:41:11.700 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:42:11.702 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:43:11.703 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:44:11.704 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:45:11.705 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:46:11.705 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:47:11.706 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:48:11.707 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:49:11.708 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:50:11.709 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:51:11.710 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:52:11.710 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:53:11.711 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:54:11.712 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:55:11.713 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:56:11.714 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:57:11.715 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:58:11.715 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 16:59:11.717 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:00:11.718 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:01:11.718 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:02:11.719 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:03:11.720 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:04:11.721 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:05:11.722 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:06:11.723 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:07:11.723 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:08:11.724 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:09:11.725 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:10:11.726 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:11:11.727 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:12:11.728 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:13:11.729 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:14:11.730 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:15:11.730 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:16:11.731 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:17:11.732 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:18:11.733 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:19:11.733 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:20:11.734 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:21:11.736 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:22:11.736 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:23:11.737 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:24:11.738 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:25:11.739 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:26:11.741 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:27:11.742 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:28:11.743 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:29:11.744 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:30:11.745 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:31:11.746 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:32:11.746 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:33:11.748 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:34:11.748 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:35:11.749 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:36:11.750 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:37:11.751 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:38:11.753 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:39:11.754 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:40:11.755 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:41:11.755 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:42:11.756 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:43:11.757 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:44:11.758 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:45:11.759 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:46:11.760 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:47:11.761 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-04-28 17:48:11.761 DEBUG [scheduling-1] org.hibernate.SQL - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+Hibernate: 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?

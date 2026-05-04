@@ -29,7 +29,7 @@ import java.util.Map;
  * como "todavía no disponible".
  */
 @Tag(name = "Health", description = "Estado del servidor")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/health")
 public class HealthController {

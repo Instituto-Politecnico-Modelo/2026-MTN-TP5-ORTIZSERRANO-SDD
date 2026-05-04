@@ -19,7 +19,7 @@ import java.util.List;
  * Requiere rol DOCENTE o ADMINISTRADOR.
  */
 @Tag(name = "Docente – Notas", description = "Carga y cierre de notas por parte del docente")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/docente")
 @PreAuthorize("hasAnyAuthority('DOCENTE','ADMINISTRADOR')")

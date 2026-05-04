@@ -26,7 +26,7 @@ import java.util.List;
  *  GET /api/materias/codigo/{codigo}          → buscar por código exacto
  */
 @Tag(name = "Materias – Consulta", description = "Listado de materias con estado de cupos disponibles")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/materias")
 public class MateriaPublicaController {

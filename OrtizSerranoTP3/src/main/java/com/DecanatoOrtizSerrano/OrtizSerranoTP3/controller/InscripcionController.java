@@ -25,7 +25,7 @@ import java.util.List;
  * Inscripciones del estudiante autenticado.
  */
 @Tag(name = "Inscripciones", description = "Inscripción de estudiantes a materias")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/inscripciones")
 @PreAuthorize("hasAnyAuthority('ESTUDIANTE', 'ADMINISTRADOR')")

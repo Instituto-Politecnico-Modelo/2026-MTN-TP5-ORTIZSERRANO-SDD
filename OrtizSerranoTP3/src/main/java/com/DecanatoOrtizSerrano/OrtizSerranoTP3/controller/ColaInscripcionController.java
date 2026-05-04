@@ -23,7 +23,7 @@ import java.util.List;
  *  GET    /api/inscripciones/cola/materia/{idMateria}     → cola de una materia (admin)
  */
 @Tag(name = "Cola de Inscripciones", description = "Fila virtual por cupos — gestión de turnos FIFO")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/inscripciones/cola")
 public class ColaInscripcionController {

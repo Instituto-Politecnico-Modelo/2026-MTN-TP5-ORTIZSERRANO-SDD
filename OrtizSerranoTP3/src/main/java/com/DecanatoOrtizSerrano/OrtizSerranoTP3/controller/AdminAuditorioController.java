@@ -20,7 +20,7 @@ import java.util.List;
  * Gestión administrativa de Auditorios y Reservas – Solo ADMINISTRADOR.
  */
 @Tag(name = "Admin – Auditorios", description = "Gestión de auditorios y aprobación de reservas (requiere ADMINISTRADOR)")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/admin/auditorios")
 public class AdminAuditorioController {

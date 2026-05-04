@@ -41,7 +41,7 @@ import java.util.Map;
  * Controlador REST para autenticación (Login y Registro)
  */
 @Tag(name = "Autenticación", description = "Login y gestión del usuario autenticado. El registro es exclusivo del administrador.")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -245,12 +245,12 @@ public class AuthController {
     /**
      * GET /api/auth/jwt/inspect?token=xxx
      * Verifica un JWT y devuelve sus claims + perfil del usuario si es válido.
-     * Endpoint PÚBLICO (no requiere autenticación) – útil para depuración y testing.
+     * Requiere autenticación (solo el propio usuario autenticado puede inspeccionar su token).
      */
     @Operation(
         summary = "Inspeccionar JWT",
         description = "Verifica un token JWT y devuelve sus claims (subject, emisión, expiración) " +
-                      "junto con el perfil del usuario. No requiere autenticación previa."
+                      "junto con el perfil del usuario. Requiere autenticación."
     )
     @GetMapping("/jwt/inspect")
     public ResponseEntity<?> inspectJwt(@RequestParam("token") String token) {

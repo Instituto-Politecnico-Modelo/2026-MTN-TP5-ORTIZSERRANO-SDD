@@ -3,6 +3,7 @@ package com.DecanatoOrtizSerrano.OrtizSerranoTP3.security;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtAuthenticationEntryPoint;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,6 +18,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 /**
  * Configuración de Spring Security con JWT
@@ -31,6 +37,11 @@ public class SecurityConfig {
     
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
+
+    /** Orígenes permitidos para CORS. Se lee de app.cors.allowed-origins (lista separada por comas).
+     *  Por defecto sólo http://localhost:3000 (frontend de desarrollo). */
+    @Value("${app.cors.allowed-origins:http://localhost:3000}")
+    private String[] allowedOrigins;
     
     @Bean
     public JwtAuthenticationFilter authenticationJwtTokenFilter() {
@@ -53,17 +64,34 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    /**
+     * Configura CORS: sólo se aceptan peticiones de los orígenes definidos en
+     * app.cors.allowed-origins (por defecto, sólo el frontend local).
+     */
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of(allowedOrigins));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
     
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .csrf(csrf -> csrf.disable())
             .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> 
                 auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers("/api/auth/login").permitAll()
                     .requestMatchers("/api/auth/logout").authenticated()
-                    .requestMatchers("/api/auth/jwt/inspect").permitAll()
+                    .requestMatchers("/api/auth/jwt/inspect").authenticated()
                     .requestMatchers("/api/auth/olvide-password").permitAll()
                     .requestMatchers("/api/health").permitAll()
                     .requestMatchers("/h2-console/**").permitAll()

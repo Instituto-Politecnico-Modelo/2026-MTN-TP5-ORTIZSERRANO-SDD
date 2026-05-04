@@ -19,7 +19,7 @@ import java.util.List;
  * Solo accesible por ADMINISTRADOR.
  */
 @Tag(name = "Auditoría", description = "Consulta y verificación de integridad del log de auditoría encadenada")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/admin/auditoria")
 @PreAuthorize("hasAuthority('ADMINISTRADOR')")

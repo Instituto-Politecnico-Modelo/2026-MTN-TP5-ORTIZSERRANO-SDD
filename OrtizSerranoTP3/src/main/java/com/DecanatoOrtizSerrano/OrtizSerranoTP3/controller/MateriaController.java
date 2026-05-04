@@ -19,7 +19,7 @@ import java.util.List;
  * Todas las rutas están protegidas en SecurityConfig
  */
 @Tag(name = "Admin – Materias", description = "Gestión de materias (requiere rol ADMINISTRADOR)")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/admin/materias")
 public class MateriaController {

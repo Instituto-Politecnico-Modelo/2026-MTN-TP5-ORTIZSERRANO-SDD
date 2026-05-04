@@ -18,7 +18,7 @@ import java.util.List;
  * CRUD de Estudiantes - Solo ADMINISTRADOR
  */
 @Tag(name = "Admin – Estudiantes", description = "Gestión de estudiantes (requiere rol ADMINISTRADOR)")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/admin/estudiantes")
 public class EstudianteController {

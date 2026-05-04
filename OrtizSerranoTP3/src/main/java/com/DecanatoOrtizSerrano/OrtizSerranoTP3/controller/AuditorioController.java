@@ -26,7 +26,7 @@ import java.util.List;
  * Cualquier usuario autenticado puede consultar disponibilidad y hacer/cancelar sus reservas.
  */
 @Tag(name = "Auditorio – Consultas", description = "Consulta de auditorios y gestión de reservas propias")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/auditorio")
 public class AuditorioController {

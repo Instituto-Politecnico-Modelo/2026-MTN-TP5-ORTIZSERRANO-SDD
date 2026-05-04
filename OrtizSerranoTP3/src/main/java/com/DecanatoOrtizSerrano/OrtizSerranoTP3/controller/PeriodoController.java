@@ -18,7 +18,7 @@ import java.util.List;
  * CRUD de Períodos - Solo ADMINISTRADOR
  */
 @Tag(name = "Admin – Períodos", description = "Gestión de períodos académicos (requiere rol ADMINISTRADOR)")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/admin/periodos")
 public class PeriodoController {

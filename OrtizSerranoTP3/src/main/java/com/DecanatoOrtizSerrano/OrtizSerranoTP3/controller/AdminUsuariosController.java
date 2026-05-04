@@ -35,7 +35,7 @@ import java.util.List;
  * Roles soportados al crear: ESTUDIANTE, DOCENTE, ADMINISTRADOR
  */
 @Tag(name = "Admin – Usuarios", description = "Creación y gestión de usuarios (requiere rol ADMINISTRADOR)")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "${app.cors.allowed-origins:http://localhost:3000}")
 @RestController
 @RequestMapping("/api/admin/usuarios")
 @PreAuthorize("hasAuthority('ADMINISTRADOR')")
