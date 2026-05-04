@@ -1,0 +1,44 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "🚀 Backend (Spring Boot + MySQL)",
+      "request": "launch",
+      "mainClass": "com.DecanatoOrtizSerrano.OrtizSerranoTP3.OrtizSerranoTp3Application",
+      "projectName": "OrtizSerranoTP3",
+      "cwd": "${workspaceFolder}/OrtizSerranoTP3",
+      "vmArgs": "-Dspring.profiles.active=default",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "Tomcat started on port (\\d+)",
+        "uriFormat": "http://localhost:%s/swagger-ui.html",
+        "action": "openExternally"
+      }
+    },
+    {
+      "type": "node",
+      "name": "🌐 Frontend (React)",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "Local:\\s+(https?://\\S+)",
+        "uriFormat": "%s",
+        "action": "openExternally"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "🚀 Backend + 🌐 Frontend (Full Stack)",
+      "configurations": [
+        "🚀 Backend (Spring Boot + MySQL)",
+        "🌐 Frontend (React)"
+      ],
+      "stopAll": true
+    }
+  ]
+}

@@ -28,11 +28,25 @@ public class JwtUtil {
     private long jwtExpirationMs;
     
     /**
-     * Genera un token JWT a partir de la autenticación
+     * Genera un token JWT a partir de la autenticación (sin rol en el payload)
      */
     public String generateJwtToken(Authentication authentication) {
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
         return generateTokenFromUsername(userPrincipal.getUsername());
+    }
+
+    /**
+     * Genera un token JWT incluyendo el rol del usuario como claim "rol"
+     */
+    public String generateJwtTokenWithRole(Authentication authentication, String rol) {
+        UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
+        return Jwts.builder()
+                .subject(userPrincipal.getUsername())
+                .claim("rol", rol)
+                .issuedAt(new Date())
+                .expiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .signWith(getSigningKey())
+                .compact();
     }
     
     /**
@@ -45,6 +59,22 @@ public class JwtUtil {
                 .expiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(getSigningKey())
                 .compact();
+    }
+
+    /**
+     * Extrae el claim "rol" del token JWT. Retorna null si no existe.
+     */
+    public String getRolFromToken(String token) {
+        try {
+            return Jwts.parser()
+                    .verifyWith(getSigningKey())
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload()
+                    .get("rol", String.class);
+        } catch (Exception e) {
+            return null;
+        }
     }
     
     /**

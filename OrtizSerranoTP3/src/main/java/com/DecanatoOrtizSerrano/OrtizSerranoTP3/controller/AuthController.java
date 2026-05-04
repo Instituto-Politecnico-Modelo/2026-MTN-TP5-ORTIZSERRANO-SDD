@@ -92,10 +92,9 @@ public class AuthController {
         );
         
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtil.generateJwtToken(authentication);
-        
+
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        
+
         // Obtener información adicional del usuario
         Usuario usuario = usuarioRepository.findByEmail(userDetails.getEmail())
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
@@ -111,6 +110,9 @@ public class AuthController {
         } else {
             role = "USUARIO";
         }
+
+        // Generar JWT con el rol incluido en el payload
+        String jwt = jwtUtil.generateJwtTokenWithRole(authentication, role);
         
         return ResponseEntity.ok(new JwtResponse(
             jwt,
