@@ -133,7 +133,8 @@ class MateriaService {
   }
 }
 
-export default new MateriaService();
+const materiaService = new MateriaService();
+export default materiaService;
 
 /** Alias de compatibilidad hacia atras */
 export type Materia = MateriaDisponible;

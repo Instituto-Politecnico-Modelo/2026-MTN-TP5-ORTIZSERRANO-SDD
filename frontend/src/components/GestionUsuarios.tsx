@@ -22,11 +22,13 @@
  */
 
 import React, { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
+import api from '../api/axiosInstance';
+import adminService from '../services/admin.service';
 import authService from '../services/auth.service';
+import { AppError } from '../utils/errorHandler';
+import { useToast } from '../context/ToastContext';
 
-const API = 'http://localhost:8080/api';
-const h   = () => ({ ...authService.getAuthHeader(), 'Content-Type': 'application/json' });
+const API = '/api';
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -126,12 +128,8 @@ function formatFecha(iso: string) {
 type Seccion = 'usuarios' | 'crear' | 'solicitudes';
 
 const GestionUsuarios: React.FC = () => {
+  const toast = useToast();
   const [seccion, setSeccion] = useState<Seccion>('usuarios');
-  const [globalMsg, setGlobalMsg] = useState('');
-  const [globalErr, setGlobalErr] = useState('');
-
-  const ok  = (m: string) => { setGlobalMsg(m); setGlobalErr(''); setTimeout(() => setGlobalMsg(''), 3500); };
-  const bad = (m: string) => { setGlobalErr(m); setGlobalMsg(''); setTimeout(() => setGlobalErr(''), 4500); };
 
   // ── Listado de usuarios ──────────────────────────────────────────────────
 
@@ -152,18 +150,18 @@ const GestionUsuarios: React.FC = () => {
   const cargarUsuarios = useCallback(async () => {
     setLoadingU(true);
     try {
-      const r = await axios.get(`${API}/admin/usuarios`, { headers: h() });
+      const r = await api.get(`${API}/admin/usuarios`);
       const rows: UsuarioRow[] = (r.data as any[]).map(u => ({
         ...u,
         rol: detectarRol(u),
       }));
       setUsuarios(rows);
-    } catch {
-      bad('No se pudo cargar la lista de usuarios');
+    } catch (err) {
+      toast.error(err instanceof AppError ? err.message : 'No se pudo cargar la lista de usuarios');
     } finally {
       setLoadingU(false);
     }
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     if (seccion === 'usuarios') cargarUsuarios();
@@ -172,40 +170,35 @@ const GestionUsuarios: React.FC = () => {
   const toggleActivo = async (u: UsuarioRow) => {
     const endpoint = u.activo ? 'desactivar' : 'reactivar';
     try {
-      await axios.put(`${API}/admin/usuarios/${u.idUsuario}/${endpoint}`, {}, { headers: h() });
-      ok(`Usuario ${u.activo ? 'desactivado' : 'reactivado'} correctamente`);
+      await api.put(`${API}/admin/usuarios/${u.idUsuario}/${endpoint}`, {});
+      toast.success(`Usuario ${u.activo ? 'desactivado' : 'reactivado'} correctamente`);
       cargarUsuarios();
-    } catch (ex: any) {
-      bad(ex.response?.data?.message ?? 'Error al cambiar el estado del usuario');
+    } catch (err) {
+      toast.error(err instanceof AppError ? err.message : 'Error al cambiar el estado del usuario');
     }
   };
 
   const eliminarUsuario = async (id: number) => {
     try {
-      await axios.delete(`${API}/admin/usuarios/${id}`, { headers: h() });
-      ok('Usuario eliminado permanentemente');
+      await adminService.eliminarEstudiante(id);
+      toast.success('Usuario eliminado permanentemente');
       setDeleteTarget(null);
       cargarUsuarios();
-    } catch (ex: any) {
-      bad(ex.response?.data?.message ?? 'Error al eliminar el usuario');
+    } catch (err) {
+      toast.error(err instanceof AppError ? err.message : 'Error al eliminar el usuario');
     }
   };
 
   const cambiarPassword = async (idUsuario: number) => {
-    if (passNueva.length < 6) { bad('La contraseña debe tener al menos 6 caracteres'); return; }
+    if (passNueva.length < 6) { toast.warning('La contraseña debe tener al menos 6 caracteres'); return; }
     setSavingPass(true);
     try {
-      // Usamos el endpoint de update directamente sobre el usuario (admin puede)
-      await axios.put(
-        `${API}/admin/usuarios/${idUsuario}/cambiar-password`,
-        { nuevaPassword: passNueva },
-        { headers: h() }
-      );
-      ok('Contraseña actualizada correctamente');
+      await api.put(`${API}/admin/usuarios/${idUsuario}/cambiar-password`, { nuevaPassword: passNueva });
+      toast.success('Contraseña actualizada correctamente');
       setPassTarget(null);
       setPassNueva('');
-    } catch (ex: any) {
-      bad(ex.response?.data?.message ?? 'Error al cambiar la contraseña');
+    } catch (err) {
+      toast.error(err instanceof AppError ? err.message : 'Error al cambiar la contraseña');
     } finally {
       setSavingPass(false);
     }
@@ -231,11 +224,8 @@ const GestionUsuarios: React.FC = () => {
   const EMPTY_FORM = {
     nombre:'', apellido:'', email:'', password:'',
     rol:'ESTUDIANTE',
-    // Estudiante
     legajo:'', carrera:'', anioIngreso:'',
-    // Docente
     titulo:'', especialidad:'', departamento:'',
-    // Administrador
     area:'', nivelAcceso:'1',
   };
   const [form, setForm]             = useState(EMPTY_FORM);
@@ -247,13 +237,12 @@ const GestionUsuarios: React.FC = () => {
   const [busqMateria,      setBusqMateria]       = useState('');
   const [loadingMaterias,  setLoadingMaterias]   = useState(false);
 
-  // Carga las materias cuando se cambia al rol ESTUDIANTE o se abre la sección crear
   useEffect(() => {
     if (seccion !== 'crear') return;
     setLoadingMaterias(true);
-    axios.get(`${API}/admin/materias`, { headers: h() })
-      .then(r => setMaterias(r.data as MateriaItem[]))
-      .catch(() => {/* silencioso: el selector simplemente queda vacío */})
+    adminService.listarMaterias()
+      .then(data => setMaterias(data as unknown as MateriaItem[]))
+      .catch(() => {/* silencioso */})
       .finally(() => setLoadingMaterias(false));
   }, [seccion]);
 
@@ -294,14 +283,14 @@ const GestionUsuarios: React.FC = () => {
         payload.area        = form.area        || undefined;
         payload.nivelAcceso = form.nivelAcceso ? +form.nivelAcceso : 1;
       }
-      await axios.post(`${API}/admin/usuarios`, payload, { headers: h() });
-      ok(`${form.rol.charAt(0) + form.rol.slice(1).toLowerCase()} creado/a exitosamente`);
+      await adminService.crearUsuario(payload);
+      toast.success(`${form.rol.charAt(0) + form.rol.slice(1).toLowerCase()} creado/a exitosamente`);
       setForm(EMPTY_FORM);
       setMateriasSelec([]);
       setBusqMateria('');
       setSeccion('usuarios');
-    } catch (ex: any) {
-      bad(ex.response?.data?.message ?? 'Error al crear el usuario');
+    } catch (err) {
+      toast.error(err instanceof AppError ? err.message : 'Error al crear el usuario');
     } finally {
       setCreando(false);
     }
@@ -318,34 +307,30 @@ const GestionUsuarios: React.FC = () => {
   const cargarSolicitudes = useCallback(async () => {
     setLoadingSol(true);
     try {
-      const r = await axios.get(`${API}/admin/usuarios/solicitudes-reset`, { headers: h() });
-      setSolicitudes(r.data);
-    } catch {
-      bad('No se pudieron cargar las solicitudes');
+      const data = await adminService.listarSolicitudesReset();
+      setSolicitudes(data as unknown as SolicitudReset[]);
+    } catch (err) {
+      toast.error(err instanceof AppError ? err.message : 'No se pudieron cargar las solicitudes');
     } finally {
       setLoadingSol(false);
     }
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     if (seccion === 'solicitudes') cargarSolicitudes();
   }, [seccion, cargarSolicitudes]);
 
   const atenderSolicitud = async (id: number) => {
-    if (nuevaPassReset.length < 6) { bad('La contraseña debe tener al menos 6 caracteres'); return; }
+    if (nuevaPassReset.length < 6) { toast.warning('La contraseña debe tener al menos 6 caracteres'); return; }
     setSavingReset(true);
     try {
-      await axios.post(
-        `${API}/admin/usuarios/solicitudes-reset/${id}/atender`,
-        { nuevaPassword: nuevaPassReset },
-        { headers: h() }
-      );
-      ok('Contraseña asignada y solicitud marcada como ATENDIDA');
+      await adminService.atenderSolicitudReset(id, nuevaPassReset);
+      toast.success('Contraseña asignada y solicitud marcada como ATENDIDA');
       setAtendiendo(null);
       setNuevaPassReset('');
       cargarSolicitudes();
-    } catch (ex: any) {
-      bad(ex.response?.data?.message ?? 'Error al atender la solicitud');
+    } catch (err) {
+      toast.error(err instanceof AppError ? err.message : 'Error al atender la solicitud');
     } finally {
       setSavingReset(false);
     }
@@ -357,18 +342,6 @@ const GestionUsuarios: React.FC = () => {
 
   return (
     <div>
-
-      {/* ── Alertas globales ── */}
-      {globalMsg && (
-        <div style={{ marginBottom:'16px', padding:'12px 16px', background:'#dcfce7', color:'#15803d', borderRadius:'10px', fontWeight:600 }}>
-          ✅ {globalMsg}
-        </div>
-      )}
-      {globalErr && (
-        <div style={{ marginBottom:'16px', padding:'12px 16px', background:'#fee2e2', color:'#b91c1c', borderRadius:'10px', fontWeight:600 }}>
-          ❌ {globalErr}
-        </div>
-      )}
 
       {/* ── Sub-nav ── */}
       <div style={{ display:'flex', gap:'8px', marginBottom:'24px', flexWrap:'wrap' }}>

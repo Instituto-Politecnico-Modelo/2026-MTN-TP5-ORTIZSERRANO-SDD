@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login          from './components/Login';
-import Dashboard      from './components/Dashboard';
 import DashboardEstudiante from './components/DashboardEstudiante';
 import DashboardDocente    from './components/DashboardDocente';
 import DashboardAdmin      from './components/DashboardAdmin';
@@ -146,9 +145,7 @@ function App() {
 
         {/* /dashboard → redirige al dashboard del rol correspondiente */}
         <Route path="/dashboard" element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
+          <Navigate to={authService.getDefaultRoute()} replace />
         } />
 
         {/* Raíz "/" → si autenticado redirige al dashboard del rol; si no, al login */}

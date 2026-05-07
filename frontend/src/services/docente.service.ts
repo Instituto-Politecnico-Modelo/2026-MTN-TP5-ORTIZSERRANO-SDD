@@ -59,4 +59,5 @@ class DocenteService {
   }
 }
 
-export default new DocenteService();
+const docenteService = new DocenteService();
+export default docenteService;

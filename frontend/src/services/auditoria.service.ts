@@ -69,4 +69,5 @@ class AuditoriaService {
   }
 }
 
-export default new AuditoriaService();
+const auditoriaService = new AuditoriaService();
+export default auditoriaService;
