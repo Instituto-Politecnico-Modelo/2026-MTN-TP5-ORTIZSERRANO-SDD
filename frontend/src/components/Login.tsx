@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import authService from '../services/auth.service';
+import { AppError } from '../utils/errorHandler';
+import { useToast } from '../context/ToastContext';
 import './Login.css';
 
 /** Mensajes mostrados según el motivo de redirección al login */
@@ -13,52 +15,37 @@ const MOTIVO_MENSAJE: Record<string, { text: string; tipo: 'warn' | 'info' }> = 
 const Login: React.FC = () => {
   const [email, setEmail]       = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [error, setError]       = useState<string>('');
   const [loading, setLoading]   = useState<boolean>(false);
 
   // Estado para "Olvidé mi contraseña"
   const [showOlvide, setShowOlvide]   = useState(false);
   const [olvideEmail, setOlvideEmail] = useState('');
-  const [olvideMsg,   setOlvideMsg]   = useState('');
-  const [olvideErr,   setOlvideErr]   = useState('');
   const [olvideLoad,  setOlvideLoad]  = useState(false);
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const toast = useToast();
   const motivo = searchParams.get('motivo') ?? '';
   const avisoSesion = MOTIVO_MENSAJE[motivo] ?? null;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError('');
     setLoading(true);
 
     if (!email || !password) {
-      setError('Por favor, complete todos los campos');
+      toast.warning('Por favor, completá todos los campos antes de continuar.');
       setLoading(false);
       return;
     }
 
     try {
-      const response = await authService.login(email, password);
-      // Redirigir según el rol del usuario
+      await authService.login(email, password);
       navigate(authService.getDefaultRoute());
     } catch (err: any) {
-      console.error('Error en login:', err);
-      if (err.response) {
-        // Error de respuesta del servidor
-        if (err.response.status === 401) {
-          setError('Email o contraseña incorrectos');
-        } else if (err.response.data?.message) {
-          setError(err.response.data.message);
-        } else {
-          setError('Error al iniciar sesión. Intente nuevamente.');
-        }
-      } else if (err.request) {
-        // No hay respuesta del servidor
-        setError('No se pudo conectar con el servidor. Verifique que esté ejecutándose.');
+      if (err instanceof AppError) {
+        toast.error(err.message);
       } else {
-        setError('Error inesperado. Intente nuevamente.');
+        toast.error('Error inesperado. Intentá de nuevo.');
       }
     } finally {
       setLoading(false);
@@ -67,15 +54,19 @@ const Login: React.FC = () => {
 
   const handleOlvidePassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    setOlvideErr(''); setOlvideMsg('');
-    if (!olvideEmail) { setOlvideErr('Ingresá tu email.'); return; }
+    if (!olvideEmail) { toast.warning('Ingresá tu email para continuar.'); return; }
     setOlvideLoad(true);
     try {
       const res = await authService.olvidePassword(olvideEmail);
-      setOlvideMsg(res.message);
+      toast.success(res.message || 'Solicitud enviada. El administrador será notificado.');
       setOlvideEmail('');
-    } catch {
-      setOlvideErr('No se pudo enviar la solicitud. Intentá de nuevo más tarde.');
+      setShowOlvide(false);
+    } catch (err: any) {
+      if (err instanceof AppError) {
+        toast.error(err.message);
+      } else {
+        toast.error('No se pudo enviar la solicitud. Intentá de nuevo más tarde.');
+      }
     } finally {
       setOlvideLoad(false);
     }
@@ -104,14 +95,6 @@ const Login: React.FC = () => {
         )}
 
         <form onSubmit={handleSubmit} className="login-form">
-          {error && (
-            <div className="error-message">
-              <svg className="error-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              {error}
-            </div>
-          )}
 
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -175,7 +158,7 @@ const Login: React.FC = () => {
           <div style={{ textAlign: 'center', marginTop: '16px' }}>
             <button
               type="button"
-              onClick={() => { setShowOlvide(!showOlvide); setOlvideMsg(''); setOlvideErr(''); }}
+              onClick={() => { setShowOlvide(!showOlvide); setOlvideEmail(''); }}
               style={{
                 background: 'none', border: 'none', cursor: 'pointer',
                 color: '#0369a1', fontSize: '13px', textDecoration: 'underline',
@@ -209,8 +192,6 @@ const Login: React.FC = () => {
                     fontSize: '14px', boxSizing: 'border-box', outline: 'none',
                   }}
                 />
-                {olvideErr && <p style={{ color: '#dc2626', fontSize: '12px', margin: '0 0 8px' }}>{olvideErr}</p>}
-                {olvideMsg && <p style={{ color: '#16a34a', fontSize: '12px', margin: '0 0 8px' }}>{olvideMsg}</p>}
                 <button
                   type="submit"
                   disabled={olvideLoad}

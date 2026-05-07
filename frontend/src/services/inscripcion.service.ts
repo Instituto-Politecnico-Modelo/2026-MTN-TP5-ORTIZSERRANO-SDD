@@ -10,10 +10,10 @@
  *  /api/inscripciones/todas               → todas (GET, admin)
  */
 
-import axios from 'axios';
-import authService from './auth.service';
+import api from '../api/axiosInstance';
+import { parseError } from '../utils/errorHandler';
 
-const BASE = 'http://localhost:8080/api/inscripciones';
+const BASE = '/api/inscripciones';
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -54,54 +54,40 @@ export interface Inscripcion {
 
 class InscripcionService {
 
-  private h() {
-    return { headers: authService.getAuthHeader() };
-  }
-
-  /**
-   * POST /api/inscripciones
-   * Inscribe al estudiante autenticado en una materia.
-   */
   async inscribirse(idMateria: number): Promise<Inscripcion> {
-    const body: InscripcionRequest = { idMateria };
-    const res = await axios.post<Inscripcion>(BASE, body, this.h());
-    return res.data;
+    try {
+      const body: InscripcionRequest = { idMateria };
+      const res = await api.post<Inscripcion>(BASE, body);
+      return res.data;
+    } catch (err) { throw parseError(err, 'inscribirse'); }
   }
 
-  /**
-   * GET /api/inscripciones/mis-inscripciones
-   * Lista todas las inscripciones del estudiante autenticado.
-   */
   async misInscripciones(): Promise<Inscripcion[]> {
-    const res = await axios.get<Inscripcion[]>(`${BASE}/mis-inscripciones`, this.h());
-    return res.data;
+    try {
+      const res = await api.get<Inscripcion[]>(`${BASE}/mis-inscripciones`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  /**
-   * GET /api/inscripciones/mis-notas
-   * Inscripciones del estudiante autenticado que tienen nota cargada (boletín).
-   */
   async misNotas(): Promise<Inscripcion[]> {
-    const res = await axios.get<Inscripcion[]>(`${BASE}/mis-notas`, this.h());
-    return res.data;
+    try {
+      const res = await api.get<Inscripcion[]>(`${BASE}/mis-notas`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  /**
-   * PATCH /api/inscripciones/{id}/cancelar
-   * Cancela la inscripción propia indicada.
-   */
   async cancelar(idInscripcion: number): Promise<Inscripcion> {
-    const res = await axios.patch<Inscripcion>(`${BASE}/${idInscripcion}/cancelar`, {}, this.h());
-    return res.data;
+    try {
+      const res = await api.patch<Inscripcion>(`${BASE}/${idInscripcion}/cancelar`, {});
+      return res.data;
+    } catch (err) { throw parseError(err, 'cancelar-inscripcion'); }
   }
 
-  /**
-   * GET /api/inscripciones/todas
-   * Lista TODAS las inscripciones del sistema (solo admin).
-   */
   async listarTodas(): Promise<Inscripcion[]> {
-    const res = await axios.get<Inscripcion[]>(`${BASE}/todas`, this.h());
-    return res.data;
+    try {
+      const res = await api.get<Inscripcion[]>(`${BASE}/todas`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 }
 

@@ -17,6 +17,8 @@ import SalaDeEspera        from './components/SalaDeEspera';
 import authService from './services/auth.service';
 import { Role }    from './types/auth.types';
 import { AuthProvider } from './context/AuthContext';
+import { ToastProvider } from './context/ToastContext';
+import ToastContainer from './components/ToastContainer';
 import './App.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -49,7 +51,8 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <AuthProvider>
+      <ToastProvider>
+        <AuthProvider>
       <Routes>
 
         {/* ══════════════════════════════════════════
@@ -169,6 +172,8 @@ function App() {
 
       </Routes>
       </AuthProvider>
+        <ToastContainer />
+      </ToastProvider>
     </Router>
   );
 }

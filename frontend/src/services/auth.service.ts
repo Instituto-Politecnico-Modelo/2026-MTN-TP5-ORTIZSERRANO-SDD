@@ -1,8 +1,11 @@
-import axios from 'axios';
 import { Role, User, LoginResponse } from '../types/auth.types';
+import api from '../api/axiosInstance';
+import { AppError, parseError } from '../utils/errorHandler';
 
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = '/api';
 const USER_KEY = 'authUser';
+
+export { AppError };
 
 export interface JwtInspectResponse {
   token_recibido: string;
@@ -26,11 +29,15 @@ export interface JwtInspectResponse {
 class AuthService {
 
   async login(email: string, password: string): Promise<LoginResponse> {
-    const res = await axios.post<LoginResponse>(`${BASE_URL}/auth/login`, { email, password });
-    if (res.data.token) {
-      localStorage.setItem(USER_KEY, JSON.stringify(res.data));
+    try {
+      const res = await api.post<LoginResponse>(`${BASE_URL}/auth/login`, { email, password });
+      if (res.data.token) {
+        localStorage.setItem(USER_KEY, JSON.stringify(res.data));
+      }
+      return res.data;
+    } catch (err) {
+      throw parseError(err, 'login');
     }
-    return res.data;
   }
 
   logout(): void {
@@ -39,10 +46,12 @@ class AuthService {
 
   /** Llama a GET /api/auth/me y retorna el perfil completo del usuario */
   async getCurrentUser(): Promise<User> {
-    const res = await axios.get<User>(`${BASE_URL}/auth/me`, {
-      headers: this.getAuthHeader(),
-    });
-    return res.data;
+    try {
+      const res = await api.get<User>(`${BASE_URL}/auth/me`);
+      return res.data;
+    } catch (err) {
+      throw parseError(err, 'update-profile');
+    }
   }
 
   getAuthHeader(): Record<string, string> {
@@ -91,19 +100,27 @@ class AuthService {
 
   /** GET /api/auth/jwt/inspect?token=xxx — requiere autenticación */
   async inspectJwt(token: string): Promise<JwtInspectResponse> {
-    const res = await axios.get<JwtInspectResponse>(`${BASE_URL}/auth/jwt/inspect`, {
-      params: { token },
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return res.data;
+    try {
+      const res = await api.get<JwtInspectResponse>(`${BASE_URL}/auth/jwt/inspect`, {
+        params: { token },
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return res.data;
+    } catch (err) {
+      throw parseError(err, 'generic');
+    }
   }
 
   // ─── Olvidé mi contraseña ─────────────────────────────────────────────────
 
   /** POST /api/auth/olvide-password — endpoint público, no requiere auth */
   async olvidePassword(email: string): Promise<{ message: string }> {
-    const res = await axios.post<{ message: string }>(`${BASE_URL}/auth/olvide-password`, { email });
-    return res.data;
+    try {
+      const res = await api.post<{ message: string }>(`${BASE_URL}/auth/olvide-password`, { email });
+      return res.data;
+    } catch (err) {
+      throw parseError(err, 'solicitud-password');
+    }
   }
 }
 

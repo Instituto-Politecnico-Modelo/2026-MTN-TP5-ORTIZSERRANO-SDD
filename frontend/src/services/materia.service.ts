@@ -1,7 +1,7 @@
-import axios from 'axios';
-import authService from './auth.service';
+import api from '../api/axiosInstance';
+import { parseError } from '../utils/errorHandler';
 
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = '/api';
 
 // --- Tipos ---
 
@@ -52,94 +52,84 @@ export interface InscripcionRequest {
 
 class MateriaService {
 
-  private headers() {
-    return authService.getAuthHeader();
-  }
-
-  /** GET /api/materias - todas las materias con estado de cupos */
   async listarMaterias(): Promise<MateriaDisponible[]> {
-    const res = await axios.get<MateriaDisponible[]>(`${BASE_URL}/materias`, {
-      headers: this.headers(),
-    });
-    return res.data;
+    try {
+      const res = await api.get<MateriaDisponible[]>(`${BASE_URL}/materias`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  /** GET /api/materias/disponibles - solo las que tienen cupos libres */
   async listarMateriasDisponibles(): Promise<MateriaDisponible[]> {
-    const res = await axios.get<MateriaDisponible[]>(`${BASE_URL}/materias/disponibles`, {
-      headers: this.headers(),
-    });
-    return res.data;
+    try {
+      const res = await api.get<MateriaDisponible[]>(`${BASE_URL}/materias/disponibles`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  /** GET /api/materias/{id} - detalle con cupos */
   async obtenerMateria(id: number): Promise<MateriaDisponible> {
-    const res = await axios.get<MateriaDisponible>(`${BASE_URL}/materias/${id}`, {
-      headers: this.headers(),
-    });
-    return res.data;
+    try {
+      const res = await api.get<MateriaDisponible>(`${BASE_URL}/materias/${id}`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  /** GET /api/materias/codigo/{codigo} - buscar por codigo exacto */
   async obtenerMateriaPorCodigo(codigo: string): Promise<MateriaDisponible> {
-    const res = await axios.get<MateriaDisponible>(
-      `${BASE_URL}/materias/codigo/${encodeURIComponent(codigo)}`,
-      { headers: this.headers() }
-    );
-    return res.data;
+    try {
+      const res = await api.get<MateriaDisponible>(
+        `${BASE_URL}/materias/codigo/${encodeURIComponent(codigo)}`
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  /** GET /api/materias/anio/{anio} - materias de un año academico */
   async listarPorAnio(anio: number): Promise<MateriaDisponible[]> {
-    const res = await axios.get<MateriaDisponible[]>(`${BASE_URL}/materias/anio/${anio}`, {
-      headers: this.headers(),
-    });
-    return res.data;
+    try {
+      const res = await api.get<MateriaDisponible[]>(`${BASE_URL}/materias/anio/${anio}`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  /** GET /api/materias/anio/{anio}/cuatrimestre/{cuatrimestre} */
   async listarPorAnioYCuatrimestre(anio: number, cuatrimestre: number): Promise<MateriaDisponible[]> {
-    const res = await axios.get<MateriaDisponible[]>(
-      `${BASE_URL}/materias/anio/${anio}/cuatrimestre/${cuatrimestre}`,
-      { headers: this.headers() }
-    );
-    return res.data;
+    try {
+      const res = await api.get<MateriaDisponible[]>(
+        `${BASE_URL}/materias/anio/${anio}/cuatrimestre/${cuatrimestre}`
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  /** GET /api/inscripciones/mis-inscripciones */
   async misInscripciones(): Promise<Inscripcion[]> {
-    const res = await axios.get<Inscripcion[]>(`${BASE_URL}/inscripciones/mis-inscripciones`, {
-      headers: this.headers(),
-    });
-    return res.data;
+    try {
+      const res = await api.get<Inscripcion[]>(`${BASE_URL}/inscripciones/mis-inscripciones`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  /** POST /api/inscripciones - inscribirse a una materia */
   async inscribirse(idMateria: number): Promise<Inscripcion> {
-    const res = await axios.post<Inscripcion>(
-      `${BASE_URL}/inscripciones`,
-      { idMateria } as InscripcionRequest,
-      { headers: this.headers() }
-    );
-    return res.data;
+    try {
+      const res = await api.post<Inscripcion>(
+        `${BASE_URL}/inscripciones`,
+        { idMateria } as InscripcionRequest
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'inscribirse'); }
   }
 
-  /** PATCH /api/inscripciones/{id}/cancelar - cancelar inscripcion propia */
   async cancelarInscripcion(idInscripcion: number): Promise<Inscripcion> {
-    const res = await axios.patch<Inscripcion>(
-      `${BASE_URL}/inscripciones/${idInscripcion}/cancelar`,
-      {},
-      { headers: this.headers() }
-    );
-    return res.data;
+    try {
+      const res = await api.patch<Inscripcion>(
+        `${BASE_URL}/inscripciones/${idInscripcion}/cancelar`,
+        {}
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'cancelar-inscripcion'); }
   }
 
-  /** GET /api/inscripciones/mis-notas - boletin de notas */
   async misNotas(): Promise<Inscripcion[]> {
-    const res = await axios.get<Inscripcion[]>(`${BASE_URL}/inscripciones/mis-notas`, {
-      headers: this.headers(),
-    });
-    return res.data;
+    try {
+      const res = await api.get<Inscripcion[]>(`${BASE_URL}/inscripciones/mis-notas`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 }
 

@@ -1,7 +1,7 @@
-import axios from 'axios';
-import authService from './auth.service';
+import api from '../api/axiosInstance';
+import { parseError } from '../utils/errorHandler';
 
-const BASE_URL = 'http://localhost:8080/api/admin/auditoria';
+const BASE_URL = '/api/admin/auditoria';
 
 export interface RegistroAuditoria {
   idRegistro: number;
@@ -25,38 +25,47 @@ export interface IntegridadResponse {
 }
 
 class AuditoriaService {
-  private headers() {
-    return authService.getAuthHeader();
-  }
 
   async listarTodos(): Promise<RegistroAuditoria[]> {
-    const res = await axios.get<RegistroAuditoria[]>(BASE_URL, { headers: this.headers() });
-    return res.data;
+    try {
+      const res = await api.get<RegistroAuditoria[]>(BASE_URL);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
   async porEntidad(entidad: string): Promise<RegistroAuditoria[]> {
-    const res = await axios.get<RegistroAuditoria[]>(`${BASE_URL}/entidad/${entidad}`, { headers: this.headers() });
-    return res.data;
+    try {
+      const res = await api.get<RegistroAuditoria[]>(`${BASE_URL}/entidad/${entidad}`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
   async porEntidadYId(entidad: string, id: number): Promise<RegistroAuditoria[]> {
-    const res = await axios.get<RegistroAuditoria[]>(`${BASE_URL}/entidad/${entidad}/${id}`, { headers: this.headers() });
-    return res.data;
+    try {
+      const res = await api.get<RegistroAuditoria[]>(`${BASE_URL}/entidad/${entidad}/${id}`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
   async porUsuario(idUsuario: number): Promise<RegistroAuditoria[]> {
-    const res = await axios.get<RegistroAuditoria[]>(`${BASE_URL}/usuario/${idUsuario}`, { headers: this.headers() });
-    return res.data;
+    try {
+      const res = await api.get<RegistroAuditoria[]>(`${BASE_URL}/usuario/${idUsuario}`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
   async porAccion(accion: string): Promise<RegistroAuditoria[]> {
-    const res = await axios.get<RegistroAuditoria[]>(`${BASE_URL}/accion/${accion}`, { headers: this.headers() });
-    return res.data;
+    try {
+      const res = await api.get<RegistroAuditoria[]>(`${BASE_URL}/accion/${accion}`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 
   async verificarIntegridad(): Promise<IntegridadResponse> {
-    const res = await axios.get<IntegridadResponse>(`${BASE_URL}/verificar`, { headers: this.headers() });
-    return res.data;
+    try {
+      const res = await api.get<IntegridadResponse>(`${BASE_URL}/verificar`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
   }
 }
 
