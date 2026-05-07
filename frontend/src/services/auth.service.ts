@@ -69,8 +69,32 @@ class AuthService {
     return !!this.getCurrentUserData()?.token;
   }
 
+  /**
+   * Decodifica el payload del JWT y extrae el claim "rol".
+   * De esta forma el rol siempre viene del token firmado por el servidor
+   * y no puede ser manipulado editando el localStorage.
+   * Si el token no existe o está malformado, retorna null.
+   */
   getRole(): Role | null {
-    return (this.getCurrentUserData()?.role as Role) ?? null;
+    const token = this.getCurrentUserData()?.token;
+    if (!token) return null;
+
+    try {
+      // El JWT tiene 3 partes separadas por '.': header.payload.signature
+      const payloadBase64 = token.split('.')[1];
+      if (!payloadBase64) return null;
+
+      // Base64url → Base64 estándar → JSON
+      const jsonPayload = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
+      const payload = JSON.parse(jsonPayload);
+
+      // El backend firma con el claim "rol" (ver JwtUtil.java)
+      const rol = payload['rol'] as string | undefined;
+      return rol ? (rol as Role) : null;
+    } catch {
+      // Token malformado
+      return null;
+    }
   }
 
   hasRole(role: Role): boolean {
