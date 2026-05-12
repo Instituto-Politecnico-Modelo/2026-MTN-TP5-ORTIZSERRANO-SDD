@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/auth.service';
 import VistaAuditoria from './VistaAuditoria';
@@ -88,10 +88,10 @@ const DashboardAdmin: React.FC = () => {
   const [materias, setMaterias]     = useState<any[]>([]);
   const [nuevaMat, setNuevaMat]     = useState({ codigo:'', nombre:'', descripcion:'', anio:'', cuposMaximos:'', carrera:'' });
 
-  const cargarMaterias = async () => {
+  const cargarMaterias = useCallback(async () => {
     try { const r = await axios.get(`${API}/admin/materias`, { headers: headers() }); setMaterias(r.data); }
     catch { bad('No se pudieron cargar las materias'); }
-  };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const crearMateria = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -115,7 +115,7 @@ const DashboardAdmin: React.FC = () => {
   // cargar datos al cambiar de vista
   useEffect(() => {
     if (vista === 'materias') cargarMaterias();
-  }, [vista]);
+  }, [vista, cargarMaterias]);
 
   // ─── Render ───────────────────────────────────────────────────────────────
   return (

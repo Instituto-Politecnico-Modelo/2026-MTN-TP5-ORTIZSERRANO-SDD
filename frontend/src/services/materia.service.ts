@@ -47,6 +47,11 @@ export interface InscripcionRequest {
   idMateria: number;
 }
 
+export interface InscripcionResult {
+  status: number;   // 201 = inscripto, 202 = en lista de espera
+  data: any;
+}
+
 // --- Servicio ---
 
 class MateriaService {
@@ -105,13 +110,13 @@ class MateriaService {
     } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  async inscribirse(idMateria: number): Promise<Inscripcion> {
+  async inscribirse(idMateria: number): Promise<InscripcionResult> {
     try {
-      const res = await api.post<Inscripcion>(
+      const res = await api.post(
         `${BASE_URL}/inscripciones`,
         { idMateria } as InscripcionRequest
       );
-      return res.data;
+      return { status: res.status, data: res.data };
     } catch (err) { throw parseError(err, 'inscribirse'); }
   }
 

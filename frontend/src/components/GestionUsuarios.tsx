@@ -58,15 +58,6 @@ interface SolicitudReset {
   fechaAtencion?: string;
 }
 
-interface MateriaItem {
-  idMateria: number;
-  nombre: string;
-  codigo: string;
-  anio?: number;
-  cuatrimestre?: number;
-  creditos?: number;
-}
-
 // ─── Constantes de estilo ─────────────────────────────────────────────────────
 
 const ROL_BADGE: Record<string, { bg: string; color: string; label: string }> = {
@@ -349,31 +340,6 @@ const GestionUsuarios: React.FC = () => {
   const [form, setForm]             = useState(EMPTY_FORM);
   const [creando, setCreando]       = useState(false);
 
-  // ── Materias disponibles (para asignar al crear un Estudiante) ───────────
-  const [materias,         setMaterias]         = useState<MateriaItem[]>([]);
-  const [materiasSelec,    setMateriasSelec]     = useState<number[]>([]);
-  const [busqMateria,      setBusqMateria]       = useState('');
-  const [loadingMaterias,  setLoadingMaterias]   = useState(false);
-
-  useEffect(() => {
-    if (seccion !== 'crear') return;
-    setLoadingMaterias(true);
-    adminService.listarMaterias()
-      .then(data => setMaterias(data as unknown as MateriaItem[]))
-      .catch(() => {/* silencioso */})
-      .finally(() => setLoadingMaterias(false));
-  }, [seccion]);
-
-  const toggleMateria = (id: number) =>
-    setMateriasSelec(prev =>
-      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
-    );
-
-  const materiasFiltradas = materias.filter(m => {
-    const q = busqMateria.toLowerCase();
-    return !q || m.nombre.toLowerCase().includes(q) || m.codigo.toLowerCase().includes(q);
-  });
-
   const f = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm(p => ({ ...p, [k]: e.target.value }));
 
@@ -389,7 +355,6 @@ const GestionUsuarios: React.FC = () => {
       if (form.rol === 'ESTUDIANTE') {
         payload.carrera     = form.carrera     || undefined;
         payload.anioIngreso = form.anioIngreso ? +form.anioIngreso : undefined;
-        if (materiasSelec.length > 0) payload.materiasIds = materiasSelec;
       }
       if (form.rol === 'DOCENTE') {
         payload.titulo       = form.titulo       || undefined;
@@ -403,8 +368,6 @@ const GestionUsuarios: React.FC = () => {
       await adminService.crearUsuario(payload);
       toast.success(`${form.rol.charAt(0) + form.rol.slice(1).toLowerCase()} creado/a exitosamente`);
       setForm(EMPTY_FORM);
-      setMateriasSelec([]);
-      setBusqMateria('');
       setSeccion('usuarios');
     } catch (err) {
       toast.error(err instanceof AppError ? err.message : 'Error al crear el usuario');
@@ -807,107 +770,9 @@ const GestionUsuarios: React.FC = () => {
                   <div><label style={lbl}>Año de ingreso</label><input style={inp} type="number" value={form.anioIngreso} onChange={f('anioIngreso')} placeholder="Ej: 2024" min={2000} max={2099} /></div>
                 </div>
 
-                {/* ── Selector de materias ── */}
-                <div>
-                  <label style={{ ...lbl, marginBottom:'8px' }}>
-                    📚 Materias a inscribir
-                    {materiasSelec.length > 0 && (
-                      <span style={{ marginLeft:'8px', background:'#1d4ed8', color:'white', borderRadius:'20px', padding:'1px 8px', fontSize:'11px', fontWeight:700 }}>
-                        {materiasSelec.length} seleccionada{materiasSelec.length > 1 ? 's' : ''}
-                      </span>
-                    )}
-                  </label>
-
-                  {/* Buscador de materias */}
-                  <input
-                    style={{ ...inp, marginBottom:'8px', background:'white' }}
-                    placeholder="🔍 Filtrar materias por nombre o código..."
-                    value={busqMateria}
-                    onChange={e => setBusqMateria(e.target.value)}
-                  />
-
-                  {/* Lista deslizable */}
-                  {loadingMaterias ? (
-                    <p style={{ color:'#64748b', fontSize:'13px' }}>⏳ Cargando materias...</p>
-                  ) : materias.length === 0 ? (
-                    <p style={{ color:'#94a3b8', fontSize:'13px' }}>No hay materias creadas todavía</p>
-                  ) : (
-                    <div style={{
-                      maxHeight: '220px',
-                      overflowY: 'auto',
-                      border: '1.5px solid #bfdbfe',
-                      borderRadius: '8px',
-                      background: 'white',
-                    }}>
-                      {materiasFiltradas.length === 0 ? (
-                        <p style={{ padding:'12px', color:'#94a3b8', fontSize:'13px', margin:0 }}>
-                          Sin resultados para "{busqMateria}"
-                        </p>
-                      ) : (
-                        materiasFiltradas.map((m, idx) => {
-                          const selec = materiasSelec.includes(m.idMateria);
-                          return (
-                            <label
-                              key={m.idMateria}
-                              style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '10px',
-                                padding: '9px 14px',
-                                cursor: 'pointer',
-                                background: selec ? '#eff6ff' : 'transparent',
-                                borderBottom: idx < materiasFiltradas.length - 1 ? '1px solid #e2e8f0' : 'none',
-                                transition: 'background 0.1s',
-                              }}
-                            >
-                              <input
-                                type="checkbox"
-                                checked={selec}
-                                onChange={() => toggleMateria(m.idMateria)}
-                                style={{ width:'16px', height:'16px', accentColor:'#1d4ed8', cursor:'pointer', flexShrink:0 }}
-                              />
-                              <div style={{ flex:1, minWidth:0 }}>
-                                <span style={{ fontWeight: selec ? 700 : 500, color: selec ? '#1d4ed8' : '#1e293b', fontSize:'13px' }}>
-                                  {m.nombre}
-                                </span>
-                                <span style={{ marginLeft:'6px', color:'#94a3b8', fontSize:'12px' }}>
-                                  [{m.codigo}]
-                                </span>
-                                {(m.anio || m.cuatrimestre || m.creditos) && (
-                                  <span style={{ marginLeft:'8px', color:'#64748b', fontSize:'11px' }}>
-                                    {[m.anio && `Año ${m.anio}`, m.cuatrimestre && `C${m.cuatrimestre}`, m.creditos && `${m.creditos} créditos`].filter(Boolean).join(' · ')}
-                                  </span>
-                                )}
-                              </div>
-                            </label>
-                          );
-                        })
-                      )}
-                    </div>
-                  )}
-
-                  {/* Acciones rápidas */}
-                  {materias.length > 0 && (
-                    <div style={{ display:'flex', gap:'8px', marginTop:'8px' }}>
-                      <button
-                        type="button"
-                        onClick={() => setMateriasSelec(materiasFiltradas.map(m => m.idMateria))}
-                        style={{ ...btn('#475569', true), fontSize:'11px' }}
-                      >
-                        ☑ Seleccionar todas ({materiasFiltradas.length})
-                      </button>
-                      {materiasSelec.length > 0 && (
-                        <button
-                          type="button"
-                          onClick={() => setMateriasSelec([])}
-                          style={{ ...btn('#dc2626', true), fontSize:'11px' }}
-                        >
-                          ✕ Limpiar selección
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
+                <p style={{ margin:'8px 0 0', fontSize:'12px', color:'#64748b' }}>
+                  💡 Las inscripciones a materias las realiza el propio estudiante desde su portal.
+                </p>
               </div>
             )}
 
@@ -962,7 +827,7 @@ const GestionUsuarios: React.FC = () => {
               <button type="submit" disabled={creando} style={btn('#7c3aed')}>
                 {creando ? '⏳ Creando...' : `✔ Crear ${form.rol.charAt(0) + form.rol.slice(1).toLowerCase()}`}
               </button>
-              <button type="button" onClick={() => { setForm(EMPTY_FORM); setMateriasSelec([]); setBusqMateria(''); }} style={btn('#64748b')}>
+              <button type="button" onClick={() => { setForm(EMPTY_FORM); }} style={btn('#64748b')}>
                 🗑 Limpiar
               </button>
             </div>

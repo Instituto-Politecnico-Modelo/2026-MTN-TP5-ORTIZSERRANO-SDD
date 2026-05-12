@@ -292,10 +292,11 @@ const AsteroidGame: React.FC = () => {
     };
     window.addEventListener('keydown', down);
     window.addEventListener('keyup',   up);
+    const state = s.current;
     return () => {
       window.removeEventListener('keydown', down);
       window.removeEventListener('keyup',   up);
-      cancelAnimationFrame(s.current.animId);
+      cancelAnimationFrame(state.animId);
     };
   }, []);
 

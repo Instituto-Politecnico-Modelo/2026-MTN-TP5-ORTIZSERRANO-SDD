@@ -45,6 +45,11 @@ const ModalInscripcion: React.FC<ModalProps> = ({ materia, onConfirm, onCancel, 
         </div>
         <div style={{ fontSize: '13px', color: '#0369a1', marginTop: '6px', display: 'flex', gap: '12px' }}>
           <span>📅 {materia.anio}° Año</span>
+          {materia.cuposMaximos != null && (
+            materia.hayLugar
+              ? <span>🟢 {materia.cuposDisponibles} cupo{materia.cuposDisponibles !== 1 ? 's' : ''} disponible{materia.cuposDisponibles !== 1 ? 's' : ''}</span>
+              : <span style={{ color: '#b45309', fontWeight: 700 }}>⚠️ Sin cupos — quedarás en lista de espera</span>
+          )}
         </div>
       </div>
       <div style={{ display: 'flex', gap: '12px' }}>
@@ -85,7 +90,7 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [loadingId, setLoadingId] = useState<number | null>(null);
-  const [mensaje, setMensaje] = useState<{ text: string; tipo: 'ok' | 'error' } | null>(null);
+  const [mensaje, setMensaje] = useState<{ text: string; tipo: 'ok' | 'error' | 'espera' } | null>(null);
   const [filtroAnio, setFiltroAnio] = useState<number | 'todos'>('todos');
   const [busqueda, setBusqueda] = useState('');
   const [modalMateria, setModalMateria] = useState<Materia | null>(null);
@@ -130,12 +135,21 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
     if (!modalMateria) return;
     setConfirmLoading(true);
     try {
-      await materiaService.inscribirse(modalMateria.idMateria);
-      setMensaje({ text: `✅ Te inscribiste en "${modalMateria.nombre}"`, tipo: 'ok' });
+      const result = await materiaService.inscribirse(modalMateria.idMateria);
+      if (result.status === 202) {
+        // Cupos llenos → quedó en lista de espera
+        const posicion = result.data?.posicion ?? result.data?.position ?? '?';
+        setMensaje({
+          text: `⚠️ La materia "${modalMateria.nombre}" no tiene cupos disponibles. Quedaste en lista de espera (posición #${posicion}).`,
+          tipo: 'espera',
+        });
+      } else {
+        setMensaje({ text: `✅ Te inscribiste en "${modalMateria.nombre}"`, tipo: 'ok' });
+      }
       await cargarDatos();
       setModalMateria(null);
     } catch (e: any) {
-      const msg = e.response?.data?.message || 'Error al inscribirse';
+      const msg = e.response?.data?.message || e.message || 'Error al inscribirse';
       setMensaje({ text: `❌ ${msg}`, tipo: 'error' });
       setModalMateria(null);
     } finally {
@@ -211,11 +225,11 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
       {mensaje && (
         <div style={{
           padding: '13px 16px', borderRadius: '10px', marginBottom: '16px',
-          background: mensaje.tipo === 'ok' ? '#dcfce7' : '#fee2e2',
-          color: mensaje.tipo === 'ok' ? '#166534' : '#991b1b',
+          background: mensaje.tipo === 'ok' ? '#dcfce7' : mensaje.tipo === 'espera' ? '#fef9c3' : '#fee2e2',
+          color: mensaje.tipo === 'ok' ? '#166534' : mensaje.tipo === 'espera' ? '#854d0e' : '#991b1b',
           fontSize: '14px', fontWeight: 600,
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          border: `1px solid ${mensaje.tipo === 'ok' ? '#86efac' : '#fca5a5'}`,
+          border: `1px solid ${mensaje.tipo === 'ok' ? '#86efac' : mensaje.tipo === 'espera' ? '#fde047' : '#fca5a5'}`,
         }}>
           {mensaje.text}
           <button onClick={() => setMensaje(null)} style={{
@@ -361,6 +375,22 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
                       <Chip icon="📅" text={`${materia.anio}° Año`} />
                       {materia.docenteNombre && (
                         <Chip icon="👨‍🏫" text={`${materia.docenteNombre} ${materia.docenteApellido}`} />
+                      )}
+                      {/* Cupos */}
+                      {materia.cuposMaximos != null ? (
+                        materia.hayLugar ? (
+                          <Chip icon="🟢" text={`${materia.cuposDisponibles} cupo${materia.cuposDisponibles !== 1 ? 's' : ''} libre${materia.cuposDisponibles !== 1 ? 's' : ''}`} />
+                        ) : (
+                          <span style={{
+                            display: 'inline-flex', alignItems: 'center', gap: '4px',
+                            padding: '3px 9px', background: '#fee2e2', borderRadius: '20px',
+                            fontSize: '12px', color: '#dc2626', fontWeight: 700, whiteSpace: 'nowrap',
+                          }}>
+                            🔴 Sin cupos · lista de espera
+                          </span>
+                        )
+                      ) : (
+                        <Chip icon="♾️" text="Sin límite de cupos" />
                       )}
                     </div>
 

@@ -29,10 +29,6 @@ function accionBadge(accion: string) {
   );
 }
 
-function hashCorto(hash: string) {
-  return hash ? `${hash.slice(0, 8)}…${hash.slice(-4)}` : '–';
-}
-
 function formatFecha(iso: string) {
   const d = new Date(iso);
   return d.toLocaleString('es-AR', {
