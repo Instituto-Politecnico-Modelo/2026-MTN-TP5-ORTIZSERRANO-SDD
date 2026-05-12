@@ -74,6 +74,17 @@ public class AdminUsuariosController {
         return sb.toString();
     }
 
+    /** Genera un legajo único con formato LEG-NNNNN, incrementando el mayor existente. */
+    private String generarLegajoAutomatico() {
+        Integer maxNum = estudianteRepository.findMaxLegajoNumero();
+        int siguiente = (maxNum != null ? maxNum : 0) + 1;
+        String candidato;
+        do {
+            candidato = String.format("LEG-%05d", siguiente++);
+        } while (estudianteRepository.existsByLegajo(candidato));
+        return candidato;
+    }
+
     // ─── LISTAR TODOS LOS USUARIOS ────────────────────────────────────────
 
     @Operation(summary = "Listar usuarios", description = "Devuelve todos los usuarios registrados en el sistema.")
@@ -134,11 +145,11 @@ public class AdminUsuariosController {
         switch (rol) {
             case "ESTUDIANTE" -> {
                 String legajo = (req.getLegajo() != null && !req.getLegajo().isBlank())
-                        ? req.getLegajo().trim() : null;
+                        ? req.getLegajo().trim() : generarLegajoAutomatico();
                 String carrera = (req.getCarrera() != null && !req.getCarrera().isBlank())
                         ? req.getCarrera().trim() : null;
 
-                if (legajo != null && estudianteRepository.existsByLegajo(legajo)) {
+                if (estudianteRepository.existsByLegajo(legajo)) {
                     return ResponseEntity.badRequest()
                             .body(new MessageResponse("Error: El legajo ya está en uso"));
                 }
@@ -233,6 +244,88 @@ public class AdminUsuariosController {
             return ResponseEntity.ok(new MessageResponse("Usuario eliminado permanentemente"));
         }).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new MessageResponse("Usuario no encontrado")));
+    }
+
+    // ─── EDITAR DATOS ESPECÍFICOS DEL ROL ────────────────────────────────────
+
+    /**
+     * PUT /api/admin/usuarios/{id}/datos-especificos
+     *
+     * Actualiza los atributos propios de cada rol:
+     *  - ESTUDIANTE → legajo, carrera, anioIngreso
+     *  - DOCENTE    → titulo, especialidad, departamento
+     *  - ADMIN      → area, nivelAcceso
+     *
+     * También permite editar nombre, apellido y email (campos base de Usuario).
+     * Si un campo llega null o vacío, se mantiene el valor actual.
+     */
+    @Operation(
+        summary = "Editar datos específicos del usuario",
+        description = "Actualiza los atributos propios del rol (legajo/carrera para estudiantes, " +
+                      "titulo/especialidad/departamento para docentes) y los datos base (nombre, apellido, email)."
+    )
+    @PutMapping("/{id}/datos-especificos")
+    public ResponseEntity<?> editarDatosEspecificos(
+            @PathVariable Long id,
+            @RequestBody CreateUserRequest req) {
+
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new MessageResponse("Usuario no encontrado"));
+        }
+
+        // ── Datos base ────────────────────────────────────────────────────────
+        if (req.getNombre()   != null && !req.getNombre().isBlank())   usuario.setNombre(req.getNombre().trim());
+        if (req.getApellido() != null && !req.getApellido().isBlank()) usuario.setApellido(req.getApellido().trim());
+        if (req.getEmail()    != null && !req.getEmail().isBlank()) {
+            // Verificar que el email no esté en uso por otro usuario
+            boolean emailOcupado = usuarioRepository.findByEmail(req.getEmail().trim())
+                    .map(u -> !u.getIdUsuario().equals(id))
+                    .orElse(false);
+            if (emailOcupado) {
+                return ResponseEntity.badRequest()
+                        .body(new MessageResponse("El email ya está en uso por otro usuario"));
+            }
+            usuario.setEmail(req.getEmail().trim());
+        }
+
+        // ── Datos específicos del rol ─────────────────────────────────────────
+        if (usuario instanceof Estudiante est) {
+            if (req.getLegajo() != null) {
+                String nuevoLegajo = req.getLegajo().isBlank() ? null : req.getLegajo().trim();
+                // Si se cambió el legajo, verificar unicidad
+                if (nuevoLegajo != null && !nuevoLegajo.equals(est.getLegajo())
+                        && estudianteRepository.existsByLegajo(nuevoLegajo)) {
+                    return ResponseEntity.badRequest()
+                            .body(new MessageResponse("El legajo '" + nuevoLegajo + "' ya está en uso"));
+                }
+                est.setLegajo(nuevoLegajo);
+            }
+            if (req.getCarrera() != null)
+                est.setCarrera(req.getCarrera().isBlank() ? null : req.getCarrera().trim());
+            if (req.getAnioIngreso() != null)
+                est.setAnioIngreso(req.getAnioIngreso());
+            estudianteRepository.save(est);
+
+        } else if (usuario instanceof Docente doc) {
+            if (req.getTitulo()       != null) doc.setTitulo(req.getTitulo().isBlank()       ? null : req.getTitulo().trim());
+            if (req.getEspecialidad() != null) doc.setEspecialidad(req.getEspecialidad().isBlank() ? null : req.getEspecialidad().trim());
+            if (req.getDepartamento() != null) doc.setDepartamento(req.getDepartamento().isBlank() ? null : req.getDepartamento().trim());
+            docenteRepository.save(doc);
+
+        } else if (usuario instanceof Administrador adm) {
+            if (req.getArea()        != null) adm.setArea(req.getArea().isBlank() ? null : req.getArea().trim());
+            if (req.getNivelAcceso() != null) adm.setNivelAcceso(req.getNivelAcceso());
+            administradorRepository.save(adm);
+
+        } else {
+            // Solo campos base — guardar de todas formas
+            usuarioRepository.save(usuario);
+        }
+
+        return ResponseEntity.ok(new MessageResponse(
+                "Datos de " + usuario.getNombre() + " " + usuario.getApellido() + " actualizados correctamente"));
     }
 
     // ─── SOLICITUDES DE RESET DE CONTRASEÑA ──────────────────────────────

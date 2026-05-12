@@ -67,7 +67,7 @@ function FilaMateria({ ins }: { ins: Inscripcion }) {
             {ins.materia.nombre}
           </div>
           <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '2px' }}>
-            {ins.materia.codigo} · {ins.materia.anio}° año · Cuatrimestre {ins.materia.cuatrimestre}
+            {ins.materia.codigo} · {ins.materia.anio}° año
           </div>
         </td>
         <td style={{ padding: '14px 16px', textAlign: 'center' }}>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import materiaService, { Materia, Inscripcion } from '../services/materia.service';
+import authService from '../services/auth.service';
 
 interface Props {
   onClose?: () => void;
@@ -44,8 +45,6 @@ const ModalInscripcion: React.FC<ModalProps> = ({ materia, onConfirm, onCancel, 
         </div>
         <div style={{ fontSize: '13px', color: '#0369a1', marginTop: '6px', display: 'flex', gap: '12px' }}>
           <span>📅 {materia.anio}° Año</span>
-          <span>📆 {materia.cuatrimestre}° Cuatrimestre</span>
-          {materia.creditos && <span>⭐ {materia.creditos} créditos</span>}
         </div>
       </div>
       <div style={{ display: 'flex', gap: '12px' }}>
@@ -88,7 +87,6 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
   const [loadingId, setLoadingId] = useState<number | null>(null);
   const [mensaje, setMensaje] = useState<{ text: string; tipo: 'ok' | 'error' } | null>(null);
   const [filtroAnio, setFiltroAnio] = useState<number | 'todos'>('todos');
-  const [filtroCuatri, setFiltroCuatri] = useState<number | 'todos'>('todos');
   const [busqueda, setBusqueda] = useState('');
   const [modalMateria, setModalMateria] = useState<Materia | null>(null);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -98,7 +96,7 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
     setError(null);
     try {
       const [mats, inscs] = await Promise.all([
-        materiaService.listarMaterias(),
+        materiaService.listarMaterias(authService.getCurrentUserData()?.carrera ?? undefined),
         materiaService.misInscripciones(),
       ]);
       setMaterias(mats);
@@ -163,12 +161,11 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
 
   const materiasFiltradas = materias.filter(m => {
     const matchAnio = filtroAnio === 'todos' || m.anio === filtroAnio;
-    const matchCuatri = filtroCuatri === 'todos' || m.cuatrimestre === filtroCuatri;
     const matchBusqueda =
       busqueda === '' ||
       m.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
       m.codigo.toLowerCase().includes(busqueda.toLowerCase());
-    return matchAnio && matchCuatri && matchBusqueda;
+    return matchAnio && matchBusqueda;
   });
 
   const estadoBadge: Record<string, { bg: string; color: string }> = {
@@ -252,18 +249,9 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
           <option value="todos">Todos los años</option>
           {[1, 2, 3, 4, 5].map(a => <option key={a} value={a}>{a}° Año</option>)}
         </select>
-        <select
-          value={filtroCuatri}
-          onChange={e => setFiltroCuatri(e.target.value === 'todos' ? 'todos' : Number(e.target.value))}
-          style={{ padding: '9px 12px', border: '1px solid #cbd5e1', borderRadius: '8px', fontSize: '14px', background: 'white' }}
-        >
-          <option value="todos">Ambos cuatrimestres</option>
-          <option value={1}>1° Cuatrimestre</option>
-          <option value={2}>2° Cuatrimestre</option>
-        </select>
-        {(busqueda || filtroAnio !== 'todos' || filtroCuatri !== 'todos') && (
+        {(busqueda || filtroAnio !== 'todos') && (
           <button
-            onClick={() => { setBusqueda(''); setFiltroAnio('todos'); setFiltroCuatri('todos'); }}
+            onClick={() => { setBusqueda(''); setFiltroAnio('todos'); }}
             style={{
               padding: '9px 14px', background: 'white', border: '1px solid #fca5a5',
               borderRadius: '8px', cursor: 'pointer', fontSize: '13px', color: '#dc2626',
@@ -371,8 +359,6 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
                     {/* Chips informativos */}
                     <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '16px' }}>
                       <Chip icon="📅" text={`${materia.anio}° Año`} />
-                      <Chip icon="📆" text={`${materia.cuatrimestre}° Cuatri`} />
-                      {materia.creditos ? <Chip icon="⭐" text={`${materia.creditos} créditos`} /> : null}
                       {materia.docenteNombre && (
                         <Chip icon="👨‍🏫" text={`${materia.docenteNombre} ${materia.docenteApellido}`} />
                       )}

@@ -8,8 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 /**
  * Servicio para operaciones CRUD de usuarios
  */
@@ -46,6 +44,14 @@ public class UserService {
         }
         
         if (request.getPassword() != null && !request.getPassword().isEmpty()) {
+            // Verificar la contraseña actual antes de permitir el cambio.
+            // Protege contra el uso de sesiones robadas para tomar el control de la cuenta.
+            if (request.getPasswordActual() == null || request.getPasswordActual().isEmpty()) {
+                throw new RuntimeException("Debés ingresar tu contraseña actual para cambiarla");
+            }
+            if (!passwordEncoder.matches(request.getPasswordActual(), usuario.getPassword())) {
+                throw new RuntimeException("La contraseña actual es incorrecta");
+            }
             usuario.setPassword(passwordEncoder.encode(request.getPassword()));
         }
         

@@ -212,7 +212,7 @@ export function parseError(err: unknown, context: ErrorContext = 'generic'): App
       );
     }
     return new AppError(
-      'No se pudo conectar con el servidor. Verificá que tengas conexión a internet.',
+      'No se pudo conectar con el servidor. Verificá que la aplicación esté en funcionamiento.',
       'NETWORK_ERROR',
     );
   }

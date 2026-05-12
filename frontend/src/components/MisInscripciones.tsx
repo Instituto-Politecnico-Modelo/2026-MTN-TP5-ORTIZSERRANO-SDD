@@ -123,8 +123,7 @@ const MisInscripciones: React.FC = () => {
                       {insc.materia.nombre}
                     </div>
                     <div style={{ fontSize: '12px', color: '#64748b', marginTop: '4px' }}>
-                      {insc.materia.anio}° Año · {insc.materia.cuatrimestre}° Cuatrimestre
-                      {insc.materia.creditos ? ` · ${insc.materia.creditos} créditos` : ''}
+                      {insc.materia.anio}° Año
                     </div>
                   </div>
 

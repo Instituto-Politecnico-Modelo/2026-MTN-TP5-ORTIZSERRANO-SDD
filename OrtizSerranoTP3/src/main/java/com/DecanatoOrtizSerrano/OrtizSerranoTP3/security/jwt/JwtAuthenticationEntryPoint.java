@@ -25,9 +25,10 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
                         AuthenticationException authException) throws IOException, ServletException {
         
         logger.error("Error de autenticación: {}", authException.getMessage());
-        
+
         response.setContentType("application/json;charset=UTF-8");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getWriter().write("{\"error\": \"No autorizado\", \"message\": \"" + authException.getMessage() + "\"}");
+        // ⚠️  No exponer authException.getMessage() al cliente: puede revelar información interna.
+        response.getWriter().write("{\"error\": \"No autorizado\", \"message\": \"Token inválido o sesión expirada\"}");
     }
 }

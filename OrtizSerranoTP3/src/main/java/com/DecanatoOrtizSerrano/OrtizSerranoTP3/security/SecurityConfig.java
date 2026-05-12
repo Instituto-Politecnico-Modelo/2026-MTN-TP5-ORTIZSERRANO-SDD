@@ -81,36 +81,51 @@ public class SecurityConfig {
         return source;
     }
     
+    /** Habilitar Swagger solo en entornos no productivos. Default: true (dev). */
+    @Value("${springdoc.swagger-ui.enabled:true}")
+    private boolean swaggerEnabled;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
             .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> 
+            .authorizeHttpRequests(auth -> {
                 auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers("/api/auth/login").permitAll()
                     .requestMatchers("/api/auth/logout").authenticated()
                     .requestMatchers("/api/auth/jwt/inspect").authenticated()
                     .requestMatchers("/api/auth/olvide-password").permitAll()
-                    .requestMatchers("/api/health").permitAll()
-                    .requestMatchers("/h2-console/**").permitAll()
-                    .requestMatchers(
-                        "/swagger-ui.html",
-                        "/swagger-ui/**",
-                        "/v3/api-docs",
-                        "/v3/api-docs/**"
-                    ).permitAll()
-                    .requestMatchers("/api/admin/**").hasAuthority("ADMINISTRADOR")
-                    .anyRequest().authenticated()
-            );
-        
-        // Para permitir H2 console
+                    .requestMatchers("/api/health").permitAll();
+
+                // Swagger: solo accesible si está habilitado (entorno dev/staging).
+                // En producción: springdoc.swagger-ui.enabled=false en application.properties.
+                if (swaggerEnabled) {
+                    auth.requestMatchers(
+                        "/swagger-ui.html", "/swagger-ui/**",
+                        "/v3/api-docs", "/v3/api-docs/**"
+                    ).permitAll();
+                } else {
+                    auth.requestMatchers(
+                        "/swagger-ui.html", "/swagger-ui/**",
+                        "/v3/api-docs", "/v3/api-docs/**"
+                    ).hasAuthority("ADMINISTRADOR");
+                }
+
+                // H2 Console: nunca público. Solo en desarrollo con rol admin.
+                auth.requestMatchers("/h2-console/**").hasAuthority("ADMINISTRADOR");
+
+                auth.requestMatchers("/api/admin/**").hasAuthority("ADMINISTRADOR")
+                    .anyRequest().authenticated();
+            });
+
+        // Para permitir H2 console (iframes)
         http.headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
-        
+
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        
+
         return http.build();
     }
 }

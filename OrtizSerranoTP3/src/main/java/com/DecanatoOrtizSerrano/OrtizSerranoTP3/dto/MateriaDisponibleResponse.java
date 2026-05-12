@@ -16,9 +16,8 @@ public class MateriaDisponibleResponse {
     private String  codigo;
     private String  nombre;
     private String  descripcion;
-    private Integer creditos;
     private Integer anio;
-    private Integer cuatrimestre;
+    private String  carrera;    // null = materia transversal a todas las carreras
 
     // Docente
     private String docenteNombre;
@@ -48,14 +47,11 @@ public class MateriaDisponibleResponse {
     public String getDescripcion()           { return descripcion; }
     public void setDescripcion(String v)     { this.descripcion = v; }
 
-    public Integer getCreditos()             { return creditos; }
-    public void setCreditos(Integer v)       { this.creditos = v; }
-
     public Integer getAnio()                 { return anio; }
     public void setAnio(Integer v)           { this.anio = v; }
 
-    public Integer getCuatrimestre()         { return cuatrimestre; }
-    public void setCuatrimestre(Integer v)   { this.cuatrimestre = v; }
+    public String getCarrera()               { return carrera; }
+    public void setCarrera(String v)         { this.carrera = v; }
 
     public String getDocenteNombre()         { return docenteNombre; }
     public void setDocenteNombre(String v)   { this.docenteNombre = v; }

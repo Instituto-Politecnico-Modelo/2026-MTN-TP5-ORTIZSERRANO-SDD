@@ -122,6 +122,15 @@ class AdminService {
     } catch (err) { throw parseError(err, 'crear-usuario'); }
   }
 
+  /** Edita los atributos específicos del rol (legajo/carrera, titulo/especialidad, etc.)
+   *  y también los campos base (nombre, apellido, email). */
+  async editarDatosEspecificos(id: number, data: Partial<UsuarioRequest>): Promise<MessageResponse> {
+    try {
+      const res = await api.put<MessageResponse>(`${BASE}/usuarios/${id}/datos-especificos`, data);
+      return res.data;
+    } catch (err) { throw parseError(err, 'editar-usuario'); }
+  }
+
   // ══════════════════════════════════════════════════════════════════
   //  ESTUDIANTES  –  /api/admin/estudiantes
   // ══════════════════════════════════════════════════════════════════
@@ -259,4 +268,5 @@ class AdminService {
   }
 }
 
-export default new AdminService();
+const adminService = new AdminService();
+export default adminService;

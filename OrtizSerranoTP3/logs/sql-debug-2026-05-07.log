@@ -1,0 +1,1805 @@
+2026-05-07 14:24:16.351 - 
+    alter table cola_inscripciones 
+       modify column estado enum ('CANCELADO','EXPIRADO','PENDIENTE','PROMOVIDO') not null
+2026-05-07 14:24:16.417 - 
+    alter table solicitudes_reset_password 
+       modify column estado enum ('ATENDIDA','PENDIENTE') not null
+2026-05-07 14:24:19.267 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:24:19.270 - 
+    select
+        count(*) 
+    from
+        administradores a1_0
+2026-05-07 14:25:19.277 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:26:11.489 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 14:26:11.591 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 14:26:19.280 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:27:19.283 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:28:19.286 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:29:19.289 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:47:28.581 - 
+    alter table cola_inscripciones 
+       modify column estado enum ('CANCELADO','EXPIRADO','PENDIENTE','PROMOVIDO') not null
+2026-05-07 14:47:28.639 - 
+    alter table solicitudes_reset_password 
+       modify column estado enum ('ATENDIDA','PENDIENTE') not null
+2026-05-07 14:47:30.881 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:47:30.884 - 
+    select
+        count(*) 
+    from
+        administradores a1_0
+2026-05-07 14:48:23.660 - 
+    alter table cola_inscripciones 
+       modify column estado enum ('CANCELADO','EXPIRADO','PENDIENTE','PROMOVIDO') not null
+2026-05-07 14:48:23.686 - 
+    alter table solicitudes_reset_password 
+       modify column estado enum ('ATENDIDA','PENDIENTE') not null
+2026-05-07 14:48:30.889 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:49:17.301 - 
+    alter table cola_inscripciones 
+       modify column estado enum ('CANCELADO','EXPIRADO','PENDIENTE','PROMOVIDO') not null
+2026-05-07 14:49:17.537 - 
+    alter table solicitudes_reset_password 
+       modify column estado enum ('ATENDIDA','PENDIENTE') not null
+2026-05-07 14:49:30.892 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:50:30.896 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:51:30.900 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:52:30.903 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:53:30.907 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:54:30.910 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:55:30.913 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:56:30.916 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:57:30.919 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:58:30.922 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 14:59:30.926 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:00:30.929 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:01:30.932 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:02:30.935 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:03:30.937 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:04:30.941 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:05:30.944 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:06:30.946 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:07:30.949 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:08:30.951 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:09:30.954 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:10:30.957 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:11:30.960 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:12:30.962 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:13:30.965 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:14:30.968 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:15:30.971 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:16:30.973 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:17:30.976 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:18:30.979 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:19:30.982 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:20:30.985 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:21:30.987 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:22:30.990 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:23:30.992 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:24:30.995 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:25:30.998 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:26:31.001 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:27:31.004 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:28:31.006 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:29:31.009 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:30:31.012 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:31:31.015 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:32:31.018 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:33:31.020 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:34:31.023 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:35:31.026 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:36:31.028 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:37:31.031 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:38:31.034 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:39:31.036 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:40:31.039 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:40:47.959 - 
+    alter table cola_inscripciones 
+       modify column estado enum ('CANCELADO','EXPIRADO','PENDIENTE','PROMOVIDO') not null
+2026-05-07 15:40:47.967 - 
+    alter table solicitudes_reset_password 
+       modify column estado enum ('ATENDIDA','PENDIENTE') not null
+2026-05-07 15:41:31.041 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:42:31.044 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:42:32.097 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:42:32.120 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:42:32.132 - 
+    select
+        e1_0.id_usuario,
+        e1_1.activo,
+        e1_1.apellido,
+        e1_1.email,
+        e1_1.nombre,
+        e1_1.password,
+        e1_0.anio_ingreso,
+        e1_0.carrera,
+        e1_0.legajo 
+    from
+        estudiantes e1_0 
+    join
+        usuarios e1_1 
+            on e1_0.id_usuario=e1_1.id_usuario
+2026-05-07 15:42:32.151 - 
+    select
+        i1_0.id_estudiante,
+        i1_0.id_inscripcion,
+        i1_0.asistencias,
+        i1_0.estado,
+        i1_0.fecha_inscripcion,
+        i1_0.id_materia,
+        i1_0.nota_cerrada,
+        i1_0.nota_final,
+        i1_0.nota_parcial1,
+        i1_0.nota_parcial2 
+    from
+        inscripciones i1_0 
+    where
+        i1_0.id_estudiante=?
+2026-05-07 15:42:32.157 - 
+    select
+        i1_0.id_estudiante,
+        i1_0.id_inscripcion,
+        i1_0.asistencias,
+        i1_0.estado,
+        i1_0.fecha_inscripcion,
+        i1_0.id_materia,
+        i1_0.nota_cerrada,
+        i1_0.nota_final,
+        i1_0.nota_parcial1,
+        i1_0.nota_parcial2 
+    from
+        inscripciones i1_0 
+    where
+        i1_0.id_estudiante=?
+2026-05-07 15:43:31.047 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:43:44.494 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:43:44.497 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:43:44.527 - 
+    select
+        u1_0.id_usuario 
+    from
+        usuarios u1_0 
+    where
+        u1_0.email=? 
+    limit
+        ?
+2026-05-07 15:43:44.603 - 
+    select
+        e1_0.id_usuario 
+    from
+        estudiantes e1_0 
+    where
+        e1_0.legajo=? 
+    limit
+        ?
+2026-05-07 15:43:44.615 - 
+    insert 
+    into
+        usuarios
+        (activo, apellido, email, nombre, password) 
+    values
+        (?, ?, ?, ?, ?)
+2026-05-07 15:43:44.626 - 
+    insert 
+    into
+        estudiantes
+        (anio_ingreso, carrera, legajo, id_usuario) 
+    values
+        (?, ?, ?, ?)
+2026-05-07 15:43:44.643 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:43:44.647 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:43:44.650 - 
+    select
+        e1_0.id_usuario,
+        e1_1.activo,
+        e1_1.apellido,
+        e1_1.email,
+        e1_1.nombre,
+        e1_1.password,
+        e1_0.anio_ingreso,
+        e1_0.carrera,
+        e1_0.legajo 
+    from
+        estudiantes e1_0 
+    join
+        usuarios e1_1 
+            on e1_0.id_usuario=e1_1.id_usuario
+2026-05-07 15:43:44.652 - 
+    select
+        i1_0.id_estudiante,
+        i1_0.id_inscripcion,
+        i1_0.asistencias,
+        i1_0.estado,
+        i1_0.fecha_inscripcion,
+        i1_0.id_materia,
+        i1_0.nota_cerrada,
+        i1_0.nota_final,
+        i1_0.nota_parcial1,
+        i1_0.nota_parcial2 
+    from
+        inscripciones i1_0 
+    where
+        i1_0.id_estudiante=?
+2026-05-07 15:43:44.653 - 
+    select
+        i1_0.id_estudiante,
+        i1_0.id_inscripcion,
+        i1_0.asistencias,
+        i1_0.estado,
+        i1_0.fecha_inscripcion,
+        i1_0.id_materia,
+        i1_0.nota_cerrada,
+        i1_0.nota_final,
+        i1_0.nota_parcial1,
+        i1_0.nota_parcial2 
+    from
+        inscripciones i1_0 
+    where
+        i1_0.id_estudiante=?
+2026-05-07 15:43:44.654 - 
+    select
+        i1_0.id_estudiante,
+        i1_0.id_inscripcion,
+        i1_0.asistencias,
+        i1_0.estado,
+        i1_0.fecha_inscripcion,
+        i1_0.id_materia,
+        i1_0.nota_cerrada,
+        i1_0.nota_final,
+        i1_0.nota_parcial1,
+        i1_0.nota_parcial2 
+    from
+        inscripciones i1_0 
+    where
+        i1_0.id_estudiante=?
+2026-05-07 15:43:50.403 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:43:50.480 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:43:53.696 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:43:53.700 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:43:53.705 - 
+    select
+        i1_0.id_inscripcion,
+        i1_0.asistencias,
+        i1_0.estado,
+        i1_0.id_estudiante,
+        i1_0.fecha_inscripcion,
+        i1_0.id_materia,
+        i1_0.nota_cerrada,
+        i1_0.nota_final,
+        i1_0.nota_parcial1,
+        i1_0.nota_parcial2 
+    from
+        inscripciones i1_0 
+    where
+        i1_0.id_estudiante=?
+2026-05-07 15:43:53.710 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:43:53.714 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:43:53.716 - 
+    select
+        i1_0.id_inscripcion,
+        i1_0.asistencias,
+        i1_0.estado,
+        i1_0.id_estudiante,
+        i1_0.fecha_inscripcion,
+        i1_0.id_materia,
+        i1_0.nota_cerrada,
+        i1_0.nota_final,
+        i1_0.nota_parcial1,
+        i1_0.nota_parcial2 
+    from
+        inscripciones i1_0 
+    where
+        i1_0.id_estudiante=?
+2026-05-07 15:44:31.050 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:45:31.052 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:46:31.055 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:47:31.058 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:48:31.060 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:49:31.063 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:50:31.065 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:51:31.068 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:52:31.071 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:53:31.073 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:54:31.076 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:54:48.940 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:54:48.944 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:54:48.948 - 
+    select
+        i1_0.id_inscripcion,
+        i1_0.asistencias,
+        i1_0.estado,
+        i1_0.id_estudiante,
+        i1_0.fecha_inscripcion,
+        i1_0.id_materia,
+        i1_0.nota_cerrada,
+        i1_0.nota_final,
+        i1_0.nota_parcial1,
+        i1_0.nota_parcial2 
+    from
+        inscripciones i1_0 
+    where
+        i1_0.id_estudiante=?
+2026-05-07 15:54:48.956 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:54:48.959 - 
+    select
+        u1_0.id_usuario,
+        case 
+            when u1_1.id_usuario is not null 
+                then 1 
+            when u1_2.id_usuario is not null 
+                then 2 
+            when u1_3.id_usuario is not null 
+                then 3 
+            when u1_0.id_usuario is not null 
+                then 0 
+        end,
+        u1_0.activo,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.password,
+        u1_1.area,
+        u1_1.nivel_acceso,
+        u1_1.rol,
+        u1_2.departamento,
+        u1_2.especialidad,
+        u1_2.titulo,
+        u1_3.anio_ingreso,
+        u1_3.carrera,
+        u1_3.legajo 
+    from
+        usuarios u1_0 
+    left join
+        administradores u1_1 
+            on u1_0.id_usuario=u1_1.id_usuario 
+    left join
+        docentes u1_2 
+            on u1_0.id_usuario=u1_2.id_usuario 
+    left join
+        estudiantes u1_3 
+            on u1_0.id_usuario=u1_3.id_usuario 
+    where
+        u1_0.email=?
+2026-05-07 15:54:48.962 - 
+    select
+        i1_0.id_inscripcion,
+        i1_0.asistencias,
+        i1_0.estado,
+        i1_0.id_estudiante,
+        i1_0.fecha_inscripcion,
+        i1_0.id_materia,
+        i1_0.nota_cerrada,
+        i1_0.nota_final,
+        i1_0.nota_parcial1,
+        i1_0.nota_parcial2 
+    from
+        inscripciones i1_0 
+    where
+        i1_0.id_estudiante=?
+2026-05-07 15:55:31.078 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:56:31.081 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:57:31.086 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:58:31.089 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 15:59:31.092 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:00:31.094 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:01:31.096 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:02:31.099 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:03:31.101 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:04:31.104 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:05:31.106 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:06:31.109 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:07:31.111 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:08:31.114 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:09:31.116 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:10:31.120 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:11:31.122 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:12:31.125 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?
+2026-05-07 16:13:31.128 - 
+    update
+        cola_inscripciones ci1_0 
+    set
+        estado='EXPIRADO',
+        fecha_resolucion=? 
+    where
+        ci1_0.estado='PENDIENTE' 
+        and ci1_0.fecha_expiracion<?

@@ -24,9 +24,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByEmail(email)
             .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con email: " + email));
         
-        // Verificar que el usuario esté activo
+        // Verificar que el usuario esté activo.
+        // ⚠️  Usamos el mismo mensaje genérico que para "no encontrado" para evitar
+        // revelar si un email existe en el sistema (user enumeration).
         if (!usuario.isActivo()) {
-            throw new UsernameNotFoundException("Usuario inactivo: " + email);
+            throw new UsernameNotFoundException("Credenciales inválidas");
         }
         
         return UserDetailsImpl.build(usuario);

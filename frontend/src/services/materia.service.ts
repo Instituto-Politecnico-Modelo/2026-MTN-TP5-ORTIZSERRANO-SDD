@@ -11,9 +11,8 @@ export interface MateriaDisponible {
   codigo: string;
   nombre: string;
   descripcion?: string;
-  creditos?: number;
   anio?: number;
-  cuatrimestre?: number;
+  carrera?: string | null;    // null = transversal a todas las carreras
   docenteNombre?: string;
   docenteApellido?: string;
   docenteEmail?: string;
@@ -52,9 +51,10 @@ export interface InscripcionRequest {
 
 class MateriaService {
 
-  async listarMaterias(): Promise<MateriaDisponible[]> {
+  async listarMaterias(carrera?: string): Promise<MateriaDisponible[]> {
     try {
-      const res = await api.get<MateriaDisponible[]>(`${BASE_URL}/materias`);
+      const params = carrera ? { params: { carrera } } : {};
+      const res = await api.get<MateriaDisponible[]>(`${BASE_URL}/materias`, params);
       return res.data;
     } catch (err) { throw parseError(err, 'generic'); }
   }

@@ -20,6 +20,7 @@ export interface LoginResponse {
   token: string;
   type: string;
   role: Role;
+  carrera?: string;  // solo para ESTUDIANTE
 }
 
 export interface User {

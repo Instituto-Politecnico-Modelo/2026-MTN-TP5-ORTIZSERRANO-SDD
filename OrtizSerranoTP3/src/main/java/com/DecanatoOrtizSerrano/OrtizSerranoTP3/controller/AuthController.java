@@ -12,13 +12,16 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.UserService;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.RateLimiterService;
 import jakarta.validation.Valid;
+import jakarta.servlet.http.HttpServletRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.media.Content;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -59,6 +62,9 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RateLimiterService rateLimiterService;
+
     /**
      * POST /api/auth/login - Autenticar usuario y devolver JWT
      */
@@ -68,12 +74,34 @@ public class AuthController {
         @ApiResponse(responseCode = "401", description = "Credenciales inválidas", content = @Content)
     })
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        
-        Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
-        );
-        
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest,
+                                               HttpServletRequest httpRequest) {
+
+        // ── Protección brute-force: bloquear IP con demasiados intentos fallidos ─
+        String clientIp = obtenerIp(httpRequest);
+        if (rateLimiterService.loginBloqueado(clientIp)) {
+            long espera = rateLimiterService.segundosHastaDesbloqueoLogin(clientIp);
+            return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+                .header("Retry-After", String.valueOf(espera))
+                .body(new MessageResponse(
+                    "Demasiados intentos fallidos. Intentá de nuevo en " + espera + " segundos.", espera));
+        }
+
+        Authentication authentication;
+        try {
+            authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
+            );
+        } catch (org.springframework.security.core.AuthenticationException ex) {
+            // Registrar el fallo para el rate limiter por IP
+            rateLimiterService.registrarLoginFallido(clientIp);
+            // Respuesta genérica — no revelar si el email existe o no
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(new MessageResponse("Credenciales inválidas"));
+        }
+
+        // Login exitoso → limpiar contadores de fallo
+        rateLimiterService.resetLoginFallidos(clientIp);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
@@ -87,15 +115,20 @@ public class AuthController {
 
         // Generar JWT con el rol incluido en el payload
         String jwt = jwtUtil.generateJwtTokenWithRole(authentication, role);
-        
-        return ResponseEntity.ok(new JwtResponse(
+
+        JwtResponse jwtResponse = new JwtResponse(
             jwt,
             userDetails.getId(),
             userDetails.getEmail(),
             usuario.getNombre(),
             usuario.getApellido(),
             role
-        ));
+        );
+        // Incluir carrera en la respuesta si el usuario es estudiante
+        if (usuario instanceof com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Estudiante estudiante) {
+            jwtResponse.setCarrera(estudiante.getCarrera());
+        }
+        return ResponseEntity.ok(jwtResponse);
     }
     
     /**
@@ -108,8 +141,15 @@ public class AuthController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         Usuario usuario = usuarioRepository.findByEmail(userDetails.getEmail())
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        
-        return ResponseEntity.ok(usuario);
+
+        // Devolver solo los campos necesarios — nunca la entidad JPA completa.
+        Map<String, Object> perfil = new LinkedHashMap<>();
+        perfil.put("idUsuario",  usuario.getIdUsuario());
+        perfil.put("nombre",     usuario.getNombre());
+        perfil.put("apellido",   usuario.getApellido());
+        perfil.put("email",      usuario.getEmail());
+        perfil.put("rol",        userDetails.getAuthorities().iterator().next().getAuthority());
+        return ResponseEntity.ok(perfil);
     }
     
     /**
@@ -197,17 +237,27 @@ public class AuthController {
     // ─── JWT INSPECT ──────────────────────────────────────────────────────────
 
     /**
-     * GET /api/auth/jwt/inspect?token=xxx
-     * Verifica un JWT y devuelve sus claims + perfil del usuario si es válido.
-     * Requiere autenticación (solo el propio usuario autenticado puede inspeccionar su token).
+     * GET /api/auth/jwt/inspect
+     * Verifica el JWT del usuario autenticado y devuelve sus claims.
+     * El token se lee del header Authorization (Bearer ...) que ya viaja en la petición.
+     *
+     * ⚠️  No acepta token por query param: los query params se registran en logs
+     * de servidores, proxies y en el historial del navegador — riesgo de exposición.
      */
     @Operation(
         summary = "Inspeccionar JWT",
-        description = "Verifica un token JWT y devuelve sus claims (subject, emisión, expiración) " +
-                      "junto con el perfil del usuario. Requiere autenticación."
+        description = "Verifica el token JWT del usuario autenticado y devuelve sus claims " +
+                      "(subject, emisión, expiración). El token se lee del header `Authorization: Bearer ...`."
     )
     @GetMapping("/jwt/inspect")
-    public ResponseEntity<?> inspectJwt(@RequestParam("token") String token) {
+    public ResponseEntity<?> inspectJwt(HttpServletRequest request) {
+        // Leer el token del header Authorization — nunca de query param
+        String headerAuth = request.getHeader("Authorization");
+        if (headerAuth == null || !headerAuth.startsWith("Bearer ")) {
+            return ResponseEntity.badRequest()
+                .body(new MessageResponse("Header Authorization: Bearer <token> requerido"));
+        }
+        String token = headerAuth.substring(7);
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("token_recibido", token.length() > 20
                 ? token.substring(0, 20) + "..." : token);
@@ -301,5 +351,20 @@ public class AuthController {
         return ResponseEntity.ok(new MessageResponse(
             "Si el email está registrado, el administrador recibirá una notificación " +
             "y se le asignará una nueva contraseña temporal a la brevedad."));
+    }
+
+    // ─── Helpers ──────────────────────────────────────────────────────────────
+
+    /**
+     * Obtiene la IP real del cliente, considerando proxies y load balancers.
+     * Si viene el header X-Forwarded-For, se usa la primera IP (origen real).
+     */
+    private static String obtenerIp(HttpServletRequest request) {
+        String forwarded = request.getHeader("X-Forwarded-For");
+        if (forwarded != null && !forwarded.isBlank()) {
+            // El header puede contener múltiples IPs separadas por coma: "clientIP, proxy1, proxy2"
+            return forwarded.split(",")[0].trim();
+        }
+        return request.getRemoteAddr();
     }
 }

@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const API = 'http://localhost:8080/api';
 
-type Vista = 'inicio' | 'usuarios' | 'estudiantes' | 'docentes' | 'materias' | 'auditoria';
+type Vista = 'inicio' | 'usuarios' | 'materias' | 'auditoria';
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 const headers = () => authService.getAuthHeader();
@@ -22,6 +22,18 @@ const inputStyle: React.CSSProperties = {
   width: '100%', padding: '9px 12px', border: '1px solid #e2e8f0',
   borderRadius: '8px', fontSize: '14px', boxSizing: 'border-box',
 };
+
+const CARRERAS_MATERIA = [
+  'Ingeniería en Sistemas de Información',
+  'Ingeniería Industrial',
+  'Ingeniería Civil',
+  'Ingeniería Eléctrica',
+  'Ingeniería Mecánica',
+  'Ingeniería Electrónica',
+  'Tecnicatura en Programación',
+  'Licenciatura en Administración',
+  'Contador Público Nacional',
+];
 
 const labelStyle: React.CSSProperties = {
   display: 'block', marginBottom: '4px', fontSize: '13px',
@@ -72,56 +84,9 @@ const DashboardAdmin: React.FC = () => {
   const ok  = (m: string) => { setMsg(m); setErr(''); setTimeout(() => setMsg(''), 3500); };
   const bad = (m: string) => { setErr(m); setMsg(''); setTimeout(() => setErr(''), 4000); };
 
-  // ── Estudiantes ───────────────────────────────────────────────────────────
-  const [estudiantes, setEstudiantes]       = useState<any[]>([]);
-  const [nuevoEst, setNuevoEst]             = useState({ nombre:'', apellido:'', email:'', password:'', legajo:'', carrera:'', anioIngreso:'' });
-
-  const cargarEstudiantes = async () => {
-    try { const r = await axios.get(`${API}/admin/estudiantes`, { headers: headers() }); setEstudiantes(r.data); }
-    catch { bad('No se pudieron cargar los estudiantes'); }
-  };
-
-  const crearEstudiante = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const payload = { ...nuevoEst, anioIngreso: nuevoEst.anioIngreso ? +nuevoEst.anioIngreso : null, rol: 'ESTUDIANTE' };
-      const authHeaders = { ...headers(), 'Content-Type': 'application/json' };
-      await axios.post(`${API}/admin/usuarios`, payload, { headers: authHeaders });
-      ok('Estudiante creado exitosamente');
-      setNuevoEst({ nombre:'', apellido:'', email:'', password:'', legajo:'', carrera:'', anioIngreso:'' });
-      cargarEstudiantes();
-    } catch (ex: any) {
-      console.error('Error al crear estudiante:', ex.response?.status, ex.response?.data);
-      bad(ex.response?.data?.message || ex.response?.data?.error || `Error ${ex.response?.status || ''}: ${ex.message}`);
-    }
-  };
-
-  // ── Docentes ──────────────────────────────────────────────────────────────
-  const [docentes, setDocentes]   = useState<any[]>([]);
-  const [nuevoDoc, setNuevoDoc]   = useState({ nombre:'', apellido:'', email:'', password:'', titulo:'', especialidad:'', departamento:'' });
-
-  const cargarDocentes = async () => {
-    try { const r = await axios.get(`${API}/admin/usuarios/docentes`, { headers: headers() }); setDocentes(r.data); }
-    catch { bad('No se pudieron cargar los docentes'); }
-  };
-
-  const crearDocente = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const authHeaders = { ...headers(), 'Content-Type': 'application/json' };
-      await axios.post(`${API}/admin/usuarios`, { ...nuevoDoc, rol: 'DOCENTE' }, { headers: authHeaders });
-      ok('Docente creado exitosamente');
-      setNuevoDoc({ nombre:'', apellido:'', email:'', password:'', titulo:'', especialidad:'', departamento:'' });
-      cargarDocentes();
-    } catch (ex: any) {
-      console.error('Error al crear docente:', ex.response?.status, ex.response?.data);
-      bad(ex.response?.data?.message || ex.response?.data?.error || `Error ${ex.response?.status || ''}: ${ex.message}`);
-    }
-  };
-
   // ── Materias ──────────────────────────────────────────────────────────────
   const [materias, setMaterias]     = useState<any[]>([]);
-  const [nuevaMat, setNuevaMat]     = useState({ codigo:'', nombre:'', descripcion:'', creditos:'', anio:'', cuatrimestre:'', cuposMaximos:'' });
+  const [nuevaMat, setNuevaMat]     = useState({ codigo:'', nombre:'', descripcion:'', anio:'', cuposMaximos:'', carrera:'' });
 
   const cargarMaterias = async () => {
     try { const r = await axios.get(`${API}/admin/materias`, { headers: headers() }); setMaterias(r.data); }
@@ -134,13 +99,12 @@ const DashboardAdmin: React.FC = () => {
       const authHeaders = { ...headers(), 'Content-Type': 'application/json' };
       await axios.post(`${API}/admin/materias`, {
         ...nuevaMat,
-        creditos: nuevaMat.creditos ? +nuevaMat.creditos : null,
         anio: nuevaMat.anio ? +nuevaMat.anio : null,
-        cuatrimestre: nuevaMat.cuatrimestre ? +nuevaMat.cuatrimestre : null,
         cuposMaximos: nuevaMat.cuposMaximos ? +nuevaMat.cuposMaximos : null,
+        carrera: nuevaMat.carrera || null,
       }, { headers: authHeaders });
       ok('Materia creada exitosamente');
-      setNuevaMat({ codigo:'', nombre:'', descripcion:'', creditos:'', anio:'', cuatrimestre:'', cuposMaximos:'' });
+      setNuevaMat({ codigo:'', nombre:'', descripcion:'', anio:'', cuposMaximos:'', carrera:'' });
       cargarMaterias();
     } catch (ex: any) {
       console.error('Error al crear materia:', ex.response?.status, ex.response?.data);
@@ -150,9 +114,7 @@ const DashboardAdmin: React.FC = () => {
 
   // cargar datos al cambiar de vista
   useEffect(() => {
-    if (vista === 'estudiantes') cargarEstudiantes();
-    if (vista === 'docentes')    cargarDocentes();
-    if (vista === 'materias')    cargarMaterias();
+    if (vista === 'materias') cargarMaterias();
   }, [vista]);
 
   // ─── Render ───────────────────────────────────────────────────────────────
@@ -178,8 +140,6 @@ const DashboardAdmin: React.FC = () => {
         <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
           <Tab icon="🏠" label="Inicio"       active={vista==='inicio'}      onClick={() => setVista('inicio')} />
           <Tab icon="👥" label="Usuarios"     active={vista==='usuarios'}    onClick={() => setVista('usuarios')} />
-          <Tab icon="🎓" label="Estudiantes"  active={vista==='estudiantes'} onClick={() => setVista('estudiantes')} />
-          <Tab icon="👨‍🏫" label="Docentes"     active={vista==='docentes'}    onClick={() => setVista('docentes')} />
           <Tab icon="📚" label="Materias"     active={vista==='materias'}    onClick={() => setVista('materias')} />
           <Tab icon="🔗" label="Auditoría"    active={vista==='auditoria'}   onClick={() => setVista('auditoria')} />
         </div>
@@ -209,8 +169,6 @@ const DashboardAdmin: React.FC = () => {
             <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))', gap:'16px' }}>
               {[
                 { icon:'👥', title:'Usuarios',     color:'#ede9fe', desc:'Gestionar roles y accesos',      action: () => setVista('usuarios'),    btnColor:'#7c3aed' },
-                { icon:'🎓', title:'Estudiantes',  color:'#dbeafe', desc:'Crear y gestionar alumnos',     action: () => setVista('estudiantes'), btnColor:'#1d4ed8' },
-                { icon:'👨‍🏫', title:'Docentes',    color:'#fce7f3', desc:'Crear y gestionar docentes',    action: () => setVista('docentes'),    btnColor:'#be185d' },
                 { icon:'📚', title:'Materias',     color:'#fef9c3', desc:'Gestionar catálogo de materias', action: () => setVista('materias'),    btnColor:'#854d0e' },
                 { icon:'🔗', title:'Auditoría',    color:'#f3e8ff', desc:'Log encadenado SHA-256',         action: () => setVista('auditoria'),   btnColor:'#7c3aed' },
               ].map(card => (
@@ -228,97 +186,29 @@ const DashboardAdmin: React.FC = () => {
         {/* ── USUARIOS ── */}
         {vista === 'usuarios' && <GestionUsuarios />}
 
-        {/* ── ESTUDIANTES ── */}
-        {vista === 'estudiantes' && (
-          <>
-            <SectionCard title="➕ Nuevo Estudiante">
-              <form onSubmit={crearEstudiante}>
-                <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))', gap:'14px' }}>
-                  {[['Nombre','nombre','text'],['Apellido','apellido','text'],['Email','email','email'],['Contraseña','password','password'],['Legajo','legajo','text'],['Carrera','carrera','text'],['Año de ingreso','anioIngreso','number']].map(([lbl,key,type]) => (
-                    <div key={key}>
-                      <label style={labelStyle}>{lbl}</label>
-                      <input type={type} style={inputStyle} value={(nuevoEst as any)[key]} onChange={e => setNuevoEst(p => ({...p,[key]:e.target.value}))} required={key!=='anioIngreso'} />
-                    </div>
-                  ))}
-                </div>
-                <button type="submit" style={{ ...btnStyle('#1d4ed8'), marginTop:'16px' }}>Crear Estudiante</button>
-              </form>
-            </SectionCard>
-
-            <SectionCard title={`📋 Estudiantes registrados (${estudiantes.length})`}>
-              {estudiantes.length === 0 ? <p style={{ color:'#94a3b8' }}>No hay estudiantes registrados</p> : (
-                <div style={{ overflowX:'auto' }}>
-                  <table style={{ width:'100%', borderCollapse:'collapse', fontSize:'14px' }}>
-                    <thead><tr style={{ background:'#f8fafc' }}>{['Legajo','Nombre','Apellido','Email','Carrera','Activo'].map(h => <th key={h} style={{ padding:'10px 12px', textAlign:'left', color:'#64748b', fontWeight:600, borderBottom:'1px solid #e2e8f0' }}>{h}</th>)}</tr></thead>
-                    <tbody>{estudiantes.map((e: any) => (
-                      <tr key={e.idUsuario} style={{ borderBottom:'1px solid #f1f5f9' }}>
-                        <td style={{ padding:'10px 12px' }}>{e.legajo}</td>
-                        <td style={{ padding:'10px 12px' }}>{e.nombre}</td>
-                        <td style={{ padding:'10px 12px' }}>{e.apellido}</td>
-                        <td style={{ padding:'10px 12px' }}>{e.email}</td>
-                        <td style={{ padding:'10px 12px' }}>{e.carrera}</td>
-                        <td style={{ padding:'10px 12px' }}><span style={{ padding:'3px 10px', borderRadius:'20px', fontSize:'12px', fontWeight:600, background: e.activo ? '#dcfce7':'#fee2e2', color: e.activo ? '#15803d':'#b91c1c' }}>{e.activo ? 'Activo':'Inactivo'}</span></td>
-                      </tr>
-                    ))}</tbody>
-                  </table>
-                </div>
-              )}
-            </SectionCard>
-          </>
-        )}
-
-        {/* ── DOCENTES ── */}
-        {vista === 'docentes' && (
-          <>
-            <SectionCard title="➕ Nuevo Docente">
-              <form onSubmit={crearDocente}>
-                <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))', gap:'14px' }}>
-                  {[['Nombre','nombre','text'],['Apellido','apellido','text'],['Email','email','email'],['Contraseña','password','password'],['Título','titulo','text'],['Especialidad','especialidad','text'],['Departamento','departamento','text']].map(([lbl,key,type]) => (
-                    <div key={key}>
-                      <label style={labelStyle}>{lbl}</label>
-                      <input type={type} style={inputStyle} value={(nuevoDoc as any)[key]} onChange={e => setNuevoDoc(p => ({...p,[key]:e.target.value}))} required={['nombre','apellido','email','password'].includes(key)} />
-                    </div>
-                  ))}
-                </div>
-                <button type="submit" style={{ ...btnStyle('#be185d'), marginTop:'16px' }}>Crear Docente</button>
-              </form>
-            </SectionCard>
-
-            <SectionCard title={`📋 Docentes registrados (${docentes.length})`}>
-              {docentes.length === 0 ? <p style={{ color:'#94a3b8' }}>No hay docentes registrados</p> : (
-                <div style={{ overflowX:'auto' }}>
-                  <table style={{ width:'100%', borderCollapse:'collapse', fontSize:'14px' }}>
-                    <thead><tr style={{ background:'#f8fafc' }}>{['Nombre','Apellido','Email','Título','Especialidad','Departamento','Activo'].map(h => <th key={h} style={{ padding:'10px 12px', textAlign:'left', color:'#64748b', fontWeight:600, borderBottom:'1px solid #e2e8f0' }}>{h}</th>)}</tr></thead>
-                    <tbody>{docentes.map((d: any) => (
-                      <tr key={d.idUsuario} style={{ borderBottom:'1px solid #f1f5f9' }}>
-                        <td style={{ padding:'10px 12px' }}>{d.nombre}</td>
-                        <td style={{ padding:'10px 12px' }}>{d.apellido}</td>
-                        <td style={{ padding:'10px 12px' }}>{d.email}</td>
-                        <td style={{ padding:'10px 12px' }}>{d.titulo || '—'}</td>
-                        <td style={{ padding:'10px 12px' }}>{d.especialidad || '—'}</td>
-                        <td style={{ padding:'10px 12px' }}>{d.departamento || '—'}</td>
-                        <td style={{ padding:'10px 12px' }}><span style={{ padding:'3px 10px', borderRadius:'20px', fontSize:'12px', fontWeight:600, background: d.activo ? '#dcfce7':'#fee2e2', color: d.activo ? '#15803d':'#b91c1c' }}>{d.activo ? 'Activo':'Inactivo'}</span></td>
-                      </tr>
-                    ))}</tbody>
-                  </table>
-                </div>
-              )}
-            </SectionCard>
-          </>
-        )}
-
         {/* ── MATERIAS ── */}
         {vista === 'materias' && (
           <>
             <SectionCard title="➕ Nueva Materia">
               <form onSubmit={crearMateria}>
                 <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))', gap:'14px' }}>
-                  {[['Código','codigo','text'],['Nombre','nombre','text'],['Descripción','descripcion','text'],['Créditos','creditos','number'],['Año','anio','number'],['Cuatrimestre','cuatrimestre','number'],['Cupos máximos','cuposMaximos','number']].map(([lbl,key,type]) => (
+                  {[['Código','codigo','text'],['Nombre','nombre','text'],['Descripción','descripcion','text'],['Año','anio','number'],['Cupos máximos','cuposMaximos','number']].map(([lbl,key,type]) => (
                     <div key={key}>
                       <label style={labelStyle}>{lbl}</label>
                       <input type={type} style={inputStyle} value={(nuevaMat as any)[key]} onChange={e => setNuevaMat(p => ({...p,[key]:e.target.value}))} required={['codigo','nombre'].includes(key)} />
                     </div>
                   ))}
+                  <div>
+                    <label style={labelStyle}>Carrera (vacío = transversal)</label>
+                    <select
+                      style={inputStyle}
+                      value={nuevaMat.carrera}
+                      onChange={e => setNuevaMat(p => ({...p, carrera: e.target.value}))}
+                    >
+                      <option value="">— Transversal a todas —</option>
+                      {CARRERAS_MATERIA.map(c => <option key={c} value={c}>{c}</option>)}
+                    </select>
+                  </div>
                 </div>
                 <button type="submit" style={{ ...btnStyle('#854d0e'), marginTop:'16px' }}>Crear Materia</button>
               </form>
@@ -328,15 +218,14 @@ const DashboardAdmin: React.FC = () => {
               {materias.length === 0 ? <p style={{ color:'#94a3b8' }}>No hay materias registradas</p> : (
                 <div style={{ overflowX:'auto' }}>
                   <table style={{ width:'100%', borderCollapse:'collapse', fontSize:'14px' }}>
-                    <thead><tr style={{ background:'#f8fafc' }}>{['Código','Nombre','Créditos','Año','Cuatrimestre','Cupos','Docente'].map(h => <th key={h} style={{ padding:'10px 12px', textAlign:'left', color:'#64748b', fontWeight:600, borderBottom:'1px solid #e2e8f0' }}>{h}</th>)}</tr></thead>
+                    <thead><tr style={{ background:'#f8fafc' }}>{['Código','Nombre','Año','Cupos','Carrera','Docente'].map(h => <th key={h} style={{ padding:'10px 12px', textAlign:'left', color:'#64748b', fontWeight:600, borderBottom:'1px solid #e2e8f0' }}>{h}</th>)}</tr></thead>
                     <tbody>{materias.map((m: any) => (
                       <tr key={m.idMateria} style={{ borderBottom:'1px solid #f1f5f9' }}>
                         <td style={{ padding:'10px 12px', fontFamily:'monospace', fontWeight:600 }}>{m.codigo}</td>
                         <td style={{ padding:'10px 12px' }}>{m.nombre}</td>
-                        <td style={{ padding:'10px 12px' }}>{m.creditos || '—'}</td>
                         <td style={{ padding:'10px 12px' }}>{m.anio || '—'}</td>
-                        <td style={{ padding:'10px 12px' }}>{m.cuatrimestre || '—'}</td>
                         <td style={{ padding:'10px 12px' }}>{m.cuposMaximos ? `${m.cuposMaximos} cupos` : <span style={{ color:'#94a3b8' }}>Sin límite</span>}</td>
+                        <td style={{ padding:'10px 12px', fontSize:'12px' }}>{m.carrera || <span style={{ color:'#94a3b8' }}>Transversal</span>}</td>
                         <td style={{ padding:'10px 12px' }}>{m.docente ? `${m.docente.nombre} ${m.docente.apellido}` : <span style={{ color:'#94a3b8' }}>Sin asignar</span>}</td>
                       </tr>
                     ))}</tbody>

@@ -1,5 +1,7 @@
 package com.DecanatoOrtizSerrano.OrtizSerranoTP3.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -19,29 +21,25 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Manejo global de excepciones para devolver mensajes claros al frontend.
+ * Manejo global de excepciones para devolver mensajes claros al frontend
+ * sin filtrar información interna del servidor.
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /**
-     * Captura conflictos de versión (optimistic locking).
-     * Ocurre cuando dos transacciones leen la misma versión de Materia e intentan
-     * inscribir al mismo tiempo → la segunda falla aquí, evitando sobrecupos.
-     */
-    @ExceptionHandler({
-        jakarta.persistence.OptimisticLockException.class,
-        org.springframework.orm.ObjectOptimisticLockingFailureException.class
-    })
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+    /** Clave estándar del campo de mensaje en todas las respuestas de error. */
+    private static final String MSG_KEY = "message";
+
+    /** Conflictos de versión (optimistic locking). */
+    @ExceptionHandler({OptimisticLockException.class, ObjectOptimisticLockingFailureException.class})
     public ResponseEntity<Map<String, String>> handleOptimisticLock(Exception ex) {
         Map<String, String> body = new HashMap<>();
-        body.put("message", "Conflicto de concurrencia: otro usuario modificó el recurso al mismo tiempo. Intentá de nuevo.");
+        body.put(MSG_KEY, "Conflicto de concurrencia: otro usuario modificó el recurso al mismo tiempo. Intentá de nuevo.");
         return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
     }
 
-    /**
-     * Captura errores de validación @Valid y devuelve los mensajes de cada campo.
-     */
+    /** Errores de validación @Valid. */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidationErrors(MethodArgumentNotValidException ex) {
         String mensajes = ex.getBindingResult().getFieldErrors().stream()
@@ -49,75 +47,76 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.joining(", "));
 
         Map<String, Object> body = new HashMap<>();
-        body.put("message", mensajes);
+        body.put(MSG_KEY, mensajes);
         body.put("errores", ex.getBindingResult().getFieldErrors().stream()
                 .collect(Collectors.toMap(
                         FieldError::getField,
                         FieldError::getDefaultMessage,
                         (a, b) -> a
                 )));
-
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
-    /**
-     * Captura errores de autenticación (credenciales inválidas) → 401.
-     * Sin este handler, Spring Boot 4 los propaga como 500.
-     */
-    @ExceptionHandler({
-        org.springframework.security.authentication.BadCredentialsException.class,
-        org.springframework.security.core.AuthenticationException.class
-    })
+    /** Credenciales inválidas → 401. */
+    @ExceptionHandler({BadCredentialsException.class, AuthenticationException.class})
     public ResponseEntity<Map<String, String>> handleAuthenticationException(Exception ex) {
         Map<String, String> body = new HashMap<>();
-        body.put("message", "Credenciales inválidas");
+        body.put(MSG_KEY, "Credenciales inválidas");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);
     }
 
-    /**
-     * Captura violaciones de acceso por rol insuficiente (@PreAuthorize) → 403.
-     * Sin este handler, AccessDeniedException era capturada por handleGenericException → 500.
-     */
-    @ExceptionHandler(org.springframework.security.access.AccessDeniedException.class)
-    public ResponseEntity<Map<String, String>> handleAccessDenied(
-            org.springframework.security.access.AccessDeniedException ex) {
+    /** Acceso denegado por rol insuficiente → 403. */
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<Map<String, String>> handleAccessDenied(AccessDeniedException ex) {
         Map<String, String> body = new HashMap<>();
-        body.put("message", "Acceso denegado: no tenés permiso para realizar esta acción");
+        body.put(MSG_KEY, "Acceso denegado: no tenés permiso para realizar esta acción");
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(body);
     }
 
-    /**
-     * Captura JSON malformado / no legible en el body → 400.
-     * Sin este handler, Jackson lanzaba excepción capturada como 500.
-     */
-    @ExceptionHandler(org.springframework.http.converter.HttpMessageNotReadableException.class)
-    public ResponseEntity<Map<String, String>> handleMalformedJson(
-            org.springframework.http.converter.HttpMessageNotReadableException ex) {
+    /** JSON malformado → 400. */
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, String>> handleMalformedJson(HttpMessageNotReadableException ex) {
         Map<String, String> body = new HashMap<>();
-        body.put("message", "El body de la petición no es un JSON válido");
+        body.put(MSG_KEY, "El body de la petición no es un JSON válido");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    /** Tipo incorrecto en path variable → 400. */
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<Map<String, String>> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        Map<String, String> body = new HashMap<>();
+        Class<?> requiredType = ex.getRequiredType();
+        String typeName = requiredType != null ? requiredType.getSimpleName() : "correcto";
+        body.put(MSG_KEY, "Parámetro inválido: '" + ex.getName() + "' debe ser de tipo " + typeName);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
     /**
-     * Captura errores de conversión de tipo en path variables (ej: String donde se espera Long) → 400.
-     * Evita 500 ante inyecciones en parámetros de ruta.
+     * Captura cualquier RuntimeException no controlada.
+     *
+     * ⚠️  SEGURIDAD: se loguea el mensaje real del servidor (para debugging)
+     * pero al cliente se le devuelve un mensaje genérico para evitar filtrar
+     * información interna (nombres de tablas, emails de usuarios, stack traces, etc.).
      */
-    @ExceptionHandler(org.springframework.web.method.annotation.MethodArgumentTypeMismatchException.class)
-    public ResponseEntity<Map<String, String>> handleTypeMismatch(
-            org.springframework.web.method.annotation.MethodArgumentTypeMismatchException ex) {
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, String>> handleRuntimeException(RuntimeException ex) {
+        // Log interno con el mensaje real (visible solo en logs del servidor)
+        log.error("[GlobalExceptionHandler] RuntimeException no controlada: {}", ex.getMessage());
         Map<String, String> body = new HashMap<>();
-        body.put("message", "Parámetro inválido: '" + ex.getName() + "' debe ser de tipo "
-            + (ex.getRequiredType() != null ? ex.getRequiredType().getSimpleName() : "correcto"));
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+        // Al cliente: mensaje genérico que no filtra información interna
+        body.put(MSG_KEY, "Se produjo un error al procesar la solicitud. Intentá de nuevo.");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
     }
 
     /**
-     * Captura cualquier excepción no controlada.
+     * Captura cualquier otra excepción no controlada.
+     * Mismo principio: loguear internamente, responder genéricamente al cliente.
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleGenericException(Exception ex) {
+        log.error("[GlobalExceptionHandler] Excepción no controlada: {}", ex.getMessage(), ex);
         Map<String, String> body = new HashMap<>();
-        body.put("message", "Error interno: " + ex.getMessage());
+        body.put(MSG_KEY, "Error interno del servidor. Por favor, intentá más tarde.");
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
     }
 }

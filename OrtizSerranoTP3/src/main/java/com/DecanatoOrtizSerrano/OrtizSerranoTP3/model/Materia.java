@@ -35,6 +35,9 @@ public class Materia {
 
     @Column(name = "cupos_maximos")
     private Integer cuposMaximos;
+
+    @Column(name = "carrera", length = 150)
+    private String carrera;
     
     @Column(name = "codigo", nullable = false, unique = true, length = 20)
     private String codigo;
@@ -155,6 +158,14 @@ public class Materia {
 
     public void setCuposMaximos(Integer cuposMaximos) {
         this.cuposMaximos = cuposMaximos;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
     }
 
     /** Cupos ocupados = inscripciones activas (no canceladas) */

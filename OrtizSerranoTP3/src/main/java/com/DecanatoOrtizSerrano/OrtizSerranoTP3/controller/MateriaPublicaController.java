@@ -51,9 +51,8 @@ public class MateriaPublicaController {
         dto.setCodigo(m.getCodigo());
         dto.setNombre(m.getNombre());
         dto.setDescripcion(m.getDescripcion());
-        dto.setCreditos(m.getCreditos());
         dto.setAnio(m.getAnio());
-        dto.setCuatrimestre(m.getCuatrimestre());
+        dto.setCarrera(m.getCarrera());
         dto.setCuposMaximos(m.getCuposMaximos());
         dto.setCuposOcupados((int) ocupados);
 
@@ -92,9 +91,12 @@ public class MateriaPublicaController {
                       "cuposMaximos, cuposOcupados, cuposDisponibles, hayLugar y porcentajeOcupacion."
     )
     @GetMapping
-    public ResponseEntity<List<MateriaDisponibleResponse>> listar() {
-        List<MateriaDisponibleResponse> result = materiaRepository.findAll()
-                .stream()
+    public ResponseEntity<List<MateriaDisponibleResponse>> listar(
+            @RequestParam(required = false) String carrera) {
+        List<Materia> fuente = (carrera != null && !carrera.isBlank())
+                ? materiaRepository.findByCarreraOrTransversales(carrera)
+                : materiaRepository.findAll();
+        List<MateriaDisponibleResponse> result = fuente.stream()
                 .map(this::toDto)
                 .toList();
         return ResponseEntity.ok(result);
@@ -111,9 +113,12 @@ public class MateriaPublicaController {
                       "(cupos no agotados). Las materias sin límite siempre aparecen."
     )
     @GetMapping("/disponibles")
-    public ResponseEntity<List<MateriaDisponibleResponse>> listarDisponibles() {
-        List<MateriaDisponibleResponse> result = materiaRepository.findAll()
-                .stream()
+    public ResponseEntity<List<MateriaDisponibleResponse>> listarDisponibles(
+            @RequestParam(required = false) String carrera) {
+        List<Materia> fuente = (carrera != null && !carrera.isBlank())
+                ? materiaRepository.findByCarreraOrTransversales(carrera)
+                : materiaRepository.findAll();
+        List<MateriaDisponibleResponse> result = fuente.stream()
                 .map(this::toDto)
                 .filter(MateriaDisponibleResponse::isHayLugar)
                 .toList();

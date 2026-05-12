@@ -24,6 +24,11 @@ public class MateriaService {
         return materiaRepository.findAll();
     }
 
+    public List<Materia> listarPorCarrera(String carrera) {
+        if (carrera == null || carrera.isBlank()) return materiaRepository.findAll();
+        return materiaRepository.findByCarreraOrTransversales(carrera);
+    }
+
     public Materia obtenerPorId(Long id) {
         return materiaRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Materia no encontrada con id: " + id));
@@ -64,10 +69,9 @@ public class MateriaService {
         materia.setCodigo(request.getCodigo());
         materia.setNombre(request.getNombre());
         materia.setDescripcion(request.getDescripcion());
-        materia.setCreditos(request.getCreditos());
         materia.setAnio(request.getAnio());
-        materia.setCuatrimestre(request.getCuatrimestre());
-        materia.setCuposMaximos(request.getCuposMaximos()); // ← optimistic locking
+        materia.setCuposMaximos(request.getCuposMaximos());
+        materia.setCarrera(request.getCarrera());
 
         if (request.getIdDocente() != null) {
             Docente docente = docenteRepository.findById(request.getIdDocente())

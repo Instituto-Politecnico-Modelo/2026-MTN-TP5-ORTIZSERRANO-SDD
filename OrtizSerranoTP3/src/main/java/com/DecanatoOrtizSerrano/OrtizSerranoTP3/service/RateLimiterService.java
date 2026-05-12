@@ -106,10 +106,70 @@ public class RateLimiterService {
         long ahora = Instant.now().getEpochSecond();
         int antes = buckets.size();
         buckets.entrySet().removeIf(e -> (ahora - e.getValue()[1]) >= ventanaSegundos * 2L);
+        loginBuckets.entrySet().removeIf(e -> (ahora - e.getValue()[1]) >= LOGIN_WINDOW_SECONDS * 2L);
         int eliminados = antes - buckets.size();
         if (eliminados > 0) {
             log.debug("RateLimit: limpieza de {} entradas inactivas", eliminados);
         }
+    }
+
+    // ─── Rate Limit para Login (por IP) ──────────────────────────────────────
+
+    /** Máximo de intentos de login fallidos por IP antes de bloquear. */
+    private static final int    LOGIN_MAX_INTENTOS    = 10;
+    /** Ventana de bloqueo tras superar el límite (segundos). */
+    private static final long   LOGIN_WINDOW_SECONDS  = 300; // 5 minutos
+
+    /** Registro por IP: [intentos fallidos, timestamp inicio ventana] */
+    private final ConcurrentHashMap<String, long[]> loginBuckets = new ConcurrentHashMap<>();
+
+    /**
+     * Registra un intento de login fallido para la IP dada.
+     * Llama a este método desde AuthController cuando la autenticación falla.
+     */
+    public void registrarLoginFallido(String ip) {
+        long ahora = Instant.now().getEpochSecond();
+        loginBuckets.compute(ip, (k, existing) -> {
+            if (existing == null || (ahora - existing[1]) >= LOGIN_WINDOW_SECONDS) {
+                return new long[]{ 1, ahora };
+            }
+            existing[0]++;
+            return existing;
+        });
+        log.warn("RateLimit login: IP {} → intento fallido #{}", ip,
+                loginBuckets.getOrDefault(ip, new long[]{0})[0]);
+    }
+
+    /**
+     * Resetea el contador de intentos fallidos para una IP (tras login exitoso).
+     */
+    public void resetLoginFallidos(String ip) {
+        loginBuckets.remove(ip);
+    }
+
+    /**
+     * Indica si la IP está bloqueada por exceso de intentos fallidos.
+     * @return true si debe bloquearse (HTTP 429)
+     */
+    public boolean loginBloqueado(String ip) {
+        long[] bucket = loginBuckets.get(ip);
+        if (bucket == null) return false;
+        long ahora = Instant.now().getEpochSecond();
+        if ((ahora - bucket[1]) >= LOGIN_WINDOW_SECONDS) {
+            loginBuckets.remove(ip);
+            return false;
+        }
+        return bucket[0] >= LOGIN_MAX_INTENTOS;
+    }
+
+    /**
+     * Segundos que faltan para que se desbloquee la IP.
+     */
+    public long segundosHastaDesbloqueoLogin(String ip) {
+        long[] bucket = loginBuckets.get(ip);
+        if (bucket == null) return 0;
+        long ahora = Instant.now().getEpochSecond();
+        return Math.max(0, LOGIN_WINDOW_SECONDS - (ahora - bucket[1]));
     }
 
     public int getMaxIntentos()       { return maxIntentos; }

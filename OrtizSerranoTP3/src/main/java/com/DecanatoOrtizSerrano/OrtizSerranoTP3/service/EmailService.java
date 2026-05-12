@@ -57,8 +57,9 @@ public class EmailService {
     public void enviarBienvenida(String destinatario, String nombre, String apellido,
                                   String rol, String passwordPlana) {
         if (mailSender == null) {
-            log.warn("[EmailService] JavaMailSender no configurado — email de bienvenida NO enviado a {}", destinatario);
-            log.info("[EmailService] Credenciales generadas → usuario: {} | contraseña: {}", destinatario, passwordPlana);
+            log.warn("[EmailService] JavaMailSender no configurado — email de bienvenida NO enviado a {}. " +
+                     "Configurar spring.mail.* para habilitar el envío real.", destinatario);
+            // ⚠️  NO loguear la contraseña en texto plano: es un riesgo de seguridad.
             return;
         }
 

@@ -13,12 +13,12 @@ public class MateriaRequest {
     private String nombre;
 
     private String descripcion;
-    private Integer creditos;
     private Integer anio;
-    private Integer cuatrimestre;
     private Long idDocente;
     /** Límite de inscripciones simultáneas. null = sin límite. */
     private Integer cuposMaximos;
+    /** Carrera a la que pertenece la materia. null = transversal a todas. */
+    private String carrera;
 
     public String getCodigo() { return codigo; }
     public void setCodigo(String codigo) { this.codigo = codigo; }
@@ -29,18 +29,15 @@ public class MateriaRequest {
     public String getDescripcion() { return descripcion; }
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public Integer getCreditos() { return creditos; }
-    public void setCreditos(Integer creditos) { this.creditos = creditos; }
-
     public Integer getAnio() { return anio; }
     public void setAnio(Integer anio) { this.anio = anio; }
-
-    public Integer getCuatrimestre() { return cuatrimestre; }
-    public void setCuatrimestre(Integer cuatrimestre) { this.cuatrimestre = cuatrimestre; }
 
     public Long getIdDocente() { return idDocente; }
     public void setIdDocente(Long idDocente) { this.idDocente = idDocente; }
 
     public Integer getCuposMaximos() { return cuposMaximos; }
     public void setCuposMaximos(Integer cuposMaximos) { this.cuposMaximos = cuposMaximos; }
+
+    public String getCarrera() { return carrera; }
+    public void setCarrera(String carrera) { this.carrera = carrera; }
 }

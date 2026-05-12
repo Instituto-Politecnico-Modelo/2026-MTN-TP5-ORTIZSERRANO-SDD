@@ -289,7 +289,7 @@ const GrillaNotas: React.FC = () => {
             <option value="">-- Seleccionar materia --</option>
             {materias.map(m => (
               <option key={m.idMateria} value={m.idMateria}>
-                [{m.codigo}] {m.nombre} — {m.anio}° año, Cuatrimestre {m.cuatrimestre}
+                [{m.codigo}] {m.nombre} — {m.anio}° año
               </option>
             ))}
           </select>
@@ -300,7 +300,7 @@ const GrillaNotas: React.FC = () => {
             marginLeft: 'auto', padding: '4px 14px', borderRadius: '20px',
             background: '#dbeafe', color: '#1d4ed8', fontSize: '12px', fontWeight: 600,
           }}>
-            {materiaSeleccionada.creditos} créditos
+            {materiaSeleccionada.nombre}
           </span>
         )}
       </div>

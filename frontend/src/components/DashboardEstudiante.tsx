@@ -4,6 +4,7 @@ import authService from '../services/auth.service';
 import ListaMaterias from './ListaMaterias';
 import MisInscripciones from './MisInscripciones';
 import Boletin from './Boletin';
+import AsteroidGame from './AsteroidGame';
 
 type Vista = 'inicio' | 'materias' | 'inscripciones' | 'boletin';
 
@@ -175,8 +176,11 @@ const DashboardEstudiante: React.FC = () => {
 
         {/* VISTA INSCRIPCIONES */}
         {vista === 'inscripciones' && (
-          <div style={{ background: 'white', borderRadius: '16px', padding: '28px', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}>
-            <MisInscripciones />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <AsteroidGame />
+            <div style={{ background: 'white', borderRadius: '16px', padding: '28px', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}>
+              <MisInscripciones />
+            </div>
           </div>
         )}
 

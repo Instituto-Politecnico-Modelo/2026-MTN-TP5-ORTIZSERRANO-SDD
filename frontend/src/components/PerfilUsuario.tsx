@@ -249,13 +249,6 @@ const PerfilUsuario: React.FC = () => {
                 }}>
                   {rolIcon} {rol}
                 </span>
-                <span style={{
-                  padding: '4px 14px', borderRadius: '20px', fontSize: '13px',
-                  background: user?.activo ? '#dcfce7' : '#fee2e2',
-                  color: user?.activo ? '#16a34a' : '#dc2626',
-                }}>
-                  {user?.activo ? '✔ Cuenta activa' : '✖ Cuenta inactiva'}
-                </span>
                 <span style={{ fontSize: '12px', color: '#94a3b8' }}>
                   ID #{user?.idUsuario}
                 </span>

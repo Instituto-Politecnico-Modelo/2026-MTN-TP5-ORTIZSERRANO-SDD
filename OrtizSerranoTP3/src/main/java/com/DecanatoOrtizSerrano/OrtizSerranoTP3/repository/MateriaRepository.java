@@ -7,12 +7,17 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface MateriaRepository extends JpaRepository<Materia, Long> {
     boolean existsByCodigo(String codigo);
     Optional<Materia> findByCodigo(String codigo);
+
+    /** Materias de una carrera específica O sin carrera asignada (transversales). */
+    @Query("SELECT m FROM Materia m WHERE m.carrera = :carrera OR m.carrera IS NULL")
+    List<Materia> findByCarreraOrTransversales(@Param("carrera") String carrera);
 
     /**
      * Carga la Materia con un bloqueo pesimista (SELECT ... FOR UPDATE).

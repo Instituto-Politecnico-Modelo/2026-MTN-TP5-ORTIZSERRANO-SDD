@@ -38,10 +38,10 @@ interface UsuarioRow {
   apellido: string;
   email: string;
   activo: boolean;
-  // rol se detecta por qué tabla hereda (el backend devuelve el tipo de clase)
   rol?: string;
   legajo?: string;
   carrera?: string;
+  anioIngreso?: number;
   titulo?: string;
   especialidad?: string;
   departamento?: string;
@@ -74,6 +74,69 @@ const ROL_BADGE: Record<string, { bg: string; color: string; label: string }> = 
   Docente:       { bg: '#dcfce7', color: '#16a34a', label: '👨‍🏫 Docente' },
   Estudiante:    { bg: '#dbeafe', color: '#1d4ed8', label: '🎓 Estudiante' },
 };
+
+// ─── Enums para desplegables ──────────────────────────────────────────────────
+
+const CARRERAS = [
+  'Ingeniería en Sistemas de Información',
+  'Ingeniería Industrial',
+  'Ingeniería Civil',
+  'Ingeniería Eléctrica',
+  'Ingeniería Mecánica',
+  'Ingeniería Electrónica',
+  'Tecnicatura en Programación',
+  'Licenciatura en Administración',
+  'Contador Público Nacional',
+];
+
+const TITULOS_DOCENTE = [
+  'Ing. en Sistemas de Información',
+  'Lic. en Sistemas',
+  'Mg. en Informática',
+  'Dr. en Ciencias de la Computación',
+  'Ing. Industrial',
+  'Lic. en Administración',
+  'Contador Público Nacional',
+  'Ing. Civil',
+  'Mg. en Administración',
+  'Profesor Universitario',
+];
+
+const ESPECIALIDADES_DOCENTE = [
+  'Bases de Datos',
+  'Programación',
+  'Redes y Comunicaciones',
+  'Sistemas Operativos',
+  'Inteligencia Artificial',
+  'Ingeniería de Software',
+  'Matemática',
+  'Física',
+  'Química',
+  'Administración',
+  'Contabilidad',
+  'Cálculo Numérico',
+];
+
+const DEPARTAMENTOS_DOCENTE = [
+  'Informática',
+  'Ingeniería',
+  'Matemática y Física',
+  'Administración',
+  'Ciencias Básicas',
+  'Electrónica',
+  'Construcciones',
+];
+
+const AREAS_ADMIN = [
+  'Decanato',
+  'Secretaría Académica',
+  'Bedelía',
+  'Sistemas',
+  'Recursos Humanos',
+  'Finanzas',
+  'Biblioteca',
+  'Coordinación de Carreras',
+];
 
 const inp: React.CSSProperties = {
   width: '100%', padding: '9px 12px', border: '1.5px solid #e2e8f0',
@@ -144,6 +207,12 @@ const GestionUsuarios: React.FC = () => {
   const [passNueva,  setPassNueva]      = useState('');
   const [savingPass, setSavingPass]     = useState(false);
 
+  // Estado para edición de datos específicos del rol
+  const EMPTY_EDIT = { nombre:'', apellido:'', email:'', legajo:'', carrera:'', anioIngreso:'', titulo:'', especialidad:'', departamento:'', area:'', nivelAcceso:'' };
+  const [editTarget, setEditTarget]     = useState<number | null>(null);
+  const [editForm,   setEditForm]       = useState(EMPTY_EDIT);
+  const [savingEdit, setSavingEdit]     = useState(false);
+
   // Estado para confirmación de eliminación
   const [deleteTarget, setDeleteTarget] = useState<number | null>(null);
 
@@ -197,10 +266,59 @@ const GestionUsuarios: React.FC = () => {
       toast.success('Contraseña actualizada correctamente');
       setPassTarget(null);
       setPassNueva('');
-    } catch (err) {
-      toast.error(err instanceof AppError ? err.message : 'Error al cambiar la contraseña');
+    } catch (err) {      toast.error(err instanceof AppError ? err.message : 'Error al cambiar la contraseña');
     } finally {
       setSavingPass(false);
+    }
+  };
+
+  const abrirEdicion = (u: UsuarioRow) => {
+    setEditTarget(editTarget === u.idUsuario ? null : u.idUsuario);
+    setEditForm({
+      nombre:       u.nombre       ?? '',
+      apellido:     u.apellido     ?? '',
+      email:        u.email        ?? '',
+      legajo:       u.legajo       ?? '',
+      carrera:      u.carrera      ?? '',
+      anioIngreso:  u.anioIngreso != null ? String(u.anioIngreso) : '',
+      titulo:       u.titulo       ?? '',
+      especialidad: u.especialidad ?? '',
+      departamento: u.departamento ?? '',
+      area:         u.area         ?? '',
+      nivelAcceso:  u.nivelAcceso  != null ? String(u.nivelAcceso) : '',
+    });
+  };
+
+  const guardarEdicion = async (u: UsuarioRow) => {
+    setSavingEdit(true);
+    try {
+      const payload: Record<string, unknown> = {
+        nombre:   editForm.nombre   || undefined,
+        apellido: editForm.apellido || undefined,
+        email:    editForm.email    || undefined,
+      };
+      if (u.rol === 'Estudiante') {
+        payload.legajo      = editForm.legajo      || undefined;
+        payload.carrera     = editForm.carrera     || undefined;
+        payload.anioIngreso = editForm.anioIngreso ? +editForm.anioIngreso : undefined;
+      }
+      if (u.rol === 'Docente') {
+        payload.titulo       = editForm.titulo       || undefined;
+        payload.especialidad = editForm.especialidad || undefined;
+        payload.departamento = editForm.departamento || undefined;
+      }
+      if (u.rol === 'Administrador') {
+        payload.area        = editForm.area        || undefined;
+        payload.nivelAcceso = editForm.nivelAcceso ? +editForm.nivelAcceso : undefined;
+      }
+      await adminService.editarDatosEspecificos(u.idUsuario, payload as any);
+      toast.success(`Datos de ${u.nombre} actualizados correctamente`);
+      setEditTarget(null);
+      cargarUsuarios();
+    } catch (err) {
+      toast.error(err instanceof AppError ? err.message : 'Error al guardar los cambios');
+    } finally {
+      setSavingEdit(false);
     }
   };
 
@@ -224,7 +342,7 @@ const GestionUsuarios: React.FC = () => {
   const EMPTY_FORM = {
     nombre:'', apellido:'', email:'', password:'',
     rol:'ESTUDIANTE',
-    legajo:'', carrera:'', anioIngreso:'',
+    carrera:'', anioIngreso:'',
     titulo:'', especialidad:'', departamento:'',
     area:'', nivelAcceso:'1',
   };
@@ -269,7 +387,6 @@ const GestionUsuarios: React.FC = () => {
         rol: form.rol,
       };
       if (form.rol === 'ESTUDIANTE') {
-        payload.legajo      = form.legajo      || undefined;
         payload.carrera     = form.carrera     || undefined;
         payload.anioIngreso = form.anioIngreso ? +form.anioIngreso : undefined;
         if (materiasSelec.length > 0) payload.materiasIds = materiasSelec;
@@ -462,11 +579,19 @@ const GestionUsuarios: React.FC = () => {
                               )}
                               {/* Cambiar contraseña */}
                               <button
-                                onClick={() => { setPassTarget(passTarget === u.idUsuario ? null : u.idUsuario); setPassNueva(''); }}
+                                onClick={() => { setPassTarget(passTarget === u.idUsuario ? null : u.idUsuario); setPassNueva(''); setEditTarget(null); }}
                                 style={btn('#0369a1', true)}
                                 title="Cambiar contraseña"
                               >
                                 🔑 Pass
+                              </button>
+                              {/* Editar datos específicos */}
+                              <button
+                                onClick={() => { abrirEdicion(u); setPassTarget(null); setDeleteTarget(null); }}
+                                style={btn('#16a34a', true)}
+                                title="Editar datos del usuario"
+                              >
+                                ✏️ Editar
                               </button>
                               {/* Eliminar */}
                               {!esYoMismo && (
@@ -505,6 +630,79 @@ const GestionUsuarios: React.FC = () => {
                                 <button onClick={() => { setPassTarget(null); setPassNueva(''); }} style={btn('#64748b', true)}>
                                   Cancelar
                                 </button>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+
+                        {/* Fila inline: editar datos específicos del usuario */}
+                        {editTarget === u.idUsuario && (
+                          <tr style={{ background:'#f0fdf4' }}>
+                            <td colSpan={7} style={{ padding:'14px 18px' }}>
+                              <div style={{ ...sectionTitle, fontSize:'13px', marginBottom:'12px', paddingBottom:'8px' }}>
+                                ✏️ Editar datos de {u.nombre} {u.apellido}
+                              </div>
+                              {/* Campos base */}
+                              <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(170px,1fr))', gap:'10px', marginBottom:'12px' }}>
+                                <div><label style={lbl}>Nombre</label><input style={inp} value={editForm.nombre} onChange={e => setEditForm(p=>({...p,nombre:e.target.value}))} /></div>
+                                <div><label style={lbl}>Apellido</label><input style={inp} value={editForm.apellido} onChange={e => setEditForm(p=>({...p,apellido:e.target.value}))} /></div>
+                                <div><label style={lbl}>Email</label><input style={inp} type="email" value={editForm.email} onChange={e => setEditForm(p=>({...p,email:e.target.value}))} /></div>
+                              </div>
+                              {/* Campos específicos por rol */}
+                              {u.rol === 'Estudiante' && (
+                                <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))', gap:'10px', marginBottom:'12px' }}>
+                                  <div><label style={lbl}>Legajo</label><input style={inp} value={editForm.legajo} onChange={e => setEditForm(p=>({...p,legajo:e.target.value}))} placeholder="Ej: LEG-001" /></div>
+                                  <div>
+                                    <label style={lbl}>Carrera</label>
+                                    <select style={inp} value={editForm.carrera} onChange={e => setEditForm(p=>({...p,carrera:e.target.value}))}>
+                                      <option value="">— Seleccionar —</option>
+                                      {CARRERAS.map(c => <option key={c} value={c}>{c}</option>)}
+                                    </select>
+                                  </div>
+                                  <div><label style={lbl}>Año ingreso</label><input style={inp} type="number" value={editForm.anioIngreso} onChange={e => setEditForm(p=>({...p,anioIngreso:e.target.value}))} min={2000} max={2099} /></div>
+                                </div>
+                              )}
+                              {u.rol === 'Docente' && (
+                                <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))', gap:'10px', marginBottom:'12px' }}>
+                                  <div>
+                                    <label style={lbl}>Título</label>
+                                    <select style={inp} value={editForm.titulo} onChange={e => setEditForm(p=>({...p,titulo:e.target.value}))}>
+                                      <option value="">— Seleccionar —</option>
+                                      {TITULOS_DOCENTE.map(t => <option key={t} value={t}>{t}</option>)}
+                                    </select>
+                                  </div>
+                                  <div>
+                                    <label style={lbl}>Especialidad</label>
+                                    <select style={inp} value={editForm.especialidad} onChange={e => setEditForm(p=>({...p,especialidad:e.target.value}))}>
+                                      <option value="">— Seleccionar —</option>
+                                      {ESPECIALIDADES_DOCENTE.map(e => <option key={e} value={e}>{e}</option>)}
+                                    </select>
+                                  </div>
+                                  <div>
+                                    <label style={lbl}>Departamento</label>
+                                    <select style={inp} value={editForm.departamento} onChange={e => setEditForm(p=>({...p,departamento:e.target.value}))}>
+                                      <option value="">— Seleccionar —</option>
+                                      {DEPARTAMENTOS_DOCENTE.map(d => <option key={d} value={d}>{d}</option>)}
+                                    </select>
+                                  </div>
+                                </div>
+                              )}
+                              {u.rol === 'Administrador' && (
+                                <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))', gap:'10px', marginBottom:'12px' }}>
+                                  <div>
+                                    <label style={lbl}>Área</label>
+                                    <select style={inp} value={editForm.area} onChange={e => setEditForm(p=>({...p,area:e.target.value}))}>
+                                      <option value="">— Seleccionar —</option>
+                                      {AREAS_ADMIN.map(a => <option key={a} value={a}>{a}</option>)}
+                                    </select>
+                                  </div>
+                                </div>
+                              )}
+                              <div style={{ display:'flex', gap:'8px' }}>
+                                <button onClick={() => guardarEdicion(u)} style={btn('#16a34a', true)} disabled={savingEdit}>
+                                  {savingEdit ? '⏳' : '💾 Guardar cambios'}
+                                </button>
+                                <button onClick={() => setEditTarget(null)} style={btn('#64748b', true)}>Cancelar</button>
                               </div>
                             </td>
                           </tr>
@@ -599,8 +797,13 @@ const GestionUsuarios: React.FC = () => {
               <div style={{ padding:'14px 16px', background:'#eff6ff', borderRadius:'10px', marginBottom:'16px' }}>
                 <p style={{ margin:'0 0 12px', fontSize:'13px', color:'#1d4ed8', fontWeight:600 }}>🎓 Datos del estudiante (opcionales)</p>
                 <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))', gap:'12px', marginBottom:'16px' }}>
-                  <div><label style={lbl}>Legajo</label><input style={inp} type="text" value={form.legajo} onChange={f('legajo')} placeholder="Ej: LEG-001" /></div>
-                  <div><label style={lbl}>Carrera</label><input style={inp} type="text" value={form.carrera} onChange={f('carrera')} placeholder="Ej: Informática" /></div>
+                  <div>
+                    <label style={lbl}>Carrera</label>
+                    <select style={inp} value={form.carrera} onChange={f('carrera')}>
+                      <option value="">— Seleccionar carrera —</option>
+                      {CARRERAS.map(c => <option key={c} value={c}>{c}</option>)}
+                    </select>
+                  </div>
                   <div><label style={lbl}>Año de ingreso</label><input style={inp} type="number" value={form.anioIngreso} onChange={f('anioIngreso')} placeholder="Ej: 2024" min={2000} max={2099} /></div>
                 </div>
 
@@ -712,9 +915,27 @@ const GestionUsuarios: React.FC = () => {
               <div style={{ padding:'14px 16px', background:'#f0fdf4', borderRadius:'10px', marginBottom:'16px' }}>
                 <p style={{ margin:'0 0 12px', fontSize:'13px', color:'#16a34a', fontWeight:600 }}>👨‍🏫 Datos del docente (opcionales)</p>
                 <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))', gap:'12px' }}>
-                  <div><label style={lbl}>Título</label><input style={inp} type="text" value={form.titulo} onChange={f('titulo')} placeholder="Ej: Lic. en Sistemas" /></div>
-                  <div><label style={lbl}>Especialidad</label><input style={inp} type="text" value={form.especialidad} onChange={f('especialidad')} placeholder="Ej: Bases de datos" /></div>
-                  <div><label style={lbl}>Departamento</label><input style={inp} type="text" value={form.departamento} onChange={f('departamento')} placeholder="Ej: Informática" /></div>
+                  <div>
+                    <label style={lbl}>Título</label>
+                    <select style={inp} value={form.titulo} onChange={f('titulo')}>
+                      <option value="">— Seleccionar título —</option>
+                      {TITULOS_DOCENTE.map(t => <option key={t} value={t}>{t}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={lbl}>Especialidad</label>
+                    <select style={inp} value={form.especialidad} onChange={f('especialidad')}>
+                      <option value="">— Seleccionar especialidad —</option>
+                      {ESPECIALIDADES_DOCENTE.map(e => <option key={e} value={e}>{e}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={lbl}>Departamento</label>
+                    <select style={inp} value={form.departamento} onChange={f('departamento')}>
+                      <option value="">— Seleccionar departamento —</option>
+                      {DEPARTAMENTOS_DOCENTE.map(d => <option key={d} value={d}>{d}</option>)}
+                    </select>
+                  </div>
                 </div>
               </div>
             )}
@@ -723,13 +944,11 @@ const GestionUsuarios: React.FC = () => {
               <div style={{ padding:'14px 16px', background:'#fffbeb', borderRadius:'10px', marginBottom:'16px' }}>
                 <p style={{ margin:'0 0 12px', fontSize:'13px', color:'#d97706', fontWeight:600 }}>🛡️ Datos del administrador (opcionales)</p>
                 <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))', gap:'12px' }}>
-                  <div><label style={lbl}>Área</label><input style={inp} type="text" value={form.area} onChange={f('area')} placeholder="Ej: Sistemas" /></div>
                   <div>
-                    <label style={lbl}>Nivel de acceso</label>
-                    <select style={inp} value={form.nivelAcceso} onChange={f('nivelAcceso')}>
-                      <option value="1">1 — Básico</option>
-                      <option value="2">2 — Intermedio</option>
-                      <option value="3">3 — Total</option>
+                    <label style={lbl}>Área</label>
+                    <select style={inp} value={form.area} onChange={f('area')}>
+                      <option value="">— Seleccionar área —</option>
+                      {AREAS_ADMIN.map(a => <option key={a} value={a}>{a}</option>)}
                     </select>
                   </div>
                 </div>

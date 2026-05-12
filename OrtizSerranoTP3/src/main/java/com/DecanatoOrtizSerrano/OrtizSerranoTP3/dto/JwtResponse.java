@@ -12,7 +12,8 @@ public class JwtResponse {
     private String nombre;
     private String apellido;
     private String role;
-    
+    private String carrera;   // solo para ESTUDIANTE, null para otros roles
+
     public JwtResponse(String accessToken, Long id, String email, String nombre, String apellido, String role) {
         this.token = accessToken;
         this.id = id;
@@ -76,5 +77,13 @@ public class JwtResponse {
     
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
     }
 }
