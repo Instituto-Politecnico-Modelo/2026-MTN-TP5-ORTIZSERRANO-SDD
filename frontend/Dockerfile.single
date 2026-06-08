@@ -1,0 +1,23 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# FRONTEND  ·  Single-stage
+# Imagen base: node:20 completo (~1 GB)
+# Build + servidor estático todo en una sola imagen
+# ─────────────────────────────────────────────────────────────────────────────
+FROM node:20
+
+WORKDIR /app
+
+# Instalamos dependencias primero (capa cacheada si no cambia package.json)
+COPY package.json package-lock.json* ./
+RUN npm install --legacy-peer-deps
+
+# Copiamos el resto del código y compilamos
+COPY . .
+RUN npm run build
+
+# Instalamos serve para levantar la SPA estática
+RUN npm install -g serve
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "build", "-l", "3000"]
