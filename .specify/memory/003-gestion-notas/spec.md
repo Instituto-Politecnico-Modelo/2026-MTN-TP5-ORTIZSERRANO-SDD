@@ -21,7 +21,7 @@
 > | C7 | **Roles** | `alumno`, `docente`, `admin` | `ESTUDIANTE`, `DOCENTE`, `ADMINISTRADOR` |
 > | C8 | **Historial docente** | No en spec | `GET /api/docente/estudiantes/{idEstudiante}/asistencias` → `[ Inscripcion ]` |
 > | C9 | **Acta global** | Concepto central del spec | **No existe en el frontend** — el `Boletin.tsx` y `GrillaNotas.tsx` consumen notas por inscripción; "acta" es un término de presentación, no un objeto de API |
-> | C10 | **Rectificación post-cierre** | Proceso dual de admin | **No implementado en v1** — `notaCerrada = true` bloquea edición. Proceso formal de rectificación diferido a v2 |
+> | C10 | **Rectificación post-cierre** | Proceso dual de admin | **v1**: un ADMINISTRADOR puede reabrir una nota cerrada mediante `PATCH /api/admin/inscripciones/{id}/reabrir`; el evento queda registrado en auditoría con `accion = 'NOTA_REABIERTA'`. **v2**: proceso formal con doble aprobación de admin (dos firmas distintas). |
 
 ## Constitution Check
 
@@ -97,32 +97,39 @@ a CERRADA; un intento posterior de `PUT .../notas/...` retorna HTTP 409.
 
 ---
 
-### User Story 3 — Proceso formal de rectificación post-cierre (Priority: P2)
+### User Story 3 — Admin reabre una nota cerrada (versión simplificada v1) (Priority: P2)
 
-Una nota en acta cerrada solo puede modificarse mediante un proceso formal que requiere
-aprobación de dos administradores, quedando registrado en auditoría.
+Un administrador puede reabrir una nota cerrada (`notaCerrada = true → false`) mediante
+un endpoint dedicado. El evento queda registrado en auditoría. Una vez reabierta, el
+docente puede cargar la corrección y volver a cerrar.
 
-**Why this priority**: La constitución lo exige explícitamente. Las notas cerradas
-deben ser inmutables salvo error verificado con aprobación dual.
+**Why this priority**: La constitución exige que las notas cerradas puedan corregirse
+mediante proceso formal. En v1 se implementa con aprobación de un único admin + auditoría.
+La doble firma queda documentada para v2.
 
-**Independent Test**: Un `PATCH /api/actas/{id}/rectificacion` sin doble aprobación
-de admin retorna HTTP 403.
+**Independent Test**: `PATCH /api/admin/inscripciones/{id}/reabrir` con JWT de
+ADMINISTRADOR setea `notaCerrada = false` y genera registro de auditoría con
+`accion = 'NOTA_REABIERTA'`.
 
 **Acceptance Scenarios**:
 
-1. **Given** un acta CERRADA con un error de nota, **When** un admin inicia
-   `POST /api/actas/{id}/rectificacion` con `{ "alumnoId", "nuevaNota", "motivo" }`,
-   **Then** el sistema crea una solicitud de rectificación en estado PENDIENTE y notifica
-   al segundo admin.
+1. **Given** una inscripción con `notaCerrada = true` y un admin autenticado, **When**
+   llama a `PATCH /api/admin/inscripciones/{id}/reabrir` con `{ "motivo": "..." }`,
+   **Then** el sistema setea `notaCerrada = false`, retorna HTTP 200 + `Inscripcion`
+   actualizada, y registra en auditoría: `accion = 'NOTA_REABIERTA'`, email del admin,
+   IP, timestamp, motivo en `descripcion`.
 
-2. **Given** una rectificación PENDIENTE, **When** un segundo admin distinto llama a
-   `PATCH /api/actas/rectificacion/{rectId}/aprobar`, **Then** la nota se actualiza,
-   el acta queda en estado RECTIFICADA, y se registra en auditoría: ambos admins,
-   motivo, nota original, nota rectificada, timestamps.
+2. **Given** una inscripción ya abierta (`notaCerrada = false`), **When** un admin
+   llama a `PATCH .../reabrir`, **Then** el sistema retorna HTTP 409 "La nota ya está
+   abierta".
 
-3. **Given** el mismo admin intentando aprobar su propia solicitud de rectificación,
-   **When** llama a `PATCH .../aprobar`, **Then** el sistema retorna HTTP 403
-   "No puede aprobar su propia solicitud de rectificación."
+3. **Given** un JWT con rol `DOCENTE` o `ESTUDIANTE`, **When** llama a
+   `PATCH .../reabrir`, **Then** el sistema retorna HTTP 403.
+
+> **v2 — Proceso de doble aprobación**: cuando esté implementado, el flujo será
+> `POST /api/admin/inscripciones/{id}/solicitar-reapertura` (admin 1) →
+> `PATCH /api/admin/reaperturas/{id}/aprobar` (admin 2, distinto al solicitante).
+> Hasta entonces, la versión simplificada de v1 aplica.
 
 ---
 
@@ -159,9 +166,10 @@ sus notas agrupadas por materia y período.
 - ¿Qué pasa si la BD cae durante el cierre de acta (transacción a medias)?
   → La transacción es atómica en Hibernate. El estado CERRADA solo se persiste si
   todo el UPDATE + INSERT de auditoría completa exitosamente.
-- ¿Qué pasa con materias con escala 0–10 vs. 0–100?
-  → La entidad `Materia` tiene `escalaMaxima` (default: 10). La validación de rango
-  usa ese valor.
+- ¿Qué pasa si se envía `asistencias` fuera del rango [0–100]?
+  → HTTP 400 con mensaje de validación "asistencias debe ser un porcentaje entre 0 y 100". ✅ confirmado
+- ¿Qué pasa con notas fuera de rango [0–10]?
+  → HTTP 400 con detalle de validación por campo.
 
 ---
 
@@ -180,8 +188,11 @@ sus notas agrupadas por materia y período.
   docente puede modificar notas. Solo el proceso de rectificación (FR-006) aplica.
 - **FR-005**: El sistema DEBE advertir (HTTP 422 + confirmación) si se intenta cerrar
   un acta con alumnos inscriptos sin nota cargada.
-- **FR-006**: El sistema DEBE implementar el proceso de rectificación de doble
-  aprobación de admin para notas en actas cerradas.
+- **FR-006**: El sistema DEBE implementar `PATCH /api/admin/inscripciones/{id}/reabrir`
+  que permita a un ADMINISTRADOR revertir `notaCerrada = true → false` con un motivo
+  obligatorio, registrando el evento en auditoría con `accion = 'NOTA_REABIERTA'`. — **v1**
+- **FR-006-v2**: *(diferido a v2)* Proceso de doble aprobación: admin 1 solicita reapertura,
+  admin 2 distinto aprueba. Hasta entonces, la firma única de v1 aplica.
 - **FR-007**: El sistema DEBE permitir al alumno consultar sus notas
   (`GET /api/alumnos/mias/notas`) con agrupación por materia y período.
 - **FR-008**: Un docente DEBE poder ver la grilla de notas de sus materias
@@ -197,11 +208,13 @@ sus notas agrupadas por materia y período.
 | `GET` | `/api/docente/materias/{idMateria}/inscripciones` | `DOCENTE` (su materia), `ADMINISTRADOR` | → 200 `[ Inscripcion ]` |
 | `PUT` | `/api/docente/inscripciones/{idInscripcion}/nota` | `DOCENTE` (su materia) | `{ notaParcial1?, notaParcial2?, notaFinal?, asistencias? }` → 200 `Inscripcion` / 409 si notaCerrada |
 | `PATCH` | `/api/docente/inscripciones/{idInscripcion}/cerrar` | `DOCENTE` (su materia) | → 200 `Inscripcion` con `notaCerrada: true` |
+| `PATCH` | `/api/admin/inscripciones/{idInscripcion}/reabrir` | `ADMINISTRADOR` | `{ "motivo": string }` → 200 `Inscripcion` con `notaCerrada: false` / 409 si ya abierta *(v1 — firma única; v2 tendrá doble aprobación)* |
 | `GET` | `/api/docente/estudiantes/{idEstudiante}/asistencias` | `DOCENTE` | → 200 `[ Inscripcion ]` |
 | `GET` | `/api/inscripciones/mis-notas` | `ESTUDIANTE` | → 200 `[ Inscripcion ]` (con notas del ESTUDIANTE autenticado) |
 
-> **Diferido a v2**: Proceso formal de rectificación de notas cerradas (doble aprobación
-> de administrador). En v1, `notaCerrada = true` es inmutable a nivel de API.
+> **v2**: El endpoint `PATCH /api/admin/inscripciones/{id}/reabrir` se reemplazará
+> por un proceso de doble aprobación (`POST .../solicitar-reapertura` + `PATCH .../aprobar`).
+> En v1 la firma única es suficiente dado el modelo de autoridad central de la institución.
 
 ### Key Entities *(corregidos en clarification — modelo por-inscripción)*
 
@@ -245,5 +258,8 @@ sus notas agrupadas por materia y período.
   inscripciones de una materia) se puede implementar desde el frontend iterando sobre
   cada inscripción o mediante un endpoint batch a confirmar con backend.
 - Las notas válidas son decimales: `notaParcial1`, `notaParcial2`, `notaFinal` en
-  rango [0, 10]; `asistencias` es entero (porcentaje o cantidad — a confirmar con backend).
-- El proceso de rectificación dual de admin está diferido a v2.
+  rango [0, 10]; `asistencias` es un **porcentaje entero [0–100]** ✅ confirmado
+  (ej: `85` = 85% de asistencia). El backend valida que el valor esté en ese rango.
+- El proceso de reapertura de nota cerrada en v1 requiere firma de **un único
+  ADMINISTRADOR** con motivo obligatorio. En v2 se implementará doble aprobación
+  (dos admins distintos). Ambas versiones registran el evento en auditoría.

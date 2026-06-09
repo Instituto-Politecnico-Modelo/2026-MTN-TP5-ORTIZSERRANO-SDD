@@ -39,7 +39,10 @@
 
 ## Backend — Endpoints de consulta (`/api/admin/auditoria`)
 
-- [ ] CHK016 `GET /api/admin/auditoria` retorna `[ RegistroAuditoria ]` con todos los campos: `idRegistro, entidad, idEntidad, accion, idUsuario, emailUsuario, descripcion, ipOrigen, timestampEvento, hashAnterior, hashActual`
+- [ ] CHK016 `GET /api/admin/auditoria?page=0&size=50` retorna objeto Spring Page: `{ content: [ RegistroAuditoria ], totalElements, totalPages, number }` — **paginación obligatoria en v1**
+- [ ] CHK016b El backend rechaza requests sin `page`/`size` retornando página 0 con size default (50), o exige los parámetros explícitamente — comportamiento documentado en el backend
+- [ ] CHK016c El parámetro `size` tiene un máximo de 100; si se envía `size=101` el backend retorna HTTP 400 o lo limita a 100
+- [ ] CHK016d `VistaAuditoria.tsx` consume la respuesta paginada (`content`, `totalElements`, `totalPages`) y muestra controles de navegación entre páginas
 - [ ] CHK017 `GET /api/admin/auditoria/entidad/{entidad}` filtra correctamente por el campo `entidad` (ej: `NOTA`, `INSCRIPCION`, `USUARIO`)
 - [ ] CHK018 `GET /api/admin/auditoria/entidad/{entidad}/{id}` retorna todos los registros de esa entidad específica, ordenados por `timestamp_evento ASC`
 - [ ] CHK019 `GET /api/admin/auditoria/usuario/{idUsuario}` retorna todos los registros generados por ese usuario
@@ -87,7 +90,7 @@
 - [ ] CHK046 Test de seguridad: `GET /api/admin/auditoria` con JWT de ESTUDIANTE → HTTP 403
 - [ ] CHK047 Test de seguridad: `GET /api/admin/auditoria` con JWT de DOCENTE → HTTP 403
 - [ ] CHK048 Test de seguridad: `GET /api/admin/auditoria` sin JWT → HTTP 401
-- [ ] CHK049 Test de performance: `GET /api/admin/auditoria` con dataset de 10.000 registros responde en ≤ 500ms (**requerimiento de la constitución — obligatorio antes de deployment a producción**)
+- [ ] CHK049 Test de performance: `GET /api/admin/auditoria?page=0&size=50` con 10.000 registros en DB responde en ≤ 500ms retornando exactamente 50 registros + `totalElements = 10000` (**requerimiento constitución — obligatorio antes de producción**)
 - [ ] CHK050 Test de performance: `GET /api/admin/auditoria/verificar` sobre 10.000 registros completa en ≤ 30 segundos
 
 ---

@@ -23,7 +23,7 @@
 > | C6 | **Cancelar inscripcion** | `DELETE /api/inscripciones/{id}` | `PATCH /api/inscripciones/{id}/cancelar` |
 > | C7 | **Lista inscriptos docente** | `GET /api/materias/{id}/inscriptos` | `GET /api/docente/materias/{id}/inscripciones` |
 > | C8 | **SalaDeEspera** | Muestra posición en cola numérica | Se activa ante HTTP 429 (rate limit) o 503 (servidor saturado); polling a `GET /api/health`; muestra countdown y permite reintentar |
-> | C9 | **DELETE cola** | `DELETE /api/inscripciones/cola/{posicion}` | **Sin equivalente expuesto** — cancelación de cola se hace via `PATCH /api/inscripciones/{id}/cancelar` cambiando estado a CANCELADO |
+> | C9 | **DELETE cola** | `DELETE /api/inscripciones/cola/{posicion}` | **Decisión 2026-06-09**: endpoint dedicado `DELETE /api/inscripciones/{id}/cola` — semánticamente distinto de cancelar una inscripción CONFIRMADA. El backend valida que el estado sea ENCOLADO antes de procesar. |
 > | C10 | **Mis notas (adicional)** | No estaba en spec | `GET /api/inscripciones/mis-notas` ya existe en frontend |
 > | C11 | **Materia: campo carrera** | `carrera` obligatorio | `carrera?: string \| null` — null = transversal a todas las carreras |
 > | C12 | **Estado inscripcion** | CONFIRMADO / ENCOLADO / CANCELADO | Alineado; `ENCOLADO` = lista de espera (HTTP 202 al inscribirse) |
@@ -199,7 +199,12 @@ retorna la lista paginada de alumnos inscriptos y la cola de espera.
 - **FR-005**: El sistema DEBE permitir al alumno consultar sus inscripciones activas
   y estados mediante `GET /api/inscripciones/mias`.
 - **FR-006**: El sistema DEBE permitir al alumno cancelar una inscripción CONFIRMADA
-  dentro del período activo, liberando el cupo al siguiente en cola.
+  dentro del período activo mediante `PATCH /api/inscripciones/{id}/cancelar`,
+  liberando el cupo al siguiente en cola.
+- **FR-006b**: El sistema DEBE permitir al alumno salir voluntariamente de la cola
+  mediante `DELETE /api/inscripciones/{id}/cola`. Este endpoint DEBE validar que la
+  inscripción esté en estado ENCOLADO; si está CONFIRMADA, retorna HTTP 409. Al salir
+  de la cola, la posición se libera pero no se avanza ningún cupo real.
 - **FR-007**: El sistema DEBE promover automáticamente al primer alumno de la cola
   cuando un cupo queda disponible (por cancelación o ampliación de cupos).
 - **FR-008**: El sistema DEBE rechazar (HTTP 409) una inscripción duplicada del mismo
@@ -222,7 +227,8 @@ retorna la lista paginada de alumnos inscriptos y la cola de espera.
 | `POST` | `/api/inscripciones` | `ESTUDIANTE` | body: `{ "idMateria": number }` → 201 (CONFIRMADO) / 202 (ENCOLADO) / 403 / 404 / 409 |
 | `GET` | `/api/inscripciones/mis-inscripciones` | `ESTUDIANTE` | → 200 `[ Inscripcion ]` |
 | `GET` | `/api/inscripciones/mis-notas` | `ESTUDIANTE` | → 200 `[ Inscripcion ]` (con notaParcial1, notaParcial2, notaFinal) |
-| `PATCH` | `/api/inscripciones/{id}/cancelar` | `ESTUDIANTE` | → 200 `Inscripcion` con estado CANCELADO / 403 / 404 |
+| `PATCH` | `/api/inscripciones/{id}/cancelar` | `ESTUDIANTE` | → 200 `Inscripcion` con estado CANCELADO (solo para inscripciones CONFIRMADAS) / 403 / 404 |
+| `DELETE` | `/api/inscripciones/{id}/cola` | `ESTUDIANTE` | → 204 cuando el alumno sale voluntariamente de la cola (solo para inscripciones ENCOLADAS) / 409 si no está ENCOLADA / 403 / 404 |
 | `GET` | `/api/inscripciones/{id}/estado` | `ESTUDIANTE` | → 200 `{ status, position?, estimated_wait_seconds? }` |
 | `GET` | `/api/docente/materias/{id}/inscripciones` | `DOCENTE`, `ADMINISTRADOR` | → 200 `[ Inscripcion ]` |
 | `GET` | `/api/materias` | Público / cualquier rol | → 200 `[ MateriaDisponible ]` |

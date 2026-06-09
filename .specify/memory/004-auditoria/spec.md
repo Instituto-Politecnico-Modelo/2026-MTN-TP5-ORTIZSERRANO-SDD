@@ -6,7 +6,11 @@
 
 **Status**: Clarified
 
-**Input**: User description: "Log de auditoría inmutable con hash encadenado"
+**Input**: User description- **FR-004**: El endpoint `GET /api/admin/auditoria` DEBE requerir JWT con rol
+  `ADMINISTRADOR` y soportar paginación obligatoria con parámetros `page` (base 0) y
+  `size` (máx. 100, default 50). La respuesta es un objeto de Spring Page:
+  `{ content: [], totalElements, totalPages, number }`. No se permite retornar todos
+  los registros sin paginación — **en alcance v1**.Log de auditoría inmutable con hash encadenado"
 
 ## Clarification Notes *(added 2026-06-09 — reconciliado con código existente)*
 
@@ -195,12 +199,12 @@ conocimientos técnicos.
 
 | Método | Path | Rol JWT requerido | Respuesta |
 |---|---|---|---|
-| `GET` | `/api/admin/auditoria` | `ADMINISTRADOR` | 200 `[ RegistroAuditoria ]` (todos) |
-| `GET` | `/api/admin/auditoria/entidad/{entidad}` | `ADMINISTRADOR` | 200 `[ RegistroAuditoria ]` filtrado por tipo de entidad (ej: `NOTA`, `INSCRIPCION`, `USUARIO`) |
-| `GET` | `/api/admin/auditoria/entidad/{entidad}/{id}` | `ADMINISTRADOR` | 200 `[ RegistroAuditoria ]` para entidad específica (ej: historial de la NOTA con id=42) |
-| `GET` | `/api/admin/auditoria/usuario/{idUsuario}` | `ADMINISTRADOR` | 200 `[ RegistroAuditoria ]` por usuario |
-| `GET` | `/api/admin/auditoria/accion/{accion}` | `ADMINISTRADOR` | 200 `[ RegistroAuditoria ]` por tipo de acción (ej: `UPDATE`, `DELETE`, `LOGIN_FALLIDO`) |
-| `GET` | `/api/admin/auditoria/verificar` | `ADMINISTRADOR` | 200 `{ integra, totalRegistros, errores: string[], mensaje }` |
+| `GET` | `/api/admin/auditoria` | `ADMINISTRADOR` | `?page=0&size=50` (máx. 100) → 200 `{ content: [ RegistroAuditoria ], totalElements, totalPages, number }` |
+| `GET` | `/api/admin/auditoria/entidad/{entidad}` | `ADMINISTRADOR` | `?page=0&size=50` → 200 paginado |
+| `GET` | `/api/admin/auditoria/entidad/{entidad}/{id}` | `ADMINISTRADOR` | `?page=0&size=50` → 200 paginado, ordenado por `timestamp_evento ASC` |
+| `GET` | `/api/admin/auditoria/usuario/{idUsuario}` | `ADMINISTRADOR` | `?page=0&size=50` → 200 paginado |
+| `GET` | `/api/admin/auditoria/accion/{accion}` | `ADMINISTRADOR` | `?page=0&size=50` → 200 paginado |
+| `GET` | `/api/admin/auditoria/verificar` | `ADMINISTRADOR` | → 200 `{ integra, totalRegistros, errores: string[], mensaje }` |
 
 ### Key Entities *(corregidos en clarification — tabla unificada)*
 
@@ -245,8 +249,10 @@ CREATE TABLE auditoria (
 
 ### Measurable Outcomes
 
-- **SC-001**: El endpoint `GET /api/auditoria` con 10.000 registros responde en ≤ 500ms
-  con paginación de 100 registros (verificado con dataset de prueba antes de producción).
+- **SC-001**: `GET /api/admin/auditoria?page=0&size=50` con 10.000 registros totales
+  en DB responde en ≤ 500ms retornando exactamente 50 registros + metadatos de
+  paginación (`totalElements = 10000`, `totalPages = 200`) — verificado antes de
+  deployment a producción.
 - **SC-002**: La verificación de integridad de la cadena de hashes sobre 10.000 registros
   completa en ≤ 30 segundos.
 - **SC-003**: 0 notas persistidas sin su registro de auditoría correspondiente —
@@ -271,6 +277,6 @@ CREATE TABLE auditoria (
   El `GENESIS_HASH` es `SHA-256("GENESIS-AUDITORIA-INSTITUCIONAL")` para el primer registro.
 - El campo `descripcion` contiene texto libre con el detalle del cambio (por ejemplo:
   `"Nota parcial 1 modificada: 7.0 → 8.5 para inscripcion #42"`).
-- **Paginación**: El frontend actual carga todos los registros con
-  `GET /api/admin/auditoria` sin paginación. Si el volumen crece, agregar parámetros
-  `page/size` es una mejora de performance futura, no un bloqueador de v1.
+- **Paginación**: El backend implementa paginación obligatoria con `?page=&size=` (máx.
+  100 registros por página) — **en alcance v1**. El frontend actualiza `VistaAuditoria.tsx`
+  para consumir resultados paginados. No se permite cargar todos los registros de una sola vez.

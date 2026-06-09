@@ -14,16 +14,16 @@
 > |---|---|---|---|
 > | C1 | **Roles del sistema** | `alumno`, `docente`, `admin` | `ESTUDIANTE`, `DOCENTE`, `ADMINISTRADOR` (enum `Role` en `auth.types.ts`) |
 > | C2 | **LoginResponse** | `{ token, refreshToken, rol, nombre }` | `{ id, email, nombre, apellido, token, type, role, carrera? }` |
-> | C3 | **Claim JWT** | Genérico | Claim `rol` en el payload del JWT (Spring: `JwtUtil.java`) |
-> | C4 | **refreshToken** | Implementado como feature P2 | **Fuera de alcance v1** — `LoginResponse` no incluye `refreshToken`; no existe endpoint `/api/auth/refresh` en el frontend actual |
-> | C5 | **Logout** | Server-side blocklist en Redis | **Client-side únicamente** — `localStorage.removeItem('authUser')`. No existe endpoint `/api/auth/logout` en el servicio actual |
+> | C3 | **Claim JWT** | Genérico | Claim `rol` en el payload del JWT (Spring: `JwtUtil.java`). Access token TTL: **1 hora** ✅ confirmado. RefreshToken TTL: **7 días**. |
+> | C4 | **refreshToken** | Implementado como feature P2 | **En alcance v1** — `LoginResponse` debe incluir `refreshToken`; se implementa `POST /api/auth/refresh` en backend y frontend. |
+> | C5 | **Logout** | Server-side blocklist en Redis | **En alcance v1** — se implementa `POST /api/auth/logout` con blocklist en Redis; el frontend pasa de client-side a server-side logout. |
 > | C6 | **Rutas por rol** | No especificadas | `/admin/dashboard` (ADMINISTRADOR), `/docente/dashboard` (DOCENTE), `/estudiante/dashboard` (ESTUDIANTE) |
 > | C7 | **HTTP 401** | Redirige a login | `axiosInstance` intercepta → limpia localStorage + redirige a `/login?motivo=expired` |
 > | C8 | **HTTP 403** | Mensaje de error | `axiosInstance` intercepta → redirige a `/unauthorized` |
 > | C9 | **HTTP 429 / 503** | No en spec | `axiosInstance` intercepta → redirige a `/sala-de-espera` |
 > | C10 | **Endpoint adicional** | No en spec | `GET /api/auth/jwt/inspect?token=` — inspección y debugging de JWT (requiere auth) |
 > | C11 | **Password reset** | No en spec | `POST /api/auth/olvide-password` (público); admin atiende en `GET/POST /api/admin/usuarios/solicitudes-reset` |
-> | C12 | **Bloqueo de cuenta** | 5 intentos → 15 min | A CONFIRMAR con backend — el frontend no muestra lógica de bloqueo actualmente; agregar si el backend lo implementa |
+> | C12 | **Bloqueo de cuenta** | 5 intentos → 15 min | **En alcance v1** — el backend implementa bloqueo temporal. Valores exactos (cantidad de intentos y duración) a confirmar en el código de `JwtUtil.java` / `AuthService.java`. Registrar evento `CUENTA_BLOQUEADA` en auditoría. |
 
 ## Constitution Check
 
@@ -198,33 +198,34 @@ el token queda en la blocklist.
   tokens con un refreshToken válido (TTL del refreshToken: 7 días).
 - **FR-007**: El sistema DEBE implementar `POST /api/auth/logout` con blocklist en
   Redis (TTL del token en blocklist = tiempo restante del access token).
-- **FR-008**: El sistema DEBE bloquear temporalmente (15 minutos) una cuenta después
-  de 5 intentos de login fallidos consecutivos, registrando el evento en auditoría.
+- **FR-008**: El sistema DEBE bloquear temporalmente una cuenta después de N intentos
+  de login fallidos consecutivos — **en alcance v1**. Los valores exactos de N (intentos)
+  y duración del bloqueo se confirman en el backend (`AuthService.java`). El bloqueo
+  retorna HTTP 423 con mensaje descriptivo. El evento DEBE registrarse en la tabla de
+  auditoría con `accion = 'CUENTA_BLOQUEADA'`.
 - **FR-009**: Los intentos de autenticación fallidos DEBEN registrarse en la tabla de
   auditoría con timestamp, IP y user-agent.
 - **FR-010**: El acceso de terceros (padres, tutores) sin consentimiento explícito del
   alumno está PROHIBIDO — no existe endpoint para delegación de acceso en esta versión.
 
-### Contratos de API *(corregidos en clarification)*
+### Contratos de API *(actualizados — refreshToken y logout en alcance v1)*
 
 | Método | Path | Auth | Body / Respuesta |
 |---|---|---|---|
-| `POST` | `/api/auth/login` | Público | `{ email, password }` → 200 `{ id, email, nombre, apellido, token, type, role, carrera? }` |
+| `POST` | `/api/auth/login` | Público | `{ email, password }` → 200 `{ id, email, nombre, apellido, token, refreshToken, type, role, carrera? }` |
+| `POST` | `/api/auth/refresh` | Público | `{ refreshToken }` → 200 `{ token }` / 401 si expirado o inválido |
+| `POST` | `/api/auth/logout` | JWT (cualquier rol) | → 204; agrega el JWT a blocklist en Redis con TTL = tiempo restante del token |
 | `GET` | `/api/auth/me` | JWT (cualquier rol) | → 200 `{ idUsuario, nombre, apellido, email, activo }` |
 | `GET` | `/api/auth/jwt/inspect` | JWT (cualquier rol) | `?token=<jwt>` → 200 `JwtInspectResponse` (debugging) |
 | `POST` | `/api/auth/olvide-password` | Público | `{ email }` → 200 `{ message }` |
 | `GET` | `/api/admin/usuarios/solicitudes-reset` | `ADMINISTRADOR` | → 200 `[ SolicitudReset ]` |
 | `POST` | `/api/admin/usuarios/solicitudes-reset/{id}/atender` | `ADMINISTRADOR` | `{ nuevaPassword }` → 200 `{ message }` |
 
-> **Fuera de alcance v1**: `/api/auth/refresh` (refreshToken) y `/api/auth/logout`
-> (server-side blocklist) no están implementados. Logout se realiza eliminando
-> `authUser` de localStorage. Estos endpoints quedan diferidos para v2.
-
 ### Key Entities *(corregidos en clarification)*
 
 - **LoginResponse** (TypeScript: `auth.types.ts`): `id: number`, `email: string`,
-  `nombre: string`, `apellido: string`, `token: string`, `type: string`,
-  `role: Role`, `carrera?: string` (solo para ESTUDIANTE).
+  `nombre: string`, `apellido: string`, `token: string`, `refreshToken: string`,
+  `type: string`, `role: Role`, `carrera?: string` (solo para ESTUDIANTE).
 - **User** (de `GET /api/auth/me`): `idUsuario: number`, `nombre: string`,
   `apellido: string`, `email: string`, `activo: boolean`.
 - **Role** (enum): `ESTUDIANTE` | `DOCENTE` | `ADMINISTRADOR` | `USUARIO`.
@@ -260,9 +261,10 @@ el token queda en la blocklist.
 - Los roles son mutuamente excluyentes: un usuario tiene exactamente un rol.
 - La clave de firma JWT se almacena como variable de entorno (`JWT_SECRET`);
   en entornos de desarrollo se usa un valor de ejemplo definido en `.env.example`.
-- **refreshToken y server-side logout no están implementados en v1**; el token
-  expira naturalmente (TTL definido en backend). La renovación se implementará en v2.
+- **refreshToken y server-side logout están en alcance v1**. El `refreshToken`
+  se incluye en la `LoginResponse`. El logout elimina `authUser` de localStorage
+  **y** llama a `POST /api/auth/logout` para invalidar el token en la blocklist Redis.
 - El `axiosInstance` maneja automáticamente 401, 403, 429, 503 redirigiendo a las
-  rutas correspondientes — el backend no necesita implementar lógica extra para estas
-  redirecciones del lado cliente.
+  rutas correspondientes — el frontend debe actualizar `authService.logout()` para
+  llamar al endpoint server-side antes de limpiar localStorage.
 - El `AuthContext.tsx` provee el estado de autenticación a toda la app React.

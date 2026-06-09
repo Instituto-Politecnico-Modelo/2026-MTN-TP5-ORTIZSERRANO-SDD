@@ -19,7 +19,8 @@
 
 ## Backend — Endpoint `/api/auth/login`
 
-- [ ] CHK006 `POST /api/auth/login` retorna HTTP 200 con `{ id, email, nombre, apellido, token, type, role, carrera? }` ante credenciales válidas
+- [ ] CHK006 `POST /api/auth/login` retorna HTTP 200 con `{ id, email, nombre, apellido, token, refreshToken, type, role, carrera? }` ante credenciales válidas
+- [ ] CHK006b El campo `refreshToken` está presente en la respuesta de login (TTL 7 días)
 - [ ] CHK007 El campo `role` retornado es uno de: `ESTUDIANTE`, `DOCENTE`, `ADMINISTRADOR`
 - [ ] CHK008 El JWT retornado contiene el claim `rol` en su payload (verificable decodificando Base64url)
 - [ ] CHK009 El JWT retornado contiene `sub` (userId), `iat` (issued at) y `exp` (expiration) en su payload
@@ -47,6 +48,11 @@
 ## Backend — Endpoints adicionales
 
 - [ ] CHK023 `GET /api/auth/me` retorna `{ idUsuario, nombre, apellido, email, activo }` del usuario del JWT
+- [ ] CHK023b `POST /api/auth/refresh` acepta `{ refreshToken }` y retorna HTTP 200 `{ token }` con nuevo access token — **en alcance v1**
+- [ ] CHK023c `POST /api/auth/refresh` retorna HTTP 401 si el refreshToken está expirado o inválido
+- [ ] CHK023d `POST /api/auth/logout` agrega el access token a la blocklist Redis con TTL = tiempo restante del token, retorna HTTP 204 — **en alcance v1**
+- [ ] CHK023e El frontend (`authService.logout()`) llama a `POST /api/auth/logout` **antes** de eliminar `authUser` de localStorage
+- [ ] CHK023f Un access token que estuvo en la blocklist retorna HTTP 401 aunque no haya expirado (el filtro JWT consulta la blocklist en Redis)
 - [ ] CHK024 `GET /api/auth/jwt/inspect?token=<jwt>` retorna información de debugging del token (solo accesible con JWT válido)
 - [ ] CHK025 `POST /api/auth/olvide-password` acepta `{ email }` y registra una `SolicitudReset` en estado PENDIENTE
 - [ ] CHK026 `GET /api/admin/usuarios/solicitudes-reset` retorna lista de `SolicitudReset` (solo ADMINISTRADOR)
@@ -57,6 +63,9 @@
 ## Backend — Auditoría de eventos de seguridad
 
 - [ ] CHK028 Un login fallido genera un registro en tabla `auditoria` con `entidad = 'USUARIO'`, `accion = 'LOGIN_FALLIDO'`, `emailUsuario`, `ipOrigen`, `timestampEvento`
+- [ ] CHK028b Después de N intentos fallidos consecutivos (valor a confirmar en `AuthService.java`), `POST /api/auth/login` retorna HTTP 423 con mensaje de bloqueo temporal — **en alcance v1, obligatorio**
+- [ ] CHK028c El evento de bloqueo genera un registro en tabla `auditoria` con `accion = 'CUENTA_BLOQUEADA'`
+- [ ] CHK028d La cuenta se desbloquea automáticamente tras la duración configurada (valor a confirmar en backend); el contador de intentos se resetea al primer login exitoso
 - [ ] CHK029 Un login exitoso **no** genera registro de auditoría de seguridad (solo los fallidos, para reducir ruido en el log)
 - [ ] CHK030 El registro de auditoría de LOGIN_FALLIDO incluye `hashActual` encadenado correctamente
 

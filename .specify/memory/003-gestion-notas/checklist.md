@@ -37,7 +37,11 @@
 - [ ] CHK016 El endpoint retorna HTTP 409 si la nota ya estaba cerrada
 - [ ] CHK017 El endpoint retorna HTTP 403 si el DOCENTE del JWT no es titular de la materia
 - [ ] CHK018 Si el INSERT en auditoría falla durante el cierre, la transacción hace rollback completo (`notaCerrada` no queda en `true`)
-- [ ] CHK019 No existe ningún endpoint `PATCH .../abrir` ni equivalente que revierta `notaCerrada = true` (v1)
+- [ ] CHK019 No existe ningún endpoint `PATCH .../abrir` ni equivalente accesible por DOCENTE o ESTUDIANTE
+- [ ] CHK019b `PATCH /api/admin/inscripciones/{id}/reabrir` con JWT de ADMINISTRADOR y `{ "motivo": "..." }` setea `notaCerrada = false` y genera registro de auditoría con `accion = 'NOTA_REABIERTA'` — **v1 firma única**
+- [ ] CHK019c `PATCH .../reabrir` retorna HTTP 409 si la nota ya está abierta (`notaCerrada = false`)
+- [ ] CHK019d `PATCH .../reabrir` retorna HTTP 403 para JWT con rol DOCENTE o ESTUDIANTE
+- [ ] CHK019e El registro de auditoría de NOTA_REABIERTA incluye el `motivo` en el campo `descripcion`
 
 ---
 
