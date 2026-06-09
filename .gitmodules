@@ -1,3 +1,6 @@
-[submodule "OrtizSerranoTP3"]
-	path = OrtizSerranoTP3
-	url = git@github.com:Instituto-Politecnico-Modelo/TP3-backend-Serrano-Ortiz.git
+[submodule "TP3/backend"]
+	path = TP3/backend
+	url = https://github.com/Instituto-Politecnico-Modelo/TP3-backend-Serrano-Ortiz.git
+[submodule "TP3/frontend"]
+	path = TP3/frontend
+	url = https://github.com/Instituto-Politecnico-Modelo/TP3-frontend-Serrano-Ortiz.git
