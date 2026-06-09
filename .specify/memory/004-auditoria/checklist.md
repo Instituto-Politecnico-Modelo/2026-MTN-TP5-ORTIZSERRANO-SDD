@@ -62,12 +62,15 @@
 - [ ] CHK028 Cada `POST /api/inscripciones` exitoso genera un registro con `entidad = 'INSCRIPCION'`, `accion = 'INSERT'`
 - [ ] CHK029 Cada `PATCH /api/inscripciones/{id}/cancelar` genera un registro con `accion = 'UPDATE'`, `descripcion` con estado anterior y nuevo
 - [ ] CHK030 Cada login fallido (`POST /api/auth/login` → HTTP 401) genera un registro con `entidad = 'USUARIO'`, `accion = 'LOGIN_FALLIDO'`, `emailUsuario` = email del intento
+- [ ] CHK030b Cada bloqueo de cuenta genera un registro con `accion = 'CUENTA_BLOQUEADA'` — **decisión 002-A**
+- [ ] CHK030c Cada `PATCH /api/admin/inscripciones/{id}/reabrir` genera un registro con `accion = 'NOTA_REABIERTA'`, `descripcion` = motivo provisto, `emailUsuario` del ADMINISTRADOR — **decisión 003-B**
 
 ---
 
 ## Frontend — Integración (`VistaAuditoria.tsx`)
 
-- [ ] CHK031 `auditoriaService.listarTodos()` llama a `GET /api/admin/auditoria` (base URL: `/api/admin/auditoria`)
+- [ ] CHK031 `auditoriaService.listarTodos()` llama a `GET /api/admin/auditoria?page=0&size=50` y procesa la respuesta paginada (`content`, `totalElements`, `totalPages`) — **decisión 004-A**
+- [ ] CHK031b Los tipos TypeScript en `auditoria.service.ts` definen la interfaz `Page<T>` (o equivalente) con `content: T[], totalElements: number, totalPages: number, number: number`; el return type de `listarTodos()` pasa de `RegistroAuditoria[]` a `Page<RegistroAuditoria>` — cambio de tipo **obligatorio** para reflejar la respuesta real del backend
 - [ ] CHK032 `auditoriaService.porEntidad()` llama a `GET /api/admin/auditoria/entidad/{entidad}`
 - [ ] CHK033 `auditoriaService.porEntidadYId()` llama a `GET /api/admin/auditoria/entidad/{entidad}/{id}`
 - [ ] CHK034 `auditoriaService.porUsuario()` llama a `GET /api/admin/auditoria/usuario/{idUsuario}`

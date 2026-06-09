@@ -9,7 +9,7 @@
 
 ## Constitución — Compliance Gate *(verificar antes de merge — Principio III NO NEGOCIABLE)*
 
-- [ ] CHK001 Principio III — `PATCH /api/docente/inscripciones/{id}/cerrar` hace que `notaCerrada = true` de forma permanente; no existe ningún endpoint que lo revierta sin proceso formal
+- [ ] CHK001 Principio III — `PATCH /api/docente/inscripciones/{id}/cerrar` hace que `notaCerrada = true`; solo puede revertirse mediante `PATCH /api/admin/inscripciones/{id}/reabrir` (proceso formal con motivo y registro de auditoría)
 - [ ] CHK002 Principio III — `PUT /api/docente/inscripciones/{id}/nota` retorna HTTP 409 si `notaCerrada = true` (verificado con test de regression — 100% de los casos)
 - [ ] CHK003 Principio III — Cada `PUT` de nota genera exactamente un registro en tabla `auditoria` dentro de la misma transacción Hibernate
 - [ ] CHK004 Principio III — Cada `PATCH .../cerrar` genera un registro de auditoría con `accion = 'ACTA_CERRADA'` (o equivalente)
@@ -24,6 +24,7 @@
 - [ ] CHK008 El endpoint retorna HTTP 200 + `Inscripcion` actualizada cuando `notaCerrada = false`
 - [ ] CHK009 El endpoint retorna HTTP 409 con mensaje descriptivo cuando `notaCerrada = true`
 - [ ] CHK010 El endpoint retorna HTTP 400 si alguna nota enviada está fuera del rango válido [0, 10]
+- [ ] CHK010b El endpoint retorna HTTP 400 si `asistencias` está fuera del rango [0, 100] con mensaje "asistencias debe ser un porcentaje entre 0 y 100" — **decisión 003-A**
 - [ ] CHK011 El endpoint retorna HTTP 403 si el DOCENTE del JWT no es titular de la materia de esa inscripción
 - [ ] CHK012 El endpoint retorna HTTP 404 si `idInscripcion` no existe
 - [ ] CHK013 El endpoint retorna HTTP 403 si el JWT no tiene rol `DOCENTE` o `ADMINISTRADOR`
@@ -80,6 +81,7 @@
 - [ ] CHK033 `Boletin.tsx` consume `GET /api/inscripciones/mis-notas` (no `/api/alumnos/mias/notas`)
 - [ ] CHK034 `Boletin.tsx` solo es accesible para el rol `ESTUDIANTE` (protegido por `ProtectedRoute`)
 - [ ] CHK035 `DashboardDocente.tsx` solo muestra materias del docente autenticado (no todas las materias del sistema)
+- [ ] CHK035b `adminService.ts` expone el método `reabrir(id: number, motivo: string): Promise<Inscripcion>` que llama a `PATCH /api/admin/inscripciones/{id}/reabrir` con body `{ motivo }` — actualmente **ausente** del servicio; requerido por decisión 003-B
 
 ---
 
@@ -90,6 +92,10 @@
 - [ ] CHK038 Test unitario: `PUT .../nota` con nota fuera de rango → HTTP 400
 - [ ] CHK039 Test unitario: `PUT .../nota` de DOCENTE ajeno a la materia → HTTP 403
 - [ ] CHK040 Test unitario: `PATCH .../cerrar` → `notaCerrada = true` en DB + registro de auditoría insertado
+- [ ] CHK040b Test unitario: `PATCH /api/admin/inscripciones/{id}/reabrir` con motivo → `notaCerrada = false` + registro `NOTA_REABIERTA` en auditoría — **decisión 003-B**
+- [ ] CHK040c Test unitario: `PATCH .../reabrir` sin motivo o con motivo vacío → HTTP 400
+- [ ] CHK040d Test unitario: `PATCH .../reabrir` con JWT de DOCENTE → HTTP 403
+- [ ] CHK040e Test unitario: `PATCH .../reabrir` en nota ya abierta (`notaCerrada = false`) → HTTP 409
 - [ ] CHK041 Test de integración: `PUT .../nota` seguido de `PATCH .../cerrar` seguido de otro `PUT .../nota` → el segundo PUT retorna HTTP 409
 - [ ] CHK042 Test de integración: simular fallo en INSERT de auditoría durante `PATCH .../cerrar` → rollback completo; `notaCerrada` permanece en `false`
 - [ ] CHK043 Test de seguridad: JWT de ESTUDIANTE accediendo a `PUT .../nota` → HTTP 403

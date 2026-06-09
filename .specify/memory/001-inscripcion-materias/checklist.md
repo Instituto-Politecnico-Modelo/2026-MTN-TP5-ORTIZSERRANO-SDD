@@ -29,7 +29,11 @@
 - [ ] CHK013 `POST /api/inscripciones` retorna HTTP 404 si `idMateria` no existe
 - [ ] CHK014 `GET /api/inscripciones/mis-inscripciones` retorna solo las inscripciones del ESTUDIANTE del JWT (nunca de otro estudiante)
 - [ ] CHK015 `GET /api/inscripciones/mis-notas` retorna inscripciones con campos `notaParcial1`, `notaParcial2`, `notaFinal`, `notaCerrada`
-- [ ] CHK016 `PATCH /api/inscripciones/{id}/cancelar` retorna HTTP 200 + `Inscripcion` con estado CANCELADO
+- [ ] CHK016 `PATCH /api/inscripciones/{id}/cancelar` retorna HTTP 200 + `Inscripcion` con estado CANCELADO (solo para CONFIRMADAS)
+- [ ] CHK016b `PATCH .../cancelar` retorna HTTP 409 si la inscripción está en estado ENCOLADO (usar endpoint dedicado)
+- [ ] CHK016c `DELETE /api/inscripciones/{id}/cola` retorna HTTP 204 cuando el ESTUDIANTE sale voluntariamente de la cola (solo para ENCOLADAS) — **decisión 001-B**
+- [ ] CHK016d `DELETE .../cola` retorna HTTP 409 si la inscripción está en estado CONFIRMADO (no ENCOLADO)
+- [ ] CHK016e `DELETE .../cola` retorna HTTP 403 si la inscripción no pertenece al ESTUDIANTE del JWT
 - [ ] CHK017 `PATCH /api/inscripciones/{id}/cancelar` retorna HTTP 403 si el período está cerrado
 - [ ] CHK018 `PATCH /api/inscripciones/{id}/cancelar` retorna HTTP 403 si el `idInscripcion` no pertenece al ESTUDIANTE del JWT
 - [ ] CHK019 `GET /api/inscripciones/{id}/estado` retorna `{ status, position?, estimated_wait_seconds? }` para inscripciones ENCOLADAS
@@ -65,7 +69,8 @@
 
 - [ ] CHK035 `MisInscripciones.tsx` llama a `GET /api/inscripciones/mis-inscripciones` (no `/mias`)
 - [ ] CHK036 El servicio de inscripción usa `{ idMateria }` en el body del POST (no `{ materiaId }`)
-- [ ] CHK037 La cancelación usa `PATCH /api/inscripciones/{id}/cancelar` (no DELETE)
+- [ ] CHK037 La cancelación usa `PATCH /api/inscripciones/{id}/cancelar` (no DELETE) para inscripciones CONFIRMADAS
+- [ ] CHK037b `MisInscripciones.tsx` muestra **dos acciones distintas** según el estado: botón "Cancelar inscripción" (CONFIRMADO → `PATCH .../cancelar`) y botón "Salir de la cola" (ENCOLADO → `DELETE .../cola`) — no un único botón para ambos estados
 - [ ] CHK038 `SalaDeEspera.tsx` se activa correctamente ante HTTP 429 y HTTP 503 interceptados por `axiosInstance`
 - [ ] CHK039 `SalaDeEspera.tsx` hace polling a `GET /api/health` cada 5 segundos y habilita el botón "Reintentar" cuando el servidor responde OK
 - [ ] CHK040 El componente de inscripción muestra estado ENCOLADO con la `position` retornada en el HTTP 202
@@ -80,6 +85,8 @@
 - [ ] CHK044 Test unitario: inscripción fuera de período → HTTP 403
 - [ ] CHK045 Test de integración: dos threads simultáneos al último cupo → exactamente 1 HTTP 201 y 1 HTTP 202/409, cupos = 0 (no negativos)
 - [ ] CHK046 Test de integración: cancelar inscripción CONFIRMADA → estado CANCELADO + cupo liberado + primer ENCOLADO promovido a CONFIRMADO
+- [ ] CHK046b Test de integración: `DELETE .../cola` en inscripción ENCOLADA → HTTP 204, alumno removido de cola Redis, posición no libera cupo real
+- [ ] CHK046c Test de integración: `DELETE .../cola` en inscripción CONFIRMADA → HTTP 409
 - [ ] CHK047 Test de integración: cancelar inscripción fuera de período → HTTP 403
 - [ ] CHK048 Test de carga (k6/JMeter): 50.000 VU concurrentes, tasa de HTTP 500 = 0%, latencia P99 ≤ 2000ms — **resultado adjunto en release**
 - [ ] CHK049 Test de carga: 10.000 requests simultáneos al último cupo → cupos_disponibles = 0, nunca negativo

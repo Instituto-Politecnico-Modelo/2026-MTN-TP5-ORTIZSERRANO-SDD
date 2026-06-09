@@ -73,16 +73,16 @@
 
 ## Frontend — Integración
 
-- [ ] CHK031 `authService.login()` mapea correctamente la respuesta a `LoginResponse` con los campos reales: `id, email, nombre, apellido, token, type, role, carrera?`
+- [ ] CHK031 `authService.login()` mapea correctamente la respuesta a `LoginResponse` con los campos reales: `id, email, nombre, apellido, token, refreshToken, type, role, carrera?` — **incluye `refreshToken` (decisión 002-B)**
 - [ ] CHK032 `authService.getRole()` decodifica el claim `rol` del payload JWT Base64url (sin llamada a red)
 - [ ] CHK033 `authService.getDefaultRoute()` redirige a `/admin/dashboard`, `/docente/dashboard` o `/estudiante/dashboard` según el rol
-- [ ] CHK034 `axiosInstance` intercepta HTTP 401 → limpia `localStorage` + redirige a `/login?motivo=expired`
+- [ ] CHK034 `axiosInstance` intercepta HTTP 401 → intenta renovar con `POST /api/auth/refresh` usando el `refreshToken` guardado; solo redirige a `/login?motivo=expired` si el refresh también falla (o si no hay `refreshToken`) — **cambio de comportamiento requerido por decisión 002-B**
 - [ ] CHK035 `axiosInstance` intercepta HTTP 403 → redirige a `/unauthorized`
 - [ ] CHK036 `axiosInstance` intercepta HTTP 429 → redirige a `/sala-de-espera?razon=ratelimit`
 - [ ] CHK037 `axiosInstance` intercepta HTTP 503 → redirige a `/sala-de-espera?razon=capacidad`
 - [ ] CHK038 `ProtectedRoute` verifica el rol del usuario usando `authService.hasAnyRole()` antes de renderizar la ruta
 - [ ] CHK039 `AuthContext` provee `user`, `isAuthenticated`, `login`, `logout` a todos los componentes hijos
-- [ ] CHK040 El `logout` en el frontend elimina la key `authUser` de `localStorage` y redirige a `/login`
+- [ ] CHK040 El `logout` en el frontend llama a `POST /api/auth/logout` (server-side blocklist) **antes** de eliminar `authUser` de localStorage y redirigir a `/login` — **decisión 002-B**
 
 ---
 
