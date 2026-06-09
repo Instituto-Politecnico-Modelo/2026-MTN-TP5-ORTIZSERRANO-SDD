@@ -4,9 +4,26 @@
 
 **Created**: 2026-06-09
 
-**Status**: Draft
+**Status**: Clarified
 
 **Input**: User description: "Autenticación y autorización JWT con roles alumno, docente, admin"
+
+## Clarification Notes *(added 2026-06-09 — reconciliado con código existente)*
+
+> | # | Ítem | Spec Draft | Clarificado |
+> |---|---|---|---|
+> | C1 | **Roles del sistema** | `alumno`, `docente`, `admin` | `ESTUDIANTE`, `DOCENTE`, `ADMINISTRADOR` (enum `Role` en `auth.types.ts`) |
+> | C2 | **LoginResponse** | `{ token, refreshToken, rol, nombre }` | `{ id, email, nombre, apellido, token, type, role, carrera? }` |
+> | C3 | **Claim JWT** | Genérico | Claim `rol` en el payload del JWT (Spring: `JwtUtil.java`) |
+> | C4 | **refreshToken** | Implementado como feature P2 | **Fuera de alcance v1** — `LoginResponse` no incluye `refreshToken`; no existe endpoint `/api/auth/refresh` en el frontend actual |
+> | C5 | **Logout** | Server-side blocklist en Redis | **Client-side únicamente** — `localStorage.removeItem('authUser')`. No existe endpoint `/api/auth/logout` en el servicio actual |
+> | C6 | **Rutas por rol** | No especificadas | `/admin/dashboard` (ADMINISTRADOR), `/docente/dashboard` (DOCENTE), `/estudiante/dashboard` (ESTUDIANTE) |
+> | C7 | **HTTP 401** | Redirige a login | `axiosInstance` intercepta → limpia localStorage + redirige a `/login?motivo=expired` |
+> | C8 | **HTTP 403** | Mensaje de error | `axiosInstance` intercepta → redirige a `/unauthorized` |
+> | C9 | **HTTP 429 / 503** | No en spec | `axiosInstance` intercepta → redirige a `/sala-de-espera` |
+> | C10 | **Endpoint adicional** | No en spec | `GET /api/auth/jwt/inspect?token=` — inspección y debugging de JWT (requiere auth) |
+> | C11 | **Password reset** | No en spec | `POST /api/auth/olvide-password` (público); admin atiende en `GET/POST /api/admin/usuarios/solicitudes-reset` |
+> | C12 | **Bloqueo de cuenta** | 5 intentos → 15 min | A CONFIRMAR con backend — el frontend no muestra lógica de bloqueo actualmente; agregar si el backend lo implementa |
 
 ## Constitution Check
 
@@ -188,21 +205,36 @@ el token queda en la blocklist.
 - **FR-010**: El acceso de terceros (padres, tutores) sin consentimiento explícito del
   alumno está PROHIBIDO — no existe endpoint para delegación de acceso en esta versión.
 
-### Contratos de API
+### Contratos de API *(corregidos en clarification)*
 
 | Método | Path | Auth | Body / Respuesta |
 |---|---|---|---|
-| `POST` | `/api/auth/login` | Público | `{ email, password }` → 200 `{ token, refreshToken, rol, nombre }` |
-| `POST` | `/api/auth/refresh` | Público | `{ refreshToken }` → 200 `{ token }` / 401 |
-| `POST` | `/api/auth/logout` | JWT (cualquier rol) | → 204 |
-| `GET` | `/api/auth/me` | JWT (cualquier rol) | → 200 `{ id, nombre, email, rol }` |
+| `POST` | `/api/auth/login` | Público | `{ email, password }` → 200 `{ id, email, nombre, apellido, token, type, role, carrera? }` |
+| `GET` | `/api/auth/me` | JWT (cualquier rol) | → 200 `{ idUsuario, nombre, apellido, email, activo }` |
+| `GET` | `/api/auth/jwt/inspect` | JWT (cualquier rol) | `?token=<jwt>` → 200 `JwtInspectResponse` (debugging) |
+| `POST` | `/api/auth/olvide-password` | Público | `{ email }` → 200 `{ message }` |
+| `GET` | `/api/admin/usuarios/solicitudes-reset` | `ADMINISTRADOR` | → 200 `[ SolicitudReset ]` |
+| `POST` | `/api/admin/usuarios/solicitudes-reset/{id}/atender` | `ADMINISTRADOR` | `{ nuevaPassword }` → 200 `{ message }` |
 
-### Key Entities
+> **Fuera de alcance v1**: `/api/auth/refresh` (refreshToken) y `/api/auth/logout`
+> (server-side blocklist) no están implementados. Logout se realiza eliminando
+> `authUser` de localStorage. Estos endpoints quedan diferidos para v2.
 
-- **Usuario**: `id`, `nombre`, `email`, `passwordHash` (bcrypt), `rol`
-  (ALUMNO/DOCENTE/ADMIN), `activo`, `intentosFallidos`, `bloqueadoHasta`.
-- **RefreshToken**: `id`, `usuarioId`, `token` (UUID), `expiresAt`, `revocado`.
-  Almacenado en MySQL (fuente de verdad), con caché en Redis para validación rápida.
+### Key Entities *(corregidos en clarification)*
+
+- **LoginResponse** (TypeScript: `auth.types.ts`): `id: number`, `email: string`,
+  `nombre: string`, `apellido: string`, `token: string`, `type: string`,
+  `role: Role`, `carrera?: string` (solo para ESTUDIANTE).
+- **User** (de `GET /api/auth/me`): `idUsuario: number`, `nombre: string`,
+  `apellido: string`, `email: string`, `activo: boolean`.
+- **Role** (enum): `ESTUDIANTE` | `DOCENTE` | `ADMINISTRADOR` | `USUARIO`.
+- **JWT Payload**: claim `rol` (string) = uno de los valores del enum `Role`. El
+  frontend decodifica el payload Base64url para extraer el claim sin llamar a la BD.
+- **SolicitudReset**: `idSolicitud`, `email`, `nombreCompleto?`, `fechaSolicitud`,
+  `estado` (PENDIENTE | ATENDIDA), `fechaAtencion?`.
+- **Usuario** (backend, para CRUD admin): `nombre`, `apellido`, `email`, `password`,
+  `rol` (ESTUDIANTE | DOCENTE), `legajo?`, `carrera?`, `anioIngreso?`, `titulo?`,
+  `especialidad?`.
 
 ---
 
@@ -220,12 +252,17 @@ el token queda en la blocklist.
 
 ---
 
-## Assumptions
+## Assumptions *(actualizados en clarification)*
 
-- Las contraseñas se almacenan hasheadas con bcrypt (factor 12). La migración de datos
-  del sistema anterior contempla re-hasheo en el primer login post-migración.
-- El `Login.tsx` del frontend ya existe; este spec define el contrato de API que consume.
+- Las contraseñas se almacenan hasheadas con bcrypt en el backend.
+- El `Login.tsx` del frontend ya existe y consume `POST /api/auth/login`.
 - No existe SSO ni OAuth2 en esta versión — autenticación local únicamente.
 - Los roles son mutuamente excluyentes: un usuario tiene exactamente un rol.
 - La clave de firma JWT se almacena como variable de entorno (`JWT_SECRET`);
   en entornos de desarrollo se usa un valor de ejemplo definido en `.env.example`.
+- **refreshToken y server-side logout no están implementados en v1**; el token
+  expira naturalmente (TTL definido en backend). La renovación se implementará en v2.
+- El `axiosInstance` maneja automáticamente 401, 403, 429, 503 redirigiendo a las
+  rutas correspondientes — el backend no necesita implementar lógica extra para estas
+  redirecciones del lado cliente.
+- El `AuthContext.tsx` provee el estado de autenticación a toda la app React.

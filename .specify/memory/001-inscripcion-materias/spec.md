@@ -4,9 +4,29 @@
 
 **Created**: 2026-06-09
 
-**Status**: Draft
+**Status**: Clarified
 
 **Input**: User description: "Inscripción a materias con cola de espera bajo alta concurrencia"
+
+## Clarification Notes *(added 2026-06-09 — reconciliado con código existente)*
+
+> Las siguientes discrepancias entre el spec Draft y el código del frontend ya
+> implementado fueron resueltas en esta pasada de clarificación:
+>
+> | # | Ítem | Spec Draft | Clarificado |
+> |---|---|---|---|
+> | C1 | **Nombre de rol** | `alumno` | `ESTUDIANTE` (enum `Role.ESTUDIANTE`) |
+> | C2 | **Nombre de rol** | `docente` | `DOCENTE` (enum `Role.DOCENTE`) |
+> | C3 | **Nombre de rol** | `admin` | `ADMINISTRADOR` (enum `Role.ADMINISTRADOR`) |
+> | C4 | **Body field POST inscripcion** | `{ "materiaId": Long }` | `{ "idMateria": number }` |
+> | C5 | **Mis inscripciones path** | `GET /api/inscripciones/mias` | `GET /api/inscripciones/mis-inscripciones` |
+> | C6 | **Cancelar inscripcion** | `DELETE /api/inscripciones/{id}` | `PATCH /api/inscripciones/{id}/cancelar` |
+> | C7 | **Lista inscriptos docente** | `GET /api/materias/{id}/inscriptos` | `GET /api/docente/materias/{id}/inscripciones` |
+> | C8 | **SalaDeEspera** | Muestra posición en cola numérica | Se activa ante HTTP 429 (rate limit) o 503 (servidor saturado); polling a `GET /api/health`; muestra countdown y permite reintentar |
+> | C9 | **DELETE cola** | `DELETE /api/inscripciones/cola/{posicion}` | **Sin equivalente expuesto** — cancelación de cola se hace via `PATCH /api/inscripciones/{id}/cancelar` cambiando estado a CANCELADO |
+> | C10 | **Mis notas (adicional)** | No estaba en spec | `GET /api/inscripciones/mis-notas` ya existe en frontend |
+> | C11 | **Materia: campo carrera** | `carrera` obligatorio | `carrera?: string \| null` — null = transversal a todas las carreras |
+> | C12 | **Estado inscripcion** | CONFIRMADO / ENCOLADO / CANCELADO | Alineado; `ENCOLADO` = lista de espera (HTTP 202 al inscribirse) |
 
 ## Constitution Check
 
@@ -145,15 +165,21 @@ retorna la lista paginada de alumnos inscriptos y la cola de espera.
 - ¿Qué pasa si Redis cae durante un período activo de inscripción?
   → El sistema DEBE degradar graciosamente: procesar inscripciones sincrónicamente
   con mayor latencia, no retornar HTTP 500.
-- ¿Qué pasa si se envía un `id` de materia inexistente?
+- ¿Qué pasa si se envía un `idMateria` inexistente?
   → HTTP 404 con mensaje descriptivo.
-- ¿Qué pasa si el JWT del alumno está expirado?
-  → HTTP 401 con mensaje "Token expirado", el frontend redirige al login.
+- ¿Qué pasa si el JWT del ESTUDIANTE está expirado?
+  → HTTP 401; el `axiosInstance` intercepta y redirige automáticamente a
+  `/login?motivo=expired`, limpiando el localStorage.
+- ¿Qué pasa si el servidor está bajo presión máxima (sin cupo de threads)?
+  → HTTP 503 o HTTP 429; el `axiosInstance` intercepta y redirige a
+  `/sala-de-espera?razon=capacidad&espera=N&origen=/inscripciones`. La
+  `SalaDeEspera` hace polling a `GET /api/health` cada 5 segundos hasta
+  que el servidor responde OK.
 - ¿Qué pasa si el período de inscripción no ha comenzado todavía?
   → HTTP 403 con mensaje "El período de inscripción no está activo".
 - ¿Qué pasa con valores negativos de cupos (bug)?
-  → El constraint de base de datos `cupos_disponibles >= 0` DEBE impedir esto.
-  Adicionalmente, la lógica de negocio valida antes de decrementar.
+  → Constraint `cupos_disponibles >= 0` en MySQL impide esto; la lógica
+  de negocio valida antes de decrementar.
 
 ---
 
@@ -189,26 +215,35 @@ retorna la lista paginada de alumnos inscriptos y la cola de espera.
 - **FR-013**: El sistema DEBE soportar 50.000 usuarios simultáneos durante períodos
   de inscripción sin degradación ni corrupción de datos (Principio I).
 
-### Contratos de API
+### Contratos de API *(corregidos en clarification)*
 
 | Método | Path | Rol JWT requerido | Body / Respuesta |
 |---|---|---|---|
-| `POST` | `/api/inscripciones` | `alumno` | body: `{ "materiaId": Long }` → 201 / 202 / 403 / 404 / 409 |
-| `GET` | `/api/inscripciones/mias` | `alumno` | → 200 `[ InscripcionDTO ]` |
-| `DELETE` | `/api/inscripciones/{id}` | `alumno` | → 204 / 403 / 404 |
-| `DELETE` | `/api/inscripciones/cola/{posicion}` | `alumno` | → 204 / 404 |
-| `GET` | `/api/materias/{id}/inscriptos` | `docente`, `admin` | → 200 `{ confirmados: [], cola: [] }` |
-| `GET` | `/api/inscripciones/{id}/estado` | `alumno` | → 200 `{ status, position?, eta? }` |
+| `POST` | `/api/inscripciones` | `ESTUDIANTE` | body: `{ "idMateria": number }` → 201 (CONFIRMADO) / 202 (ENCOLADO) / 403 / 404 / 409 |
+| `GET` | `/api/inscripciones/mis-inscripciones` | `ESTUDIANTE` | → 200 `[ Inscripcion ]` |
+| `GET` | `/api/inscripciones/mis-notas` | `ESTUDIANTE` | → 200 `[ Inscripcion ]` (con notaParcial1, notaParcial2, notaFinal) |
+| `PATCH` | `/api/inscripciones/{id}/cancelar` | `ESTUDIANTE` | → 200 `Inscripcion` con estado CANCELADO / 403 / 404 |
+| `GET` | `/api/inscripciones/{id}/estado` | `ESTUDIANTE` | → 200 `{ status, position?, estimated_wait_seconds? }` |
+| `GET` | `/api/docente/materias/{id}/inscripciones` | `DOCENTE`, `ADMINISTRADOR` | → 200 `[ Inscripcion ]` |
+| `GET` | `/api/materias` | Público / cualquier rol | → 200 `[ MateriaDisponible ]` |
+| `GET` | `/api/materias/disponibles` | Público / cualquier rol | → 200 `[ MateriaDisponible ]` (hayLugar=true) |
+| `GET` | `/api/health` | Público | → 200 (usado por SalaDeEspera para polling) |
 
-### Key Entities
+### Key Entities *(corregidos en clarification)*
 
-- **Inscripcion**: Representa la relación alumno-materia. Atributos clave: `id`,
-  `alumnoId`, `materiaId`, `estado` (CONFIRMADO / ENCOLADO / CANCELADO),
-  `fechaInscripcion`, `posicionCola` (nullable).
-- **Materia**: `id`, `nombre`, `cuposTotal`, `cuposDisponibles` (con `@Version` para
-  optimistic locking), `periodoActivo`.
-- **ColaEspera** (Redis): Lista ordenada de `alumnoId` por `materiaId`. Estructura
-  efímera — la fuente de verdad de posiciones en cola.
+- **Inscripcion** (TypeScript: `materia.service.ts`): `idInscripcion`, `estudiante?`
+  (`EstudianteResumen`), `materia` (`MateriaDisponible`), `fechaInscripcion: string`,
+  `estado: string` (CONFIRMADO / ENCOLADO / CANCELADO), `notaParcial1?`, `notaParcial2?`,
+  `notaFinal?`, `asistencias?`, `notaCerrada: boolean`.
+- **MateriaDisponible**: `idMateria`, `codigo`, `nombre`, `descripcion?`, `anio?`,
+  `carrera?: string | null` (null = transversal), `docenteNombre?`, `docenteApellido?`,
+  `docenteEmail?`, `cuposMaximos?`, `cuposOcupados`, `cuposDisponibles?`, `hayLugar`,
+  `porcentajeOcupacion?`.
+- **InscripcionRequest**: `{ idMateria: number }`.
+- **InscripcionResult**: `{ status: number, data: any }` — status 201 = CONFIRMADO,
+  202 = ENCOLADO (lista de espera).
+- **ColaEspera** (Redis): Lista ordenada de `alumnoId` por `materiaId`. Efímera —
+  fuente de verdad de posiciones de espera. Estado persistente = campo `estado` en MySQL.
 
 ---
 

@@ -4,9 +4,22 @@
 
 **Created**: 2026-06-09
 
-**Status**: Draft
+**Status**: Clarified
 
 **Input**: User description: "Log de auditoría inmutable con hash encadenado"
+
+## Clarification Notes *(added 2026-06-09 — reconciliado con código existente)*
+
+> | # | Ítem | Spec Draft | Clarificado |
+> |---|---|---|---|
+> | C1 | **Base URL** | `/api/auditoria` | `/api/admin/auditoria` |
+> | C2 | **Filtro por entidad** | `GET /api/auditoria?materiaId=&alumnoId=...` (query params) | Rutas separadas: `/entidad/{entidad}`, `/entidad/{entidad}/{id}`, `/usuario/{idUsuario}`, `/accion/{accion}` |
+> | C3 | **Verificar integridad** | `GET /api/auditoria/verificar-integridad` | `GET /api/admin/auditoria/verificar` |
+> | C4 | **RegistroAuditoria campos** | `notaId, accionTipo, valorAnterior, valorNuevo, usuarioJwt, ip, hashAnterior, hashRegistro` | `idRegistro, entidad, idEntidad, accion, idUsuario, emailUsuario, descripcion, ipOrigen, timestampEvento, hashAnterior, hashActual` |
+> | C5 | **IntegridadResponse campos** | `{ integro, registrosVerificados, errores[] }` | `{ integra, totalRegistros, errores: string[], mensaje }` |
+> | C6 | **Cadena por nota** | `GET /api/auditoria/notas/{notaId}/cadena` | **No expuesto en frontend v1** — la vista de auditoría filtra por entidad+id: `GET /api/admin/auditoria/entidad/NOTA/{idNota}` |
+> | C7 | **Roles** | `admin` | `ADMINISTRADOR` |
+> | C8 | **Entidad genérica** | Tabla `auditoria_notas` separada de `auditoria_eventos` | **Tabla unificada**: un registro tiene `entidad` (string: `NOTA`, `INSCRIPCION`, `USUARIO`, etc.) e `idEntidad`, unificando todos los eventos |
 
 ## Constitution Check
 
@@ -178,52 +191,51 @@ conocimientos técnicos.
 - **FR-010**: El endpoint `GET /api/auditoria` DEBE probarse con un dataset mínimo de
   10.000 registros antes del deployment a producción (requisito de la constitución).
 
-### Contratos de API
+### Contratos de API *(corregidos en clarification)*
 
 | Método | Path | Rol JWT requerido | Respuesta |
 |---|---|---|---|
-| `GET` | `/api/auditoria` | `admin` | 200 `Page<AuditoriaDTO>` con filtros y paginación |
-| `GET` | `/api/auditoria/notas/{notaId}/cadena` | `admin` | 200 `[ AuditoriaDetalleDTO ]` con `hashValido` |
-| `GET` | `/api/auditoria/verificar-integridad` | `admin` | 200 `{ integro, registrosVerificados, errores[] }` |
-| `GET` | `/api/auditoria/eventos` | `admin` | 200 `Page<EventoAuditoriaDTO>` con filtros |
+| `GET` | `/api/admin/auditoria` | `ADMINISTRADOR` | 200 `[ RegistroAuditoria ]` (todos) |
+| `GET` | `/api/admin/auditoria/entidad/{entidad}` | `ADMINISTRADOR` | 200 `[ RegistroAuditoria ]` filtrado por tipo de entidad (ej: `NOTA`, `INSCRIPCION`, `USUARIO`) |
+| `GET` | `/api/admin/auditoria/entidad/{entidad}/{id}` | `ADMINISTRADOR` | 200 `[ RegistroAuditoria ]` para entidad específica (ej: historial de la NOTA con id=42) |
+| `GET` | `/api/admin/auditoria/usuario/{idUsuario}` | `ADMINISTRADOR` | 200 `[ RegistroAuditoria ]` por usuario |
+| `GET` | `/api/admin/auditoria/accion/{accion}` | `ADMINISTRADOR` | 200 `[ RegistroAuditoria ]` por tipo de acción (ej: `UPDATE`, `DELETE`, `LOGIN_FALLIDO`) |
+| `GET` | `/api/admin/auditoria/verificar` | `ADMINISTRADOR` | 200 `{ integra, totalRegistros, errores: string[], mensaje }` |
 
-### Key Entities
+### Key Entities *(corregidos en clarification — tabla unificada)*
 
-- **AuditoriaNotas**: `id`, `notaId`, `accionTipo`, `valorAnterior`, `valorNuevo`,
-  `usuarioJwt`, `timestamp`, `ip`, `hashAnterior`, `hashRegistro`.
-- **AuditoriaEventos**: `id`, `tipoEvento`, `usuarioJwt`, `entidadTipo`, `entidadId`,
-  `descripcion`, `timestamp`, `ip`.
+- **RegistroAuditoria** (TypeScript: `auditoria.service.ts`): `idRegistro: number`,
+  `entidad: string` (tipo de entidad auditada: `NOTA`, `INSCRIPCION`, `USUARIO`, etc.),
+  `idEntidad: number | null`, `accion: string` (ej: `INSERT`, `UPDATE`, `DELETE`,
+  `LOGIN_FALLIDO`, `ACTA_CERRADA`), `idUsuario: number | null`, `emailUsuario: string`,
+  `descripcion: string`, `ipOrigen: string | null`, `timestampEvento: string` (ISO-8601),
+  `hashAnterior: string`, `hashActual: string`.
+- **IntegridadResponse**: `integra: boolean`, `totalRegistros: number`,
+  `errores: string[]`, `mensaje: string`.
 
-### Esquema DDL de referencia
+> **Tabla unificada**: No existen tablas separadas `auditoria_notas` / `auditoria_eventos`.
+> El campo `entidad` (string) discrimina el tipo de registro — todos los eventos de
+> auditoría del sistema van a la misma tabla.
+
+### Esquema DDL de referencia *(corregido en clarification — tabla unificada)*
 
 ```sql
-CREATE TABLE auditoria_notas (
-  id              BIGINT AUTO_INCREMENT PRIMARY KEY,
-  nota_id         BIGINT NOT NULL,
-  accion_tipo     ENUM('INSERT','UPDATE') NOT NULL,
-  valor_anterior  DECIMAL(5,2),
-  valor_nuevo     DECIMAL(5,2) NOT NULL,
-  usuario_jwt     VARCHAR(255) NOT NULL,
-  timestamp       DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-  ip              VARCHAR(45) NOT NULL,
-  hash_anterior   CHAR(64) NOT NULL,
-  hash_registro   CHAR(64) NOT NULL,
-  INDEX idx_nota_ts  (nota_id, timestamp),
-  INDEX idx_usuario  (usuario_jwt, timestamp),
-  INDEX idx_ts       (timestamp)
-) ENGINE=InnoDB;
-
-CREATE TABLE auditoria_eventos (
-  id              BIGINT AUTO_INCREMENT PRIMARY KEY,
-  tipo_evento     VARCHAR(50) NOT NULL,
-  usuario_jwt     VARCHAR(255),
-  entidad_tipo    VARCHAR(50),
-  entidad_id      BIGINT,
-  descripcion     TEXT,
-  timestamp       DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-  ip              VARCHAR(45),
-  INDEX idx_evento_ts (tipo_evento, timestamp),
-  INDEX idx_entidad   (entidad_tipo, entidad_id)
+CREATE TABLE auditoria (
+  id_registro      BIGINT AUTO_INCREMENT PRIMARY KEY,
+  entidad          VARCHAR(50) NOT NULL,          -- 'NOTA', 'INSCRIPCION', 'USUARIO', etc.
+  id_entidad       BIGINT,
+  accion           VARCHAR(50) NOT NULL,          -- 'INSERT', 'UPDATE', 'DELETE', 'LOGIN_FALLIDO'
+  id_usuario       BIGINT,
+  email_usuario    VARCHAR(255) NOT NULL,
+  descripcion      TEXT,
+  ip_origen        VARCHAR(45),
+  timestamp_evento DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  hash_anterior    CHAR(64) NOT NULL,
+  hash_actual      CHAR(64) NOT NULL,
+  INDEX idx_entidad_id   (entidad, id_entidad),
+  INDEX idx_usuario      (id_usuario, timestamp_evento),
+  INDEX idx_accion       (accion, timestamp_evento),
+  INDEX idx_ts           (timestamp_evento)
 ) ENGINE=InnoDB;
 ```
 
@@ -245,19 +257,20 @@ CREATE TABLE auditoria_eventos (
 
 ---
 
-## Assumptions
+## Assumptions *(actualizados en clarification)*
 
 - La tabla de auditoría es "append-only": no existe endpoint `DELETE` ni `PUT` sobre
-  registros de auditoría. Esto es por diseño y se refleja en la ausencia de esos
-  endpoints en la API.
-- La IP del request se extrae del header `X-Forwarded-For` (o `RemoteAddr` si no existe
-  proxy). En entornos con load balancer, el proxy DEBE propagar el header correctamente.
-- El `VistaAuditoria.tsx` del frontend ya existe; este spec define el contrato de API
-  que consume.
-- Blockchain está explícitamente fuera del alcance (Constitución, Sección Stack
-  Tecnológico Obligatorio). La cadena de hashes en MySQL provee garantías equivalentes.
-- Los backups de la tabla de auditoría siguen la misma política de retención que el
-  resto de la DB: 5 años mínimo en almacenamiento inmutable (S3 con Object Lock o
-  equivalente).
-- El `GENESIS_HASH` es una constante pública documentada en el código fuente:
-  `SHA-256("GENESIS-AUDITORIA-INSTITUCIONAL")`.
+  registros de auditoría.
+- La IP del request se extrae del header `X-Forwarded-For` (o `RemoteAddr` si no hay proxy).
+- El `VistaAuditoria.tsx` del frontend ya existe y consume los endpoints de
+  `/api/admin/auditoria`.
+- Blockchain está explícitamente fuera del alcance (Constitución). La cadena de hashes
+  en la tabla unificada provee garantías equivalentes.
+- Los backups de auditoría siguen la política de retención de 5 años mínimo.
+- La tabla es **unificada** — un único `entidad: string` discrimina el tipo de registro.
+  El `GENESIS_HASH` es `SHA-256("GENESIS-AUDITORIA-INSTITUCIONAL")` para el primer registro.
+- El campo `descripcion` contiene texto libre con el detalle del cambio (por ejemplo:
+  `"Nota parcial 1 modificada: 7.0 → 8.5 para inscripcion #42"`).
+- **Paginación**: El frontend actual carga todos los registros con
+  `GET /api/admin/auditoria` sin paginación. Si el volumen crece, agregar parámetros
+  `page/size` es una mejora de performance futura, no un bloqueador de v1.

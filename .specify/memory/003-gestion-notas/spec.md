@@ -4,9 +4,24 @@
 
 **Created**: 2026-06-09
 
-**Status**: Draft
+**Status**: Clarified
 
 **Input**: User description: "Gestión de notas y cierre de actas con inmutabilidad"
+
+## Clarification Notes *(added 2026-06-09 — reconciliado con código existente)*
+
+> | # | Ítem | Spec Draft | Clarificado |
+> |---|---|---|---|
+> | C1 | **Modelo de negocio** | Basado en "Acta" con múltiples alumnos | **Por-inscripción**: cada `Inscripcion` tiene sus propias notas; el cierre es por inscripción individual (`notaCerrada: boolean`), no por acta global |
+> | C2 | **Cargar nota** | `PUT /api/actas/{actaId}/notas/{alumnoId}` | `PUT /api/docente/inscripciones/{idInscripcion}/nota` |
+> | C3 | **Cerrar nota** | `POST /api/actas/{id}/cerrar` | `PATCH /api/docente/inscripciones/{idInscripcion}/cerrar` |
+> | C4 | **Lista inscriptos docente** | `GET /api/actas/{id}` | `GET /api/docente/materias/{idMateria}/inscripciones` |
+> | C5 | **Notas del ESTUDIANTE** | `GET /api/alumnos/mias/notas` | `GET /api/inscripciones/mis-notas` |
+> | C6 | **Estructura NotaRequest** | `{ nota, tipo }` (único campo decimal) | `{ notaParcial1?, notaParcial2?, notaFinal?, asistencias? }` — múltiples notas por inscripción |
+> | C7 | **Roles** | `alumno`, `docente`, `admin` | `ESTUDIANTE`, `DOCENTE`, `ADMINISTRADOR` |
+> | C8 | **Historial docente** | No en spec | `GET /api/docente/estudiantes/{idEstudiante}/asistencias` → `[ Inscripcion ]` |
+> | C9 | **Acta global** | Concepto central del spec | **No existe en el frontend** — el `Boletin.tsx` y `GrillaNotas.tsx` consumen notas por inscripción; "acta" es un término de presentación, no un objeto de API |
+> | C10 | **Rectificación post-cierre** | Proceso dual de admin | **No implementado en v1** — `notaCerrada = true` bloquea edición. Proceso formal de rectificación diferido a v2 |
 
 ## Constitution Check
 
@@ -175,27 +190,31 @@ sus notas agrupadas por materia y período.
 - **FR-010**: Las notas de alumnos de otras comisiones son inaccesibles para un docente
   (mínimo privilegio — Principio II y V).
 
-### Contratos de API
+### Contratos de API *(corregidos en clarification — modelo por-inscripción)*
 
 | Método | Path | Rol JWT requerido | Body / Respuesta |
 |---|---|---|---|
-| `GET` | `/api/actas` | `docente` (sus actas), `admin` (todas) | → 200 `[ ActaDTO ]` |
-| `GET` | `/api/actas/{id}` | `docente` (su materia), `admin` | → 200 `ActaDetalleDTO` con notas |
-| `PUT` | `/api/actas/{actaId}/notas/{alumnoId}` | `docente` (su materia) | `{ nota, tipo }` → 200 / 409 si cerrada |
-| `POST` | `/api/actas/{id}/cerrar` | `docente` (su materia) | → 200 / 422 si hay alumnos sin nota |
-| `POST` | `/api/actas/{id}/rectificacion` | `admin` | `{ alumnoId, nuevaNota, motivo }` → 201 PENDIENTE |
-| `PATCH` | `/api/actas/rectificacion/{rectId}/aprobar` | `admin` (distinto al solicitante) | → 200 APROBADA / 403 |
-| `GET` | `/api/alumnos/mias/notas` | `alumno` | → 200 `[ NotaPorMateriaDTO ]` |
+| `GET` | `/api/docente/materias/{idMateria}/inscripciones` | `DOCENTE` (su materia), `ADMINISTRADOR` | → 200 `[ Inscripcion ]` |
+| `PUT` | `/api/docente/inscripciones/{idInscripcion}/nota` | `DOCENTE` (su materia) | `{ notaParcial1?, notaParcial2?, notaFinal?, asistencias? }` → 200 `Inscripcion` / 409 si notaCerrada |
+| `PATCH` | `/api/docente/inscripciones/{idInscripcion}/cerrar` | `DOCENTE` (su materia) | → 200 `Inscripcion` con `notaCerrada: true` |
+| `GET` | `/api/docente/estudiantes/{idEstudiante}/asistencias` | `DOCENTE` | → 200 `[ Inscripcion ]` |
+| `GET` | `/api/inscripciones/mis-notas` | `ESTUDIANTE` | → 200 `[ Inscripcion ]` (con notas del ESTUDIANTE autenticado) |
 
-### Key Entities
+> **Diferido a v2**: Proceso formal de rectificación de notas cerradas (doble aprobación
+> de administrador). En v1, `notaCerrada = true` es inmutable a nivel de API.
 
-- **Acta**: `id`, `materiaId`, `docenteId`, `periodo`, `estado` (ABIERTA/CERRADA/RECTIFICADA),
-  `fechaCierre` (nullable), `usuarioCierreId`.
-- **Nota**: `id`, `actaId`, `alumnoId`, `valor`, `tipo` (PARCIAL_1/PARCIAL_2/FINAL/RECUPERATORIO),
-  `fechaCarga`, `docenteId`.
-- **SolicitudRectificacion**: `id`, `actaId`, `alumnoId`, `notaOriginal`, `notaNueva`,
-  `motivo`, `adminSolicitanteId`, `adminAprobadorId`, `estado` (PENDIENTE/APROBADA/RECHAZADA),
-  `fechaSolicitud`, `fechaResolucion`.
+### Key Entities *(corregidos en clarification — modelo por-inscripción)*
+
+- **Inscripcion** (TypeScript: `materia.service.ts`): `idInscripcion`, `estudiante?`
+  (`EstudianteResumen`), `materia` (`MateriaDisponible`), `fechaInscripcion: string`,
+  `estado: string`, `notaParcial1?: number`, `notaParcial2?: number`,
+  `notaFinal?: number`, `asistencias?: number`, `notaCerrada: boolean`.
+- **NotaRequest**: `{ notaParcial1?: number, notaParcial2?: number, notaFinal?: number, asistencias?: number }`.
+- **EstudianteResumen**: `idUsuario`, `nombre`, `apellido`, `email`.
+
+> **No existe la entidad `Acta`** en la API v1. El concepto de "acta" es una vista
+> de presentación en el `GrillaNotas.tsx` que agrupa las `Inscripcion` de una materia.
+> La inmutabilidad se implementa con el campo booleano `notaCerrada` por inscripción.
 
 ---
 
@@ -214,14 +233,17 @@ sus notas agrupadas por materia y período.
 
 ---
 
-## Assumptions
+## Assumptions *(actualizados en clarification)*
 
-- El `GrillaNotas.tsx` del frontend ya existe; este spec define el contrato de API.
-- El `Boletin.tsx` del frontend corresponde a `GET /api/alumnos/mias/notas`.
-- La tabla de auditoría ya existe (definida en feature `004-auditoria`); este spec
-  la consume para registrar cambios de notas.
-- Un acta corresponde a UNA materia en UN período académico y es asignada a UN docente.
-- Las notas válidas son valores decimales en el rango [0, escalaMaxima] con precisión
-  de hasta 2 decimales.
-- El proceso de rectificación con doble firma de admin se implementa de forma
-  sincrónica en esta versión (sin notificaciones push).
+- El `GrillaNotas.tsx` del frontend ya existe y consume
+  `GET /api/docente/materias/{id}/inscripciones`.
+- El `Boletin.tsx` del frontend corresponde a `GET /api/inscripciones/mis-notas`.
+- La tabla de auditoría ya existe (feature `004-auditoria`); los cambios de nota
+  la consumen para registrar cada UPDATE.
+- No existe el concepto de "Acta" como entidad de API en v1. El cierre es
+  por-inscripción (`notaCerrada: boolean`). El "cierre de acta completo" (todas las
+  inscripciones de una materia) se puede implementar desde el frontend iterando sobre
+  cada inscripción o mediante un endpoint batch a confirmar con backend.
+- Las notas válidas son decimales: `notaParcial1`, `notaParcial2`, `notaFinal` en
+  rango [0, 10]; `asistencias` es entero (porcentaje o cantidad — a confirmar con backend).
+- El proceso de rectificación dual de admin está diferido a v2.
