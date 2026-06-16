@@ -3,6 +3,8 @@ import materiaService, { Inscripcion } from '../services/materia.service';
 
 const estadoStyle: Record<string, { bg: string; color: string; label: string }> = {
   ACTIVA:      { bg: '#dbeafe', color: '#1d4ed8', label: '🟢 Activa' },
+  CONFIRMADO:  { bg: '#dbeafe', color: '#1d4ed8', label: '🟢 Confirmado' },
+  ENCOLADO:    { bg: '#fef9c3', color: '#92400e', label: '⏳ En cola' },
   APROBADA:    { bg: '#dcfce7', color: '#15803d', label: '✅ Aprobada' },
   DESAPROBADA: { bg: '#fee2e2', color: '#dc2626', label: '❌ Desaprobada' },
   CANCELADA:   { bg: '#f1f5f9', color: '#64748b', label: '⛔ Cancelada' },
@@ -13,6 +15,7 @@ const MisInscripciones: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [cancelandoId, setCancelandoId] = useState<number | null>(null);
+  const [saliendoColaId, setSaliendoColaId] = useState<number | null>(null);
   const [mensaje, setMensaje] = useState<{ text: string; tipo: 'ok' | 'error' } | null>(null);
   const [filtroEstado, setFiltroEstado] = useState<string>('todos');
 
@@ -46,6 +49,21 @@ const MisInscripciones: React.FC = () => {
     }
   };
 
+  const handleSalirDeCola = async (insc: Inscripcion) => {
+    if (!window.confirm(`¿Salir de la cola de espera para "${insc.materia.nombre}"?`)) return;
+    setSaliendoColaId(insc.idInscripcion);
+    try {
+      await materiaService.salirDeCola(insc.idInscripcion);
+      setMensaje({ text: `Saliste de la cola de "${insc.materia.nombre}".`, tipo: 'ok' });
+      await cargar();
+    } catch (e: any) {
+      const msg = e.response?.data?.message || 'Error al salir de la cola';
+      setMensaje({ text: `❌ ${msg}`, tipo: 'error' });
+    } finally {
+      setSaliendoColaId(null);
+    }
+  };
+
   const filtradas = filtroEstado === 'todos'
     ? inscripciones
     : inscripciones.filter(i => i.estado === filtroEstado);
@@ -66,6 +84,7 @@ const MisInscripciones: React.FC = () => {
         >
           <option value="todos">Todos los estados</option>
           <option value="ACTIVA">Activas</option>
+          <option value="ENCOLADO">En cola</option>
           <option value="APROBADA">Aprobadas</option>
           <option value="DESAPROBADA">Desaprobadas</option>
           <option value="CANCELADA">Canceladas</option>
@@ -107,7 +126,6 @@ const MisInscripciones: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {filtradas.map(insc => {
               const style = estadoStyle[insc.estado] || estadoStyle['CANCELADA'];
-              const cancelando = cancelandoId === insc.idInscripcion;
               return (
                 <div key={insc.idInscripcion} style={{
                   background: 'white', borderRadius: '12px', padding: '18px 20px',
@@ -153,20 +171,37 @@ const MisInscripciones: React.FC = () => {
                     {style.label}
                   </span>
 
-                  {/* Acción */}
-                  {insc.estado === 'ACTIVA' && (
+                  {/* Acción — dos botones distintos según estado */}
+                  {(insc.estado === 'ACTIVA' || insc.estado === 'CONFIRMADO') && (
                     <button
                       onClick={() => handleCancelar(insc)}
-                      disabled={cancelando}
+                      disabled={cancelandoId === insc.idInscripcion}
                       style={{
-                        padding: '8px 14px', background: cancelando ? '#f1f5f9' : '#fee2e2',
-                        color: cancelando ? '#94a3b8' : '#dc2626',
+                        padding: '8px 14px',
+                        background: cancelandoId === insc.idInscripcion ? '#f1f5f9' : '#fee2e2',
+                        color: cancelandoId === insc.idInscripcion ? '#94a3b8' : '#dc2626',
                         border: '1px solid #fca5a5', borderRadius: '8px',
-                        cursor: cancelando ? 'not-allowed' : 'pointer', fontSize: '13px', fontWeight: 600,
-                        whiteSpace: 'nowrap',
+                        cursor: cancelandoId === insc.idInscripcion ? 'not-allowed' : 'pointer',
+                        fontSize: '13px', fontWeight: 600, whiteSpace: 'nowrap',
                       }}
                     >
-                      {cancelando ? '⏳' : '✕ Cancelar'}
+                      {cancelandoId === insc.idInscripcion ? '⏳' : '✕ Cancelar inscripción'}
+                    </button>
+                  )}
+                  {insc.estado === 'ENCOLADO' && (
+                    <button
+                      onClick={() => handleSalirDeCola(insc)}
+                      disabled={saliendoColaId === insc.idInscripcion}
+                      style={{
+                        padding: '8px 14px',
+                        background: saliendoColaId === insc.idInscripcion ? '#f1f5f9' : '#fef9c3',
+                        color: saliendoColaId === insc.idInscripcion ? '#94a3b8' : '#92400e',
+                        border: '1px solid #fcd34d', borderRadius: '8px',
+                        cursor: saliendoColaId === insc.idInscripcion ? 'not-allowed' : 'pointer',
+                        fontSize: '13px', fontWeight: 600, whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {saliendoColaId === insc.idInscripcion ? '⏳' : '🚪 Salir de la cola'}
                     </button>
                   )}
                 </div>

@@ -107,6 +107,20 @@ export interface SolicitudReset {
   fechaAtencion?: string;
 }
 
+/** Inscripción con estado de nota — usada para operaciones de reapertura */
+export interface InscripcionAdmin {
+  idInscripcion: number;
+  idEstudiante: number;
+  idMateria: number;
+  estado: string;
+  notaCerrada: boolean;
+  notaParcial1?: number;
+  notaParcial2?: number;
+  notaFinal?: number;
+  asistencias?: number;
+  fechaInscripcion: string;
+}
+
 // ─── Servicio ─────────────────────────────────────────────────────────────────
 
 class AdminService {
@@ -265,6 +279,24 @@ class AdminService {
       );
       return res.data;
     } catch (err) { throw parseError(err, 'atender-reset'); }
+  }
+
+  // ══════════════════════════════════════════════════════════════════
+  //  NOTAS  –  /api/admin/inscripciones
+  // ══════════════════════════════════════════════════════════════════
+
+  /** Reabre una nota cerrada.
+   *  Solo ADMINISTRADOR. Registra auditoría con accion = 'NOTA_REABIERTA'.
+   *  @param id     ID de la inscripción con nota cerrada
+   *  @param motivo Motivo obligatorio de reapertura */
+  async reabrir(id: number, motivo: string): Promise<InscripcionAdmin> {
+    try {
+      const res = await api.patch<InscripcionAdmin>(
+        `/api/admin/inscripciones/${id}/reabrir`,
+        { motivo }
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'reabrir-nota'); }
   }
 }
 

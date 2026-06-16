@@ -3,6 +3,17 @@ import { parseError } from '../utils/errorHandler';
 
 const BASE_URL = '/api/admin/auditoria';
 
+/** Respuesta paginada de Spring (Page<T>) */
+export interface Page<T> {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  number: number;       // página actual (0-based)
+  size: number;
+  first: boolean;
+  last: boolean;
+}
+
 export interface RegistroAuditoria {
   idRegistro: number;
   entidad: string;
@@ -26,9 +37,12 @@ export interface IntegridadResponse {
 
 class AuditoriaService {
 
-  async listarTodos(): Promise<RegistroAuditoria[]> {
+  /** Lista todos los registros de auditoría con paginación obligatoria.
+   *  @param page Página (0-based, default 0)
+   *  @param size Tamaño de página (default 50, máx 100) */
+  async listarTodos(page = 0, size = 50): Promise<Page<RegistroAuditoria>> {
     try {
-      const res = await api.get<RegistroAuditoria[]>(BASE_URL);
+      const res = await api.get<Page<RegistroAuditoria>>(BASE_URL, { params: { page, size } });
       return res.data;
     } catch (err) { throw parseError(err, 'generic'); }
   }

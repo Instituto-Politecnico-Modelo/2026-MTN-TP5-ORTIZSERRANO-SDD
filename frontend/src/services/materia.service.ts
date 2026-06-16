@@ -130,6 +130,14 @@ class MateriaService {
     } catch (err) { throw parseError(err, 'cancelar-inscripcion'); }
   }
 
+  /** Abandona la cola de espera (estado ENCOLADO → eliminado).
+   *  Usa DELETE /api/inscripciones/{id}/cola — distinto de cancelar. */
+  async salirDeCola(idInscripcion: number): Promise<void> {
+    try {
+      await api.delete(`${BASE_URL}/inscripciones/${idInscripcion}/cola`);
+    } catch (err) { throw parseError(err, 'salir-de-cola'); }
+  }
+
   async misNotas(): Promise<Inscripcion[]> {
     try {
       const res = await api.get<Inscripcion[]>(`${BASE_URL}/inscripciones/mis-notas`);
