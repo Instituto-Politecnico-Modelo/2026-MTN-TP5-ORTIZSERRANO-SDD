@@ -47,30 +47,30 @@ class AuditoriaService {
     } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  async porEntidad(entidad: string): Promise<RegistroAuditoria[]> {
+  async porEntidad(entidad: string, page = 0, size = 50): Promise<Page<RegistroAuditoria>> {
     try {
-      const res = await api.get<RegistroAuditoria[]>(`${BASE_URL}/entidad/${entidad}`);
+      const res = await api.get<Page<RegistroAuditoria>>(`${BASE_URL}/entidad/${entidad}`, { params: { page, size } });
       return res.data;
     } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  async porEntidadYId(entidad: string, id: number): Promise<RegistroAuditoria[]> {
+  async porEntidadYId(entidad: string, id: number, page = 0, size = 50): Promise<Page<RegistroAuditoria>> {
     try {
-      const res = await api.get<RegistroAuditoria[]>(`${BASE_URL}/entidad/${entidad}/${id}`);
+      const res = await api.get<Page<RegistroAuditoria>>(`${BASE_URL}/entidad/${entidad}/${id}`, { params: { page, size } });
       return res.data;
     } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  async porUsuario(idUsuario: number): Promise<RegistroAuditoria[]> {
+  async porUsuario(idUsuario: number, page = 0, size = 50): Promise<Page<RegistroAuditoria>> {
     try {
-      const res = await api.get<RegistroAuditoria[]>(`${BASE_URL}/usuario/${idUsuario}`);
+      const res = await api.get<Page<RegistroAuditoria>>(`${BASE_URL}/usuario/${idUsuario}`, { params: { page, size } });
       return res.data;
     } catch (err) { throw parseError(err, 'generic'); }
   }
 
-  async porAccion(accion: string): Promise<RegistroAuditoria[]> {
+  async porAccion(accion: string, page = 0, size = 50): Promise<Page<RegistroAuditoria>> {
     try {
-      const res = await api.get<RegistroAuditoria[]>(`${BASE_URL}/accion/${accion}`);
+      const res = await api.get<Page<RegistroAuditoria>>(`${BASE_URL}/accion/${accion}`, { params: { page, size } });
       return res.data;
     } catch (err) { throw parseError(err, 'generic'); }
   }

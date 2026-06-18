@@ -178,18 +178,27 @@ const VistaAuditoria: React.FC = () => {
   const [integridad, setIntegridad] = useState<IntegridadResponse | null>(null);
   const [verificando, setVerificando] = useState(false);
 
+  // Paginación (GAP-004-A fix)
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [totalElements, setTotalElements] = useState(0);
+  const PAGE_SIZE = 50;
+
   // Filtros
   const [filtroEntidad, setFiltroEntidad] = useState('Todas');
   const [filtroAccion, setFiltroAccion] = useState('Todas');
   const [busqueda, setBusqueda] = useState('');
 
-  const cargar = useCallback(async () => {
+  const cargar = useCallback(async (page = 0) => {
     setLoading(true);
     setError(null);
     try {
-      const data = await auditoriaService.listarTodos();
-      // Más reciente primero
-      setRegistros([...data].reverse());
+      // GAP-004-A fix: listarTodos() devuelve Page<T>, no array
+      const data = await auditoriaService.listarTodos(page, PAGE_SIZE);
+      setRegistros(data.content);
+      setCurrentPage(data.number);
+      setTotalPages(data.totalPages);
+      setTotalElements(data.totalElements);
     } catch {
       setError('No se pudo cargar el log de auditoría.');
     } finally {
@@ -197,7 +206,13 @@ const VistaAuditoria: React.FC = () => {
     }
   }, []);
 
-  useEffect(() => { cargar(); }, [cargar]);
+  useEffect(() => { cargar(0); }, [cargar]);
+
+  const irAPagina = (pagina: number) => {
+    if (pagina >= 0 && pagina < totalPages) {
+      cargar(pagina);
+    }
+  };
 
   const handleVerificar = async () => {
     setVerificando(true);
@@ -221,9 +236,9 @@ const VistaAuditoria: React.FC = () => {
     return matchEntidad && matchAccion && matchBusqueda;
   });
 
-  // Estadísticas rápidas
+  // Estadísticas rápidas (sobre la página actual)
   const stats = {
-    total:    registros.length,
+    total:    totalElements,
     hoy:      registros.filter(r => r.timestampEvento?.startsWith(new Date().toISOString().slice(0, 10))).length,
     acciones: new Set(registros.map(r => r.accion)).size,
     usuarios: new Set(registros.map(r => r.emailUsuario).filter(Boolean)).size,
@@ -292,7 +307,7 @@ const VistaAuditoria: React.FC = () => {
           {ACCIONES.map(a => <option key={a}>{a}</option>)}
         </select>
         <button
-          onClick={cargar}
+          onClick={() => cargar(currentPage)}
           style={{
             padding: '7px 14px', borderRadius: '7px', background: '#0369a1',
             color: 'white', border: 'none', cursor: 'pointer', fontSize: '13px', fontWeight: 600,
@@ -312,7 +327,7 @@ const VistaAuditoria: React.FC = () => {
           </button>
         )}
         <span style={{ fontSize: '12px', color: '#94a3b8', marginLeft: 'auto' }}>
-          {filtrados.length} de {registros.length} registros
+          {filtrados.length} de {totalElements} registros totales (pág. {currentPage + 1}/{totalPages || 1})
         </span>
       </div>
 
@@ -339,7 +354,8 @@ const VistaAuditoria: React.FC = () => {
           📭 No hay registros con los filtros aplicados.
         </div>
       ) : (
-        <div style={{ borderRadius: '12px', overflow: 'auto', border: '1px solid #e2e8f0' }}>
+        <>
+          <div style={{ borderRadius: '12px', overflow: 'auto', border: '1px solid #e2e8f0' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', background: 'white', minWidth: '900px' }}>
             <thead>
               <tr style={{ background: '#1e293b', color: 'white' }}>
@@ -360,6 +376,68 @@ const VistaAuditoria: React.FC = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Controles de paginación (GAP-004-A fix) */}
+        {totalPages > 1 && (
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            gap: '12px', marginTop: '16px', padding: '12px',
+            background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0',
+          }}>
+            <button
+              onClick={() => irAPagina(0)}
+              disabled={currentPage === 0}
+              style={{
+                padding: '6px 12px', borderRadius: '6px', border: '1px solid #d1d5db',
+                background: currentPage === 0 ? '#f1f5f9' : 'white',
+                color: currentPage === 0 ? '#94a3b8' : '#374151',
+                cursor: currentPage === 0 ? 'not-allowed' : 'pointer', fontSize: '13px',
+              }}
+            >
+              ⟨⟨ Primera
+            </button>
+            <button
+              onClick={() => irAPagina(currentPage - 1)}
+              disabled={currentPage === 0}
+              style={{
+                padding: '6px 14px', borderRadius: '6px', border: '1px solid #d1d5db',
+                background: currentPage === 0 ? '#f1f5f9' : 'white',
+                color: currentPage === 0 ? '#94a3b8' : '#374151',
+                cursor: currentPage === 0 ? 'not-allowed' : 'pointer', fontSize: '13px', fontWeight: 600,
+              }}
+            >
+              ← Anterior
+            </button>
+            <span style={{ fontSize: '13px', color: '#475569', fontWeight: 600 }}>
+              Página {currentPage + 1} de {totalPages}
+            </span>
+            <button
+              onClick={() => irAPagina(currentPage + 1)}
+              disabled={currentPage >= totalPages - 1}
+              style={{
+                padding: '6px 14px', borderRadius: '6px', border: '1px solid #d1d5db',
+                background: currentPage >= totalPages - 1 ? '#f1f5f9' : 'white',
+                color: currentPage >= totalPages - 1 ? '#94a3b8' : '#374151',
+                cursor: currentPage >= totalPages - 1 ? 'not-allowed' : 'pointer', fontSize: '13px', fontWeight: 600,
+              }}
+            >
+              Siguiente →
+            </button>
+            <button
+              onClick={() => irAPagina(totalPages - 1)}
+              disabled={currentPage >= totalPages - 1}
+              style={{
+                padding: '6px 12px', borderRadius: '6px', border: '1px solid #d1d5db',
+                background: currentPage >= totalPages - 1 ? '#f1f5f9' : 'white',
+                color: currentPage >= totalPages - 1 ? '#94a3b8' : '#374151',
+                cursor: currentPage >= totalPages - 1 ? 'not-allowed' : 'pointer', fontSize: '13px',
+              }}
+            >
+              Última ⟩⟩
+            </button>
+          </div>
+        )}
+        </>
       )}
     </div>
   );
