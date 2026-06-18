@@ -397,7 +397,47 @@ npm start
 
 ---
 
-## 🚧 Mejoras Futuras
+## � Log de Auditoría con Hash Encadenado (feature 004)
+
+El sistema registra automáticamente toda operación sensible en una tabla `auditoria` append-only, protegida con cadena de hashes SHA-256.
+
+### Eventos auditados
+
+| Acción | Entidad | Endpoint disparador |
+|---|---|---|
+| `NOTA_CARGADA` | `INSCRIPCION` | `PUT /api/docente/inscripciones/{id}/nota` |
+| `NOTA_CERRADA` | `INSCRIPCION` | `PATCH /api/docente/inscripciones/{id}/cerrar` |
+| `NOTA_REABIERTA` | `INSCRIPCION` | `PATCH /api/admin/inscripciones/{id}/reabrir` |
+| `INSCRIPCION_CONFIRMADA` | `INSCRIPCION` | `POST /api/inscripciones` → 201 Created |
+| `INSCRIPCION_ENCOLADA` | `INSCRIPCION` | `POST /api/inscripciones` → 202 Accepted |
+| `INSCRIPCION_CANCELADA` | `INSCRIPCION` | `PATCH /api/inscripciones/{id}/cancelar` |
+| `LOGIN_FALLIDO` | `USUARIO` | `POST /api/auth/login` (credenciales inválidas) |
+| `CUENTA_BLOQUEADA` | `USUARIO` | `POST /api/auth/login` (N intentos fallidos) |
+| `USUARIO_CREADO` | `USUARIO` | `POST /api/admin/usuarios` |
+| `USUARIO_ELIMINADO` | `USUARIO` | `DELETE /api/admin/estudiantes/{id}` |
+
+### Endpoints de consulta (rol `ADMINISTRADOR`)
+
+| Método | Path | Descripción |
+|---|---|---|
+| `GET` | `/api/admin/auditoria?page=0&size=50` | Log paginado completo (máx 100/página) |
+| `GET` | `/api/admin/auditoria/entidad/{entidad}` | Filtrar por tipo de entidad |
+| `GET` | `/api/admin/auditoria/entidad/{entidad}/{id}` | Filtrar por entidad e id |
+| `GET` | `/api/admin/auditoria/usuario/{idUsuario}` | Filtrar por usuario |
+| `GET` | `/api/admin/auditoria/accion/{accion}` | Filtrar por tipo de acción |
+| `GET` | `/api/admin/auditoria/verificar` | Verificar integridad de la cadena SHA-256 |
+
+### Garantías de integridad
+
+- La tabla `auditoria` es **append-only**: no hay endpoints `PUT`, `PATCH` ni `DELETE`.
+- Cada registro almacena el `hash_actual` (SHA-256 del propio registro + `hash_anterior`).
+- `GENESIS_HASH = SHA-256("GENESIS-AUDITORIA-INSTITUCIONAL")` es la raíz inmutable de la cadena.
+- `GET /verificar` recorre toda la cadena y detecta cualquier manipulación directa en la BD.
+- La entidad JPA `RegistroAuditoria` está anotada con `@Immutable` (Hibernate) para prevenir UPDATEs accidentales.
+
+---
+
+## �🚧 Mejoras Futuras
 
 ### Backend
 - [ ] Implementar refresh tokens
