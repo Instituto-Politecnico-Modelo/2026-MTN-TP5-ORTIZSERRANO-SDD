@@ -105,6 +105,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // ── logout ────────────────────────────────────────────────────────────────
 
   const logout = useCallback((reason: 'manual' | 'expired' | 'idle' = 'manual') => {
+    // CHK040: revoca token en server (fire-and-forget — no bloquea la UI)
     authService.logout();
     setUser(null);
     setIdleWarningSecsLeft(null);
