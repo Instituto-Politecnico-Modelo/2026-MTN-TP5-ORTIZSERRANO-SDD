@@ -1,0 +1,15 @@
+# Este repositorio (SDD) solo mantiene documentación en Markdown.
+# Todo el código fuente debe subirse al repo TP3.
+
+# Ignorar todo por defecto
+*
+
+# Permitir recorrer carpetas para poder incluir .md en subdirectorios
+!*/
+
+# Mantener este archivo versionado
+!.gitignore
+
+# Incluir únicamente archivos Markdown
+!*.md
+!**/*.md
