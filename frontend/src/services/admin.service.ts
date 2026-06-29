@@ -98,6 +98,18 @@ export interface MessageResponse {
   message: string;
 }
 
+export interface CorrelatividadResponse {
+  idCorrelatividad: number;
+  idMateria: number;
+  codigoMateria: string;
+  nombreMateria: string;
+  idMateriaRequerida: number;
+  codigoRequerida: string;
+  nombreRequerida: string;
+  tipo: string;
+  cumplida: boolean;
+}
+
 export interface SolicitudReset {
   idSolicitud: number;
   email: string;
@@ -297,6 +309,41 @@ class AdminService {
       );
       return res.data;
     } catch (err) { throw parseError(err, 'reabrir-nota'); }
+  }
+
+  // ══════════════════════════════════════════════════════════════════
+  //  CORRELATIVIDADES  –  /api/admin/correlatividades
+  // ══════════════════════════════════════════════════════════════════
+
+  async listarCorrelatividades(idMateria: number): Promise<CorrelatividadResponse[]> {
+    try {
+      const res = await api.get<CorrelatividadResponse[]>(
+        `/api/admin/correlatividades/materia/${idMateria}`
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
+  }
+
+  async crearCorrelatividad(data: {
+    idMateria: number;
+    idMateriaRequerida: number;
+    tipo: string;
+  }): Promise<CorrelatividadResponse> {
+    try {
+      const res = await api.post<CorrelatividadResponse>(
+        `/api/admin/correlatividades`, data
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'crear-correlatividad'); }
+  }
+
+  async eliminarCorrelatividad(id: number): Promise<MessageResponse> {
+    try {
+      const res = await api.delete<MessageResponse>(
+        `/api/admin/correlatividades/${id}`
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'eliminar-correlatividad'); }
   }
 }
 

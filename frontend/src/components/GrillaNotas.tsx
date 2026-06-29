@@ -12,6 +12,16 @@ function estadoColor(estado: string): { bg: string; color: string } {
   }
 }
 
+function condColor(cond?: string): { bg: string; color: string; label: string } | null {
+  if (!cond) return null;
+  switch (cond) {
+    case 'PROMOCIONADO': return { bg: '#dcfce7', color: '#15803d', label: '🏆 Promocionado' };
+    case 'REGULAR':      return { bg: '#fef9c3', color: '#854d0e', label: '📋 Regular' };
+    case 'LIBRE':        return { bg: '#fee2e2', color: '#b91c1c', label: '🔴 Libre' };
+    default:             return null;
+  }
+}
+
 function notaColor(n: number | undefined): string {
   if (n === undefined) return '#94a3b8';
   if (n >= 7) return '#15803d';
@@ -152,6 +162,22 @@ const FilaInscripcion: React.FC<FilaProps> = ({ ins, onGuardado, onCerrado }) =>
           {ins.estado}
           {cerrada && <span style={{ marginLeft: '5px' }}>🔒</span>}
         </span>
+      </td>
+
+      {/* Condición */}
+      <td style={{ padding: '12px 10px', textAlign: 'center' }}>
+        {(() => {
+          const cc = condColor(ins.condicion);
+          if (!cc) return <span style={{ color: '#94a3b8', fontSize: '12px' }}>—</span>;
+          return (
+            <span style={{
+              padding: '3px 8px', borderRadius: '20px', fontSize: '11px',
+              fontWeight: 700, background: cc.bg, color: cc.color, whiteSpace: 'nowrap',
+            }}>
+              {cc.label}
+            </span>
+          );
+        })()}
       </td>
 
       {/* Acciones */}
@@ -368,7 +394,7 @@ const GrillaNotas: React.FC = () => {
               <table style={{ width: '100%', borderCollapse: 'collapse', background: 'white', minWidth: '800px' }}>
                 <thead>
                   <tr style={{ background: '#f8fafc', borderBottom: '2px solid #e2e8f0' }}>
-                    {['Alumno', 'Parcial 1', 'Parcial 2', 'Nota Final', 'Asistencias', 'Estado', 'Acciones'].map(h => (
+                    {['Alumno', 'Parcial 1', 'Parcial 2', 'Nota Final', 'Asistencias', 'Estado', 'Condición', 'Acciones'].map(h => (
                       <th key={h} style={{
                         padding: '12px 10px', textAlign: h === 'Alumno' ? 'left' : 'center',
                         color: '#475569', fontSize: '12px', fontWeight: 700,

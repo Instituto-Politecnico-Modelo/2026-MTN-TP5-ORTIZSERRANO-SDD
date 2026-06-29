@@ -30,6 +30,18 @@ export interface EstudianteResumen {
   email: string;
 }
 
+export interface Correlatividad {
+  idCorrelatividad: number;
+  idMateria: number;
+  codigoMateria: string;
+  nombreMateria: string;
+  idMateriaRequerida: number;
+  codigoRequerida: string;
+  nombreRequerida: string;
+  tipo: string;
+  cumplida: boolean;
+}
+
 export interface Inscripcion {
   idInscripcion: number;
   estudiante?: EstudianteResumen;
@@ -41,6 +53,7 @@ export interface Inscripcion {
   notaFinal?: number;
   asistencias?: number;
   notaCerrada: boolean;
+  condicion?: string;
 }
 
 export interface InscripcionRequest {
@@ -130,17 +143,18 @@ class MateriaService {
     } catch (err) { throw parseError(err, 'cancelar-inscripcion'); }
   }
 
-  /** Abandona la cola de espera (estado ENCOLADO → eliminado).
-   *  Usa DELETE /api/inscripciones/{id}/cola — distinto de cancelar. */
-  async salirDeCola(idInscripcion: number): Promise<void> {
-    try {
-      await api.delete(`${BASE_URL}/inscripciones/${idInscripcion}/cola`);
-    } catch (err) { throw parseError(err, 'salir-de-cola'); }
-  }
-
   async misNotas(): Promise<Inscripcion[]> {
     try {
       const res = await api.get<Inscripcion[]>(`${BASE_URL}/inscripciones/mis-notas`);
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
+  }
+
+  async listarCorrelatividades(idMateria: number): Promise<Correlatividad[]> {
+    try {
+      const res = await api.get<Correlatividad[]>(
+        `${BASE_URL}/materias/${idMateria}/correlatividades`
+      );
       return res.data;
     } catch (err) { throw parseError(err, 'generic'); }
   }

@@ -4,9 +4,11 @@ import authService from '../services/auth.service';
 import ListaMaterias from './ListaMaterias';
 import MisInscripciones from './MisInscripciones';
 import Boletin from './Boletin';
+import MisExamenes from './MisExamenes';
+import MisParciales from './MisParciales';
 import AsteroidGame from './AsteroidGame';
 
-type Vista = 'inicio' | 'materias' | 'inscripciones' | 'boletin';
+type Vista = 'inicio' | 'materias' | 'inscripciones' | 'examenes' | 'parciales' | 'boletin';
 
 interface TabProps {
   label: string;
@@ -79,6 +81,8 @@ const DashboardEstudiante: React.FC = () => {
           <Tab icon="🏠" label="Inicio"            active={vista === 'inicio'}        onClick={() => setVista('inicio')} />
           <Tab icon="📚" label="Ver Materias"      active={vista === 'materias'}      onClick={() => setVista('materias')} />
           <Tab icon="📝" label="Mis Inscripciones" active={vista === 'inscripciones'} onClick={() => setVista('inscripciones')} />
+          <Tab icon="📅" label="Mis Exámenes"     active={vista === 'examenes'}      onClick={() => setVista('examenes')} />
+          <Tab icon="📝" label="Parciales"        active={vista === 'parciales'}     onClick={() => setVista('parciales')} />
           <Tab icon="📋" label="Mi Boletin"        active={vista === 'boletin'}       onClick={() => setVista('boletin')} />
         </div>
       </header>
@@ -130,6 +134,13 @@ const DashboardEstudiante: React.FC = () => {
                   btnColor: '#15803d',
                 },
                 {
+                  icon: '📝', title: 'Parciales', color: '#f3e8ff',
+                  desc: 'Inscribite y consultá tus exámenes parciales',
+                  action: () => setVista('parciales'),
+                  btn: 'Ver Parciales',
+                  btnColor: '#7c3aed',
+                },
+                {
                   icon: '📋', title: 'Mi Boletin', color: '#fef9c3',
                   desc: 'Consulta tus calificaciones y el detalle de parciales',
                   action: () => setVista('boletin'),
@@ -171,6 +182,20 @@ const DashboardEstudiante: React.FC = () => {
         {vista === 'materias' && (
           <div style={{ background: 'white', borderRadius: '16px', padding: '28px', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}>
             <ListaMaterias onClose={() => setVista('inicio')} />
+          </div>
+        )}
+
+        {/* VISTA EXAMENES (finales) */}
+        {vista === 'examenes' && (
+          <div style={{ background: 'white', borderRadius: '16px', padding: '28px', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}>
+            <MisExamenes />
+          </div>
+        )}
+
+        {/* VISTA PARCIALES */}
+        {vista === 'parciales' && (
+          <div style={{ background: 'white', borderRadius: '16px', padding: '28px', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}>
+            <MisParciales />
           </div>
         )}
 

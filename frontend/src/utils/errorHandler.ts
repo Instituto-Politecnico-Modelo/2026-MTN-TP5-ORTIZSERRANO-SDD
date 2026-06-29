@@ -66,6 +66,8 @@ export type ErrorContext =
   | 'eliminar-periodo'
   | 'solicitud-password'
   | 'atender-reset'
+  | 'crear-correlatividad'
+  | 'eliminar-correlatividad'
   | 'generic';
 
 // ─── Clase AppError ───────────────────────────────────────────────────────────
@@ -161,6 +163,10 @@ const MSG_400: Record<ErrorContext, string> = {
     'No se pudo enviar la solicitud. Verificá que el email sea correcto.',
   'atender-reset':
     'No se pudo procesar la solicitud de contraseña.',
+  'crear-correlatividad':
+    'No se pudo crear la correlatividad. Verificá que la materia requerida exista.',
+  'eliminar-correlatividad':
+    'No se pudo eliminar la correlatividad.',
   generic:
     'Los datos ingresados son inválidos. Verificá el formulario e intentá de nuevo.',
 };
@@ -191,6 +197,8 @@ const MSG_404: Record<ErrorContext, string> = {
   'eliminar-periodo':    'El período no fue encontrado.',
   'solicitud-password':  'El email no está registrado en el sistema.',
   'atender-reset':       'La solicitud de contraseña no fue encontrada.',
+  'crear-correlatividad':  'La materia o la materia requerida no fue encontrada.',
+  'eliminar-correlatividad': 'La correlatividad no fue encontrada.',
   generic:               'El recurso solicitado no existe.',
 };
 
