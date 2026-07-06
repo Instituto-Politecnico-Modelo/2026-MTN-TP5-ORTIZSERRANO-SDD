@@ -1,6 +1,6 @@
 # 🎓 Sistema de Gestión de Decanato — IPM
 
-> **TP5 — Materia: Metodología y Tecnología de Nuevos Sistemas**  
+> **TP5 — Materia: MTN**  
 > Autores: Ortiz · Serrano  
 > Stack: Spring Boot 4 · React 19 · MySQL 8 · JWT · Redis
 
