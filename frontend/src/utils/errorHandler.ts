@@ -48,6 +48,7 @@ export type ErrorContext =
   | 'change-password'
   | 'inscribirse'
   | 'cancelar-inscripcion'
+  | 'salir-de-cola'
   | 'crear-usuario'
   | 'editar-usuario'
   | 'eliminar-usuario'
@@ -57,6 +58,7 @@ export type ErrorContext =
   | 'eliminar-materia'
   | 'cargar-nota'
   | 'cerrar-nota'
+  | 'reabrir-nota'
   | 'reservar-auditorio'
   | 'cancelar-reserva'
   | 'crear-periodo'
@@ -64,6 +66,8 @@ export type ErrorContext =
   | 'eliminar-periodo'
   | 'solicitud-password'
   | 'atender-reset'
+  | 'crear-correlatividad'
+  | 'eliminar-correlatividad'
   | 'generic';
 
 // ─── Clase AppError ───────────────────────────────────────────────────────────
@@ -123,6 +127,8 @@ const MSG_400: Record<ErrorContext, string> = {
     'No fue posible completar la inscripción. Verificá que la materia exista y esté disponible.',
   'cancelar-inscripcion':
     'No se pudo cancelar la inscripción. Solo podés cancelar tus propias inscripciones activas.',
+  'salir-de-cola':
+    'No se pudo salir de la cola. Solo podés abandonar tu propia posición en la cola.',
   'crear-usuario':
     'No se pudo crear el usuario. El email podría estar en uso o los datos son inválidos.',
   'editar-usuario':
@@ -141,6 +147,8 @@ const MSG_400: Record<ErrorContext, string> = {
     'No se pudo guardar la nota. Verificá que el valor esté entre 1 y 10.',
   'cerrar-nota':
     'No se pudo cerrar la nota. Solo podés cerrar notas definitivas.',
+  'reabrir-nota':
+    'No se pudo reabrir la nota. Verificá que la nota esté cerrada y que el motivo sea válido.',
   'reservar-auditorio':
     'No se pudo reservar el auditorio. El horario podría estar ocupado o los datos son incorrectos.',
   'cancelar-reserva':
@@ -155,6 +163,10 @@ const MSG_400: Record<ErrorContext, string> = {
     'No se pudo enviar la solicitud. Verificá que el email sea correcto.',
   'atender-reset':
     'No se pudo procesar la solicitud de contraseña.',
+  'crear-correlatividad':
+    'No se pudo crear la correlatividad. Verificá que la materia requerida exista.',
+  'eliminar-correlatividad':
+    'No se pudo eliminar la correlatividad.',
   generic:
     'Los datos ingresados son inválidos. Verificá el formulario e intentá de nuevo.',
 };
@@ -167,6 +179,7 @@ const MSG_404: Record<ErrorContext, string> = {
   'change-password':     'Tu cuenta no fue encontrada.',
   inscribirse:           'La materia que intentás cursar no existe o fue eliminada.',
   'cancelar-inscripcion':'La inscripción no fue encontrada.',
+  'salir-de-cola':       'La inscripción en cola no fue encontrada.',
   'crear-usuario':       'Error al procesar la solicitud.',
   'editar-usuario':      'El usuario no fue encontrado en el sistema.',
   'eliminar-usuario':    'El usuario no fue encontrado en el sistema.',
@@ -176,6 +189,7 @@ const MSG_404: Record<ErrorContext, string> = {
   'eliminar-materia':    'La materia no fue encontrada.',
   'cargar-nota':         'La inscripción no fue encontrada.',
   'cerrar-nota':         'La inscripción no fue encontrada.',
+  'reabrir-nota':        'La inscripción no fue encontrada.',
   'reservar-auditorio':  'El auditorio no fue encontrado.',
   'cancelar-reserva':    'La reserva no fue encontrada.',
   'crear-periodo':       'Error al procesar la solicitud.',
@@ -183,6 +197,8 @@ const MSG_404: Record<ErrorContext, string> = {
   'eliminar-periodo':    'El período no fue encontrado.',
   'solicitud-password':  'El email no está registrado en el sistema.',
   'atender-reset':       'La solicitud de contraseña no fue encontrada.',
+  'crear-correlatividad':  'La materia o la materia requerida no fue encontrada.',
+  'eliminar-correlatividad': 'La correlatividad no fue encontrada.',
   generic:               'El recurso solicitado no existe.',
 };
 

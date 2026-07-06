@@ -98,6 +98,18 @@ export interface MessageResponse {
   message: string;
 }
 
+export interface CorrelatividadResponse {
+  idCorrelatividad: number;
+  idMateria: number;
+  codigoMateria: string;
+  nombreMateria: string;
+  idMateriaRequerida: number;
+  codigoRequerida: string;
+  nombreRequerida: string;
+  tipo: string;
+  cumplida: boolean;
+}
+
 export interface SolicitudReset {
   idSolicitud: number;
   email: string;
@@ -105,6 +117,20 @@ export interface SolicitudReset {
   fechaSolicitud: string;
   estado: 'PENDIENTE' | 'ATENDIDA';
   fechaAtencion?: string;
+}
+
+/** Inscripción con estado de nota — usada para operaciones de reapertura */
+export interface InscripcionAdmin {
+  idInscripcion: number;
+  idEstudiante: number;
+  idMateria: number;
+  estado: string;
+  notaCerrada: boolean;
+  notaParcial1?: number;
+  notaParcial2?: number;
+  notaFinal?: number;
+  asistencias?: number;
+  fechaInscripcion: string;
 }
 
 // ─── Servicio ─────────────────────────────────────────────────────────────────
@@ -265,6 +291,59 @@ class AdminService {
       );
       return res.data;
     } catch (err) { throw parseError(err, 'atender-reset'); }
+  }
+
+  // ══════════════════════════════════════════════════════════════════
+  //  NOTAS  –  /api/admin/inscripciones
+  // ══════════════════════════════════════════════════════════════════
+
+  /** Reabre una nota cerrada.
+   *  Solo ADMINISTRADOR. Registra auditoría con accion = 'NOTA_REABIERTA'.
+   *  @param id     ID de la inscripción con nota cerrada
+   *  @param motivo Motivo obligatorio de reapertura */
+  async reabrir(id: number, motivo: string): Promise<InscripcionAdmin> {
+    try {
+      const res = await api.patch<InscripcionAdmin>(
+        `/api/admin/inscripciones/${id}/reabrir`,
+        { motivo }
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'reabrir-nota'); }
+  }
+
+  // ══════════════════════════════════════════════════════════════════
+  //  CORRELATIVIDADES  –  /api/admin/correlatividades
+  // ══════════════════════════════════════════════════════════════════
+
+  async listarCorrelatividades(idMateria: number): Promise<CorrelatividadResponse[]> {
+    try {
+      const res = await api.get<CorrelatividadResponse[]>(
+        `/api/admin/correlatividades/materia/${idMateria}`
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'generic'); }
+  }
+
+  async crearCorrelatividad(data: {
+    idMateria: number;
+    idMateriaRequerida: number;
+    tipo: string;
+  }): Promise<CorrelatividadResponse> {
+    try {
+      const res = await api.post<CorrelatividadResponse>(
+        `/api/admin/correlatividades`, data
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'crear-correlatividad'); }
+  }
+
+  async eliminarCorrelatividad(id: number): Promise<MessageResponse> {
+    try {
+      const res = await api.delete<MessageResponse>(
+        `/api/admin/correlatividades/${id}`
+      );
+      return res.data;
+    } catch (err) { throw parseError(err, 'eliminar-correlatividad'); }
   }
 }
 

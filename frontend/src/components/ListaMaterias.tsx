@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import materiaService, { Materia, Inscripcion } from '../services/materia.service';
+import materiaService, { Materia, Inscripcion, Correlatividad } from '../services/materia.service';
 import authService from '../services/auth.service';
 
 interface Props {
@@ -9,12 +9,19 @@ interface Props {
 // ── Modal de confirmación ────────────────────────────────────────────────────
 interface ModalProps {
   materia: Materia;
+  correlatividades: Correlatividad[];
+  loadingCorr: boolean;
   onConfirm: () => void;
   onCancel: () => void;
   loading: boolean;
 }
 
-const ModalInscripcion: React.FC<ModalProps> = ({ materia, onConfirm, onCancel, loading }) => (
+const ModalInscripcion: React.FC<ModalProps> = ({ materia, correlatividades, loadingCorr, onConfirm, onCancel, loading }) => {
+  const tieneCorr = correlatividades.length > 0;
+  const todasCumplidas = correlatividades.every(c => c.cumplida);
+  const puedeInscribirse = !tieneCorr || todasCumplidas;
+
+  return (
   <div style={{
     position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -52,6 +59,39 @@ const ModalInscripcion: React.FC<ModalProps> = ({ materia, onConfirm, onCancel, 
           )}
         </div>
       </div>
+
+      {/* Correlatividades */}
+      {loadingCorr ? (
+        <div style={{ textAlign: 'center', padding: '12px', color: '#94a3b8', fontSize: '13px' }}>
+          ⏳ Verificando correlatividades...
+        </div>
+      ) : tieneCorr ? (
+        <div style={{
+          background: todasCumplidas ? '#dcfce7' : '#fee2e2',
+          border: `1px solid ${todasCumplidas ? '#86efac' : '#fca5a5'}`,
+          borderRadius: '10px', padding: '14px 18px', marginBottom: '24px',
+        }}>
+          <div style={{ fontSize: '13px', fontWeight: 700, color: todasCumplidas ? '#15803d' : '#b91c1c', marginBottom: '8px' }}>
+            {todasCumplidas ? '✅ Correlatividades cumplidas' : '❌ Correlatividades incumplidas'}
+          </div>
+          {correlatividades.map(c => (
+            <div key={c.idCorrelatividad} style={{
+              display: 'flex', alignItems: 'center', gap: '8px',
+              padding: '4px 0', fontSize: '13px',
+              color: c.cumplida ? '#166534' : '#991b1b',
+            }}>
+              <span>{c.cumplida ? '✅' : '❌'}</span>
+              <span>
+                <strong>{c.nombreRequerida}</strong> ({c.codigoRequerida})
+                <span style={{ fontSize: '11px', opacity: 0.7, marginLeft: '6px' }}>
+                  — debe estar {c.tipo === 'APROBADA' ? 'aprobada' : 'cursada'}
+                </span>
+              </span>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
       <div style={{ display: 'flex', gap: '12px' }}>
         <button
           onClick={onCancel}
@@ -66,22 +106,23 @@ const ModalInscripcion: React.FC<ModalProps> = ({ materia, onConfirm, onCancel, 
         </button>
         <button
           onClick={onConfirm}
-          disabled={loading}
+          disabled={loading || !puedeInscribirse}
           style={{
             flex: 1, padding: '12px',
-            background: loading ? '#93c5fd' : 'linear-gradient(135deg, #0ea5e9, #0369a1)',
+            background: loading || !puedeInscribirse ? '#93c5fd' : 'linear-gradient(135deg, #0ea5e9, #0369a1)',
             border: 'none', borderRadius: '10px',
-            cursor: loading ? 'not-allowed' : 'pointer',
+            cursor: loading || !puedeInscribirse ? 'not-allowed' : 'pointer',
             fontSize: '15px', fontWeight: 700, color: 'white',
-            boxShadow: loading ? 'none' : '0 4px 12px rgba(14,165,233,0.35)',
+            boxShadow: loading || !puedeInscribirse ? 'none' : '0 4px 12px rgba(14,165,233,0.35)',
           }}
         >
-          {loading ? '⏳ Inscribiendo...' : '✅ Confirmar'}
+          {loading ? '⏳ Inscribiendo...' : !puedeInscribirse ? '🔒 Correlatividades pendientes' : '✅ Confirmar'}
         </button>
       </div>
     </div>
   </div>
-);
+  );
+};
 
 // ── Componente principal ─────────────────────────────────────────────────────
 const ListaMaterias: React.FC<Props> = ({ onClose }) => {
@@ -94,6 +135,8 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
   const [filtroAnio, setFiltroAnio] = useState<number | 'todos'>('todos');
   const [busqueda, setBusqueda] = useState('');
   const [modalMateria, setModalMateria] = useState<Materia | null>(null);
+  const [correlatividades, setCorrelatividades] = useState<Correlatividad[]>([]);
+  const [loadingCorr, setLoadingCorr] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
   const cargarDatos = useCallback(async () => {
@@ -125,9 +168,19 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
   const inscripcionActiva = (idMateria: number) =>
     inscripciones.find(i => i.materia.idMateria === idMateria && i.estado !== 'CANCELADA');
 
-  // Abre el modal de confirmación
-  const solicitarInscripcion = (materia: Materia) => {
+  // Abre el modal de confirmación y carga correlatividades
+  const solicitarInscripcion = async (materia: Materia) => {
     setModalMateria(materia);
+    setLoadingCorr(true);
+    setCorrelatividades([]);
+    try {
+      const corrs = await materiaService.listarCorrelatividades(materia.idMateria);
+      setCorrelatividades(corrs);
+    } catch {
+      setCorrelatividades([]);
+    } finally {
+      setLoadingCorr(false);
+    }
   };
 
   // Confirma y llama al backend
@@ -196,6 +249,8 @@ const ListaMaterias: React.FC<Props> = ({ onClose }) => {
       {modalMateria && (
         <ModalInscripcion
           materia={modalMateria}
+          correlatividades={correlatividades}
+          loadingCorr={loadingCorr}
           onConfirm={confirmarInscripcion}
           onCancel={() => setModalMateria(null)}
           loading={confirmLoading}

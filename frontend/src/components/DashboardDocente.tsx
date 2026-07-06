@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/auth.service';
 import GrillaNotas from './GrillaNotas';
+import GestionExamenesParciales from './GestionExamenesParciales';
 
-type Vista = 'inicio' | 'notas';
+type Vista = 'inicio' | 'notas' | 'examenes';
 
 interface TabProps {
   label: string;
@@ -72,6 +73,7 @@ const DashboardDocente: React.FC = () => {
         <div style={{ display: 'flex', gap: '6px' }}>
           <Tab icon="🏠" label="Inicio"         active={vista === 'inicio'} onClick={() => setVista('inicio')} />
           <Tab icon="✏️" label="Grilla de Notas" active={vista === 'notas'}  onClick={() => setVista('notas')} />
+          <Tab icon="📝" label="Exámenes"        active={vista === 'examenes'} onClick={() => setVista('examenes')} />
         </div>
       </header>
 
@@ -113,6 +115,13 @@ const DashboardDocente: React.FC = () => {
                   btn: 'Abrir Grilla',
                   btnColor: '#15803d',
                 },
+                {
+                  icon: '📝', title: 'Exámenes Parciales', color: '#fef9c3',
+                  desc: 'Creá y gestioná exámenes parciales de tus materias',
+                  action: () => setVista('examenes'),
+                  btn: 'Gestionar',
+                  btnColor: '#854d0e',
+                },
               ].map(card => (
                 <div key={card.title} style={{
                   background: 'white', borderRadius: '14px', padding: '24px',
@@ -148,6 +157,13 @@ const DashboardDocente: React.FC = () => {
         {vista === 'notas' && (
           <div style={{ background: 'white', borderRadius: '16px', padding: '28px', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}>
             <GrillaNotas />
+          </div>
+        )}
+
+        {/* VISTA EXÁMENES PARCIALES */}
+        {vista === 'examenes' && (
+          <div style={{ background: 'white', borderRadius: '16px', padding: '28px', boxShadow: '0 2px 10px rgba(0,0,0,0.06)' }}>
+            <GestionExamenesParciales />
           </div>
         )}
 

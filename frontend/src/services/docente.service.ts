@@ -15,7 +15,7 @@ class DocenteService {
 
   async listarMaterias(): Promise<Materia[]> {
     try {
-      const res = await api.get<Materia[]>(`${BASE_URL}/materias`);
+      const res = await api.get<Materia[]>(`${BASE_URL}/docente/materias`);
       return res.data;
     } catch (err) { throw parseError(err, 'generic'); }
   }

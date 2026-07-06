@@ -40,7 +40,17 @@ class AuthService {
     }
   }
 
-  logout(): void {
+  /**
+   * CHK040 — Cierra sesión: revoca el token en el servidor (blocklist Redis)
+   * ANTES de eliminar del localStorage. Si la llamada al server falla,
+   * se limpia igualmente el localStorage (graceful degradation).
+   */
+  async logout(): Promise<void> {
+    try {
+      await api.post(`${BASE_URL}/auth/logout`);
+    } catch {
+      // Si el server no responde, igualmente limpiar sesión local
+    }
     localStorage.removeItem(USER_KEY);
   }
 

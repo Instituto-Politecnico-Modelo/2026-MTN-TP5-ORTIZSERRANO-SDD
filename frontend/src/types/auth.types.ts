@@ -18,6 +18,7 @@ export interface LoginResponse {
   nombre: string;
   apellido: string;
   token: string;
+  refreshToken: string;
   type: string;
   role: Role;
   carrera?: string;  // solo para ESTUDIANTE

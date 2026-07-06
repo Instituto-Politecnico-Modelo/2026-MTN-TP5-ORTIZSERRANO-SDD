@@ -9,6 +9,24 @@ function notaColor(nota: number): string {
   return '#b91c1c';
 }
 
+function condicionBadge(condicion?: string) {
+  const map: Record<string, { bg: string; color: string; label: string }> = {
+    PROMOCIONADO: { bg: '#dcfce7', color: '#15803d', label: '🏆 Promocionado' },
+    REGULAR:      { bg: '#fef9c3', color: '#854d0e', label: '📋 Regular' },
+    LIBRE:        { bg: '#fee2e2', color: '#b91c1c', label: '🔴 Libre' },
+  };
+  if (!condicion) return null;
+  const s = map[condicion] ?? { bg: '#f1f5f9', color: '#475569', label: condicion };
+  return (
+    <span style={{
+      padding: '3px 10px', borderRadius: '20px', fontSize: '11px',
+      fontWeight: 700, background: s.bg, color: s.color, marginLeft: '6px',
+    }}>
+      {s.label}
+    </span>
+  );
+}
+
 function estadoBadge(estado: string, cerrada: boolean) {
   const map: Record<string, { bg: string; color: string; label: string }> = {
     APROBADA:    { bg: '#dcfce7', color: '#15803d', label: '✔ Aprobada' },
@@ -72,6 +90,7 @@ function FilaMateria({ ins }: { ins: Inscripcion }) {
         </td>
         <td style={{ padding: '14px 16px', textAlign: 'center' }}>
           {estadoBadge(ins.estado, ins.notaCerrada)}
+          {condicionBadge(ins.condicion)}
         </td>
         <td style={{ padding: '14px 16px', textAlign: 'center', fontWeight: 700,
             fontSize: '18px',
